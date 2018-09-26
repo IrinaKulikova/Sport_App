@@ -11,7 +11,7 @@ public class Card{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="id",unique = true,nullable = false)
+    @Column(name="id",unique = true, nullable = false)
     int id;
 
     @Column(name="pin_code")
