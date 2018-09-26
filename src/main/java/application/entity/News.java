@@ -1,4 +1,4 @@
-package application.entities;
+package application.entity;
 
 import lombok.Data;
 
@@ -19,8 +19,7 @@ public class News {
     String description;
     String imageURL;
 
-    public News() {
-    }
+    public News() {}
 
     public News(String title, String description, String date, String imageURL) {
         this.title = title;

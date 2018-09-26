@@ -1,7 +1,7 @@
-package application.services;
+package application.service;
 
-import application.entities.News;
-import application.repositories.RepositoryNews;
+import application.entity.News;
+import application.repository.RepositoryNews;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
