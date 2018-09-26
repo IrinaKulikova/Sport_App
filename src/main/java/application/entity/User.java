@@ -1,4 +1,4 @@
-package application.entities;
+package application.entity;
 
 import lombok.Data;
 

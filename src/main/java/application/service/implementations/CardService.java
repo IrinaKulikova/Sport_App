@@ -1,6 +1,6 @@
 package application.service.implementations;
 
-import application.entities.Card;
+import application.entity.Card;
 import application.repository.CardRepository;
 import application.service.interfaces.ICardService;
 import org.springframework.beans.factory.annotation.Autowired;
