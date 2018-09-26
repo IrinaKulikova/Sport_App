@@ -1,6 +1,6 @@
 package application.service;
 
-import application.entities.Card;
+import application.entity.Card;
 import application.repository.CardRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
