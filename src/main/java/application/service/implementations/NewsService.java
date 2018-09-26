@@ -2,14 +2,14 @@ package application.service.implementations;
 
 import application.entity.News;
 import application.repository.RepositoryNews;
-import application.service.interfaces.IEntityService;
+import application.service.interfaces.EntityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-public class NewsService implements IEntityService<News> {
+public class NewsService implements EntityService<News> {
 
     @Autowired
     RepositoryNews repositoryNews;

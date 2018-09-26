@@ -3,14 +3,14 @@ package application.service.implementations;
 
 import application.entity.User;
 import application.repository.UserRepository;
-import application.service.interfaces.IEntityService;
+import application.service.interfaces.EntityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-public class UserService implements IEntityService<User> {
+public class UserService implements EntityService<User> {
 
     @Autowired
     UserRepository repository;
