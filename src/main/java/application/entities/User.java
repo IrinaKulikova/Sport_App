@@ -23,6 +23,6 @@ public class User {
 
     String phone;
 
-    @OneToOne(cascade = CascadeType.ALL,mappedBy = "id")
+    @ManyToOne(targetEntity = Card.class,cascade = CascadeType.ALL)
     int card_id;
 }
