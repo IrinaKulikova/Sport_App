@@ -18,8 +18,8 @@
 
     <mvc:resources mapping="/resources/**" location="/resources/*" />
     <context:property-placeholder location="classpath:database.properties" />
-
-    <bean id="newsService" class="application.services.NewsService" autowire="byName"/>
+    <bean id="userService" class="application.service.UserService" />
+    <bean id="cardService" class="application.service.CardService" />
     <bean id="dataSource"
           class="org.springframework.jdbc.datasource.DriverManagerDataSource"
           p:username="${db.user}"
