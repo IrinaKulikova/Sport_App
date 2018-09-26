@@ -19,10 +19,10 @@
     <mvc:resources mapping="/resources/**" location="/resources/*" />
     <context:property-placeholder location="classpath:database.properties" />
 
-    <bean id="userService" class="application.service.UserService" />
-    <bean id="cardService" class="application.service.CardService" />
-    <bean id="newsService" class="application.service.NewsService" />
-    <bean id="contactsService" class="application.service.ContactsService" />
+    <bean id="userService" class="application.service.implementations.UserService" />
+    <bean id="cardService" class="application.service.implementations.CardService" />
+    <bean id="newsService" class="application.service.implementations.NewsService" />
+    <bean id="contactsService" class="application.service.implementations.ContactsService" />
 
     <bean id="dataSource"
           class="org.springframework.jdbc.datasource.DriverManagerDataSource"

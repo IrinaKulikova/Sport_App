@@ -2,27 +2,34 @@ package application.service.implementations;
 
 import application.entity.Card;
 import application.repository.CardRepository;
-import application.service.interfaces.ICardService;
+import application.service.interfaces.IEntityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-public class CardService implements ICardService {
+public class CardService implements IEntityService<Card> {
     @Autowired
-    CardRepository cards;
+    CardRepository repository;
 
-    public List<Card> getAllCards(){
-        return cards.findAll();
+    @Override
+    public List<Card> getAll() {
+        return repository.findAll();
     }
 
-    public Card getCardById(int id){
-        return cards.getOne(id);
+    @Override
+    public Card getById(int id) {
+        return repository.getOne(id);
     }
 
-    public void saveCard(Card card){
-        cards.save(card);
+    @Override
+    public void save(Card card) {
+        repository.save(card);
     }
 
+    @Override
+    public void delete(Card card) {
+        repository.delete(card);
+    }
 }
