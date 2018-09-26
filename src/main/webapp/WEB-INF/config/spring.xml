@@ -21,6 +21,7 @@
 
     <bean id="userService" class="application.service.UserService" />
     <bean id="cardService" class="application.service.CardService" />
+    <bean id="newsService" class="application.service.NewsService" />
 
     <bean id="dataSource"
           class="org.springframework.jdbc.datasource.DriverManagerDataSource"
