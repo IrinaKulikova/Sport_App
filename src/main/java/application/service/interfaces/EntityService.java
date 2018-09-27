@@ -1,8 +1,5 @@
 package application.service.interfaces;
 
-import application.entity.Card;
-import application.entity.Contacts;
-
 import java.util.List;
 
 public interface EntityService<Entity> {
