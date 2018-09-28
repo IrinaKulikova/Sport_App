@@ -20,7 +20,7 @@ public class CardService implements EntityService<Card> {
 
     @Override
     public Card getById(int id) {
-        return repository.getOne(id);
+        return repository.findById(id).get();
     }
 
     @Override

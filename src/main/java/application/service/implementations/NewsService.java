@@ -21,7 +21,7 @@ public class NewsService implements EntityService<News> {
 
     @Override
     public News getById(int id) {
-        return repositoryNews.getOne(id);
+        return repositoryNews.findById(id).get();
     }
 
     @Override

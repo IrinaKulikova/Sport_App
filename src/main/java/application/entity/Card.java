@@ -22,7 +22,10 @@ public class Card {
     @Column(name = "expiration_date")
     String expirationDate;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name="fk_card_user")
     private User user;
+
+    public Card() {
+    }
 }

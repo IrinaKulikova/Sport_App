@@ -8,6 +8,7 @@ import java.util.List;
 
 @Entity
 @Data
+@Table(name = "contact_type")
 public class ContactType {
 
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -19,4 +20,7 @@ public class ContactType {
     @OneToMany(cascade = CascadeType.ALL, targetEntity = Contact.class)
     @JoinColumn(name="fk_contact_type")
     List<Contact> contacts = new ArrayList<>();
+
+    public ContactType() {
+    }
 }

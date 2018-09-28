@@ -19,12 +19,13 @@ public class News {
     String description;
     String imageURL;
 
-    public News() {}
-
     public News(String title, String description, String date, String imageURL) {
         this.title = title;
         this.date = date;
         this.description = description;
         this.imageURL = imageURL;
+    }
+
+    public News() {
     }
 }

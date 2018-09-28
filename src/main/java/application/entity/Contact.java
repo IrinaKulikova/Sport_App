@@ -1,5 +1,6 @@
 package application.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -12,13 +13,18 @@ public class Contact {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Integer id;
 
-    @ManyToOne(cascade = CascadeType.ALL, targetEntity = ContactType.class)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, targetEntity = ContactType.class, optional = false)
     @JoinColumn(name="fk_contact_type")
+    @JsonIgnore
     ContactType contactType;
 
     String data;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "fk_filial")
+    @JsonIgnore
     Filial filial;
+
+    public Contact() {
+    }
 }

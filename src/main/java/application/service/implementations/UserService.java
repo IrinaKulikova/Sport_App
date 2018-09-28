@@ -17,12 +17,12 @@ public class UserService implements EntityService<User> {
 
     @Override
     public List<User> getAll() {
-        return repository.findAll();
+      return repository.findAll();
     }
 
     @Override
     public User getById(int id) {
-        return repository.getOne(id);
+        return repository.findById(id).get();
     }
 
     @Override

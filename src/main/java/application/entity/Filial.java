@@ -1,5 +1,7 @@
 package application.entity;
-
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import jdk.nashorn.internal.ir.annotations.Ignore;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -13,18 +15,19 @@ public class Filial {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Integer id;
-    String name;
+    String caption;
     String country;
     String city;
     String indexCity;
     String street;
     String building;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy="filial")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy="filial", fetch = FetchType.LAZY)
+    @JsonIgnore
     List<Contact> contacts = new ArrayList<>();
 
-    public Filial(String name, String country, String city, String indexCity, String street, String building) {
-        this.name = name;
+    public Filial(String caption, String country, String city, String indexCity, String street, String building) {
+        this.caption = caption;
         this.country = country;
         this.city = city;
         this.indexCity = indexCity;

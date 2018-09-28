@@ -18,10 +18,7 @@ public class User {
     String email;
     String phone;
 
-    @OneToMany(targetEntity = Card.class, cascade = CascadeType.ALL)
+    @OneToMany(targetEntity = Card.class, cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name="fk_card_user")
     private List<Card> cards = new ArrayList<>();
-
-    public User() {
-    }
 }
