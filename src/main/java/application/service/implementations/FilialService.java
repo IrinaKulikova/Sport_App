@@ -21,12 +21,12 @@ public class FilialService implements EntityService<Filial> {
     ContactRepository contactRepository;
 
     @Override
-    public List<Filial> getAll() {
+    public List<Filial> getAll() throws Throwable {
         return filialRepository.findAll();
     }
 
     @Override
-    public Filial getById(int id) {
+    public Filial getById(int id) throws  Throwable {
         List<Contact> contacts = contactRepository.findAll();
         Filial filial = filialRepository.findById(id).get();
         filial.setContacts(contacts);
@@ -34,12 +34,12 @@ public class FilialService implements EntityService<Filial> {
     }
 
     @Override
-    public void save(Filial filial) {
+    public void save(Filial filial) throws Throwable {
         filialRepository.save(filial);
     }
 
     @Override
-    public void delete(Filial filial) {
-        filialRepository.delete(filial);
+    public void delete(int id) throws Throwable {
+        filialRepository.delete(filialRepository.findById(id).get());
     }
 }

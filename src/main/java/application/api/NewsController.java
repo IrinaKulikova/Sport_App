@@ -3,17 +3,13 @@ package application.api;
 import application.entity.News;
 import application.service.implementations.NewsService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
-import static org.springframework.web.bind.annotation.RequestMethod.GET;
-
 @RestController
-@RequestMapping( value = "/api/1.0/news", produces = "application/json")
+@RequestMapping(value = "/api/1.0/news", produces = "application/json")
 public class NewsController {
 
     @Autowired
@@ -21,11 +17,48 @@ public class NewsController {
 
     @GetMapping(value = "/{id}")
     public News getNewsById(@PathVariable("id") int id) {
-        return service.getById(id);
+        try {
+            return service.getById(id);
+        } catch (Throwable throwable) {
+            throwable.printStackTrace();
+        }
+        return new News();
     }
 
     @GetMapping
     public List<News> getAll() {
-        return service.getAll();
+        try {
+            return service.getAll();
+        } catch (Throwable throwable) {
+            throwable.printStackTrace();
+        }
+        return new ArrayList<>();
+    }
+
+    @PostMapping
+    public void newEmployee(@RequestBody News news) {
+        try {
+            service.save(news);
+        } catch (Throwable throwable) {
+            throwable.printStackTrace();
+        }
+    }
+
+    @PutMapping("/{id}")
+    public void replaceNews(@RequestBody News news) {
+        try {
+            service.save(news);
+        } catch (Throwable throwable) {
+            throwable.printStackTrace();
+        }
+    }
+
+    @DeleteMapping("/{id}")
+    void deleteNews(@PathVariable int id) {
+        try {
+            service.delete(id);
+        } catch (Throwable throwable) {
+            throwable.printStackTrace();
+        }
     }
 }

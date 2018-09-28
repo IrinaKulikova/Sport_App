@@ -5,6 +5,7 @@ import application.service.implementations.FilialService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -16,12 +17,48 @@ public class FilialController {
 
     @GetMapping("/{id}")
     public Filial getContactsById(@PathVariable int id) {
-        return service.getById(id);
+        try {
+            return service.getById(id);
+        } catch (Throwable throwable) {
+            throwable.printStackTrace();
+        }
+        return new Filial();
     }
 
     @GetMapping
     public List<Filial> getAll() {
-        return service.getAll();
+        try {
+            return service.getAll();
+        } catch (Throwable throwable) {
+            throwable.printStackTrace();
+        }
+        return new ArrayList<>();
     }
 
+    @PutMapping("/{id}")
+    public void replaceNews(@RequestBody Filial filial) {
+        try {
+            service.save(filial);
+        } catch (Throwable throwable) {
+            throwable.printStackTrace();
+        }
+    }
+
+    @PostMapping
+    public void newEmployee(@RequestBody Filial filial) {
+        try {
+            service.save(filial);
+        } catch (Throwable throwable) {
+            throwable.printStackTrace();
+        }
+    }
+
+    @DeleteMapping("/{id}")
+    void deleteContacts(@PathVariable int id) {
+        try {
+            service.delete(id);
+        } catch (Throwable throwable) {
+            throwable.printStackTrace();
+        }
+    }
 }

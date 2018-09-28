@@ -6,5 +6,5 @@ public interface EntityService<Entity> {
     List<Entity> getAll() throws Throwable;
     Entity getById(int id) throws Throwable;
     void save(Entity entity) throws Throwable;
-    void delete(Entity entity) throws Throwable;
+    void delete(int id) throws Throwable;
 }
