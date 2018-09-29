@@ -14,14 +14,14 @@ public class Contact {
     Integer id;
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, targetEntity = ContactType.class, optional = false)
-    @JoinColumn(name="fk_contact_type")
+    @JoinColumn(name="contact_type_id")
     @JsonIgnore
     ContactType contactType;
 
     String data;
 
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "fk_filial")
+    @JoinColumn(name = "filial_id")
     @JsonIgnore
     Filial filial;
 

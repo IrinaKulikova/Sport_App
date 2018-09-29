@@ -2,10 +2,7 @@ package application.entity;
 
 import lombok.Data;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Data
 @Entity
@@ -17,6 +14,8 @@ public class News {
     String title;
     String date;
     String description;
+
+    @Column(name = "image_url")
     String imageURL;
 
     public News(String title, String description, String date, String imageURL) {

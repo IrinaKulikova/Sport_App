@@ -44,7 +44,7 @@ public class NewsController {
         }
     }
 
-    @PutMapping("/{id}")
+    @PutMapping()
     public void replaceNews(@RequestBody News news) {
         try {
             service.save(news);

@@ -40,6 +40,7 @@ public class FilialService implements EntityService<Filial> {
 
     @Override
     public void delete(int id) throws Throwable {
-        filialRepository.delete(filialRepository.findById(id).get());
+        Filial filial=filialRepository.findById(id).get();
+        filialRepository.delete(filial);
     }
 }

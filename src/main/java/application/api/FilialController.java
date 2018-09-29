@@ -35,7 +35,7 @@ public class FilialController {
         return new ArrayList<>();
     }
 
-    @PutMapping("/{id}")
+    @PutMapping()
     public void replaceNews(@RequestBody Filial filial) {
         try {
             service.save(filial);

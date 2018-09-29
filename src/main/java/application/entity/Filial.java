@@ -18,6 +18,8 @@ public class Filial {
     String caption;
     String country;
     String city;
+
+    @Column(name = "index_city")
     String indexCity;
     String street;
     String building;
