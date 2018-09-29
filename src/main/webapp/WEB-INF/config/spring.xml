@@ -8,7 +8,13 @@
        xmlns:tx="http://www.springframework.org/schema/tx"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/data/jpa http://www.springframework.org/schema/data/jpa/spring-jpa.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
 
-<mvc:annotation-driven/>
+<!--<mvc:annotation-driven/>-->
+
+    <mvc:annotation-driven>
+        <mvc:message-converters>
+            <bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter"/>
+        </mvc:message-converters>
+    </mvc:annotation-driven>
 
     <context:component-scan base-package="application"/>
 
@@ -19,10 +25,10 @@
     <mvc:resources mapping="/resources/**" location="/resources/*" />
     <context:property-placeholder location="classpath:database.properties" />
 
-    <bean id="userService" class="application.service.implementations.UserService" />
-    <bean id="cardService" class="application.service.implementations.CardService" />
-    <bean id="newsService" class="application.service.implementations.NewsService" />
-    <bean id="filialService" class="application.service.implementations.FilialService" />
+    <!--<bean id="userService" class="application.service.implementations.UserService" />-->
+    <!--<bean id="cardService" class="application.service.implementations.CardService" />-->
+    <!--<bean id="newsService" class="application.service.implementations.NewsService" />-->
+    <!--<bean id="filialService" class="application.service.implementations.FilialService" />-->
 
     <bean id="dataSource"
           class="org.springframework.jdbc.datasource.DriverManagerDataSource"
@@ -51,3 +57,4 @@
                       entity-manager-factory-ref="entityManagerFactory"
                       transaction-manager-ref="txManager" />
 </beans>
+
