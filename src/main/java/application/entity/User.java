@@ -21,6 +21,7 @@ public class User {
     String lastName;
     String email;
     String phone;
+    String password;
 
     @OneToMany(targetEntity = Card.class, cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name="card_user_id")
