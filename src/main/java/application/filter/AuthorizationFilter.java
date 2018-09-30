@@ -3,6 +3,7 @@ package application.filter;
 import application.entity.Administrator;
 import application.service.helper.HashHelper;
 import application.service.implementations.AdministratorService;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
@@ -17,15 +18,12 @@ import java.util.List;
 @WebFilter("*")
 public class AuthorizationFilter implements Filter {
 
-    List<Administrator> admins = null;
+    @Autowired
+    AdministratorService administratorService;
 
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
-        try {
-            admins = new AdministratorService().getAll();
-        } catch (Throwable throwable) {
-            throwable.printStackTrace();
-        }
+
     }
 
     @Override
@@ -35,6 +33,12 @@ public class AuthorizationFilter implements Filter {
         HttpSession session = req.getSession();
         String requestUri = req.getRequestURI();
         boolean isLogged = false;
+        List<Administrator> admins = null;
+        try {
+            admins = administratorService.getAll();
+        } catch (Throwable throwable) {
+            throwable.printStackTrace();
+        }
         String identifier = (String)session.getAttribute("identifier");
         if(identifier != null && admins!=null){
             for(Administrator a: admins){

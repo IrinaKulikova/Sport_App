@@ -3,6 +3,8 @@ package application.controller;
 import application.entity.Administrator;
 import application.service.helper.HashHelper;
 import application.service.implementations.AdministratorService;
+import application.service.implementations.NewsService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -19,6 +21,9 @@ import java.util.List;
 @Controller
 public class HomeController {
 
+    @Autowired
+    private AdministratorService administratorService;
+
     @GetMapping("/")
     public String index() {
         return "home";
@@ -33,10 +38,10 @@ public class HomeController {
     public String loginPost(HttpServletRequest req){
         String login = req.getParameter("login");
         String password = req.getParameter("password");
-        AdministratorService administratorService = new AdministratorService();
         boolean exist = false;
         try {
             List<Administrator> admins = administratorService.getAll();
+
             for(Administrator a:admins){
                 if(login.equals(a.getLogin())&&password.equals(a.getPassword())){
                     exist = true;
@@ -53,9 +58,7 @@ public class HomeController {
             HttpSession session = req.getSession();
             try {
                 session.setAttribute("identifier",HashHelper.makeSHA1Hash(login+password+"Sport_App"));
-            } catch (NoSuchAlgorithmException e) {
-                e.printStackTrace();
-            } catch (UnsupportedEncodingException e) {
+            } catch (NoSuchAlgorithmException | UnsupportedEncodingException e) {
                 e.printStackTrace();
             }
         }
