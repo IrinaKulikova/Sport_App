@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
 
-public class SheduleServise implements EntityService<Schedule> {
+public class ScheduleServise implements EntityService<Schedule> {
     @Autowired
     ScheduleRepository repository;
     @Override
