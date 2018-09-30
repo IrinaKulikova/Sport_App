@@ -4,6 +4,9 @@ import application.entity.Administrator;
 import application.service.helper.HashHelper;
 import application.service.implementations.AdministratorService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+import org.springframework.web.context.WebApplicationContext;
+import org.springframework.web.context.support.WebApplicationContextUtils;
 
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
@@ -15,11 +18,13 @@ import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
 import java.util.List;
 
+@Component
 @WebFilter("*")
 public class AuthorizationFilter implements Filter {
 
     @Autowired
     AdministratorService administratorService;
+
 
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
@@ -28,6 +33,12 @@ public class AuthorizationFilter implements Filter {
 
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
+        if(administratorService==null){
+            ServletContext servletContext = request.getServletContext();
+            WebApplicationContext webApplicationContext = WebApplicationContextUtils.getWebApplicationContext(servletContext);
+            administratorService = webApplicationContext.getBean(AdministratorService.class);
+        }
+
         HttpServletRequest req = (HttpServletRequest) request;
         HttpServletResponse resp = (HttpServletResponse) response;
         HttpSession session = req.getSession();
