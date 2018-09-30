@@ -23,7 +23,8 @@
     <bean id="cardService" class="application.service.implementations.CardService" />
     <bean id="newsService" class="application.service.implementations.NewsService" />
     <bean id="contactsService" class="application.service.implementations.ContactsService" />
-
+    <bean id="scheduleService" class="application.service.implementations.ScheduleServise" />
+    <bean id="scheduleEventService" class="application.service.implementations.SchedulesEventServise" />
     <bean id="dataSource"
           class="org.springframework.jdbc.datasource.DriverManagerDataSource"
           p:username="${db.user}"
