@@ -10,3 +10,5 @@ INSERT INTO sport.news (title, date, description, imageURL) VALUES ('Участ�
 'https://saycheese.com.ua/wp-content/uploads/2018/04/Harkovskij-marafon-2-1200x630.jpg');
 INSERT INTO sport.news (title, date, description, imageURL) VALUES ('Мы поддержал забег Intersport Run Ukraine', '2018-03-01 10:00:20', 'В центре столицы, на Крещатике, состоялся спортивный фестиваль INTERSPORT FEST UA. Кульминацией события стали беговые соревнования INTERSPORT RUN UA. Мероприятие посвящено Дню физической культуры и спорта Украины',
 'https://www.sportlife.ua/sites/default/files/styles/colorbox/public/1_36.jpg?itok=txyNGBMZ');
+INSERT INTO sport.administrator (login, password) VALUES ('admin','admin');
+INSERT INTO sport.administrator (login, password) VALUES ('1admin1','admin2');
