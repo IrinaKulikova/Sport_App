@@ -15,22 +15,14 @@ public class CardService implements EntityService<Card> {
     CardRepository repository;
 
     @Override
-    public List<Card> getAll() throws IOException {
-        return repository.findAll();
-    }
+    public List<Card> getAll() {return repository.findAll(); }
 
     @Override
-    public Card getById(int id) throws IOException {
-        return repository.findById(id).get();
-    }
+    public Card getById(int id) {return repository.findById(id).get(); }
 
     @Override
-    public void save(Card card) throws IOException {
-        repository.save(card);
-    }
+    public void save(Card card) { repository.save(card); }
 
     @Override
-    public void delete(int id) throws IOException {
-        repository.delete(repository.findById(id).get());
-    }
+    public void delete(int id) { repository.delete(repository.findById(id).get());}
 }

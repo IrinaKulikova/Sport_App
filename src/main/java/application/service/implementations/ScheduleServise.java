@@ -15,10 +15,7 @@ public class ScheduleServise implements EntityService<Schedule> {
     @Autowired
     ScheduleRepository repository;
     @Override
-    public List<Schedule> getAll() {
-        List<Schedule> l= repository.findAll();
-        return l;
-    }
+    public List<Schedule> getAll() { List<Schedule> l= repository.findAll(); return l; }
 
     @Override
     public Schedule getById(int id) {
@@ -31,8 +28,5 @@ public class ScheduleServise implements EntityService<Schedule> {
     }
 
     @Override
-    public void delete(int id) throws IOException {
-        repository.deleteById(id);
-    }
-
+    public void delete(int id)  { repository.deleteById(id); }
 }

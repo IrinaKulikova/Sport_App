@@ -23,7 +23,7 @@ public class NewsController {
         News news = new News();
         try {
             news = service.getById(id);
-        } catch (IOException ex) {
+        } catch (Exception ex) {
             result.setStatus(ex.getMessage());
             result.setMessage("Error, entity not find!");
             ex.printStackTrace();
@@ -38,7 +38,7 @@ public class NewsController {
         List<News> news = new ArrayList<>();
         try {
             news = service.getAll();
-        } catch (IOException ex) {
+        } catch (Exception ex) {
             result.setMessage(ex.getMessage());
             result.setMessage("Error, entity not find!");
             ex.printStackTrace();
@@ -65,7 +65,7 @@ public class NewsController {
             currentNews.setDescription(news.getDescription());
             currentNews.setImageURL(news.getDate());
             service.save(news);
-        } catch (IOException ex) {
+        } catch (Exception ex) {
             result.setStatus("error");
             result.setMessage("Error, entity not find!");
             ex.printStackTrace();
@@ -79,7 +79,7 @@ public class NewsController {
         JSONResult<News> result = new JSONResult<>();
         try {
             service.save(news);
-        } catch (IOException ex) {
+        } catch (Exception ex) {
             ex.printStackTrace();
             result.setStatus("error");
             result.setMessage("Error, entity not find!");
@@ -95,7 +95,7 @@ public class NewsController {
         try {
             currentNews = service.getById(id);
             service.delete(id);
-        } catch (IOException ex) {
+        } catch (Exception ex) {
             ex.printStackTrace();
             result.setStatus("error");
             result.setMessage("Error, entity not find!");

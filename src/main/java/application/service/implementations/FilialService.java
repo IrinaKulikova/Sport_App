@@ -22,23 +22,17 @@ public class FilialService implements EntityService<Filial> {
     ContactRepository contactRepository;
 
     @Override
-    public List<Filial> getAll() throws IOException {
-        return filialRepository.findAll();
-    }
+    public List<Filial> getAll()  {return filialRepository.findAll(); }
 
     @Override
-    public Filial getById(int id) throws  IOException {
-        return filialRepository.findById(id).get();
-    }
+    public Filial getById(int id) { return filialRepository.findById(id).get();}
 
     @Override
-    public void save(Filial filial) throws IOException {
-        filialRepository.save(filial);
-    }
+    public void save(Filial filial) { filialRepository.save(filial); }
 
     @Override
-    public void delete(int id) throws IOException {
-        Filial filial=filialRepository.findById(id).get();
-        filialRepository.delete(filial);
+    public void delete(int id) {
+    Filial filial=filialRepository.findById(id).get();
+    filialRepository.delete(filial);
     }
 }

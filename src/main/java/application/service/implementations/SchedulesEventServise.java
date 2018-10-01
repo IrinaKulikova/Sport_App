@@ -28,8 +28,5 @@ public class SchedulesEventServise implements EntityService<ScheduleEvent> {
     }
 
     @Override
-    public void delete(int id) throws IOException {
-        repository.deleteById(id);
-    }
-
+    public void delete(int id) { repository.deleteById(id); }
 }

@@ -23,7 +23,7 @@ public class FilialController {
         Filial filial = new Filial();
         try {
             filial = service.getById(id);
-        } catch (IOException ex) {
+        } catch (Exception ex) {
             result.setStatus(ex.getMessage());
             result.setMessage("Error, entity not find!");
             ex.printStackTrace();
@@ -38,7 +38,7 @@ public class FilialController {
         JSONResult<List<Filial>> result = new JSONResult<>();
         try {
             filials = service.getAll();
-        } catch (IOException ex) {
+        } catch (Exception ex) {
             result.setMessage(ex.getMessage());
             result.setMessage("Error, entity not find!");
             ex.printStackTrace();
@@ -55,7 +55,7 @@ public class FilialController {
         try {
             currentFilial = service.getById(id);
             service.delete(id);
-        } catch (IOException ex) {
+        } catch (Exception ex) {
             ex.printStackTrace();
             result.setStatus("error");
             result.setMessage("Error, entity not find!");

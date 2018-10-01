@@ -17,22 +17,22 @@ public class UserService implements EntityService<User> {
     UserRepository repository;
 
     @Override
-    public List<User> getAll() throws IOException {
+    public List<User> getAll() throws Exception {
       return repository.findAll();
     }
 
     @Override
-    public User getById(int id) throws IOException {
+    public User getById(int id) throws Exception {
         return repository.findById(id).get();
     }
 
     @Override
-    public void save(User user) throws IOException {
+    public void save(User user) throws Exception {
         repository.save(user);
     }
 
     @Override
-    public void delete(int id) throws IOException {
+    public void delete(int id) throws Exception {
         repository.delete(repository.findById(id).get());
     }
 }
