@@ -6,6 +6,7 @@ import application.service.interfaces.EntityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.io.IOException;
 import java.util.List;
 @Service
 public class SchedulesEventServise implements EntityService<ScheduleEvent> {
@@ -27,7 +28,7 @@ public class SchedulesEventServise implements EntityService<ScheduleEvent> {
     }
 
     @Override
-    public void delete(int id) throws Throwable {
+    public void delete(int id) throws IOException {
         repository.deleteById(id);
     }
 
