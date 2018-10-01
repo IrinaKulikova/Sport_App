@@ -43,9 +43,8 @@ public class NewsController {
         return new JSONResultOk<List<News>>(news);
     }
 
-
     @PutMapping("/{id}")
-    public JSONResult<News> replaceNews(@RequestBody News news, @PathVariable("id") int id) {
+    public JSONResult<News> updateNews(@RequestBody News news, @PathVariable("id") int id) {
         News currentNews = new News();
         try {
             currentNews = service.getById(id);
@@ -65,7 +64,7 @@ public class NewsController {
     }
 
     @PostMapping
-    public JSONResult<News> newNews(@RequestBody News news) {
+    public JSONResult<News> addNews(@RequestBody News news) {
         try {
             service.save(news);
         } catch (Exception ex) {

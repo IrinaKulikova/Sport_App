@@ -31,8 +31,5 @@ public class FilialService implements EntityService<Filial> {
     public void save(Filial filial) { filialRepository.save(filial); }
 
     @Override
-    public void delete(int id) {
-    Filial filial=filialRepository.findById(id).get();
-    filialRepository.delete(filial);
-    }
+    public void delete(int id) {filialRepository.delete(filialRepository.findById(id).get());}
 }
