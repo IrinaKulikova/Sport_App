@@ -65,6 +65,7 @@ public class FilialController {
             currentFilial.setIndexCity(filial.getIndexCity());
             currentFilial.setBuilding(filial.getBuilding());
             currentFilial.setCaption(filial.getCaption());
+            currentFilial.setStreet(filial.getStreet());
             currentFilial.setContacts(filial.getContacts());
             service.save(filial);
         } catch (IOException ex) {
@@ -81,8 +82,14 @@ public class FilialController {
         JSONResult<Filial> result = new JSONResult<>();
         Filial currentFilial = new Filial();
         try {
-            service.save(filial);
-            currentFilial = service.getById(filial.getId());
+            currentFilial.setCountry(filial.getCountry());
+            currentFilial.setCity(filial.getCity());
+            currentFilial.setIndexCity(filial.getIndexCity());
+            currentFilial.setBuilding(filial.getBuilding());
+            currentFilial.setCaption(filial.getCaption());
+            currentFilial.setStreet(filial.getStreet());
+            currentFilial.setContacts(filial.getContacts());
+            service.save(currentFilial);
         } catch (IOException ex) {
             ex.printStackTrace();
             result.setStatus("error");
