@@ -27,7 +27,8 @@ public class SchedulesEventServise implements EntityService<ScheduleEvent> {
     }
 
     @Override
-    public void delete(ScheduleEvent scheduleEvent) {
-        repository.delete(scheduleEvent);
+    public void delete(int id) throws Throwable {
+        repository.deleteById(id);
     }
+
 }

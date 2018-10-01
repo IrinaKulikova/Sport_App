@@ -30,7 +30,8 @@ public class ScheduleServise implements EntityService<Schedule> {
     }
 
     @Override
-    public void delete(Schedule schedule) {
-        repository.delete(schedule);
+    public void delete(int id) throws Throwable {
+        repository.deleteById(id);
     }
+
 }
