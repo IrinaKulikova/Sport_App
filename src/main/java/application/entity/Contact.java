@@ -13,7 +13,7 @@ public class Contact {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Integer id;
 
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL, targetEntity = ContactType.class)
+    @ManyToOne(fetch = FetchType.EAGER, targetEntity = ContactType.class)
     @JoinColumn(name="contact_type_id")
     ContactType contactType;
 

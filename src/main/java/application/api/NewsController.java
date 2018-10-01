@@ -48,61 +48,61 @@ public class NewsController {
     }
 
 
-//    @PutMapping("/{id}")
-//    public JSONResult<News> replaceNews(@RequestBody News news, @PathVariable("id") int id) {
-//        JSONResult<News> result = new JSONResult<>();
+    @PutMapping("/{id}")
+    public JSONResult<News> replaceNews(@RequestBody News news, @PathVariable("id") int id) {
+        JSONResult<News> result = new JSONResult<>();
+        News currentNews = new News();
+        try {
+            currentNews = service.getById(id);
+            if (currentNews == null) {
+                result.setStatus("error");
+                result.setMessage("Error, entity not find!");
+                result.setData(currentNews);
+                return result;
+            }
+            currentNews.setTitle(news.getTitle());
+            currentNews.setDate(news.getDate());
+            currentNews.setDescription(news.getDescription());
+            currentNews.setImageURL(news.getDate());
+            service.save(news);
+        } catch (IOException ex) {
+            result.setStatus("error");
+            result.setMessage("Error, entity not find!");
+            ex.printStackTrace();
+        }
+        result.setData(news);
+        return result;
+    }
+
+    @PostMapping
+    public JSONResult<News> newNews(@RequestBody News news) {
+        JSONResult<News> result = new JSONResult<>();
 //        News currentNews = new News();
-//        try {
-//            currentNews = service.getById(id);
-//            if (currentNews == null) {
-//                result.setStatus("error");
-//                result.setMessage("Error, entity not find!");
-//                result.setData(currentNews);
-//                return result;
-//            }
-//            currentNews.setTitle(news.getTitle());
-//            currentNews.setDate(news.getDate());
-//            currentNews.setDescription(news.getDescription());
-//            currentNews.setImageURL(news.getDate());
-//            service.save(news);
-//        } catch (IOException ex) {
-//            result.setStatus("error");
-//            result.setMessage("Error, entity not find!");
-//            ex.printStackTrace();
-//        }
-//        result.setData(news);
-//        return result;
-//    }
-//
-//    @PostMapping
-//    public JSONResult<News> newNews(@RequestBody News news) {
-//        JSONResult<News> result = new JSONResult<>();
-////        News currentNews = new News();
-//        try {
-////            currentNews = service.getById(news.getId());
-//            service.save(news);
-//        } catch (IOException ex) {
-//            ex.printStackTrace();
-//            result.setStatus("error");
-//            result.setMessage("Error, entity not find!");
-//        }
-//        result.setData(news);
-//        return result;
-//    }
-//
-//    @DeleteMapping("/{id}")
-//    public JSONResult<News> deleteNews(@PathVariable int id) {
-//        JSONResult<News> result = new JSONResult<>();
-//        News currentNews = new News();
-//        try {
-//            currentNews = service.getById(id);
-//            service.delete(id);
-//        } catch (IOException ex) {
-//            ex.printStackTrace();
-//            result.setStatus("error");
-//            result.setMessage("Error, entity not find!");
-//        }
-//        result.setData(currentNews);
-//        return result;
-//    }
+        try {
+//            currentNews = service.getById(news.getId());
+            service.save(news);
+        } catch (IOException ex) {
+            ex.printStackTrace();
+            result.setStatus("error");
+            result.setMessage("Error, entity not find!");
+        }
+        result.setData(news);
+        return result;
+    }
+
+    @DeleteMapping("/{id}")
+    public JSONResult<News> deleteNews(@PathVariable int id) {
+        JSONResult<News> result = new JSONResult<>();
+        News currentNews = new News();
+        try {
+            currentNews = service.getById(id);
+            service.delete(id);
+        } catch (IOException ex) {
+            ex.printStackTrace();
+            result.setStatus("error");
+            result.setMessage("Error, entity not find!");
+        }
+        result.setData(currentNews);
+        return result;
+    }
 }
