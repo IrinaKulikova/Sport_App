@@ -33,42 +33,46 @@ public class AuthorizationFilter implements Filter {
 
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
-        if(administratorService==null){
-            ServletContext servletContext = request.getServletContext();
-            WebApplicationContext webApplicationContext = WebApplicationContextUtils.getWebApplicationContext(servletContext);
-            administratorService = webApplicationContext.getBean(AdministratorService.class);
-        }
 
-        HttpServletRequest req = (HttpServletRequest) request;
-        HttpServletResponse resp = (HttpServletResponse) response;
-        HttpSession session = req.getSession();
-        String requestUri = req.getRequestURI();
-        boolean isLogged = false;
-        List<Administrator> admins = null;
-        try {
-            admins = administratorService.getAll();
-        } catch (Throwable throwable) {
-            throwable.printStackTrace();
-        }
-        String identifier = (String)session.getAttribute("identifier");
-        if(identifier != null && admins!=null){
-            for(Administrator a: admins){
-                try {
-                    if(identifier.equals(HashHelper.makeSHA1Hash(a.getLogin()+a.getPassword()+"Sport_App"))){
-                        isLogged=true;
-                        break;
-                    }
-                } catch (NoSuchAlgorithmException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
+        chain.doFilter(request, response);
+        return;
 
-        if(requestUri.equals("/login") || isLogged){
-            chain.doFilter(request, response);
-        } else {
-            resp.sendRedirect("/login");
-        }
+//        if(administratorService==null){
+//            ServletContext servletContext = request.getServletContext();
+//            WebApplicationContext webApplicationContext = WebApplicationContextUtils.getWebApplicationContext(servletContext);
+//            administratorService = webApplicationContext.getBean(AdministratorService.class);
+//        }
+//
+//        HttpServletRequest req = (HttpServletRequest) request;
+//        HttpServletResponse resp = (HttpServletResponse) response;
+//        HttpSession session = req.getSession();
+//        String requestUri = req.getRequestURI();
+//        boolean isLogged = false;
+//        List<Administrator> admins = null;
+//        try {
+//            admins = administratorService.getAll();
+//        } catch (Throwable throwable) {
+//            throwable.printStackTrace();
+//        }
+//        String identifier = (String)session.getAttribute("identifier");
+//        if(identifier != null && admins!=null){
+//            for(Administrator a: admins){
+//                try {
+//                    if(identifier.equals(HashHelper.makeSHA1Hash(a.getLogin()+a.getPassword()+"Sport_App"))){
+//                        isLogged=true;
+//                        break;
+//                    }
+//                } catch (NoSuchAlgorithmException e) {
+//                    e.printStackTrace();
+//                }
+//            }
+//        }
+//
+//        if(requestUri.equals("/login") || isLogged){
+//            chain.doFilter(request, response);
+//        } else {
+//            resp.sendRedirect("/login");
+//        }
 
     }
 

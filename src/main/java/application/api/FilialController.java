@@ -1,10 +1,12 @@
 package application.api;
 
 import application.entity.Filial;
+import application.result.JSONResult;
 import application.service.implementations.FilialService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,49 +18,93 @@ public class FilialController {
     private FilialService service;
 
     @GetMapping("/{id}")
-    public Filial getContactsById(@PathVariable int id) {
+    public JSONResult<Filial> getFilialById(@PathVariable int id) {
+        JSONResult<Filial> result = new JSONResult<>();
+        Filial filial = new Filial();
         try {
-            return service.getById(id);
-        } catch (Throwable throwable) {
-            throwable.printStackTrace();
+            filial = service.getById(id);
+        } catch (IOException ex) {
+            result.setStatus(ex.getMessage());
+            result.setMessage("Error, entity not find!");
+            ex.printStackTrace();
         }
-        return new Filial();
+        result.setData(filial);
+        return result;
     }
 
     @GetMapping
-    public List<Filial> getAll() {
+    public JSONResult<List<Filial>> getAll() {
+        List<Filial> filials = new ArrayList<>();
+        JSONResult<List<Filial>> result = new JSONResult<>();
         try {
-            return service.getAll();
-        } catch (Throwable throwable) {
-            throwable.printStackTrace();
+            filials = service.getAll();
+        } catch (IOException ex) {
+            result.setMessage(ex.getMessage());
+            result.setMessage("Error, entity not find!");
+            ex.printStackTrace();
         }
-        return new ArrayList<>();
+        result.setData(filials);
+        return result;
     }
 
-    @PutMapping()
-    public void replaceNews(@RequestBody Filial filial) {
+    @PutMapping("/{id}")
+    public JSONResult<Filial> replaceFilial(@RequestBody Filial filial, @PathVariable("id") int id) {
+
+        JSONResult<Filial> result = new JSONResult<>();
+        Filial currentFilial = new Filial();
         try {
+            currentFilial = service.getById(id);
+            if (currentFilial == null) {
+                result.setStatus("error");
+                result.setMessage("Error, entity not find!");
+                result.setData(currentFilial);
+                return result;
+            }
+            currentFilial.setCountry(filial.getCountry());
+            currentFilial.setCity(filial.getCity());
+            currentFilial.setIndexCity(filial.getIndexCity());
+            currentFilial.setBuilding(filial.getBuilding());
+            currentFilial.setCaption(filial.getCaption());
+            currentFilial.setContacts(filial.getContacts());
             service.save(filial);
-        } catch (Throwable throwable) {
-            throwable.printStackTrace();
+        } catch (IOException ex) {
+            ex.printStackTrace();
+            result.setStatus("error");
+            result.setMessage("Error, entity not find!");
         }
+        result.setData(filial);
+        return result;
     }
 
     @PostMapping
-    public void newEmployee(@RequestBody Filial filial) {
+    public JSONResult<Filial> newFilial(@RequestBody Filial filial) {
+        JSONResult<Filial> result = new JSONResult<>();
+        Filial currentFilial = new Filial();
         try {
             service.save(filial);
-        } catch (Throwable throwable) {
-            throwable.printStackTrace();
+            currentFilial = service.getById(filial.getId());
+        } catch (IOException ex) {
+            ex.printStackTrace();
+            result.setStatus("error");
+            result.setMessage("Error, entity not find!");
         }
+        result.setData(currentFilial);
+        return result;
     }
 
     @DeleteMapping("/{id}")
-    void deleteContacts(@PathVariable int id) {
+    public JSONResult<Filial> deleteFilial(@PathVariable int id) {
+        JSONResult<Filial> result = new JSONResult<>();
+        Filial currentFilial = new Filial();
         try {
+            currentFilial = service.getById(id);
             service.delete(id);
-        } catch (Throwable throwable) {
-            throwable.printStackTrace();
+        } catch (IOException ex) {
+            ex.printStackTrace();
+            result.setStatus("error");
+            result.setMessage("Error, entity not find!");
         }
+        result.setData(currentFilial);
+        return result;
     }
 }

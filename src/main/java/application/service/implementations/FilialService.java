@@ -8,6 +8,7 @@ import application.service.interfaces.EntityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.io.IOException;
 import java.util.List;
 
 @Service
@@ -21,25 +22,22 @@ public class FilialService implements EntityService<Filial> {
     ContactRepository contactRepository;
 
     @Override
-    public List<Filial> getAll() throws Throwable {
+    public List<Filial> getAll() throws IOException {
         return filialRepository.findAll();
     }
 
     @Override
-    public Filial getById(int id) throws  Throwable {
-        List<Contact> contacts = contactRepository.findAll();
-        Filial filial = filialRepository.findById(id).get();
-        filial.setContacts(contacts);
-        return filial;
+    public Filial getById(int id) throws  IOException {
+        return filialRepository.findById(id).get();
     }
 
     @Override
-    public void save(Filial filial) throws Throwable {
+    public void save(Filial filial) throws IOException {
         filialRepository.save(filial);
     }
 
     @Override
-    public void delete(int id) throws Throwable {
+    public void delete(int id) throws IOException {
         Filial filial=filialRepository.findById(id).get();
         filialRepository.delete(filial);
     }

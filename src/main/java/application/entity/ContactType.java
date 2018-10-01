@@ -1,5 +1,6 @@
 package application.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -19,6 +20,7 @@ public class ContactType {
 
     @OneToMany(cascade = CascadeType.ALL, targetEntity = Contact.class)
     @JoinColumn(name="contact_type_id")
+    @JsonIgnore
     List<Contact> contacts = new ArrayList<>();
 
     public ContactType() {

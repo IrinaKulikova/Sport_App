@@ -13,9 +13,8 @@ public class Contact {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Integer id;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, targetEntity = ContactType.class, optional = false)
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL, targetEntity = ContactType.class)
     @JoinColumn(name="contact_type_id")
-    @JsonIgnore
     ContactType contactType;
 
     String data;
