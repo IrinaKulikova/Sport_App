@@ -2,6 +2,7 @@ package application.api;
 
 import application.entity.Contact;
 import application.entity.Filial;
+import application.entity.News;
 import application.helper.JSONResult;
 import application.helper.JSONResultError;
 import application.helper.JSONResultOk;
@@ -18,16 +19,16 @@ import java.util.List;
 public class ContactController {
 
     @Autowired
-    private ContactService service;
+    private ContactService contactService;
 
     @Autowired
     private FilialService filialService;
 
     @GetMapping("/{id}")
-    public JSONResult<Contact> getNewsById(@PathVariable("id") int id) {
+    public JSONResult<Contact> getContactById(@PathVariable("id") int id) {
         Contact contact = new Contact();
         try {
-            contact = service.getById(id);
+            contact = contactService.getById(id);
         } catch (Exception ex) {
             ex.printStackTrace();
             return new JSONResultError<Contact>(contact, ex.getMessage());
@@ -35,21 +36,8 @@ public class ContactController {
         return new JSONResultOk<Contact>(contact);
     }
 
-    @GetMapping
-    public JSONResult<List<Contact>> getAll() {
-        List<Contact> contacts = new ArrayList<>();
-        try {
-            contacts = service.getAll();
-        } catch (Exception ex) {
-            ex.printStackTrace();
-            return new JSONResultError<>(contacts, ex.getMessage());
-        }
-        return new JSONResultOk<List<Contact>>(contacts);
-    }
-
-
     @PostMapping("/{id}")
-    public JSONResult<Contact> newNews(@RequestBody Contact contact, @PathVariable int id) {
+    public JSONResult<Contact> addContact(@RequestBody Contact contact, @PathVariable int id) {
         try {
             Filial filial = filialService.getById(id);
             filial.addContact(contact);
@@ -62,12 +50,25 @@ public class ContactController {
         return new JSONResultOk<Contact>(contact);
     }
 
+    @PutMapping("/{id}")
+    public JSONResult<Contact> updateContact(@RequestBody Contact contact, @PathVariable int id) {
+        Contact currentContact = contactService.getById(id);
+        try {
+            currentContact.setData(contact.getData());
+            contactService.save(currentContact);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            return new JSONResultError<Contact>(contact, ex.getMessage());
+        }
+        return new JSONResultOk<Contact>(contact);
+    }
+
     @DeleteMapping("/{id}")
-    public JSONResult<Contact> deleteNews(@PathVariable int id) {
+    public JSONResult<Contact> deleteContact(@PathVariable int id) {
         Contact contact = new Contact();
         try {
-            contact = service.getById(id);
-            service.delete(id);
+            contact = contactService.getById(id);
+            contactService.delete(id);
         } catch (Exception ex) {
             ex.printStackTrace();
             return new JSONResultError<>(contact, ex.getMessage());

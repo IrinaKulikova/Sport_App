@@ -55,7 +55,21 @@ public class FilialController {
         return new JSONResultOk<Filial>(filial);
     }
 
-    public JSONResult<Filial> updateAddress(@PathVariable int id){
-        return new JSONResultError<>(service.getById(id),"error");
+    @PutMapping("/{id}")
+    public JSONResult<Filial> updateInfo(@RequestBody Filial filial, @PathVariable int id) {
+        Filial currentFilial = new Filial();
+        try {
+            currentFilial = service.getById(id);
+            currentFilial.setCaption(filial.getCaption());
+            currentFilial.setCountry(filial.getCountry());
+            currentFilial.setCity(filial.getCity());
+            currentFilial.setStreet(filial.getStreet());
+            currentFilial.setBuilding(filial.getBuilding());
+            currentFilial.setIndexCity(filial.getIndexCity());
+            service.save(currentFilial);
+        } catch (Exception ex) {
+            return new JSONResultError<>(filial, ex.getMessage());
+        }
+        return new JSONResultOk<>(currentFilial);
     }
 }
