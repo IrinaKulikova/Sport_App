@@ -77,9 +77,7 @@ public class NewsController {
     @PostMapping
     public JSONResult<News> newNews(@RequestBody News news) {
         JSONResult<News> result = new JSONResult<>();
-//        News currentNews = new News();
         try {
-//            currentNews = service.getById(news.getId());
             service.save(news);
         } catch (IOException ex) {
             ex.printStackTrace();

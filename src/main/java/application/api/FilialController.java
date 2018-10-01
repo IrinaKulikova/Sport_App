@@ -47,59 +47,6 @@ public class FilialController {
         return result;
     }
 
-//    @PutMapping("/{id}")
-//    public JSONResult<Filial> replaceFilial(@RequestBody Filial filial, @PathVariable("id") int id) {
-//
-//        JSONResult<Filial> result = new JSONResult<>();
-//        Filial currentFilial = new Filial();
-//
-//        try {
-//            currentFilial = service.getById(id);
-//            if (currentFilial == null) {
-//                result.setStatus("error");
-//                result.setMessage("Error, entity not find!");
-//                result.setData(currentFilial);
-//                return result;
-//            }
-//
-//            currentFilial.setCountry(filial.getCountry());
-//            currentFilial.setCity(filial.getCity());
-//            currentFilial.setIndexCity(filial.getIndexCity());
-//            currentFilial.setBuilding(filial.getBuilding());
-//            currentFilial.setCaption(filial.getCaption());
-//            currentFilial.setStreet(filial.getStreet());
-//            currentFilial.setContacts(filial.getContacts());
-//            service.save(currentFilial);
-//        } catch (IOException ex) {
-//            ex.printStackTrace();
-//            result.setStatus("error");
-//            result.setMessage("Error, entity not find!");
-//        }
-//        result.setData(filial);
-//        return result;
-//    }
-//
-//    @PostMapping
-//    public JSONResult<Filial> newFilial(@RequestBody Filial filial) {
-//        JSONResult<Filial> result = new JSONResult<>();
-//        Filial currentFilial = new Filial();
-//        try {
-//            currentFilial.setCountry(filial.getCountry());
-//            currentFilial.setCity(filial.getCity());
-//            currentFilial.setIndexCity(filial.getIndexCity());
-//            currentFilial.setBuilding(filial.getBuilding());
-//            currentFilial.setCaption(filial.getCaption());
-//            currentFilial.setStreet(filial.getStreet());
-//            currentFilial.setContacts(filial.getContacts());
-//            service.save(currentFilial);
-//        } catch (IOException ex) {
-//            ex.printStackTrace();
-//            result.setStatus("error");
-//            result.setMessage("Error, entity not find!");
-//        }
-//        result.setData(currentFilial);
-//        return result;
-//    }
 
     @DeleteMapping("/{id}")
     public JSONResult<Filial> deleteFilial(@PathVariable int id) {
