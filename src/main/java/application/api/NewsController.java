@@ -56,7 +56,7 @@ public class NewsController {
             currentNews.setDate(news.getDate());
             currentNews.setDescription(news.getDescription());
             currentNews.setImageURL(news.getDate());
-            service.save(news);
+            service.save(currentNews);
         } catch (Exception ex) {
             ex.printStackTrace();
             return new JSONResultError<>(currentNews, ex.getMessage());
