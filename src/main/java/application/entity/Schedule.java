@@ -4,7 +4,7 @@ import lombok.Data;
 
 import javax.persistence.*;
 import java.util.ArrayList;
-import java.util.Date;
+import java.sql.Date;
 import java.util.List;
 
 @Entity
@@ -20,7 +20,7 @@ public class Schedule {
    private Date starttime;
     //вторичный ключ schedule_event
  //   @ManyToOne(targetEntity = ScheduleEvent.class)
-    @ManyToOne(targetEntity = ScheduleEvent.class,fetch = FetchType.EAGER,cascade = {CascadeType.MERGE,CascadeType.PERSIST})
+    @OneToMany(targetEntity = ScheduleEvent.class,fetch = FetchType.EAGER)
     @JoinColumn(name="event_schedule")
     private  List<ScheduleEvent> eventsList=new ArrayList<>();
     //int idSeduleEvent;
