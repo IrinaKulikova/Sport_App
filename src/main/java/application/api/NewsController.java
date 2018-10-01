@@ -1,12 +1,14 @@
 package application.api;
 
+import application.entity.Filial;
 import application.entity.News;
-import application.result.JSONResult;
+import application.helper.JSONResult;
+import application.helper.JSONResultError;
+import application.helper.JSONResultOk;
 import application.service.implementations.NewsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,46 +21,36 @@ public class NewsController {
 
     @GetMapping("/{id}")
     public JSONResult<News> getNewsById(@PathVariable("id") int id) {
-        JSONResult<News> result = new JSONResult<>();
         News news = new News();
         try {
             news = service.getById(id);
         } catch (Exception ex) {
-            result.setStatus(ex.getMessage());
-            result.setMessage("Error, entity not find!");
             ex.printStackTrace();
+            return new JSONResultError<News>(news, ex.getMessage());
         }
-        result.setData(news);
-        return result;
+        return new JSONResultOk<News>(news);
     }
 
     @GetMapping
     public JSONResult<List<News>> getAll() {
-        JSONResult<List<News>> result = new JSONResult<>();
         List<News> news = new ArrayList<>();
         try {
             news = service.getAll();
         } catch (Exception ex) {
-            result.setMessage(ex.getMessage());
-            result.setMessage("Error, entity not find!");
             ex.printStackTrace();
+            return new JSONResultError<>(news, ex.getMessage());
         }
-        result.setData(news);
-        return result;
+        return new JSONResultOk<List<News>>(news);
     }
 
 
     @PutMapping("/{id}")
     public JSONResult<News> replaceNews(@RequestBody News news, @PathVariable("id") int id) {
-        JSONResult<News> result = new JSONResult<>();
         News currentNews = new News();
         try {
             currentNews = service.getById(id);
             if (currentNews == null) {
-                result.setStatus("error");
-                result.setMessage("Error, entity not find!");
-                result.setData(currentNews);
-                return result;
+                return new JSONResultError<>(currentNews, "entity no find!");
             }
             currentNews.setTitle(news.getTitle());
             currentNews.setDate(news.getDate());
@@ -66,41 +58,33 @@ public class NewsController {
             currentNews.setImageURL(news.getDate());
             service.save(news);
         } catch (Exception ex) {
-            result.setStatus("error");
-            result.setMessage("Error, entity not find!");
             ex.printStackTrace();
+            return new JSONResultError<>(currentNews, ex.getMessage());
         }
-        result.setData(news);
-        return result;
+        return new JSONResultOk<>(currentNews);
     }
 
     @PostMapping
     public JSONResult<News> newNews(@RequestBody News news) {
-        JSONResult<News> result = new JSONResult<>();
         try {
             service.save(news);
         } catch (Exception ex) {
             ex.printStackTrace();
-            result.setStatus("error");
-            result.setMessage("Error, entity not find!");
+            return new JSONResultError<News>(news, ex.getMessage());
         }
-        result.setData(news);
-        return result;
+        return new JSONResultOk<News>(news);
     }
 
     @DeleteMapping("/{id}")
     public JSONResult<News> deleteNews(@PathVariable int id) {
-        JSONResult<News> result = new JSONResult<>();
-        News currentNews = new News();
+        News news = new News();
         try {
-            currentNews = service.getById(id);
+            news = service.getById(id);
             service.delete(id);
         } catch (Exception ex) {
             ex.printStackTrace();
-            result.setStatus("error");
-            result.setMessage("Error, entity not find!");
+            return new JSONResultError<>(news, ex.getMessage());
         }
-        result.setData(currentNews);
-        return result;
+        return new JSONResultOk<>(news);
     }
 }
