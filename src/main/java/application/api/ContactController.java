@@ -11,8 +11,6 @@ import application.service.implementations.FilialService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
-import java.util.List;
 
 @RestController
 @RequestMapping(value = "/api/1.0/contacts", produces = "application/json")
