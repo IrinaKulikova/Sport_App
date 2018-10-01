@@ -29,6 +29,8 @@
     <!--<bean id="cardService" class="application.service.implementations.CardService" />-->
     <!--<bean id="newsService" class="application.service.implementations.NewsService" />-->
     <!--<bean id="filialService" class="application.service.implementations.FilialService" />-->
+    <!--<bean id="scheduleService" class="application.service.implementations.ScheduleServise" />-->
+    <!--<bean id="scheduleEventService" class="application.service.implementations.SchedulesEventServise" />-->
 
     <bean id="dataSource"
           class="org.springframework.jdbc.datasource.DriverManagerDataSource"
@@ -57,4 +59,3 @@
                       entity-manager-factory-ref="entityManagerFactory"
                       transaction-manager-ref="txManager" />
 </beans>
-
