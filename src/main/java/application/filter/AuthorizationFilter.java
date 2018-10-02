@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.security.NoSuchAlgorithmException;
 import java.util.List;
 
@@ -28,7 +29,15 @@ public class AuthorizationFilter implements Filter {
 
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
-
+            String time = String.valueOf(System.currentTimeMillis());
+        try {
+            String saltHash = HashHelper.makeSHA1Hash(time);
+            System.out.println(saltHash);
+            String adminHash = HashHelper.makeSHA1Hash(saltHash+"admin")+saltHash;
+            System.out.println(adminHash);
+        } catch (NoSuchAlgorithmException | UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -54,7 +63,7 @@ public class AuthorizationFilter implements Filter {
         if(identifier != null && admins!=null){
             for(Administrator a: admins){
                 try {
-                    if(identifier.equals(HashHelper.makeSHA1Hash(a.getLogin()+a.getPassword()+"Sport_App"))){
+                    if(identifier.equals(HashHelper.makeSHA1Hash(a.getAdminHash()))){
                         isLogged=true;
                         break;
                     }
