@@ -3,6 +3,7 @@ package application.controller;
 import application.entity.Administrator;
 import application.service.helper.HashHelper;
 import application.service.implementations.AdministratorService;
+import application.service.implementations.CardService;
 import application.service.implementations.NewsService;
 import application.service.implementations.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,11 +28,14 @@ public class HomeController {
     private AdministratorService administratorService;
     @Autowired
     private UserService userService;
+    @Autowired
+    private CardService cardService;
 
     @GetMapping("/")
     public String index(Model model) {
         try {
             model.addAttribute("users",userService.getAll());
+            model.addAttribute("cards",cardService.getAll());
         } catch (Throwable throwable) {
             throwable.printStackTrace();
         }

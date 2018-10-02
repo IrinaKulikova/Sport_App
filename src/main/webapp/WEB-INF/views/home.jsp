@@ -65,7 +65,7 @@
                 <div id="user-block">
                         <table class="table table-dark">
                             <tr>
-                                <th>ID</th>
+                                <th>#</th>
                                 <th>First Name</th>
                                 <th>Last Name</th>
                                 <th>Email</th>
@@ -85,7 +85,7 @@
                                 </tr>
                             </form>
                             <c:forEach items="${users}" var="user">
-                            <form method="post" action="/saveChanges">
+                            <form method="post" action="/saveChangesUser">
                                 <tr>
                                 <td>${user.id}</td>
                                 <td><input type="text" name="firstName" required value="${user.firstName}"></td>
@@ -100,7 +100,52 @@
                         </table>
                 </div>
                 <div id="cards-block">
-
+                    <table class="table table-dark">
+                        <tr>
+                            <th>#</th>
+                            <th>Expiration Date</th>
+                            <th>Issue Date</th>
+                            <th>User</th>
+                            <th>Pin</th>
+                            <th></th>
+                        </tr>
+                        <%--<form method="post" action="/createCard">--%>
+                            <%--<tr id="card-create-tr">--%>
+                                <%--<td></td>--%>
+                                <%--<td><input type="text" name="firstName" required></td>--%>
+                                <%--<td><input type="text" name="lastName" required></td>--%>
+                                <%--<td><input type="email" name="email" required></td>--%>
+                                <%--<td><input type="text" name="phone" required></td>--%>
+                                <%--<td><input type="password" name="password" required></td>--%>
+                                <%--<td><input type="submit" value="Create user"></td>--%>
+                            <%--</tr>--%>
+                        <%--</form>--%>
+                        <c:forEach items="${cards}" var="card">
+                            <form method="post" action="/saveChangesCard">
+                                <tr>
+                                    <td>${card.id}</td>
+                                    <td><input type="text" name="expirationDate" disabled value="${user.firstName}"></td>
+                                    <td><input type="text" name="issueDate" disabled value="${user.lastName}"></td>
+                                    <td>
+                                        <select required name="cardUserId">
+                                            <c:forEach items="${users}" var="user">
+                                                    <c:choose>
+                                                        <c:when test="${user.id == card.id}">
+                                                            <option selected value="${user.id}">${user.firstName} ${user.lastName}</option>
+                                                        </c:when>
+                                                        <c:otherwise>
+                                                            <option value="${user.id}">${user.firstName} ${user.lastName}</option>
+                                                        </c:otherwise>
+                                                    </c:choose>
+                                            </c:forEach>
+                                        </select>
+                                    </td>
+                                    <td><input type="password" name="pinCode"></td>
+                                    <td><input type="submit" value="Save changes"></td>
+                                </tr>
+                            </form>
+                        </c:forEach>
+                    </table>
                 </div>
                 <div id="news-block">
 
