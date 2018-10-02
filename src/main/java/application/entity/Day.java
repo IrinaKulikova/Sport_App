@@ -13,6 +13,9 @@ public class Day {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+    //признак сортировки
+    private int attribute;
+
     //название дня недели
     String nameDay;
 }
