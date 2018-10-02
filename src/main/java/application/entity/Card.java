@@ -1,5 +1,6 @@
 package application.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.mysql.cj.x.protobuf.MysqlxDatatypes;
 import lombok.Data;
 
@@ -25,6 +26,7 @@ public class Card {
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name="card_user_id")
+    @JsonIgnore
     private User user;
 
     public Card() {
