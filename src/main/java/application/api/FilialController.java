@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/1.0/filials")
+@RequestMapping(value = "/api/1.0/filials", produces = "application/json")
 public class FilialController {
 
     @Autowired
@@ -42,7 +42,6 @@ public class FilialController {
         return new JSONResultOk<List<Filial>>(filials);
     }
 
-
     @DeleteMapping("/{id}")
     public JSONResult<Filial> deleteFilial(@PathVariable int id) {
         Filial filial = new Filial();
@@ -54,5 +53,23 @@ public class FilialController {
             return new JSONResultError<Filial>(filial, ex.getMessage());
         }
         return new JSONResultOk<Filial>(filial);
+    }
+
+    @PutMapping("/{id}")
+    public JSONResult<Filial> updateInfo(@RequestBody Filial filial, @PathVariable int id) {
+        Filial currentFilial = new Filial();
+        try {
+            currentFilial = service.getById(id);
+            currentFilial.setCaption(filial.getCaption());
+            currentFilial.setCountry(filial.getCountry());
+            currentFilial.setCity(filial.getCity());
+            currentFilial.setStreet(filial.getStreet());
+            currentFilial.setBuilding(filial.getBuilding());
+            currentFilial.setIndexCity(filial.getIndexCity());
+            service.save(currentFilial);
+        } catch (Exception ex) {
+            return new JSONResultError<>(filial, ex.getMessage());
+        }
+        return new JSONResultOk<>(currentFilial);
     }
 }
