@@ -39,7 +39,8 @@
 
         .ui-block>input:nth-of-type(1):checked~div:nth-of-type(1),
         .ui-block>input:nth-of-type(2):checked~div:nth-of-type(2),
-        .ui-block>input:nth-of-type(3):checked~div:nth-of-type(3) {
+        .ui-block>input:nth-of-type(3):checked~div:nth-of-type(3),
+        .ui-block>input:nth-of-type(4):checked~div:nth-of-type(4){
             display: block;
             padding: 5px;
             border: 1px solid #aaa;
@@ -60,8 +61,11 @@
         <div class="container-fluid">
             <h1>Sport App</h1>
             <div class="ui-block">
-
-                <input type="radio" name="main" checked="checked" id="tab1" /><label for="tab1">Users</label><input type="radio" name="main" id="tab2" /><label for="tab2">Cards</label><input type="radio" name="main" id="tab3" /><label for="tab3">News</label>
+                <input type="radio" name="main" checked="checked" id="tab1" />
+                <label for="tab1">Users</label><input type="radio" name="main" id="tab2" />
+                <label for="tab2">Cards</label><input type="radio" name="main" id="tab3" />
+                <label for="tab3">News</label>
+                <label for="tab4">Schedule</label><input type ="radio" name="main" id="tab4">
                 <div id="user-block">
                         <table class="table table-dark">
                             <tr>
@@ -149,6 +153,18 @@
                 </div>
                 <div id="news-block">
 
+                </div>
+                <div id="schedule-block">
+                    <table class="table table-dark">
+                        <tr>
+                            <th>#</th>
+                            <th>Expiration Date</th>
+                            <th>Issue Date</th>
+                            <th>User</th>
+                            <th>Pin</th>
+                            <th></th>
+                        </tr>
+                    </table>
                 </div>
             </div>
 
