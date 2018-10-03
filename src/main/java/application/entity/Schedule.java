@@ -1,6 +1,8 @@
 package application.entity;
 
 import lombok.Data;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -14,14 +16,19 @@ public class Schedule {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
    private int id;
     //день недели
-   private int dayofweek;
+ //   @OneToMany(targetEntity = Day.class,fetch = FetchType.LAZY)
+    @ManyToOne(targetEntity = Day.class,fetch = FetchType.EAGER)
+    @JoinColumn(name="dayid")
+    Day day;
+ //   private List<Day> dayList=new ArrayList<>();
     //время начала занятия
     @Column(columnDefinition ="time")
    private Date starttime;
     //вторичный ключ schedule_event
- //   @ManyToOne(targetEntity = ScheduleEvent.class)
-    @OneToMany(targetEntity = ScheduleEvent.class,fetch = FetchType.EAGER)
+    //@OneToMany(targetEntity = ScheduleEvent.class,fetch = FetchType.EAGER)
+    @ManyToOne(targetEntity = ScheduleEvent.class,fetch = FetchType.EAGER)
     @JoinColumn(name="event_schedule")
-    private  List<ScheduleEvent> eventsList=new ArrayList<>();
-    //int idSeduleEvent;
+    ScheduleEvent scheduleEvent;
+  //  private  List<ScheduleEvent> eventsList=new ArrayList<>();
+
 }
