@@ -2,6 +2,9 @@ package application.api;
 
 import application.entity.Schedule;
 import application.entity.ScheduleEvent;
+import application.helper.JSONResult;
+import application.helper.JSONResultError;
+import application.helper.JSONResultOk;
 import application.service.implementations.ScheduleServise;
 import application.service.implementations.SchedulesEventServise;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -19,10 +23,17 @@ public class ScheduleController {
     ScheduleServise scheduleServise;
     @Autowired
     SchedulesEventServise eventServise;
-   // получить список расписание
+    // получить список расписание
     @GetMapping()
-    public  List<Schedule> getSchedule(){
-        return scheduleServise.getAll();
+    public JSONResult<List<Schedule>> getSchedule(){
+        List<Schedule> schedules = new ArrayList<>();
+        try {
+            schedules = scheduleServise.getAll();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            return new JSONResultError<>(schedules, ex.getMessage());
+        }
+        return new JSONResultOk<>(schedules);
     }
     //сохранить раписание
     @PostMapping()
