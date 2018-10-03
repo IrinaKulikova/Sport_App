@@ -21,11 +21,19 @@ public class User {
     String lastName;
     String email;
     String phone;
-    @Column(name="user_hash")
+    @Column(name = "user_hash")
     String userHash;
 
-
-    @OneToMany(targetEntity = Card.class, cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JoinColumn(name="card_user_id")
+    @OneToMany(targetEntity = Card.class, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name = "card_user_id")
     private List<Card> cards = new ArrayList<>();
+
+    public void addCard(Card card) {
+        cards.add(card);
+    }
+
+    public void removeCard(Card card) {
+        Card curCard = cards.stream().filter(c -> (c.getId() == card.getId())).findFirst().get();
+        cards.remove(curCard);
+    }
 }

@@ -18,7 +18,7 @@ public class UserService implements EntityService<User> {
 
     @Override
     public List<User> getAll() throws Exception {
-      return repository.findAll();
+        return repository.findAll();
     }
 
     @Override
@@ -33,6 +33,7 @@ public class UserService implements EntityService<User> {
 
     @Override
     public void delete(int id) throws Exception {
-        repository.delete(repository.findById(id).get());
+        User user = repository.findById(id).get();
+        repository.delete(user);
     }
 }

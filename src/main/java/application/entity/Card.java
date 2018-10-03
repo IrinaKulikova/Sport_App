@@ -1,5 +1,6 @@
 package application.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.mysql.cj.x.protobuf.MysqlxDatatypes;
 import lombok.Data;
 
@@ -23,8 +24,9 @@ public class Card {
     @Column(name = "expiration_date")
     String expirationDate;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="card_user_id")
+    @JsonIgnore
     private User user;
 
     public Card() {

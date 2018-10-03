@@ -16,13 +16,13 @@ import java.util.List;
 public class FilialController {
 
     @Autowired
-    private FilialService service;
+    private FilialService filialService;
 
     @GetMapping("/{id}")
     public JSONResult<Filial> getFilialById(@PathVariable int id) {
         Filial filial = new Filial();
         try {
-            filial = service.getById(id);
+            filial = filialService.getById(id);
         } catch (Exception ex) {
             ex.printStackTrace();
             return new JSONResultError<Filial>(filial, ex.getMessage());
@@ -34,7 +34,7 @@ public class FilialController {
     public JSONResult<List<Filial>> getAll() {
         List<Filial> filials = new ArrayList<>();
         try {
-            filials = service.getAll();
+            filials = filialService.getAll();
         } catch (Exception ex) {
             ex.printStackTrace();
             return new JSONResultError<List<Filial>>(filials, ex.getMessage());
@@ -46,8 +46,8 @@ public class FilialController {
     public JSONResult<Filial> deleteFilial(@PathVariable int id) {
         Filial filial = new Filial();
         try {
-            filial = service.getById(id);
-            service.delete(id);
+            filial = filialService.getById(id);
+            filialService.delete(filial);
         } catch (Exception ex) {
             ex.printStackTrace();
             return new JSONResultError<Filial>(filial, ex.getMessage());
@@ -59,14 +59,14 @@ public class FilialController {
     public JSONResult<Filial> updateInfo(@RequestBody Filial filial, @PathVariable int id) {
         Filial currentFilial = new Filial();
         try {
-            currentFilial = service.getById(id);
+            currentFilial = filialService.getById(id);
             currentFilial.setCaption(filial.getCaption());
             currentFilial.setCountry(filial.getCountry());
             currentFilial.setCity(filial.getCity());
             currentFilial.setStreet(filial.getStreet());
             currentFilial.setBuilding(filial.getBuilding());
             currentFilial.setIndexCity(filial.getIndexCity());
-            service.save(currentFilial);
+            filialService.save(currentFilial);
         } catch (Exception ex) {
             return new JSONResultError<>(filial, ex.getMessage());
         }
