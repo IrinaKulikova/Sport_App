@@ -24,10 +24,8 @@ public class User {
     @Column(name = "user_hash")
     String userHash;
 
-
-    @OneToMany(targetEntity = Card.class, cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(targetEntity = Card.class, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "card_user_id")
-
     private List<Card> cards = new ArrayList<>();
 
     public void addCard(Card card) {
@@ -35,7 +33,7 @@ public class User {
     }
 
     public void removeCard(Card card) {
-        //FIXME: exception
-        cards.remove(card);
+        Card curCard = cards.stream().filter(c -> (c.getId() == card.getId())).findFirst().get();
+        cards.remove(curCard);
     }
 }

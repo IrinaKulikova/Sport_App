@@ -1,7 +1,6 @@
 package application.api;
 
 import application.entity.Card;
-import application.entity.News;
 import application.entity.User;
 import application.helper.JSONResult;
 import application.helper.JSONResultError;
@@ -19,7 +18,7 @@ import java.util.List;
 public class CardController {
 
     @Autowired
-    private CardService service;
+    private CardService cardService;
 
     @Autowired
     private UserService userService;
@@ -28,7 +27,7 @@ public class CardController {
     public JSONResult<Card> getCardById(@PathVariable("id") int id) {
         Card card = new Card();
         try {
-            card = service.getById(id);
+            card = cardService.getById(id);
         } catch (Exception ex) {
             ex.printStackTrace();
             return new JSONResultError<Card>(card, ex.getMessage());
@@ -40,7 +39,7 @@ public class CardController {
     public JSONResult<List<Card>> getAll() {
         List<Card> cards = new ArrayList<>();
         try {
-            cards = service.getAll();
+            cards = cardService.getAll();
         } catch (Exception ex) {
             ex.printStackTrace();
             return new JSONResultError<>(cards, ex.getMessage());
@@ -52,7 +51,7 @@ public class CardController {
     public JSONResult<Card> updateCard(@RequestBody Card card, @PathVariable("user_id") int user_id, @PathVariable("id") int id) {
         Card currentCard = new Card();
         try {
-            currentCard = service.getById(id);
+            currentCard = cardService.getById(id);
             if (currentCard == null) {
                 return new JSONResultError<>(currentCard, "entity no find!");
             }
@@ -60,7 +59,7 @@ public class CardController {
             currentCard.setIssueDate(card.getIssueDate());
             currentCard.setPinCode(card.getPinCode());
             currentCard.setUser(userService.getById(user_id));
-            service.save(currentCard);
+            cardService.save(currentCard);
         } catch (Exception ex) {
             ex.printStackTrace();
             return new JSONResultError<>(currentCard, ex.getMessage());
@@ -68,18 +67,21 @@ public class CardController {
         return new JSONResultOk<>(currentCard);
     }
 
-    //TODO: test postman
     @PostMapping("/{user_id}")
     public JSONResult<Card> addCard(@RequestBody Card card, @PathVariable("user_id") int user_id) {
+        User user = null;
+        User curUser = null;
         try {
-            User user = userService.getById(user_id);
+            user = userService.getById(user_id);
+            card.setUser(user);
             user.addCard(card);
             userService.save(user);
+            curUser = userService.getById(user_id);
         } catch (Exception ex) {
             ex.printStackTrace();
             return new JSONResultError<Card>(card, ex.getMessage());
         }
-        return new JSONResultOk<Card>(card);
+        return new JSONResultOk<Card>(curUser.getCards().get(curUser.getCards().size() - 1));
     }
 
     @DeleteMapping("/{user_id}/{id}")
@@ -88,7 +90,7 @@ public class CardController {
         Card card = new Card();
         try {
             user = userService.getById(user_id);
-            card = service.getById(id);
+            card = cardService.getById(id);
             user.removeCard(card);
             userService.save(user);
         } catch (Exception ex) {

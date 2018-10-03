@@ -1,9 +1,11 @@
 package application.api;
 
+import application.entity.Card;
 import application.entity.User;
 import application.helper.JSONResult;
 import application.helper.JSONResultError;
 import application.helper.JSONResultOk;
+import application.service.implementations.CardService;
 import application.service.implementations.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -12,19 +14,21 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-//TODO: postman
 @RestController
 @RequestMapping(value = "/api/1.0/users", produces = "application/json")
 public class UserController {
 
     @Autowired
-    private UserService service;
+    private UserService userService;
+
+    @Autowired
+    private CardService cardService;
 
     @GetMapping("/{id}")
     public JSONResult<User> getUserById(@PathVariable("id") int id) {
         User user = new User();
         try {
-            user = service.getById(id);
+            user = userService.getById(id);
         } catch (Exception ex) {
             ex.printStackTrace();
             return new JSONResultError<User>(user, ex.getMessage());
@@ -36,7 +40,7 @@ public class UserController {
     public JSONResult<List<User>> getAll() {
         List<User> users = new ArrayList<>();
         try {
-            users = service.getAll();
+            users = userService.getAll();
         } catch (Exception ex) {
             ex.printStackTrace();
             return new JSONResultError<>(users, ex.getMessage());
@@ -48,7 +52,7 @@ public class UserController {
     public JSONResult<User> updateUser(@RequestBody User user, @PathVariable("id") int id) {
         User currentUser = new User();
         try {
-            currentUser = service.getById(id);
+            currentUser = userService.getById(id);
             if (currentUser == null) {
                 return new JSONResultError<>(currentUser, "entity no find!");
             }
@@ -57,7 +61,7 @@ public class UserController {
             currentUser.setEmail(user.getEmail());
             currentUser.setPhone(user.getPhone());
             currentUser.setEmail(user.getEmail());
-            service.save(currentUser);
+            userService.save(currentUser);
         } catch (Exception ex) {
             ex.printStackTrace();
             return new JSONResultError<>(currentUser, ex.getMessage());
@@ -68,7 +72,7 @@ public class UserController {
     @PostMapping
     public JSONResult<User> addUser(@RequestBody User user) {
         try {
-            service.save(user);
+            userService.save(user);
         } catch (Exception ex) {
             ex.printStackTrace();
             return new JSONResultError<User>(user, ex.getMessage());
@@ -76,12 +80,13 @@ public class UserController {
         return new JSONResultOk<User>(user);
     }
 
+    //TODO: postman
     @DeleteMapping("/{id}")
     public JSONResult<User> deleteUser(@PathVariable int id) {
         User user = new User();
         try {
-            user = service.getById(id);
-            service.delete(id);
+            user = userService.getById(id);
+            userService.delete(id);
         } catch (Exception ex) {
             ex.printStackTrace();
             return new JSONResultError<>(user, ex.getMessage());

@@ -17,7 +17,6 @@ public class FilialService implements EntityService<Filial> {
     @Autowired
     FilialRepository filialRepository;
 
-
     @Autowired
     ContactRepository contactRepository;
 
@@ -32,4 +31,6 @@ public class FilialService implements EntityService<Filial> {
 
     @Override
     public void delete(int id) {filialRepository.delete(filialRepository.findById(id).get());}
+
+    public void delete(Filial filial) {filialRepository.delete(filial);}
 }
