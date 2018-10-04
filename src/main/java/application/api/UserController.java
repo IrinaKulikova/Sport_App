@@ -86,7 +86,6 @@ public class UserController {
         return new JSONResultOk<User>(newUser);
     }
 
-    //TODO: postman
     @DeleteMapping("/{id}")
     public JSONResult<User> deleteUser(@PathVariable int id) {
         User user = new User();

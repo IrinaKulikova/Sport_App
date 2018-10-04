@@ -12,10 +12,12 @@ import java.util.List;
 @Controller
 @RequestMapping("/schedules")
 public class ScheduleAdminController {
+
     @Autowired
-    ScheduleService scheduleServise;
-    public String getSchedules(Model model){
-        List<Schedule> scheduleList=scheduleServise.getAll();
+    ScheduleService scheduleService;
+
+    public String getSchedules(Model model) {
+        List<Schedule> scheduleList = scheduleService.getAll();
         return "schedules";
     }
 }

@@ -10,7 +10,7 @@ import java.util.List;
 
 @Entity
 @Data
-public class Filial {
+public class Filiation {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,10 +24,10 @@ public class Filial {
     String street;
     String building;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy="filial", fetch = FetchType.EAGER)
+    @OneToMany(cascade = CascadeType.ALL, mappedBy="filiation", fetch = FetchType.EAGER)
     List<Contact> contacts = new ArrayList<>();
 
-    public Filial(String caption, String country, String city, String indexCity, String street, String building) {
+    public Filiation(String caption, String country, String city, String indexCity, String street, String building) {
         this.caption = caption;
         this.country = country;
         this.city = city;
@@ -40,6 +40,6 @@ public class Filial {
         contacts.add(contact);
     }
 
-    public Filial() {
+    public Filiation() {
     }
 }

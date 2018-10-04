@@ -1,9 +1,9 @@
 INSERT INTO sport.contact_type (name) VALUES ('email');
 INSERT INTO sport.contact_type (name) VALUES ('phone');
-INSERT INTO sport.filial (building, caption, city, country, index_city, street) VALUES ('101', 'Gym1', 'Dnipro', 'Ukraine', '49000', 'Yavornitskogo');
-INSERT INTO sport.contact (data, contact_type_id, filial_id) VALUES ('+380666666666', 2, 1);
-INSERT INTO sport.contact (data, contact_type_id, filial_id) VALUES ('+380505555555', 2, 1);
-INSERT INTO sport.contact (data, contact_type_id, filial_id) VALUES ('gym@gmail.com', 1, 1);
+INSERT INTO sport.filiation (building, caption, city, country, index_city, street) VALUES ('101', 'Gym1', 'Dnipro', 'Ukraine', '49000', 'Yavornitskogo');
+INSERT INTO sport.contact (data, contact_type_id, filiation_id) VALUES ('+380666666666', 2, 1);
+INSERT INTO sport.contact (data, contact_type_id, filiation_id) VALUES ('+380505555555', 2, 1);
+INSERT INTO sport.contact (data, contact_type_id, filiation_id) VALUES ('gym@gmail.com', 1, 1);
 INSERT INTO sport.news (title, date, description, image_url) VALUES ('Участвуй в марафоне, получи бесплптную тенеровку', '2018-07-21 13:06:15' , 'Это будет третий марафон, который пройдет в 2018 году совместно с Чемпионатом Украины по марафону среди взрослых.
 Вместе с элитой украинского спорта каждый любитель сможет пробежать одну из дистанций:42 км, 21 км, 10 км, 5 км, миля и эстафеты. Трасса марафона проходит в один круг и включает в себя живописную набережную, которая самая длинная в Европе.
 Именно ровная трасса, без перепадов высоты в один круг так понравилась участникам первого экомарафона и позволит вам устанавливать рекорды в 2018 году.',
