@@ -4,7 +4,6 @@ import application.entity.Administrator;
 import application.service.helper.HashHelper;
 import application.service.implementations.AdministratorService;
 import application.service.implementations.CardService;
-import application.service.implementations.NewsService;
 import application.service.implementations.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,9 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.UnsupportedEncodingException;
 import java.security.NoSuchAlgorithmException;
@@ -39,7 +36,7 @@ public class LoginController {
         } catch (Throwable throwable) {
             throwable.printStackTrace();
         }
-        return "filial";
+        return "filiation";
     }
 
     @GetMapping("/login")
@@ -77,9 +74,6 @@ public class LoginController {
         } catch (Throwable throwable) {
             throwable.printStackTrace();
         }
-
-
-
-        return "filial";
+        return "filiation";
     }
 }

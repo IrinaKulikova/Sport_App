@@ -20,9 +20,9 @@ public class Contact {
     String data;
 
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "filial_id")
+    @JoinColumn(name = "filiation_id")
     @JsonIgnore
-    Filial filial;
+    Filiation filiation;
 
     public Contact() {
     }

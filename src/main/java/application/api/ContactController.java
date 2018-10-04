@@ -1,13 +1,12 @@
 package application.api;
 
 import application.entity.Contact;
-import application.entity.Filial;
-import application.entity.News;
+import application.entity.Filiation;
 import application.helper.JSONResult;
 import application.helper.JSONResultError;
 import application.helper.JSONResultOk;
 import application.service.implementations.ContactService;
-import application.service.implementations.FilialService;
+import application.service.implementations.FiliationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -20,7 +19,7 @@ public class ContactController {
     private ContactService contactService;
 
     @Autowired
-    private FilialService filialService;
+    private FiliationService filiationService;
 
     @GetMapping("/{id}")
     public JSONResult<Contact> getContactById(@PathVariable("id") int id) {
@@ -37,10 +36,10 @@ public class ContactController {
     @PostMapping("/{id}")
     public JSONResult<Contact> addContact(@RequestBody Contact contact, @PathVariable int id) {
         try {
-            Filial filial = filialService.getById(id);
-            filial.addContact(contact);
-            contact.setFilial(filial);
-            filialService.save(filial);
+            Filiation filiation = filiationService.getById(id);
+            filiation.addContact(contact);
+            contact.setFiliation(filiation);
+            filiationService.save(filiation);
         } catch (Exception ex) {
             ex.printStackTrace();
             return new JSONResultError<Contact>(contact, ex.getMessage());
