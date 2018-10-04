@@ -28,6 +28,17 @@ public class User {
     @JoinColumn(name = "card_user_id")
     private List<Card> cards = new ArrayList<>();
 
+    public User(String firstName, String lastName, String phone, String email, String hash) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.phone = phone;
+        this.userHash = hash;
+    }
+
+    public User() {
+    }
+
     public void addCard(Card card) {
         cards.add(card);
     }

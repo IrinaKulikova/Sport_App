@@ -1,6 +1,5 @@
 package application.api;
 
-
 import application.dto.AdministratorDTO;
 import application.entity.Administrator;
 import application.helper.JSONResult;
@@ -54,7 +53,9 @@ public class AdminController {
                 return new JSONResultError<>(currentAdmin, "entity no find!");
             }
             currentAdmin.setLogin(admin.getLogin());
+            currentAdmin.setAdminHash(HashHelper.getHash(admin.getAdminHash()));
             administratorService.save(currentAdmin);
+            currentAdmin.setAdminHash("hidden");
         } catch (Exception ex) {
             ex.printStackTrace();
             return new JSONResultError<>(currentAdmin, ex.getMessage());
@@ -69,6 +70,7 @@ public class AdminController {
             administrator.setLogin(admin.getLogin());
             administrator.setAdminHash(HashHelper.getHash(admin.getPassword()));
             administratorService.save(administrator);
+            administrator.setAdminHash("hidden");
         } catch (Exception ex) {
             ex.printStackTrace();
             return new JSONResultError<>(administrator, ex.getMessage());
