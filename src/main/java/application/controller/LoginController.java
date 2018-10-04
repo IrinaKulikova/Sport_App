@@ -5,6 +5,7 @@ import application.service.helper.HashHelper;
 import application.service.implementations.AdministratorService;
 import application.service.implementations.CardService;
 import application.service.implementations.UserService;
+import application.service.implementations.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -27,16 +28,27 @@ public class LoginController {
     private UserService userService;
     @Autowired
     private CardService cardService;
+    @Autowired
+    private FiliationService filiationService;
 
     @GetMapping("/")
     public String index(Model model) {
         try {
-            model.addAttribute("users",userService.getAll());
-            model.addAttribute("cards",cardService.getAll());
+            model.addAttribute("filiations",filiationService.getAll());
         } catch (Throwable throwable) {
             throwable.printStackTrace();
         }
         return "filiation";
+    }
+
+    @GetMapping("/users")
+    public String users(Model model) {
+        try {
+            model.addAttribute("users",userService.getAll());
+        } catch (Throwable throwable) {
+            throwable.printStackTrace();
+        }
+        return "users";
     }
 
     @GetMapping("/login")
