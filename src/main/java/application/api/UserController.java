@@ -1,10 +1,12 @@
 package application.api;
 
+import application.dto.UserDTO;
 import application.entity.Card;
 import application.entity.User;
 import application.helper.JSONResult;
 import application.helper.JSONResultError;
 import application.helper.JSONResultOk;
+import application.service.helper.HashHelper;
 import application.service.implementations.CardService;
 import application.service.implementations.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,7 +51,7 @@ public class UserController {
     }
 
     @PutMapping("/{id}")
-    public JSONResult<User> updateUser(@RequestBody User user, @PathVariable("id") int id) {
+    public JSONResult<User> updateUser(@RequestBody UserDTO user, @PathVariable("id") int id) {
         User currentUser = new User();
         try {
             currentUser = userService.getById(id);
@@ -58,10 +60,11 @@ public class UserController {
             }
             currentUser.setFirstName(user.getFirstName());
             currentUser.setLastName(user.getLastName());
-            currentUser.setEmail(user.getEmail());
             currentUser.setPhone(user.getPhone());
             currentUser.setEmail(user.getEmail());
+            currentUser.setUserHash(HashHelper.getHash(user.getPassword()));
             userService.save(currentUser);
+            currentUser.setUserHash("hidden");
         } catch (Exception ex) {
             ex.printStackTrace();
             return new JSONResultError<>(currentUser, ex.getMessage());
@@ -70,14 +73,17 @@ public class UserController {
     }
 
     @PostMapping
-    public JSONResult<User> addUser(@RequestBody User user) {
+    public JSONResult<User> addUser(@RequestBody UserDTO user) {
+        User newUser = new User(user.getFirstName(), user.getLastName(), user.getPhone(),
+                                user.getEmail(), HashHelper.getHash(user.getPassword()));
         try {
-            userService.save(user);
+            userService.save(newUser);
+            newUser.setUserHash("hidden");
         } catch (Exception ex) {
             ex.printStackTrace();
-            return new JSONResultError<User>(user, ex.getMessage());
+            return new JSONResultError<User>(newUser, ex.getMessage());
         }
-        return new JSONResultOk<User>(user);
+        return new JSONResultOk<User>(newUser);
     }
 
     //TODO: postman

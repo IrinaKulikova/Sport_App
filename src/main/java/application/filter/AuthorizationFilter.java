@@ -28,16 +28,7 @@ public class AuthorizationFilter implements Filter {
 
 
     @Override
-    public void init(FilterConfig filterConfig) throws ServletException {
-            String time = String.valueOf(System.currentTimeMillis());
-        try {
-            String saltHash = HashHelper.makeSHA1Hash(time);
-            System.out.println(saltHash);
-            String adminHash = HashHelper.makeSHA1Hash(saltHash+"admin")+saltHash;
-            System.out.println(adminHash);
-        } catch (NoSuchAlgorithmException | UnsupportedEncodingException e) {
-            e.printStackTrace();
-        }
+    public void init(FilterConfig filterConfig) {
     }
 
     @Override
@@ -45,7 +36,7 @@ public class AuthorizationFilter implements Filter {
 
         //chain.doFilter(request, response);
 
-                if(administratorService==null){
+        if(administratorService==null){
             ServletContext servletContext = request.getServletContext();
             WebApplicationContext webApplicationContext = WebApplicationContextUtils.getWebApplicationContext(servletContext);
             administratorService = webApplicationContext.getBean(AdministratorService.class);
@@ -62,6 +53,7 @@ public class AuthorizationFilter implements Filter {
         } catch (Throwable throwable) {
             throwable.printStackTrace();
         }
+      
         String identifier = (String)session.getAttribute("identifier");
         if(identifier != null && admins!=null){
             for(Administrator a: admins){
@@ -75,17 +67,14 @@ public class AuthorizationFilter implements Filter {
                 }
             }
         }
-
         if(requestUri.equals("/login") || isLogged){
             chain.doFilter(request, response);
         } else {
             resp.sendRedirect("/login");
         }
-
     }
 
     @Override
     public void destroy() {
-
     }
 }

@@ -1,7 +1,7 @@
-package application.api;
+package application.controller;
 
 import application.entity.Schedule;
-import application.service.implementations.ScheduleServise;
+import application.service.implementations.ScheduleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,9 +13,9 @@ import java.util.List;
 @RequestMapping("/schedules")
 public class ScheduleAdminController {
     @Autowired
-    ScheduleServise scheduleServise;
+    ScheduleService scheduleServise;
     public String getSchedules(Model model){
         List<Schedule> scheduleList=scheduleServise.getAll();
-        return "hallo";
+        return "schedules";
     }
 }
