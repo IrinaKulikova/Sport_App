@@ -22,7 +22,7 @@ import java.util.List;
 
 
 @Controller
-public class HomeController {
+public class LoginController {
 
     @Autowired
     private AdministratorService administratorService;
@@ -39,7 +39,7 @@ public class HomeController {
         } catch (Throwable throwable) {
             throwable.printStackTrace();
         }
-        return "home";
+        return "filial";
     }
 
     @GetMapping("/login")
@@ -80,6 +80,6 @@ public class HomeController {
 
 
 
-        return "home";
+        return "filial";
     }
 }
