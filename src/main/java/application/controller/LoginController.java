@@ -9,8 +9,7 @@ import application.service.implementations.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -41,6 +40,7 @@ public class LoginController {
         return "filiation";
     }
 
+    //Need replace this functions to another controller ?!?!?
     @GetMapping("/users")
     public String users(Model model) {
         try {
@@ -49,6 +49,29 @@ public class LoginController {
             throwable.printStackTrace();
         }
         return "users";
+    }
+
+    @GetMapping("/userEdit/{id}")
+    public String userEdit(@PathVariable int id,Model model){
+        try {
+            model.addAttribute("user",userService.getById(id));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return "user_details";
+    }
+
+    @GetMapping("/userCreate")
+    public String userCreate(){
+        return "user_create";
+    }
+    //-------------------------------------------------------
+
+    @GetMapping("/logout")
+    public String logoutGet(HttpServletRequest req){
+        HttpSession session = req.getSession();
+        session.removeAttribute("identifier");
+        return "login";
     }
 
     @GetMapping("/login")

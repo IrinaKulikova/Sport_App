@@ -12,9 +12,7 @@
 <div class="container main-div mt-md-5">
     <div class="tools-div form-inline form-control">
         <c:import url="template/search.jsp"></c:import>
-        <form>
-            <button class="btn btn-outline-warning ml-2" type="submit">Create</button>
-        </form>
+        <a class="btn btn-outline-warning ml-2" href="/userCreate">Create</a>
     </div>
     <div class="users-div">
         <table class="table table-bordered mt-2">
@@ -37,8 +35,8 @@
                     <td>${user.phone}</td>
                     <td>${user.email}</td>
                     <td colspan="2">
-                        <button class="btn btn-outline-info" name="id" type="submit" value="${user.id}">Edit</button>
-                        <button class="btn btn-outline-danger ml-2" name="id" type="submit" value="${user.id}">Delete</button>
+                        <a class="btn-edit btn btn-outline-info" href="/userEdit/${user.id}">Edit</a>
+                        <a class="btn-delete btn btn-outline-danger ml-2">Delete</a>
                     </td>
                 </tr>
             </c:forEach>
