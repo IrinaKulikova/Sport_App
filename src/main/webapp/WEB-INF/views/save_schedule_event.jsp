@@ -7,7 +7,8 @@
     <title>Добавить событие</title>
     <style>
         div{height: 70px}
-        form{width: 300px;margin:  0 auto;margin-top: 0px;}
+        form{width: 500px;margin:  0 auto;margin-top: 0px;}
+        button{margin-top: 50px;}
     </style>
     <!--   <link rel="stylesheet" href="/css/style.css"> -->
 </head>
@@ -17,42 +18,15 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js" integrity="sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+iEQ7wo/CG0xlczd+2O/em" crossorigin="anonymous"></script>
 <form method="post" accept-charset="UTF-8">
     <div class="form-group">
-        <label for="nameEvent"></label>
-        <input type="text" class="form-control" id="nameEvent"  placeholder="" name="nameEvent">
+        <label for="name">Наименование тренировки</label>
+        <input type="text" class="form-control" id="name"  placeholder="" name="name">
 
     </div>
     <div class="form-group">
-        <label for="lastname">Фамилия</label>
-        <input type="text" class="form-control" id="lastname" placeholder="" name="lastname">
+        <label for="description">Описание тренировки</label>
+        <textarea class="form-control" id="description" placeholder="" name="description" row="5"></textarea>
     </div>
-    <div class="form-group">
-        <label for="email">Email</label>
-        <input type="email" class="form-control" id="email" placeholder="" name="email">
-    </div>
-    <div class="form-group">
-        <label for="fone">Номер телефона</label>
-        <input type="text" class="form-control" id="fone" placeholder="" name="fone">
-    </div>
-    <div class="form-group">
-        <label for="date">Дата</label>
-        <input type="date" class="form-control" id="date" placeholder="" name="date">
-    </div>
-    <div class="form-group">
-        <label for="statys">Статус</label>
-        <select id="statys" class="form-control" name="statys">
-            <option value="Active" selected>Active</option>
-            <option value="NoActive">NoActive</option>
-        </select>
-    </div>
-    <div class="form-group">
-        <label for="salary">Зарплата</label>
-        <input type="text" class="form-control" id="salary" placeholder="25 000" name="salary">
-    </div>
-    <div class="form-group">
-        <label for="details">Заметки</label>
-        <input type="text" class="form-control" id="details" placeholder="" name="details">
-    </div>
-    <button type="submit" class="btn btn-primary">Submit</button>
+    <button type="submit" class="btn btn-primary">Сохранить</button>
 </form>
 </body>
 </html>

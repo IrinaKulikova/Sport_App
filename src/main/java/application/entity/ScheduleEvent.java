@@ -12,7 +12,7 @@ public class ScheduleEvent {
     int id;
     //название занятия
     String name;
-    //щписания тренировки
+    //описание тренировки
     @Column(columnDefinition = "text")
     String description;
 }
