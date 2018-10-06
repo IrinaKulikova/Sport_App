@@ -22,19 +22,21 @@
     <script th:src="@{/webjars/jquery-ui/jquery-ui.min.js}"></script>
     <script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-    <script>
-        $('.form-login').submit(function(e) {
-            var $form = $(this);
-            $.ajax({
-                type: 'POST',
-                url: '/login',
-                data: $form.serialize()
-            }).done(function() {
-                location.replace('/');
-            }).fail(function() {
-                alert('fail');
+    <script type="text/javascript">
+        $(function () {
+            $('.form-login').submit(function(e) {
+                var $form = $(this);
+                $.ajax({
+                    type: 'POST',
+                    url: '/login',
+                    data: $form.serialize()
+                }).done(function() {
+                    location.replace('/');
+                }).fail(function() {
+                    alert('fail');
+                });
+                e.preventDefault();
             });
-            e.preventDefault();
         });
     </script>
 </body>

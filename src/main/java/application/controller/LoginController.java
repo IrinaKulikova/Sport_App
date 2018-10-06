@@ -40,33 +40,6 @@ public class LoginController {
         return "filiation";
     }
 
-    //Need replace this functions to another controller ?!?!?
-    @GetMapping("/users")
-    public String users(Model model) {
-        try {
-            model.addAttribute("users",userService.getAll());
-        } catch (Throwable throwable) {
-            throwable.printStackTrace();
-        }
-        return "users";
-    }
-
-    @GetMapping("/userEdit/{id}")
-    public String userEdit(@PathVariable int id,Model model){
-        try {
-            model.addAttribute("user",userService.getById(id));
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return "user_details";
-    }
-
-    @GetMapping("/userCreate")
-    public String userCreate(){
-        return "user_create";
-    }
-    //-------------------------------------------------------
-
     @GetMapping("/logout")
     public String logoutGet(HttpServletRequest req){
         HttpSession session = req.getSession();

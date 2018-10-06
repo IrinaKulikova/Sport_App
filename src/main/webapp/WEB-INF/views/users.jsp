@@ -12,7 +12,7 @@
 <div class="container main-div mt-md-5">
     <div class="tools-div form-inline form-control">
         <c:import url="template/search.jsp"></c:import>
-        <a class="btn btn-outline-warning ml-2" href="/userCreate">Create</a>
+        <a class="btn btn-outline-warning ml-2" href="/users/create">Create</a>
     </div>
     <div class="users-div">
         <table class="table table-bordered mt-2">
@@ -35,8 +35,8 @@
                     <td>${user.phone}</td>
                     <td>${user.email}</td>
                     <td colspan="2">
-                        <a class="btn-edit btn btn-outline-info" href="/userEdit/${user.id}">Edit</a>
-                        <a class="btn-delete btn btn-outline-danger ml-2">Delete</a>
+                        <a class="btn-edit btn btn-outline-info" href="/users/edit/${user.id}">Edit</a>
+                        <button class="btn-delete btn btn-outline-danger ml-2" name="id" value="${user.id}" >Delete</button>
                     </td>
                 </tr>
             </c:forEach>
@@ -50,6 +50,22 @@
 <script th:src="@{/webjars/jquery-ui/jquery-ui.min.js}"></script>
 <script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+<script type="text/javascript">
+    $(function () {
+        $(".btn-delete").click(function (e) {
+            var btn = $(this);
+            $.ajax({
+                type: 'DELETE',
+                url: "/api/1.0/users/" + btn.val()
+            }).done(function () {
+                location.reload(true);
+            }).fail(function () {
+                alert('fail');
+            });
+            e.preventDefault();
+        });
+    });
+</script>
 </body>
 
 </html>
