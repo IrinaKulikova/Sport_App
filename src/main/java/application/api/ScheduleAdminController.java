@@ -24,13 +24,22 @@ public class ScheduleAdminController {
         List<Schedule> scheduleList=scheduleServise.getAll();
         return "hallo";
     }
-    @GetMapping("/save_schedulele_event")
+    @GetMapping("/save_schedule_event")
     public String getSaveScheduleEvent(){
         return "save_schedule_event";
     }
-    @PostMapping("/save_schedulele_event")
+    @PostMapping("/save_schedule_event")
     public String postSaveScheduleEvent(ScheduleEvent event){
         schedulesEventServise.save(event);
+        return "redirect:/";
+    }
+    @GetMapping("/save_shedule")
+    public String getSaveSchedule(){
+        return "save_schedule";
+    }
+    @PostMapping("/save_shedule")
+    public String postSaveSchedule(Schedule schedule){
+        scheduleServise.save(schedule);
         return "redirect:/";
     }
 }
