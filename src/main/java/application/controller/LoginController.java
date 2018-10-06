@@ -24,10 +24,7 @@ public class LoginController {
 
     @Autowired
     private AdministratorService administratorService;
-    @Autowired
-    private UserService userService;
-    @Autowired
-    private CardService cardService;
+
     @Autowired
     private FiliationService filiationService;
 
@@ -39,16 +36,6 @@ public class LoginController {
             throwable.printStackTrace();
         }
         return "filiation";
-    }
-
-    @GetMapping("/users")
-    public String users(Model model) {
-        try {
-            model.addAttribute("users",userService.getAll());
-        } catch (Throwable throwable) {
-            throwable.printStackTrace();
-        }
-        return "users";
     }
 
     @GetMapping("/login")
