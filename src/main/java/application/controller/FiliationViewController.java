@@ -1,5 +1,6 @@
 package application.controller;
 
+import application.entity.Filiation;
 import application.service.implementations.ContactTypeService;
 import application.service.implementations.FiliationService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,8 +32,20 @@ public class FiliationViewController {
 
     @GetMapping("/{id}")
     public String edit(@PathVariable int id, Model model) {
+        Filiation filiation = null;
+        try {
+            filiation = filiationService.getById(id);
+        } catch (Exception ex) {
+            filiation = new Filiation();
+        }
+        model.addAttribute("filiation", filiation);
+        model.addAttribute("contact_types", contactTypeService.getAll());
+        return "filiation_edit";
+    }
 
-        model.addAttribute("filiation", filiationService.getById(id));
+    @GetMapping("/create")
+    public String edit(Model model) {
+        model.addAttribute("filiation", new Filiation());
         model.addAttribute("contact_types", contactTypeService.getAll());
         return "filiation_edit";
     }

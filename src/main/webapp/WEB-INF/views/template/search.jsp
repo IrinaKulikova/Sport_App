@@ -4,6 +4,6 @@
         <button id="btn btn-search" class="btn btn-outline-success ml-2" type="submit">Search</button>
     </form>
     <form>
-        <button class="btn btn-outline-warning ml-2" type="submit">Create</button>
+        <button id="create" class="btn btn-outline-warning ml-2" type="submit">Create</button>
     </form>
 </div>

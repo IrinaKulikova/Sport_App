@@ -6,6 +6,7 @@ import application.helper.JSONResultError;
 import application.helper.JSONResultOk;
 import application.service.implementations.FiliationService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -57,9 +58,33 @@ public class FiliationController {
 
     @PutMapping("/{id}")
     public JSONResult<Filiation> updateInfo(@RequestBody Filiation filiation, @PathVariable int id) {
-        Filiation currentFiliation = new Filiation();
+        Filiation currentFiliation = null;
         try {
             currentFiliation = filiationService.getById(id);
+            if (currentFiliation == null) {
+                currentFiliation = new Filiation();
+            }
+            currentFiliation.setCaption(filiation.getCaption());
+            currentFiliation.setCountry(filiation.getCountry());
+            currentFiliation.setCity(filiation.getCity());
+            currentFiliation.setStreet(filiation.getStreet());
+            currentFiliation.setBuilding(filiation.getBuilding());
+            currentFiliation.setIndexCity(filiation.getIndexCity());
+            filiationService.save(currentFiliation);
+        } catch (Exception ex) {
+            return new JSONResultError<>(filiation, ex.getMessage());
+        }
+        return new JSONResultOk<>(currentFiliation);
+    }
+
+    @PostMapping()
+    public JSONResult<Filiation> add(@RequestBody Filiation filiation) {
+        Filiation currentFiliation = null;
+        try {
+            currentFiliation = filiationService.getById(filiation.getId());
+            if (currentFiliation == null) {
+                currentFiliation = new Filiation();
+            }
             currentFiliation.setCaption(filiation.getCaption());
             currentFiliation.setCountry(filiation.getCountry());
             currentFiliation.setCity(filiation.getCity());
