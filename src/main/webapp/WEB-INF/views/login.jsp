@@ -1,37 +1,30 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page isELIgnored="false" contentType="text/html;charset=UTF-8" %>
 <!DOCTYPE html>
 <html>
 
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Login</title>
-
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous">
-
+    <c:import url="template/head.jsp"></c:import>
 </head>
 
 <body>
-    <div class="container">
-        <h1><strong>Login</strong></h1>
-        <form class="form" enctype="multipart/form-data" role="form">
-            <label for="input-login" class="col-sm-2">Username</label>
-            <input type="text" name="login" id="input-login" class="form-control" required="required">
+    <div class="container mt-5">
+        <h2><strong>SportApp Control Panel</strong></h2>
+        <form class="form-login mt-3" enctype="multipart/form-data" role="form">
+            <input type="text" name="login" id="input-login" class="form-control" required placeholder="Login">
             <br/>
-            <label for="input-password" class="col-sm-2">Password</label>
-            <input type="password" name="password" id="input-password" class="form-control" required="required">
+            <input type="password" name="password" id="input-password" class="form-control" required placeholder="Password">
             <br/>
             <button class="btn btn-success" type="submit">Login</button>
         </form>
-        
     </div>
     <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
     <script th:src="@{/webjars/jquery-ui/jquery-ui.min.js}"></script>
     <script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-    <script>
-        $(function() {
-            $('.form').submit(function(e) {
+    <script type="text/javascript">
+        $(function () {
+            $('.form-login').submit(function(e) {
                 var $form = $(this);
                 $.ajax({
                     type: 'POST',
@@ -45,7 +38,6 @@
                 e.preventDefault();
             });
         });
-
     </script>
 </body>
 

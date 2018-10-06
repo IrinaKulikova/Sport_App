@@ -9,8 +9,7 @@ import application.service.implementations.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -36,6 +35,13 @@ public class LoginController {
             throwable.printStackTrace();
         }
         return "filiation";
+    }
+
+    @GetMapping("/logout")
+    public String logoutGet(HttpServletRequest req){
+        HttpSession session = req.getSession();
+        session.removeAttribute("identifier");
+        return "login";
     }
 
     @GetMapping("/login")
