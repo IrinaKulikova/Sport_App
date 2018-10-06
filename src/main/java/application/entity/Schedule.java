@@ -31,4 +31,11 @@ public class Schedule {
     ScheduleEvent scheduleEvent;
   //  private  List<ScheduleEvent> eventsList=new ArrayList<>();
 
+    public Schedule(Day day, Date starttime, ScheduleEvent scheduleEvent) {
+        this.day = day;
+        this.starttime = starttime;
+        this.scheduleEvent = scheduleEvent;
+    }
+
+
 }

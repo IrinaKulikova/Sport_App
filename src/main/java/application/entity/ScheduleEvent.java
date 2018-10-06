@@ -15,4 +15,7 @@ public class ScheduleEvent {
     //описание тренировки
     @Column(columnDefinition = "text")
     String description;
+    public ScheduleEvent(int id){
+        this.id=id;
+    }
 }
