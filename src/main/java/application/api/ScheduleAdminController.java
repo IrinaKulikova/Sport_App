@@ -25,10 +25,11 @@ public class ScheduleAdminController {
     @Autowired
     ScheduleServise scheduleServise;
     @Autowired
+
     SchedulesEventServise schedulesEventServise;
     public String getSchedules(Model model){
         List<Schedule> scheduleList=scheduleServise.getAll();
-        return "hallo";
+        return "schedule";
     }
     @GetMapping("/save_schedule_event")
     public String getSaveScheduleEvent(){
