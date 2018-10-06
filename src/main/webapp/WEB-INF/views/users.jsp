@@ -10,12 +10,7 @@
 <body>
 <c:import url="template/header.jsp"></c:import>
 <div class="container main-div mt-md-5">
-    <div class="tools-div form-inline form-control">
         <c:import url="template/search.jsp"></c:import>
-        <form>
-            <button class="btn btn-outline-warning ml-2" type="submit">Create</button>
-        </form>
-    </div>
     <div class="users-div">
         <table class="table table-bordered mt-2">
             <thead>

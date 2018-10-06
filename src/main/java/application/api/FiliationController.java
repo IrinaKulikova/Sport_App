@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "/api/1.0/filiations", produces = "application/json")
+@RequestMapping(value = "/api/1.0/filiation", produces = "application/json")
 public class FiliationController {
 
     @Autowired
