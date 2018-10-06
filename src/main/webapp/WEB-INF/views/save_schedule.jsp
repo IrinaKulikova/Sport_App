@@ -13,9 +13,7 @@
     <meta charset="UTF-8"/>
     <title>Добавить Расписание</title>
     <style>
-        div{height: 70px}
         form{width: 500px;margin:  0 auto;margin-top: 0px;}
-        button{margin-top: 120px;}
     </style>
 </head>
 <body>
@@ -71,9 +69,9 @@
                 <option value="30">30</option>
             </select>
         </div>
-        <button type="submit" class="btn btn-primary">Sign in</button>
-    </div>
 
+    </div>
+    <button type="submit" class="btn btn-primary">Sign in</button>
 </form>
 </body>
 </html>
