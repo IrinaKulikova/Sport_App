@@ -3,6 +3,7 @@ package application.api;
 import application.entity.Day;
 import application.entity.Schedule;
 import application.entity.ScheduleEvent;
+import application.service.implementations.DayServise;
 import application.service.implementations.ScheduleServise;
 import application.service.implementations.SchedulesEventServise;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,10 +26,26 @@ public class ScheduleAdminController {
     @Autowired
     ScheduleServise scheduleServise;
     @Autowired
-
     SchedulesEventServise schedulesEventServise;
+    @Autowired
+    DayServise dayServise;
+
     public String getSchedules(Model model){
-        List<Schedule> scheduleList=scheduleServise.getAll();
+        List<Day> dayList=null;
+        try {
+            dayList=dayServise.getAll();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        List<Schedule> scheduleList=null;
+        try{
+            scheduleList=scheduleServise.getAll();
+        }catch (Exception e) {
+            e.printStackTrace();
+        }
+        model.addAttribute("daylist",dayList);
+        model.addAttribute("schedulelist",scheduleList);
+        //    List<Schedule> scheduleList=scheduleServise.getAll();
         return "schedule";
     }
     @GetMapping("/save_schedule_event")
