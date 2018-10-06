@@ -1,5 +1,6 @@
 package application.controller;
 
+import application.service.implementations.ContactTypeService;
 import application.service.implementations.FiliationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,6 +16,9 @@ public class FiliationViewController {
     @Autowired
     private FiliationService filiationService;
 
+    @Autowired
+    private ContactTypeService contactTypeService;
+
     @GetMapping()
     public String index(Model model) {
         try {
@@ -29,6 +33,7 @@ public class FiliationViewController {
     public String edit(@PathVariable int id, Model model) {
 
         model.addAttribute("filiation", filiationService.getById(id));
+        model.addAttribute("contact_types", contactTypeService.getAll());
         return "filiation_edit";
     }
 }
