@@ -58,16 +58,17 @@
         $("#reloading").attr('href', '/filiation/0');
 
         $(".del").click(function (e) {
-            let button = $(this);
+            $del = $(this);
             $.ajax({
                 type: 'DELETE',
-                url: "/api/1.0/filiation/" + button.val(),
-            }).done(function () {
-
-                //FIXME: удалить филиал из списка в предвтавлении
-                alert('done!');
-            }).fail(function () {
-                alert('fail');
+                url: "/api/1.0/filiation/" + $del.val(),
+                success: function () {
+                    $del.parent().parent().remove();
+                    console.log('done!');
+                },
+                error: function () {
+                    console.log('fail');
+                }
             });
             e.preventDefault();
         });

@@ -82,7 +82,7 @@
             </div>
         </c:forEach>
 
-        <%--скрытый блок для вставки нового когтакта--%>
+        <%--скрытый блок для вставки нового контакта--%>
         <div class="row mt-2" id="insert" hidden>
             <div class="col mt-2">
                 <label></label>
@@ -202,20 +202,19 @@
                 }
             );
 
-            let del = $(".del");
+
             $(".del").click(
                 function (e) {
+                    $del = $(this);
                     $.ajax({
                         type: 'DELETE',
-                        url: "/api/1.0/contacts/" + del.val(),
+                        url: "/api/1.0/contacts/" + $del.val(),
                         success: function (e) {
-
-                            //FIXME: удалить контакт из списка в предвтавлении
-                            console.log(e.data)
-                            alert('done!');
+                            console.log(e.data);
+                            $del.parent().parent().remove();
                         },
                         error: function (e) {
-                            alert('fail');
+                            console.log("error!");
                         }
                     });
                     e.preventDefault();
