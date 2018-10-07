@@ -80,7 +80,7 @@ public class ScheduleAdminController {
         java.sql.Date sd = new java.sql.Date(date.getTime());
          ScheduleEvent event1=new ScheduleEvent(Integer.parseInt(event));
          Schedule schedule=new Schedule(day1,sd,event1);
-         scheduleServise.save(schedule);
+    //     scheduleServise.save(schedule);
         return "redirect:/";
     }
 }
