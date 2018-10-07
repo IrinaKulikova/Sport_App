@@ -78,15 +78,16 @@
                 </div>
             </div>
         </c:forEach>
+
         <div class="row mt-2">
             <div class="col">
-                <label for="inputState">Add contact</label>
+                <label for="contacts">Add contact</label>
             </div>
             <div class="col-md-8">
                 <div class="row">
                     <div class="col-md-4 mb-3">
-                        <select id="inputState" class="form-control">
-                            <option selected>Choose...</option>
+                        <select id="contacts" class="form-control">
+                            <option>Choose...</option>
                             <c:forEach items="${contact_types}" var="ctype">
                                 <option value="${ctype.id}">${ctype.name}</option>
                             </c:forEach>
@@ -94,17 +95,28 @@
                     </div>
                     <div class="col-md-8">
                         <div class="row-md-8">
-                            <input type="text" placeholder="Enter here..." class="form-control" id="addcontact">
+                            <input type="text" placeholder="Enter here..." class="form-control" id="newcontact">
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="row-md-2">
+                            <button type="submit" id="add" value="${filiation.id}"
+                                    class="btn text-center btn-outline-info mt-2">
+                                Add
+                            </button>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <button type="submit" id="save" value="${filiation.id}" class="btn text-center btn-outline-info mt-3 mb-5">
-            Save
-        </button>
+        <div class="mt-4 row">
+            <div class="col-md-12 text-center">
+                <button type="submit" id="save" value="${filiation.id}" class="btn btn-outline-danger pl-5 pr-5">
+                    Save
+                </button>
+            </div>
+        </div>
     </form>
-
 </div>
 <c:import url="template/footer.jsp"></c:import>
 <!--Scripts-->
@@ -113,44 +125,56 @@
 <script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 </body>
+<script src="../../resources/js/DTOFiliation.js" type="text/javascript"></script>
+<script src="../../resources/js/DTOContact.js" type="text/javascript"></script>
+<script src="../../resources/js/DTOContactType.js" type="text/javascript"></script>
+
 <script type="text/javascript">
     $(function () {
-
-            class Filiation {
-                constructor(id, caption, country, city,
-                            street, building, indexCity) {
-                    this.id = id;
-                    this.caption = caption;
-                    this.country = country;
-                    this.city = city;
-                    this.street = street;
-                    this.building = building;
-                    this.indexCity = indexCity;
-                }
-            }
-
-
             let button = $("#save");
-
             $("#save").click(
                 function (e) {
-                    var f = new Filiation($('#id').val(),
+                    var newFiliation = new Filiation($('#id').val(),
                         $('#caption').val(), $('#country').val(),
                         $('#city').val(), $('#street').val(),
                         $('#building').val(), $('#indexcity').val());
-                    console.log(f);
+                    console.log(newFiliation);
                     $.ajax({
                         type: 'PUT',
                         dataType: 'json',
                         url: "/api/1.0/filiation/" + button.val(),
                         contentType: 'application/json; charset=utf-8',
-                        data: JSON.stringify(f),
+                        data: JSON.stringify(newFiliation),
                         async: true,
                         success: function () {
-                            console.log("success");
+                            $('#info').text("success");
                         },
                         error: function () {
-                            console.log("fail");
+                            $('#info').text("error");
+                        }
+                    });
+                    e.preventDefault();
+                }
+            );
+
+            let add = $("#add");
+            $("#add").click(
+                function (e) {
+                    var contact = new Contact(new ContactType($("#contacts option:selected").val(), $("#contacts option:selected").text()),
+                        $("#newcontact").val());
+                    console.log(contact);
+                    $.ajax({
+                        type: 'POST',
+                        dataType: 'json',
+                        url: "/api/1.0/contacts/" + button.val(),
+                        contentType: 'application/json; charset=utf-8',
+                        data: JSON.stringify(contact),
+                        async: true,
+                        success: function () {
+                            //динамически добавить контакт
+                        },
+                        error: function () {
+                            console.log("error");
                         }
                     });
                     e.preventDefault();
