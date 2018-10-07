@@ -37,5 +37,6 @@ public class Schedule {
         this.scheduleEvent = scheduleEvent;
     }
 
-
+    public Schedule() {
+    }
 }

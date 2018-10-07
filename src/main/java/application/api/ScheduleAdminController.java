@@ -40,14 +40,14 @@ public class ScheduleAdminController {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        List<Schedule> scheduleList=null;
+        List<ScheduleEvent> scheduleEventList=null;
         try{
-            scheduleList=scheduleServise.getAll();
+            scheduleEventList=schedulesEventServise.getAll();
         }catch (Exception e) {
             e.printStackTrace();
         }
         model.addAttribute("daylist",dayList);
-        model.addAttribute("schedulelist",scheduleList);
+        model.addAttribute("schedulelist",scheduleEventList);
         //    List<Schedule> scheduleList=scheduleServise.getAll();
         return "schedule";
     }
@@ -62,7 +62,15 @@ public class ScheduleAdminController {
     }
     @GetMapping("/save_shedule")
     public String getSaveSchedule(Model model){
-        model.addAttribute("eventshedule",schedulesEventServise.getAll());
+        List<ScheduleEvent> eventList=schedulesEventServise.getAll();
+        List<Day> dayList=null;
+        try {
+            dayList= dayServise.getAll();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        model.addAttribute("eventshedule",eventList);
+        model.addAttribute("weekday",dayList);
         return "save_schedule";
     }
     @PostMapping("/save_shedule")

@@ -22,7 +22,6 @@ public class Day {
     public int getId() {
         return id;
     }
-    public Day(int id){
-        this.id=id;
+    public Day(){
     }
 }

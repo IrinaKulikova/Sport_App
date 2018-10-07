@@ -18,4 +18,7 @@ public class ScheduleEvent {
     public ScheduleEvent(int id){
         this.id=id;
     }
+    public ScheduleEvent(){
+
+    }
 }
