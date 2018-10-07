@@ -3,6 +3,7 @@ package application.api;
 import application.entity.Day;
 import application.entity.Schedule;
 import application.entity.ScheduleEvent;
+import application.repository.ScheduleRepository;
 import application.service.implementations.DayServise;
 import application.service.implementations.ScheduleServise;
 import application.service.implementations.SchedulesEventServise;
@@ -29,6 +30,8 @@ public class ScheduleAdminController {
     SchedulesEventServise schedulesEventServise;
     @Autowired
     DayServise dayServise;
+  //  @Autowired
+ //   ScheduleRepository scheduleRepository;
 
     public String getSchedules(Model model){
         List<Day> dayList=null;
@@ -58,18 +61,19 @@ public class ScheduleAdminController {
         return "redirect:/";
     }
     @GetMapping("/save_shedule")
-    public String getSaveSchedule(){
+    public String getSaveSchedule(Model model){
+        model.addAttribute("eventshedule",schedulesEventServise.getAll());
         return "save_schedule";
     }
     @PostMapping("/save_shedule")
-    public String postSaveSchedule(HttpServletRequest request){
+    public String postSaveSchedule(HttpServletRequest request,Schedule schedule){
         String event=request.getParameter("event_schedule");
         String day=request.getParameter("day");
         String hour=request.getParameter("hour");
         String min=request.getParameter("min");
-        SimpleDateFormat localDateFormat = new SimpleDateFormat("HH:mm");
+    //    SimpleDateFormat localDateFormat = new SimpleDateFormat("HH:mm");
         String timestring = hour+":"+min;//"Mar 19 2018 - 14:39";
-        Date date=null;
+   /*     Date date=null;
         try {
             date= localDateFormat.parse(timestring);
         } catch (ParseException e) {
@@ -79,7 +83,8 @@ public class ScheduleAdminController {
         Day day1=new Day(Integer.parseInt(day));
         java.sql.Date sd = new java.sql.Date(date.getTime());
          ScheduleEvent event1=new ScheduleEvent(Integer.parseInt(event));
-         Schedule schedule=new Schedule(day1,sd,event1);
+         Schedule schedule=new Schedule(day1,sd,event1);*/
+     //    scheduleRepository.midifyingQuryInsertSchadule(Integer.parseInt(day),timestring,Integer.parseInt(event));
     //     scheduleServise.save(schedule);
         return "redirect:/";
     }
