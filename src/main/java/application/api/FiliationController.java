@@ -79,12 +79,8 @@ public class FiliationController {
 
     @PostMapping()
     public JSONResult<Filiation> add(@RequestBody Filiation filiation) {
-        Filiation currentFiliation = null;
+        Filiation currentFiliation =  new Filiation();
         try {
-            currentFiliation = filiationService.getById(filiation.getId());
-            if (currentFiliation == null) {
-                currentFiliation = new Filiation();
-            }
             currentFiliation.setCaption(filiation.getCaption());
             currentFiliation.setCountry(filiation.getCountry());
             currentFiliation.setCity(filiation.getCity());

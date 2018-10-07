@@ -207,8 +207,10 @@
                 function (e) {
                     $.ajax({
                         type: 'DELETE',
-                        url: "/api/1.0/contacts/" + button.val() + "/" + del.val(),
+                        url: "/api/1.0/contacts/" + del.val(),
                         success: function (e) {
+
+                            //FIXME: удалить контакт из списка в предвтавлении
                             console.log(e.data)
                             alert('done!');
                         },

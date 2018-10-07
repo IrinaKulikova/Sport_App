@@ -35,7 +35,7 @@
                             <button class="btn btn-outline-info m-2" name="id" type="submit" value="${item.id}">Edit
                             </button>
                         </a>
-                        <button id="delete" class="btn btn-outline-danger m-2" type="submit" value="${item.id}">
+                        <button class="btn btn-outline-danger m-2 del" type="submit" value="${item.id}">
                             Delete
                         </button>
                     </td>
@@ -57,12 +57,14 @@
 
         $("#reloading").attr('href', '/filiation/0');
 
-        let button = $("#delete");
-        $("#delete").click(function (e) {
+        $(".del").click(function (e) {
+            let button = $(this);
             $.ajax({
                 type: 'DELETE',
                 url: "/api/1.0/filiation/" + button.val(),
             }).done(function () {
+
+                //FIXME: удалить филиал из списка в предвтавлении
                 alert('done!');
             }).fail(function () {
                 alert('fail');

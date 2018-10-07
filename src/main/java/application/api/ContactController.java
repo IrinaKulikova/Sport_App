@@ -69,15 +69,12 @@ public class ContactController {
         return new JSONResultOk<Contact>(contact);
     }
 
-    @DeleteMapping("/{filial_id}/{id}")
-    public JSONResult<Contact> deleteContact(@PathVariable int filial_id, @PathVariable int id) {
-        Filiation filiation = new Filiation();
+    @DeleteMapping("/{id}")
+    public JSONResult<Contact> deleteContact(@PathVariable int id) {
         Contact contact = new Contact();
         try {
-            filiation = filiationService.getById(filial_id);
             contact = contactService.getById(id);
-            filiation.removeContact(contact);
-            filiationService.save(filiation);
+            contactService.delete(id);
         } catch (Exception ex) {
             ex.printStackTrace();
             return new JSONResultError<>(contact, ex.getMessage());
