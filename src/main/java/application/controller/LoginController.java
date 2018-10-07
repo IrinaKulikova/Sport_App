@@ -3,14 +3,9 @@ package application.controller;
 import application.entity.Administrator;
 import application.service.helper.HashHelper;
 import application.service.implementations.AdministratorService;
-import application.service.implementations.CardService;
-import application.service.implementations.UserService;
-import application.service.implementations.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -25,22 +20,16 @@ public class LoginController {
     @Autowired
     private AdministratorService administratorService;
 
-    @Autowired
-    private UserService userService;
-
     @GetMapping("/")
     public String index() {
         return "redirect:/filiation";
     }
 
-    @GetMapping("/users")
-    public String users(Model model) {
-        try {
-            model.addAttribute("users", userService.getAll());
-        } catch (Throwable throwable) {
-            throwable.printStackTrace();
-        }
-        return "users";
+    @GetMapping("/logout")
+    public String logoutGet(HttpServletRequest req){
+        HttpSession session = req.getSession();
+        session.removeAttribute("identifier");
+        return "login";
     }
 
     @GetMapping("/login")
