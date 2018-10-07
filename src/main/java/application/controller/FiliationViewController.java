@@ -27,7 +27,7 @@ public class FiliationViewController {
         } catch (Throwable throwable) {
             throwable.printStackTrace();
         }
-        return "filiation";
+        return "filiation/filiation";
     }
 
     @GetMapping("/{id}")
@@ -40,13 +40,13 @@ public class FiliationViewController {
         }
         model.addAttribute("filiation", filiation);
         model.addAttribute("contact_types", contactTypeService.getAll());
-        return "filiation_edit";
+        return "filiation/filiation_edit";
     }
 
     @GetMapping("/create")
     public String edit(Model model) {
         model.addAttribute("filiation", new Filiation());
         model.addAttribute("contact_types", contactTypeService.getAll());
-        return "filiation_edit";
+        return "filiation/filiation_create";
     }
 }

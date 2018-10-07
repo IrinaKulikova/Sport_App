@@ -1,7 +1,9 @@
 package application.api;
 
+import application.entity.Card;
 import application.entity.Contact;
 import application.entity.Filiation;
+import application.entity.User;
 import application.helper.JSONResult;
 import application.helper.JSONResultError;
 import application.helper.JSONResultOk;
@@ -67,12 +69,15 @@ public class ContactController {
         return new JSONResultOk<Contact>(contact);
     }
 
-    @DeleteMapping("/{id}")
-    public JSONResult<Contact> deleteContact(@PathVariable int id) {
+    @DeleteMapping("/{filial_id}/{id}")
+    public JSONResult<Contact> deleteContact(@PathVariable int filial_id, @PathVariable int id) {
+        Filiation filiation = new Filiation();
         Contact contact = new Contact();
         try {
+            filiation = filiationService.getById(filial_id);
             contact = contactService.getById(id);
-            contactService.delete(id);
+            filiation.removeContact(contact);
+            filiationService.save(filiation);
         } catch (Exception ex) {
             ex.printStackTrace();
             return new JSONResultError<>(contact, ex.getMessage());

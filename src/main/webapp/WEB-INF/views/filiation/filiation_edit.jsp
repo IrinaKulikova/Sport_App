@@ -4,11 +4,11 @@
 <html lang="en">
 
 <head>
-    <c:import url="template/head.jsp"></c:import>
+    <c:import url="../template/head.jsp"></c:import>
 </head>
 
 <body>
-<c:import url="template/header.jsp"></c:import>
+<c:import url="../template/header.jsp"></c:import>
 <div class="container main-div mt-3">
     <h1>Filiation ${filiation.caption}</h1>
     <form id="form" class="form mt-3 mb-5">
@@ -91,7 +91,7 @@
                 <input type="text" class="form-control">
             </div>
             <div class="col-md-2">
-                <button class="del btn text-center btn-outline-danger">Delete</button>
+                <button class="del btn text-center btn-outline-danger mt-2">Delete</button>
             </div>
         </div>
 
@@ -134,16 +134,16 @@
         </div>
     </form>
 </div>
-<c:import url="template/footer.jsp"></c:import>
+<c:import url="../template/footer.jsp"></c:import>
 <!--Scripts-->
 <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
 <script th:src="@{/webjars/jquery-ui/jquery-ui.min.js}"></script>
 <script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 </body>
-<script src="../../resources/js/DTOFiliation.js" type="text/javascript"></script>
-<script src="../../resources/js/DTOContact.js" type="text/javascript"></script>
-<script src="../../resources/js/DTOContactType.js" type="text/javascript"></script>
+<script src="../../../resources/js/DTOFiliation.js" type="text/javascript"></script>
+<script src="../../../resources/js/DTOContact.js" type="text/javascript"></script>
+<script src="../../../resources/js/DTOContactType.js" type="text/javascript"></script>
 
 <script type="text/javascript">
     $(function () {
@@ -163,10 +163,10 @@
                         data: JSON.stringify(newFiliation),
                         async: true,
                         success: function () {
-                            $('#info').text("success");
+                            $("h1").text("Filiation " + $('#caption').val());
                         },
                         error: function () {
-                            $('#info').text("error");
+                            console.log("error");
                         }
                     });
                     e.preventDefault();
@@ -207,7 +207,7 @@
                 function (e) {
                     $.ajax({
                         type: 'DELETE',
-                        url: "/api/1.0/contacts/" + button.val(),
+                        url: "/api/1.0/contacts/" + button.val() + "/" + del.val(),
                         success: function (e) {
                             console.log(e.data)
                             alert('done!');

@@ -4,13 +4,16 @@
 <html lang="en">
 
 <head>
-    <c:import url="template/head.jsp"></c:import>
+    <c:import url="../template/head.jsp"></c:import>
 </head>
 
 <body>
-<c:import url="template/header.jsp"></c:import>
+<c:import url="../template/header.jsp"></c:import>
 <div class="container main-div mt-md-5">
-    <c:import url="template/search.jsp"></c:import>
+    <div class="tools-div form-inline form-control">
+        <c:import url="../template/search.jsp"></c:import>
+        <a class="btn btn-outline-warning ml-2" href="./filiation/create">Create</a>
+    </div>
     <div>
         <table class="table table-bordered mt-2">
             <thead>
@@ -42,7 +45,7 @@
         </table>
     </div>
 </div>
-<c:import url="template/footer.jsp"></c:import>
+<c:import url="../template/footer.jsp"></c:import>
 <!--Scripts-->
 <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
 <script th:src="@{/webjars/jquery-ui/jquery-ui.min.js}"></script>
