@@ -21,4 +21,9 @@ public class ScheduleEvent {
     public ScheduleEvent(){
 
     }
+
+    public String getName() {
+        return name;
+    }
+
 }

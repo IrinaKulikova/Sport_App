@@ -32,7 +32,7 @@ public class ScheduleAdminController {
     DayServise dayServise;
   //  @Autowired
  //   ScheduleRepository scheduleRepository;
-
+    @GetMapping()
     public String getSchedules(Model model){
         List<Day> dayList=null;
         try {
@@ -40,14 +40,14 @@ public class ScheduleAdminController {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        List<ScheduleEvent> scheduleEventList=null;
+        List<Schedule> scheduleList=null;
         try{
-            scheduleEventList=schedulesEventServise.getAll();
+            scheduleList=scheduleServise.getAll();
         }catch (Exception e) {
             e.printStackTrace();
         }
         model.addAttribute("daylist",dayList);
-        model.addAttribute("schedulelist",scheduleEventList);
+        model.addAttribute("schedulelist",scheduleList);
         //    List<Schedule> scheduleList=scheduleServise.getAll();
         return "schedule";
     }

@@ -24,6 +24,7 @@ public class Schedule {
     //время начала занятия
     @Column(columnDefinition ="time")
    private Date starttime;
+
     //вторичный ключ schedule_event
     //@OneToMany(targetEntity = ScheduleEvent.class,fetch = FetchType.EAGER)
     @ManyToOne(targetEntity = ScheduleEvent.class,fetch = FetchType.EAGER)
@@ -38,5 +39,8 @@ public class Schedule {
     }
 
     public Schedule() {
+    }
+    public ScheduleEvent getScheduleEvent() {
+        return scheduleEvent;
     }
 }
