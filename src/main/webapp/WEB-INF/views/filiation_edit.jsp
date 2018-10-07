@@ -72,12 +72,28 @@
                 <div class="col mt-2">
                     <label>${contact.contactType.name}:</label>
                 </div>
-                <div class="col-md-8">
+                <div class="col-md-6">
                     <input type="text" class="form-control" value="${contact.data}"
                            placeholder="Enter here...">
                 </div>
+                <div class="col-md-2">
+                    <button value="${contact.id}" class="del btn text-center btn-outline-danger">Delete</button>
+                </div>
             </div>
         </c:forEach>
+
+        <%--скрытый блок для вставки нового когтакта--%>
+        <div class="row mt-2" id="insert" hidden>
+            <div class="col mt-2">
+                <label></label>
+            </div>
+            <div class="col-md-6">
+                <input type="text" class="form-control">
+            </div>
+            <div class="col-md-2">
+                <button class="del btn text-center btn-outline-danger">Delete</button>
+            </div>
+        </div>
 
         <div class="row mt-2">
             <div class="col">
@@ -170,8 +186,13 @@
                         contentType: 'application/json; charset=utf-8',
                         data: JSON.stringify(contact),
                         async: true,
-                        success: function () {
-                            //динамически добавить контакт
+                        success: function (e) {
+                            $container = $("#insert").clone().removeAttr("id").removeAttr("hidden");
+                            $("#insert").before($container);
+                            $container.find("label").text(contact.contactType.name + ":");
+                            $container.find("input").val(contact.data);
+                            $container.find(".delete").val(e.data.id);
+                            console.log($container);
                         },
                         error: function () {
                             console.log("error");
@@ -180,6 +201,23 @@
                     e.preventDefault();
                 }
             );
+
+            let del = $(".del");
+            $(".del").click(
+                function (e) {
+                    $.ajax({
+                        type: 'DELETE',
+                        url: "/api/1.0/contacts/" + button.val(),
+                        success: function (e) {
+                            console.log(e.data)
+                            alert('done!');
+                        },
+                        error: function (e) {
+                            alert('fail');
+                        }
+                    });
+                    e.preventDefault();
+                });
         }
     );
 </script>

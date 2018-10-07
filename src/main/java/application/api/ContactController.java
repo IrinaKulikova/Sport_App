@@ -35,16 +35,23 @@ public class ContactController {
 
     @PostMapping("/{id}")
     public JSONResult<Contact> addContact(@RequestBody Contact contact, @PathVariable int id) {
+        Filiation filiation = null;
+        Contact newContact = new Contact();
+        int id1 = 0;
         try {
-            Filiation filiation = filiationService.getById(id);
-            filiation.addContact(contact);
+            filiation = filiationService.getById(id);
+            newContact.setFiliation(filiation);
+            newContact.setData(contact.getData());
+            newContact.setContactType(contact.getContactType());
+            filiation.addContact(newContact);
             contact.setFiliation(filiation);
             filiationService.save(filiation);
+            id1 = filiation.getContacts().get(filiation.getContacts().size() - 1).getId();
         } catch (Exception ex) {
             ex.printStackTrace();
-            return new JSONResultError<Contact>(contact, ex.getMessage());
+            return new JSONResultError<Contact>(newContact, ex.getMessage());
         }
-        return new JSONResultOk<Contact>(contact);
+        return new JSONResultOk<Contact>(newContact);
     }
 
     @PutMapping("/{id}")

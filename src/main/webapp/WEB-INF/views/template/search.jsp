@@ -4,6 +4,8 @@
         <button id="btn btn-search" class="btn btn-outline-success ml-2" type="submit">Search</button>
     </form>
     <form>
-        <button id="create" class="btn btn-outline-warning ml-2" type="submit">Create</button>
+        <a id="reloading" href="">
+            <button id="create" class="btn btn-outline-warning ml-2" type="submit">Create</button>
+        </a>
     </form>
 </div>

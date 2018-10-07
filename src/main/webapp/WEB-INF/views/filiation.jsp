@@ -51,6 +51,9 @@
 </body>
 <script type="text/javascript">
     $(function () {
+
+        $("#reloading").attr('href', '/filiation/0');
+
         let button = $("#delete");
         $("#delete").click(function (e) {
             $.ajax({
@@ -62,10 +65,6 @@
                 alert('fail');
             });
             e.preventDefault();
-        });
-
-        $("#create").click(function () {
-            window.location.replace("./filiation/0");
         });
     });
 </script>
