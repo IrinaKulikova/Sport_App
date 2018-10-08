@@ -144,5 +144,5 @@
 <script src="../../../resources/js/DTOContact.js" type="text/javascript"></script>
 <script src="../../../resources/js/DTOContactType.js" type="text/javascript"></script>
 <script src="../../../resources/js/AJAXService.js" type="text/javascript"></script>
-<script src="../../../resources/js/FiliationEdit.js" type="text/javascript"></script>
+<script src="filiation_edit_js.js" type="text/javascript"></script>
 </html>
