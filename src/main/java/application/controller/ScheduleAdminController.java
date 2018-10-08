@@ -2,18 +2,15 @@ package application.controller;
 
 import application.entity.Day;
 import application.entity.Schedule;
-import application.service.implementations.ScheduleService;
 import application.entity.ScheduleEvent;
-import application.repository.ScheduleRepository;
 import application.service.implementations.DayServise;
-import application.service.implementations.ScheduleServise;
-import application.service.implementations.SchedulesEventServise;
+import application.service.implementations.ScheduleService;
+import application.service.implementations.SchedulesEventService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpServletRequest;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -25,85 +22,99 @@ import java.util.List;
 public class ScheduleAdminController {
 
     @Autowired
-    ScheduleServise scheduleServise;
+    ScheduleService scheduleServise;
     @Autowired
-    SchedulesEventServise schedulesEventServise;
+    SchedulesEventService schedulesEventService;
     @Autowired
     DayServise dayServise;
-  //  @Autowired
- //   ScheduleRepository scheduleRepository;
+
+    //  @Autowired
+    //   ScheduleRepository scheduleRepository;
     @GetMapping()
-    public String getSchedules(Model model){
-        List<Day> dayList=null;
+    public String getSchedules(Model model) {
+        List<Day> dayList = null;
         try {
-            dayList=dayServise.getAll();
+            dayList = dayServise.getAll();
         } catch (Exception e) {
             e.printStackTrace();
         }
-        List<Schedule> scheduleList=null;
-        try{
-            scheduleList=scheduleServise.getAll();
-        }catch (Exception e) {
+        List<Schedule> scheduleList = null;
+        try {
+            scheduleList = scheduleServise.getAll();
+        } catch (Exception e) {
             e.printStackTrace();
         }
-        model.addAttribute("daylist",dayList);
-        model.addAttribute("schedulelist",scheduleList);
+        model.addAttribute("daylist", dayList);
+        model.addAttribute("schedulelist", scheduleList);
         //    List<Schedule> scheduleList=scheduleServise.getAll();
         return "schedule";
     }
+
     @GetMapping("/save_schedule_event")
-    public String getSaveScheduleEvent(){
+    public String getSaveScheduleEvent() {
         return "save_schedule_event";
     }
+
     @PostMapping("/save_schedule_event")
-    public String postSaveScheduleEvent(ScheduleEvent event){
-        schedulesEventServise.save(event);
-        return "redirect:/";
-    }
-    @GetMapping("/save_shedule")
-    public String getSaveSchedule(Model model){
-        List<ScheduleEvent> eventList=schedulesEventServise.getAll();
-        List<Day> dayList=null;
+    public String postSaveScheduleEvent(ScheduleEvent event) {
         try {
-            dayList= dayServise.getAll();
+            schedulesEventService.save(event);
         } catch (Exception e) {
             e.printStackTrace();
         }
-        model.addAttribute("eventshedule",eventList);
-        model.addAttribute("weekday",dayList);
+        return "redirect:/";
+    }
+
+    @GetMapping("/save_shedule")
+    public String getSaveSchedule(Model model) {
+        List<Day> dayList = null;
+        List<ScheduleEvent> eventList = null;
+        try {
+            eventList = schedulesEventService.getAll();
+            dayList = dayServise.getAll();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        model.addAttribute("eventshedule", eventList);
+        model.addAttribute("weekday", dayList);
         return "save_schedule";
     }
+
     @PostMapping("/save_shedule")
-    public String postSaveSchedule(@RequestParam String starttime,@RequestParam int sheduleEvent,@RequestParam int day){
+    public String postSaveSchedule(@RequestParam String starttime, @RequestParam int sheduleEvent, @RequestParam int day) {
         System.out.println(starttime);
         System.out.println(sheduleEvent);
         System.out.println(day);
-        Day newDay=null;
+        Day newDay = null;
         try {
-            newDay=dayServise.getById(day);
+            newDay = dayServise.getById(day);
         } catch (Exception e) {
             e.printStackTrace();
         }
-        ScheduleEvent scheduleEvent=schedulesEventServise.getById(sheduleEvent);
+        ScheduleEvent scheduleEvent = schedulesEventService.getById(sheduleEvent);
 //        String event=request.getParameter("event_schedule");
 //        String day=request.getParameter("day");
 //        String hour=request.getParameter("hour");
 //        String min=request.getParameter("min");
-         SimpleDateFormat localDateFormat = new SimpleDateFormat("HH:mm");
+        SimpleDateFormat localDateFormat = new SimpleDateFormat("HH:mm");
 //        String timestring = hour+":"+min;//"Mar 19 2018 - 14:39";
-        Date date=null;
+        Date date = null;
         try {
-            date= localDateFormat.parse(starttime);
+            date = localDateFormat.parse(starttime);
         } catch (ParseException e) {
             e.printStackTrace();
         }
-    //    if(date==null)  return "redirect:/";
-    //    Day day1=new Day(Integer.parseInt(day));
+        //    if(date==null)  return "redirect:/";
+        //    Day day1=new Day(Integer.parseInt(day));
         java.sql.Time sd = new java.sql.Time(date.getTime());
-   //      ScheduleEvent event1=new ScheduleEvent(Integer.parseInt(event));
-         Schedule schedule=new Schedule(newDay,sd,scheduleEvent);
-     //    scheduleRepository.midifyingQuryInsertSchadule(Integer.parseInt(day),timestring,Integer.parseInt(event));
-        scheduleServise.save(schedule);
+        //      ScheduleEvent event1=new ScheduleEvent(Integer.parseInt(event));
+        Schedule schedule = new Schedule(newDay, sd, scheduleEvent);
+        //    scheduleRepository.midifyingQuryInsertSchadule(Integer.parseInt(day),timestring,Integer.parseInt(event));
+        try {
+            scheduleServise.save(schedule);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         return "redirect:/";
     }
 }

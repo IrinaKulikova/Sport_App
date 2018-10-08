@@ -6,6 +6,7 @@ import application.helper.JSONResult;
 import application.helper.JSONResultError;
 import application.helper.JSONResultOk;
 import application.service.implementations.ScheduleService;
+import application.service.implementations.SchedulesEventService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,9 +18,9 @@ import java.util.List;
 public class ScheduleController {
 
     @Autowired
-    ScheduleServise scheduleServise;
+    ScheduleService scheduleServise;
     @Autowired
-    SchedulesEventServise eventServise;
+    SchedulesEventService schedulesEventService;
     // получить список расписание
     @GetMapping()
     public JSONResult<List<Schedule>> getSchedule(){

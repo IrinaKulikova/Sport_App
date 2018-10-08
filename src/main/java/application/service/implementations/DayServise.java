@@ -23,8 +23,8 @@ public class DayServise implements EntityService<Day> {
     }
 
     @Override
-    public void save(Day day) throws Exception {
-         dayRepository.save(day);
+    public Day save(Day day) throws Exception {
+         return dayRepository.save(day);
     }
 
     @Override
