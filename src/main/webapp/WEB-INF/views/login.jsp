@@ -22,7 +22,9 @@
 <script th:src="@{/webjars/jquery-ui/jquery-ui.min.js}"></script>
 <script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="/resources/js/login/login.js" type="text/javascript"></script>
 <script type="text/javascript">
+
     $(function () {
         $('.form-login').submit(function(e) {
             var $form = $(this);
@@ -40,5 +42,4 @@
     });
 </script>
 </body>
-
 </html>

@@ -83,7 +83,7 @@
 <script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 </body>
-<script src="../../../resources/js/DTOFiliation.js" type="text/javascript"></script>
-<script src="../../../resources/js/AJAXService.js" type="text/javascript"></script>
-<script src="filiation_create_js.js" type="text/javascript"></script>
+<script src="../../../resources/js/DTO/DTOFiliation.js" type="text/javascript"></script>
+<script src="../../../resources/js/services/AJAXService.js" type="text/javascript"></script>
+<script src="../../../resources/js/filiation/filiation_create.js" type="text/javascript"></script>
 </html>

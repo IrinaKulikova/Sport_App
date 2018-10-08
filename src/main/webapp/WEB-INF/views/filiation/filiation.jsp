@@ -52,26 +52,6 @@
 <script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 </body>
-<script type="text/javascript">
-    $(function () {
-
-        $("#reloading").attr('href', '/filiation/0');
-
-        $(".del").click(function (e) {
-            $del = $(this);
-            $.ajax({
-                type: 'DELETE',
-                url: "/api/1.0/filiation/" + $del.val(),
-                success: function () {
-                    $del.parent().parent().remove();
-                    console.log('done!');
-                },
-                error: function () {
-                    console.log('fail');
-                }
-            });
-            e.preventDefault();
-        });
-    });
-</script>
+<script src="../../../resources/js/services/AJAXService.js" type="text/javascript"></script>
+<script src="../../../resources/js/filiation/filiation.js" type="text/javascript"></script>
 </html>
