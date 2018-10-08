@@ -10,8 +10,7 @@
 <body>
 <c:import url="../template/header.jsp"></c:import>
 <div class="container main-div mt-md-5">
-    <div class="tools-div form-inline form-control">
-        <c:import url="../template/search.jsp"></c:import>
+    <div class="tools-div form-control text-right">
         <a class="btn btn-outline-warning ml-2" href="./filiation/create">Create</a>
     </div>
     <div>
@@ -31,6 +30,10 @@
                     <th scope="row">${item.caption}</th>
                     <th scope="row">${item.country} ${item.city} ${item.street} ${item.building}</th>
                     <td colspan="2">
+                        <a href="/schedules">
+                            <button class="btn btn-outline-info m-2" name="id" type="submit" value="${item.id}">Schedule
+                            </button>
+                        </a>
                         <a href="/filiation/${item.id}">
                             <button class="btn btn-outline-info m-2" name="id" type="submit" value="${item.id}">Edit
                             </button>
@@ -51,7 +54,7 @@
 <script th:src="@{/webjars/jquery-ui/jquery-ui.min.js}"></script>
 <script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-</body>
 <script src="../../../resources/js/services/AJAXService.js" type="text/javascript"></script>
 <script src="../../../resources/js/filiation/filiation.js" type="text/javascript"></script>
+</body>
 </html>

@@ -82,8 +82,8 @@
 <script th:src="@{/webjars/jquery-ui/jquery-ui.min.js}"></script>
 <script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-</body>
 <script src="../../../resources/js/DTO/DTOFiliation.js" type="text/javascript"></script>
 <script src="../../../resources/js/services/AJAXService.js" type="text/javascript"></script>
 <script src="../../../resources/js/filiation/filiation_create.js" type="text/javascript"></script>
+</body>
 </html>
