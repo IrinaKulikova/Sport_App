@@ -1,9 +1,9 @@
 package application.controller;
 
+import application.entity.Administrator;
 import application.entity.ContactType;
 import application.entity.Filiation;
-import application.service.implementations.ContactTypeService;
-import application.service.implementations.FiliationService;
+import application.service.implementations.AdministratorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,42 +15,35 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Controller
-@RequestMapping("/filiation")
-public class FiliationViewController {
+@RequestMapping("/admins")
+public class AdminsViewController {
 
     @Autowired
-    private FiliationService filiationService;
-
-    @Autowired
-    private ContactTypeService contactTypeService;
+    private AdministratorService administratorService;
 
     @GetMapping()
     public String index(Model model) {
         try {
-            model.addAttribute("filiation", filiationService.getAll());
+            model.addAttribute("admins", administratorService.getAll());
         } catch (Throwable throwable) {
             throwable.printStackTrace();
         }
-        return "filiation/filiation";
+        return "admins/admins";
     }
 
     @GetMapping("/{id}")
     public String edit(@PathVariable int id, Model model) {
-        Filiation filiation = new Filiation();
-        List<ContactType> contactTypeList = new ArrayList<>();
+        Administrator admin = new Administrator();
         try {
-            filiation = filiationService.getById(id);
-            contactTypeList = contactTypeService.getAll();
+            admin = administratorService.getById(id);
         } catch (Exception ex) {
-            filiation = new Filiation();
         }
-        model.addAttribute("filiation", filiation);
-        model.addAttribute("contact_types", contactTypeList);
-        return "filiation/filiation_edit";
+        model.addAttribute("admin", admin);
+        return "admins/admin_edit";
     }
 
     @GetMapping("/create")
     public String edit(Model model) {
-        return "filiation/filiation_create";
+        return "admins/admin_create";
     }
 }
