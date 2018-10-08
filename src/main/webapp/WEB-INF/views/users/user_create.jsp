@@ -8,8 +8,8 @@
 </head>
 
 <body>
-<c:import url="template/header.jsp"></c:import>
-<div class="container main-div m-5">
+<c:import url="../template/header.jsp"></c:import>
+<div class="container main-div mt-md-5">
     <div class="user-edit-div">
         <h2><strong>Create user</strong></h2>
         <form class="create-form">

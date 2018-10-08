@@ -15,7 +15,7 @@
         <a class="btn btn-outline-warning m-2" href="/users/create">Create</a>
     </div>
     <div class="users-div">
-        <table class="table table-bordered mt-2">
+        <table class="table table-bordered m-2">
             <thead>
             <tr>
                 <th scope="col">#</th>

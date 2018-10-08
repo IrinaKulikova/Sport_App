@@ -23,7 +23,7 @@ public class UsersViewController {
         } catch (Throwable throwable) {
             throwable.printStackTrace();
         }
-        return "users";
+        return "users/users";
     }
 
     @GetMapping("/edit/{id}")
@@ -33,11 +33,11 @@ public class UsersViewController {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return "user_details";
+        return "users/user_details";
     }
 
     @GetMapping("/create")
     public String userCreate(){
-        return "user_create";
+        return "users/user_create";
     }
 }
