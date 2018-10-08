@@ -39,16 +39,14 @@ public class ContactController {
     public JSONResult<Contact> addContact(@RequestBody Contact contact, @PathVariable int id) {
         Filiation filiation = null;
         Contact newContact = new Contact();
-        int id1 = 0;
         try {
             filiation = filiationService.getById(id);
             newContact.setFiliation(filiation);
             newContact.setData(contact.getData());
             newContact.setContactType(contact.getContactType());
             filiation.addContact(newContact);
-            contact.setFiliation(filiation);
-            filiationService.save(filiation);
-            id1 = filiation.getContacts().get(filiation.getContacts().size() - 1).getId();
+            newContact.setFiliation(filiation);
+            newContact = contactService.save(newContact);
         } catch (Exception ex) {
             ex.printStackTrace();
             return new JSONResultError<Contact>(newContact, ex.getMessage());
@@ -58,8 +56,9 @@ public class ContactController {
 
     @PutMapping("/{id}")
     public JSONResult<Contact> updateContact(@RequestBody Contact contact, @PathVariable int id) {
-        Contact currentContact = contactService.getById(id);
+        Contact currentContact = null;
         try {
+            currentContact = contactService.getById(id);
             currentContact.setData(contact.getData());
             contactService.save(currentContact);
         } catch (Exception ex) {

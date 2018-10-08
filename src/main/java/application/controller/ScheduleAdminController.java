@@ -17,7 +17,12 @@ public class ScheduleAdminController {
     ScheduleService scheduleService;
 
     public String getSchedules(Model model) {
-        List<Schedule> scheduleList = scheduleService.getAll();
+
+        try {
+            List<Schedule> scheduleList = scheduleService.getAll();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         return "schedules";
     }
 }
