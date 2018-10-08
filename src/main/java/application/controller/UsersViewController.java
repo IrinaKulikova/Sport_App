@@ -33,7 +33,7 @@ public class UsersViewController {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return "user_details";
+        return "user_edit";
     }
 
     @GetMapping("/create")
