@@ -84,37 +84,6 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 </body>
 <script src="../../../resources/js/DTOFiliation.js" type="text/javascript"></script>
-<script src="../../../resources/js/DTOContact.js" type="text/javascript"></script>
-<script src="../../../resources/js/DTOContactType.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-    $(function () {
-            let button = $("#save");
-            $("#save").click(
-                function (e) {
-                    var newFiliation = new Filiation($('#id').val(),
-                        $('#caption').val(), $('#country').val(),
-                        $('#city').val(), $('#street').val(),
-                        $('#building').val(), $('#indexcity').val());
-                    console.log(newFiliation);
-                    $.ajax({
-                        type: 'POST',
-                        dataType: 'json',
-                        url: "/api/1.0/filiation/",
-                        contentType: 'application/json; charset=utf-8',
-                        data: JSON.stringify(newFiliation),
-                        async: true,
-                        success: function () {
-                            $('#info').text("success");
-                        },
-                        error: function () {
-                            $('#info').text("error");
-                        }
-                    });
-                    e.preventDefault();
-                }
-            );
-        }
-    );
-</script>
+<script src="../../../resources/js/AJAXService.js" type="text/javascript"></script>
+<script src="filiation_create_js.js" type="text/javascript"></script>
 </html>
