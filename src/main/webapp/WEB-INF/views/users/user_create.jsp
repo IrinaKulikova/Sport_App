@@ -4,11 +4,11 @@
 <html lang="en">
 
 <head>
-    <c:import url="template/head.jsp"></c:import>
+    <c:import url="../template/head.jsp"></c:import>
 </head>
 
 <body>
-<c:import url="template/header.jsp"></c:import>
+<c:import url="../template/header.jsp"></c:import>
 <div class="container main-div mt-md-5">
     <div class="user-edit-div">
         <h2><strong>Create user</strong></h2>
@@ -47,7 +47,7 @@
         </form>
     </div>
 </div>
-<c:import url="template/footer.jsp"></c:import>
+<c:import url="../template/footer.jsp"></c:import>
 
 <!--Scripts-->
 <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
