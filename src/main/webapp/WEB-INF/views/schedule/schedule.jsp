@@ -1,6 +1,7 @@
 <%@ page import="application.entity.Schedule" %>
 <%@ page import="java.util.List" %>
 <%@ page import="application.entity.Day" %>
+<%@ page import="application.helper.ScheduleSender" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
@@ -32,8 +33,8 @@
     </style>
 </head>
 <body>
-<% List<Schedule> scheduleList=(List<Schedule>) request.getAttribute("schedulelist");%>
-<% List<Day> dayList=(List<Day>) request.getAttribute("daylist");%>
+<%  List<List<ScheduleSender>> scheduleListTable=( List<List<ScheduleSender>>) request.getAttribute("schedulelist");%>
+<%-- <% List<Day> dayList=(List<Day>) request.getAttribute("daylist");%> --%>
 <div class="conteiner">
    <table class="table table-bordered">
      <thead>
@@ -45,13 +46,25 @@
      </tr>
      </thead>
        <tbody>
+       <%for (int i=0;i<scheduleListTable.size();i++){%>
        <tr>
-           <th scope="row">8:00</th>
-          <% for(int i=0;i<dayList.size();i++){%>
-          <td data-time="8:00" data-week="monday"><%=scheduleList.get(i).getScheduleEvent().getName()%> <%--<% scheduleList.get(i).getScheduleEvent().getName(); %> --%></td>
-
+          <% for( int j=0;j<scheduleListTable.get(i).size();j++){ %>
+            <% if(j==0){%>
+                   <th scope="row"><%=scheduleListTable.get(i).get(j).getName()%></th>
+               <%}else{%>
+                   <td data-time=<%=scheduleListTable.get(i).get(j).getAttributeTime()%> data-week=<%=scheduleListTable.get(i).get(j).getAttributeDay()%>><%= j %></td>
+               <%}%>
 
          <%}%>
+       </tr>
+       <%}%>
+    <%--   <tr>
+           <th scope="row">8:00</th>
+          <% for(int i=0;i<dayList.size();i++){%>
+          <td data-time="8:00" data-week="monday"><%=scheduleList.get(i).getScheduleEvent().getName()%> <%--<% scheduleList.get(i).getScheduleEvent().getName(); %> --%><%--</td> --%>
+
+
+     <%--    <%}%> --%>
 
 
        </tr>

@@ -125,7 +125,7 @@ public class ScheduleAdminController {
         String dataStr="";
         ScheduleSender sender=null;
       List<List<ScheduleSender>> scheduleListSenders=new ArrayList<>();
-        for (int i=startTime;i<endTime;i++){
+        for (int i=startTime;i<=endTime;i++){
           List<ScheduleSender> scheduleSenders=new ArrayList<>();
          sender= new ScheduleSender(i+":00");
          scheduleSenders.add(sender);
