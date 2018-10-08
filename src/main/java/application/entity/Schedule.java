@@ -5,6 +5,7 @@ import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
 
 import javax.persistence.*;
+import java.sql.Time;
 import java.util.ArrayList;
 import java.sql.Date;
 import java.util.List;
@@ -23,7 +24,7 @@ public class Schedule {
  //   private List<Day> dayList=new ArrayList<>();
     //время начала занятия
     @Column(columnDefinition ="time")
-   private Date starttime;
+   private Time starttime;
 
     //вторичный ключ schedule_event
     //@OneToMany(targetEntity = ScheduleEvent.class,fetch = FetchType.EAGER)
@@ -32,7 +33,7 @@ public class Schedule {
     ScheduleEvent scheduleEvent;
   //  private  List<ScheduleEvent> eventsList=new ArrayList<>();
 
-    public Schedule(Day day, Date starttime, ScheduleEvent scheduleEvent) {
+    public Schedule(Day day, Time starttime, ScheduleEvent scheduleEvent) {
         this.day = day;
         this.starttime = starttime;
         this.scheduleEvent = scheduleEvent;

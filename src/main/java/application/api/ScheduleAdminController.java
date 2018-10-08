@@ -10,9 +10,7 @@ import application.service.implementations.SchedulesEventServise;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -74,26 +72,36 @@ public class ScheduleAdminController {
         return "save_schedule";
     }
     @PostMapping("/save_shedule")
-    public String postSaveSchedule(HttpServletRequest request,Schedule schedule){
-        String event=request.getParameter("event_schedule");
-        String day=request.getParameter("day");
-        String hour=request.getParameter("hour");
-        String min=request.getParameter("min");
-    //    SimpleDateFormat localDateFormat = new SimpleDateFormat("HH:mm");
-        String timestring = hour+":"+min;//"Mar 19 2018 - 14:39";
-   /*     Date date=null;
+    public String postSaveSchedule(@RequestParam String starttime,@RequestParam int sheduleEvent,@RequestParam int day){
+        System.out.println(starttime);
+        System.out.println(sheduleEvent);
+        System.out.println(day);
+        Day newDay=null;
         try {
-            date= localDateFormat.parse(timestring);
+            newDay=dayServise.getById(day);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        ScheduleEvent scheduleEvent=schedulesEventServise.getById(sheduleEvent);
+//        String event=request.getParameter("event_schedule");
+//        String day=request.getParameter("day");
+//        String hour=request.getParameter("hour");
+//        String min=request.getParameter("min");
+         SimpleDateFormat localDateFormat = new SimpleDateFormat("HH:mm");
+//        String timestring = hour+":"+min;//"Mar 19 2018 - 14:39";
+        Date date=null;
+        try {
+            date= localDateFormat.parse(starttime);
         } catch (ParseException e) {
             e.printStackTrace();
         }
-        if(date==null)  return "redirect:/";
-        Day day1=new Day(Integer.parseInt(day));
-        java.sql.Date sd = new java.sql.Date(date.getTime());
-         ScheduleEvent event1=new ScheduleEvent(Integer.parseInt(event));
-         Schedule schedule=new Schedule(day1,sd,event1);*/
+    //    if(date==null)  return "redirect:/";
+    //    Day day1=new Day(Integer.parseInt(day));
+        java.sql.Time sd = new java.sql.Time(date.getTime());
+   //      ScheduleEvent event1=new ScheduleEvent(Integer.parseInt(event));
+         Schedule schedule=new Schedule(newDay,sd,scheduleEvent);
      //    scheduleRepository.midifyingQuryInsertSchadule(Integer.parseInt(day),timestring,Integer.parseInt(event));
-    //     scheduleServise.save(schedule);
+        scheduleServise.save(schedule);
         return "redirect:/";
     }
 }

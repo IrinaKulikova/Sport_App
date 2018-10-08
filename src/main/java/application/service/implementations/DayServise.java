@@ -19,7 +19,7 @@ public class DayServise implements EntityService<Day> {
 
     @Override
     public Day getById(int id) throws Exception {
-        return dayRepository.getOne(id);
+        return dayRepository.findById(id).get();
     }
 
     @Override

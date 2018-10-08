@@ -22,7 +22,7 @@
 <form  method="post" accept-charset="UTF-8">
     <div class="form-group">
         <label for="sheduleevent">Событие</label>
-        <select class="form-control" id="sheduleevent" name="event_schedule" >
+        <select class="form-control" id="sheduleEvent" name="sheduleEvent" >
             <c:forEach items="${eventshedule}" var="schedule">
                 <option value="${schedule.id}">${schedule.name}</option>
             </c:forEach>
@@ -38,8 +38,8 @@
     </div>
     <div class="form-row">
         <div class="form-group">
-            <label for="hour">Часы</label>
-            <select multiple class="form-control" id="hour" name="hour" style="width: 100px"  >
+            <label for="starttime">Часы</label>
+            <select  class="form-control" id="starttime" name="starttime" style="width: 100px"  >
                 <c:forEach var="i" begin="8" end="20">
                     <option value="${i}:00">${i}:00</option>
                 </c:forEach>

@@ -48,7 +48,7 @@
        <tr>
            <th scope="row">8:00</th>
           <% for(int i=0;i<dayList.size();i++){%>
-          <td data-time="8:00" data-week="monday">scheduleList.get(i).getName(); <%--<% scheduleList.get(i).getScheduleEvent().getName(); %> --%></td>
+          <td data-time="8:00" data-week="monday"><%=scheduleList.get(i).getScheduleEvent().getName()%> <%--<% scheduleList.get(i).getScheduleEvent().getName(); %> --%></td>
 
 
          <%}%>
