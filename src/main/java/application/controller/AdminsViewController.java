@@ -1,8 +1,6 @@
 package application.controller;
 
 import application.entity.Administrator;
-import application.entity.ContactType;
-import application.entity.Filiation;
 import application.service.implementations.AdministratorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -11,8 +9,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import java.util.ArrayList;
-import java.util.List;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 @Controller
 @RequestMapping("/admins")
@@ -32,14 +30,17 @@ public class AdminsViewController {
     }
 
     @GetMapping("/{id}")
-    public String edit(@PathVariable int id, Model model) {
+    public String edit(@PathVariable int id, Model model, HttpServletRequest req) {
         Administrator admin = new Administrator();
         try {
             admin = administratorService.getById(id);
         } catch (Exception ex) {
         }
         model.addAttribute("admin", admin);
-        return "admins/admin_edit";
+        HttpSession session = req.getSession();
+        String login = (String) session.getAttribute("login");
+        model.addAttribute("login", login);
+        return "admins/admins";
     }
 
     @GetMapping("/create")

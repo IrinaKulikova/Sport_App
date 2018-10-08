@@ -27,16 +27,26 @@
             <c:forEach items="${admins}" var="admin">
                 <tr>
                     <th scope="row">${admin.id}</th>
-                    <th scope="row">${admin.login}</th>
-                    <th scope="row">${admin.email}</th>
+                    <td scope="row">${admin.login}</td>
+                    <td scope="row">${admin.email}</td>
                     <td colspan="2">
-                        <a href="/admins/${admin.id}">
-                            <button class="btn btn-outline-info m-2" name="id" type="submit" value="${admin.id}">Edit
-                            </button>
-                        </a>
-                        <button class="btn btn-outline-danger m-2 del" type="submit" value="${admin.id}">
-                            Delete
-                        </button>
+                        <c:set var="current" scope="session" value="${login}"/>
+                        <c:choose>
+                            <c:when test="${admin.login!=current}">
+                                <a href="/admins/${admin.id}">
+                                    <button class="btn btn-outline-info m-2" name="id" type="submit"
+                                            value="${admin.id}">
+                                        Edit
+                                    </button>
+                                </a>
+                                <button class="btn btn-outline-danger m-2 del" type="submit" value="${admin.id}">
+                                    Delete
+                                </button>
+                            </c:when>
+                            <c:otherwise>
+                                <label>me</label>
+                            </c:otherwise>
+                        </c:choose>
                     </td>
                 </tr>
             </c:forEach>

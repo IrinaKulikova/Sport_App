@@ -18,7 +18,7 @@
                 <label for="login">Login: </label>
             </div>
             <div class="col-md-8">
-                <input type="text" id="login" class="form-control" name="login"
+                <input type="text" id="login" class="form-control" readonly name="login"
                        value="${admin.login}" placeholder="Enter here...">
             </div>
         </div>
@@ -27,7 +27,7 @@
                 <label for="email">Email: </label>
             </div>
             <div class="col-md-8">
-                <input type="email" id="email" class="form-control" name="email"
+                <input type="email" id="email" class="form-control" readonly name="email"
                        value="${admin.email}" placeholder="Enter here...">
             </div>
         </div>
@@ -36,7 +36,7 @@
                 <label for="password1">Password: </label>
             </div>
             <div class="col-md-8">
-                <input type="text" id="password1" class="form-control" name="email"
+                <input type="password" id="password1" class="form-control" name="email"
                        placeholder="Enter here...">
             </div>
         </div>
@@ -45,13 +45,13 @@
                 <label for="password2">Password: </label>
             </div>
             <div class="col-md-8">
-                <input type="text" id="password2" class="form-control" name="email"
+                <input type="password" id="password2" class="form-control" name="email"
                        placeholder="Enter here...">
             </div>
         </div>
         <div class="mt-4 row">
             <div class="col-md-12 text-center">
-                <button type="submit" id="save" class="btn btn-outline-danger pl-5 pr-5">
+                <button type="submit" id="save" value="${admin.id}" class="btn btn-outline-danger pl-5 pr-5">
                     Save
                 </button>
             </div>
@@ -66,7 +66,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 <script src="../../../resources/js/DTO/DTOFiliation.js" type="text/javascript"></script>
 <script src="../../../resources/js/services/AJAXService.js" type="text/javascript"></script>
-<script src="../../../resources/js/filiation/filiation_create.js" type="text/javascript"></script>
+<script src="../../../resources/js/admins/admin_edit.js" type="text/javascript"></script>
 </body>
 </html>
 

@@ -15,9 +15,6 @@
             </li>
             <a class="nav-link" href="/news">News</a>
             <li class="nav-item">
-                <a class="nav-link" href="/events">Events</a>
-            </li>
-            <li class="nav-item">
                 <a class="nav-link" href="/admins">Admins</a>
             </li>
             <li class="nav-item">
