@@ -41,4 +41,12 @@ public class Schedule {
     public ScheduleEvent getScheduleEvent() {
         return scheduleEvent;
     }
+
+    public Day getDay() {
+        return day;
+    }
+
+    public Time getStarttime() {
+        return starttime;
+    }
 }

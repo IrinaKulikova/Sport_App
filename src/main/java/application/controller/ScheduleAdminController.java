@@ -122,20 +122,50 @@ public class ScheduleAdminController {
         return "redirect:/";
     }
     private List<List<ScheduleSender>> makeTable(List<Day> dayList,  List<Schedule> scheduleList){
-        String dataStr="";
         ScheduleSender sender=null;
       List<List<ScheduleSender>> scheduleListSenders=new ArrayList<>();
         for (int i=startTime;i<=endTime;i++){
           List<ScheduleSender> scheduleSenders=new ArrayList<>();
-         sender= new ScheduleSender(i+":00");
-         scheduleSenders.add(sender);
+          sender= new ScheduleSender(i+":00");
+          scheduleSenders.add(sender);
             for (Day d:dayList) {
+                String attributeTime="";
+                if(i<10) {
+                    attributeTime ="0"+ i + ":00";
+                }else {
+                    attributeTime = i + ":00";
+                }
                 Integer idday=d.getId();
-               sender=new ScheduleSender("",i+":00",idday.toString());
+                sender=new ScheduleSender("",attributeTime,idday.toString());
+                sender.setScheduleList(isHaveSchedules(d.getId(),attributeTime,scheduleList));
                 scheduleSenders.add(sender);
             }
             scheduleListSenders.add(scheduleSenders);
         }
         return scheduleListSenders;
+    }
+    private List<Schedule> isHaveSchedules(int dayId,String time,List<Schedule> readScheduleList){
+        SimpleDateFormat localDateFormat = new SimpleDateFormat("HH:mm");
+        Date date = null;
+        try {
+            date = localDateFormat.parse(time);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+
+        List<Schedule> scheduleList=new ArrayList<>();
+        for (Schedule schedule:readScheduleList) {
+            long timeStart=schedule.getStarttime().getTime();
+            long timeTable=date.getTime();
+         //   java.util.Date dt=new java.util.Date(schedule.getStarttime().getTime());
+           if((schedule.getDay().getId()==dayId)&&(date.getTime()==schedule.getStarttime().getTime())){
+                 scheduleList.add(schedule);
+           }
+        }
+
+
+
+        return scheduleList;
     }
 }
