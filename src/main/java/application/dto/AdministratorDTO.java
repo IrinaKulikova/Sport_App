@@ -4,8 +4,9 @@ import lombok.Data;
 
 @Data
 public class AdministratorDTO {
-    private String login;
     private String password;
+    private String email;
+    private String login;
 
     public AdministratorDTO() {
     }

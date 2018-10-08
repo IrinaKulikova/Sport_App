@@ -10,6 +10,8 @@ import application.service.implementations.AdministratorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -45,15 +47,14 @@ public class AdminController {
     }
 
     @PutMapping("/{id}")
-    public JSONResult<Administrator> updateAdministator(@RequestBody Administrator admin, @PathVariable("id") int id) {
+    public JSONResult<Administrator> updateAdministator(@RequestBody String password, @PathVariable("id") int id) {
         Administrator currentAdmin = new Administrator();
         try {
             currentAdmin = administratorService.getById(id);
             if (currentAdmin == null) {
                 return new JSONResultError<>(currentAdmin, "entity no find!");
             }
-            currentAdmin.setLogin(admin.getLogin());
-            currentAdmin.setAdminHash(HashHelper.getHash(admin.getAdminHash()));
+            currentAdmin.setAdminHash(HashHelper.getHash(password));
             administratorService.save(currentAdmin);
             currentAdmin.setAdminHash("hidden");
         } catch (Exception ex) {
@@ -67,8 +68,9 @@ public class AdminController {
     public JSONResult<Administrator> addAdministrator(@RequestBody AdministratorDTO admin) {
         Administrator administrator = new Administrator();
         try {
+            administrator.setAdminHash(HashHelper.getHash(admin.getLogin()));
             administrator.setLogin(admin.getLogin());
-            administrator.setAdminHash(HashHelper.getHash(admin.getPassword()));
+            administrator.setEmail(admin.getEmail());
             administrator = administratorService.save(administrator);
             administrator.setAdminHash("hidden");
         } catch (Exception ex) {
@@ -79,10 +81,15 @@ public class AdminController {
     }
 
     @DeleteMapping("/{id}")
-    public JSONResult<Administrator> deleteAdministrator(@PathVariable int id) {
+    public JSONResult<Administrator> deleteAdministrator(@PathVariable int id, HttpServletRequest req) {
         Administrator admin = new Administrator();
+        HttpSession session = req.getSession();
+        String login = (String) session.getAttribute("login");
         try {
             admin = administratorService.getById(id);
+            if(login.equals(admin.getLogin())){
+                return new JSONResultError<>(admin, "error!");
+            }
             administratorService.delete(id);
         } catch (Exception ex) {
             ex.printStackTrace();
