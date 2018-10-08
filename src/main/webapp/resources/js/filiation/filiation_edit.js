@@ -16,8 +16,8 @@ $(function () {
                 function fail() {
                     console.log("error");
                 };
-                e.preventDefault();
                 service.put("/api/1.0/filiation/" + button.val(), newFiliation, success, fail);
+                e.preventDefault();
             }
         );
 

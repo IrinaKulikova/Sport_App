@@ -48,41 +48,14 @@
     </div>
 </div>
 <c:import url="../template/footer.jsp"></c:import>
-
 <!--Scripts-->
 <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
 <script th:src="@{/webjars/jquery-ui/jquery-ui.min.js}"></script>
 <script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-<script src="../../resources/js/UserDTO.js" type="text/javascript"></script>
-<script type="text/javascript">
-    $(function () {
-            $(".btn-create-user").click(function (e) {
-
-                    var user = new User($('#fname').val(),
-                        $('#lname').val(), $('#email').val(),
-                        $('#phone').val(), $('#pass').val());
-
-                    $.ajax({
-                        type: 'POST',
-                        dataType: 'json',
-                        url: '/api/1.0/users',
-                        contentType: 'application/json; charset=utf-8',
-                        data: JSON.stringify(user),
-                        async: true,
-                        success: function(result) {
-                            location.replace("/users");
-                        },
-                        error: function(jqXHR, textStatus, errorThrown) {
-                            console.log(user);
-                        }
-                    });
-                    e.preventDefault();
-                }
-            );
-        }
-    );
-</script>
+<script type="text/javascript" src="../../../resources/js/DTO/DTOUser.js"></script>
+<script type="text/javascript" src="../../../resources/js/services/AJAXService.js"></script>
+<script type="text/javascript" src="../../../resources/js/user/user_create.js"></script>
 </body>
 
 </html>
