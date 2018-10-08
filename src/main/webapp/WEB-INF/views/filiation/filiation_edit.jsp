@@ -140,9 +140,9 @@
 <script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 </body>
-<script src="../../../resources/js/DTOFiliation.js" type="text/javascript"></script>
-<script src="../../../resources/js/DTOContact.js" type="text/javascript"></script>
-<script src="../../../resources/js/DTOContactType.js" type="text/javascript"></script>
-<script src="../../../resources/js/AJAXService.js" type="text/javascript"></script>
-<script src="../../../resources/js/FiliationEdit.js" type="text/javascript"></script>
+<script src="../../../resources/js/DTO/DTOFiliation.js" type="text/javascript"></script>
+<script src="../../../resources/js/DTO/DTOContact.js" type="text/javascript"></script>
+<script src="../../../resources/js/DTO/DTOContactType.js" type="text/javascript"></script>
+<script src="../../../resources/js/services/AJAXService.js" type="text/javascript"></script>
+<script src="../../../resources/js/filiation/filiation_edit.js" type="text/javascript"></script>
 </html>

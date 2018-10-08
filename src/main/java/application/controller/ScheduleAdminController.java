@@ -47,12 +47,12 @@ public class ScheduleAdminController {
         model.addAttribute("daylist", dayList);
         model.addAttribute("schedulelist", scheduleList);
         //    List<Schedule> scheduleList=scheduleServise.getAll();
-        return "schedule";
+        return "schedule/schedule";
     }
 
     @GetMapping("/save_schedule_event")
     public String getSaveScheduleEvent() {
-        return "save_schedule_event";
+        return "schedule/save_schedule_event";
     }
 
     @PostMapping("/save_schedule_event")
@@ -77,7 +77,7 @@ public class ScheduleAdminController {
         }
         model.addAttribute("eventshedule", eventList);
         model.addAttribute("weekday", dayList);
-        return "save_schedule";
+        return "schedule/save_schedule";
     }
 
     @PostMapping("/save_shedule")
