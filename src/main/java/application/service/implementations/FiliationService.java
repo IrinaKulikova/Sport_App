@@ -19,16 +19,26 @@ public class FiliationService implements EntityService<Filiation> {
     ContactRepository contactRepository;
 
     @Override
-    public List<Filiation> getAll()  {return filiationRepository.findAll(); }
+    public List<Filiation> getAll() throws Exception {
+        return filiationRepository.findAll();
+    }
 
     @Override
-    public Filiation getById(int id) { return filiationRepository.findById(id).get();}
+    public Filiation getById(int id) throws Exception {
+        return filiationRepository.findById(id).get();
+    }
 
     @Override
-    public void save(Filiation filial) { filiationRepository.save(filial); }
+    public Filiation save(Filiation filial) throws Exception {
+        return filiationRepository.save(filial);
+    }
 
     @Override
-    public void delete(int id) {filiationRepository.delete(filiationRepository.findById(id).get());}
+    public void delete(int id) throws Exception {
+        filiationRepository.delete(filiationRepository.findById(id).get());
+    }
 
-    public void delete(Filiation filial) {filiationRepository.delete(filial);}
+    public void delete(Filiation filial) throws Exception {
+        filiationRepository.delete(filial);
+    }
 }

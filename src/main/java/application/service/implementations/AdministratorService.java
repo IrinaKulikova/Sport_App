@@ -15,22 +15,22 @@ public class AdministratorService implements EntityService<Administrator> {
     AdministratorRepository repository;
 
     @Override
-    public List<Administrator> getAll() {
+    public List<Administrator> getAll() throws Exception {
         return repository.findAll();
     }
 
     @Override
-    public Administrator getById(int id) {
+    public Administrator getById(int id) throws Exception {
         return repository.findById(id).get();
     }
 
     @Override
-    public void save(Administrator administrator) {
-        repository.save(administrator);
+    public Administrator save(Administrator administrator) throws Exception {
+        return repository.save(administrator);
     }
 
     @Override
-    public void delete(int id) {
+    public void delete(int id) throws Exception {
         repository.deleteById(id);
     }
 }

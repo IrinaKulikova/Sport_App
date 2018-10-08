@@ -69,7 +69,7 @@ public class AdminController {
         try {
             administrator.setLogin(admin.getLogin());
             administrator.setAdminHash(HashHelper.getHash(admin.getPassword()));
-            administratorService.save(administrator);
+            administrator = administratorService.save(administrator);
             administrator.setAdminHash("hidden");
         } catch (Exception ex) {
             ex.printStackTrace();

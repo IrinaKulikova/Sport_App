@@ -16,14 +16,22 @@ public class ContactTypeService implements EntityService<ContactType> {
     ContactTypeRepository repository;
 
     @Override
-    public List<ContactType> getAll() {return repository.findAll(); }
+    public List<ContactType> getAll() throws Exception {
+        return repository.findAll();
+    }
 
     @Override
-    public ContactType getById(int id) {return repository.findById(id).get(); }
+    public ContactType getById(int id) throws Exception {
+        return repository.findById(id).get();
+    }
 
     @Override
-    public void save(ContactType contactType) { repository.save(contactType); }
+    public ContactType save(ContactType contactType) throws Exception {
+        return repository.save(contactType);
+    }
 
     @Override
-    public void delete(int id) { repository.delete(repository.findById(id).get());}
+    public void delete(int id) throws Exception {
+        repository.delete(repository.findById(id).get());
+    }
 }
