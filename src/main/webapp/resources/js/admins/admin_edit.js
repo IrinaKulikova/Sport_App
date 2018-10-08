@@ -12,7 +12,7 @@ $(function () {
 
                 function success(d) {
                     console.log("done!");
-                    window.location.href = "";
+                    window.location.replace("http://localhost:8080/admins");
                 }
 
                 function fail() {
