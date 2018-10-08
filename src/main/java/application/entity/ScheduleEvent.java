@@ -12,7 +12,18 @@ public class ScheduleEvent {
     int id;
     //название занятия
     String name;
-    //щписания тренировки
+    //описание тренировки
     @Column(columnDefinition = "text")
     String description;
+    public ScheduleEvent(int id){
+        this.id=id;
+    }
+    public ScheduleEvent(){
+
+    }
+
+    public String getName() {
+        return name;
+    }
+
 }

@@ -27,8 +27,8 @@ public class UserService implements EntityService<User> {
     }
 
     @Override
-    public void save(User user) throws Exception {
-        repository.save(user);
+    public User save(User user) throws Exception {
+        return repository.save(user);
     }
 
     @Override

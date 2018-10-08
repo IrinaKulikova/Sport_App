@@ -4,15 +4,15 @@
 <html lang="en">
 
 <head>
-    <c:import url="template/head.jsp"></c:import>
+    <c:import url="../template/head.jsp"></c:import>
 </head>
 
 <body>
-<c:import url="template/header.jsp"></c:import>
-<div class="container main-div mt-md-5">
+<c:import url="../template/header.jsp"></c:import>
+<div class="container main-div m-5">
     <div class="tools-div form-inline form-control">
-        <c:import url="template/search.jsp"></c:import>
-        <a class="btn btn-outline-warning ml-2" href="/users/create">Create</a>
+        <c:import url="../template/search.jsp"></c:import>
+        <a class="btn btn-outline-warning m-2" href="/users/create">Create</a>
     </div>
     <div class="users-div">
         <table class="table table-bordered mt-2">
@@ -36,7 +36,7 @@
                     <td>${user.email}</td>
                     <td colspan="2">
                         <a class="btn-edit btn btn-outline-info" href="/users/edit/${user.id}">Edit</a>
-                        <button class="btn-delete btn btn-outline-danger ml-2" name="id" value="${user.id}" >Delete</button>
+                        <button class="btn-delete btn btn-outline-danger m-2" name="id" value="${user.id}" >Delete</button>
                     </td>
                 </tr>
             </c:forEach>
@@ -44,7 +44,7 @@
         </table>
     </div>
 </div>
-<c:import url="template/footer.jsp"></c:import>
+<c:import url="../template/footer.jsp"></c:import>
 <!--Scripts-->
 <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
 <script th:src="@{/webjars/jquery-ui/jquery-ui.min.js}"></script>
