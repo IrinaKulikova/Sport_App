@@ -1,5 +1,7 @@
-<footer class="footer fixed-bottom">
-    <div class="container">
-        <span class="text-muted">IT Step 2018</span>
+<footer class="mt-4 footer fixed-bottom">
+    <div class="container text-center">
+        <label>
+            <small class="text-secondary">IT Step 2018</small>
+        </label>
     </div>
 </footer>

@@ -15,14 +15,22 @@ public class NewsService implements EntityService<News> {
     NewsRepository newsRepository;
 
     @Override
-    public List<News> getAll() {  return newsRepository.findAll(); }
+    public List<News> getAll() throws Exception {
+        return newsRepository.findAll();
+    }
 
     @Override
-    public News getById(int id)  {  return newsRepository.findById(id).get();  }
+    public News getById(int id) throws Exception {
+        return newsRepository.findById(id).get();
+    }
 
     @Override
-    public void save(News news)  { newsRepository.save(news); }
+    public News save(News news) throws Exception {
+        return newsRepository.save(news);
+    }
 
     @Override
-    public void delete(int id) { newsRepository.delete(newsRepository.findById(id).get()); }
+    public void delete(int id) throws Exception {
+        newsRepository.delete(newsRepository.findById(id).get());
+    }
 }

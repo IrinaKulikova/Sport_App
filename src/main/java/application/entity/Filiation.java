@@ -1,4 +1,5 @@
 package application.entity;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jdk.nashorn.internal.ir.annotations.Ignore;
@@ -24,7 +25,7 @@ public class Filiation {
     String street;
     String building;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy="filiation", fetch = FetchType.EAGER)
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "filiation", fetch = FetchType.EAGER)
     List<Contact> contacts = new ArrayList<>();
 
     public Filiation(String caption, String country, String city, String indexCity, String street, String building) {
@@ -36,10 +37,15 @@ public class Filiation {
         this.building = building;
     }
 
-    public void addContact(Contact contact){
+    public void addContact(Contact contact) {
         contacts.add(contact);
     }
 
     public Filiation() {
+    }
+
+    public void removeContact(Contact contact) {
+        Contact curContact = contacts.stream().filter(c -> (c.getId() == contact.getId())).findFirst().get();
+        contacts.remove(curContact);
     }
 }
