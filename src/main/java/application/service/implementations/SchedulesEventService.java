@@ -8,12 +8,14 @@ import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.util.List;
+
 @Service
-public class SchedulesEventServise implements EntityService<ScheduleEvent> {
+public class SchedulesEventService implements EntityService<ScheduleEvent> {
     @Autowired
     ScheduleEventRepository repository;
+
     @Override
-    public List<ScheduleEvent> getAll() {
+    public List<ScheduleEvent> getAll() throws Exception {
         return repository.findAll();
     }
 
@@ -23,10 +25,12 @@ public class SchedulesEventServise implements EntityService<ScheduleEvent> {
     }
 
     @Override
-    public void save(ScheduleEvent scheduleEvent) {
-        repository.save(scheduleEvent);
+    public ScheduleEvent save(ScheduleEvent scheduleEvent) throws Exception {
+        return repository.save(scheduleEvent);
     }
 
     @Override
-    public void delete(int id) { repository.deleteById(id); }
+    public void delete(int id) throws Exception {
+        repository.deleteById(id);
+    }
 }

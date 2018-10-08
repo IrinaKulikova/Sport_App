@@ -11,22 +11,27 @@ import java.io.IOException;
 import java.util.List;
 
 @Service
-public class ScheduleServise implements EntityService<Schedule> {
+public class ScheduleService implements EntityService<Schedule> {
     @Autowired
     ScheduleRepository repository;
-    @Override
-    public List<Schedule> getAll() { List<Schedule> l= repository.findAll(); return l; }
 
     @Override
-    public Schedule getById(int id) {
-       return repository.getOne(id);
+    public List<Schedule> getAll() throws Exception {
+        return repository.findAll();
     }
 
     @Override
-    public void save(Schedule schedule) {
-         repository.save(schedule);
+    public Schedule getById(int id) throws Exception {
+        return repository.findById(id).get();
     }
 
     @Override
-    public void delete(int id)  { repository.deleteById(id); }
+    public Schedule save(Schedule schedule) throws Exception {
+        return repository.save(schedule);
+    }
+
+    @Override
+    public void delete(int id) throws Exception {
+        repository.deleteById(id);
+    }
 }

@@ -1,6 +1,5 @@
 package application.api;
 
-import application.entity.Filial;
 import application.entity.News;
 import application.helper.JSONResult;
 import application.helper.JSONResultError;
@@ -17,13 +16,13 @@ import java.util.List;
 public class NewsController {
 
     @Autowired
-    private NewsService service;
+    private NewsService newsService;
 
     @GetMapping("/{id}")
     public JSONResult<News> getNewsById(@PathVariable("id") int id) {
         News news = new News();
         try {
-            news = service.getById(id);
+            news = newsService.getById(id);
         } catch (Exception ex) {
             ex.printStackTrace();
             return new JSONResultError<News>(news, ex.getMessage());
@@ -35,7 +34,7 @@ public class NewsController {
     public JSONResult<List<News>> getAll() {
         List<News> news = new ArrayList<>();
         try {
-            news = service.getAll();
+            news = newsService.getAll();
         } catch (Exception ex) {
             ex.printStackTrace();
             return new JSONResultError<>(news, ex.getMessage());
@@ -47,7 +46,7 @@ public class NewsController {
     public JSONResult<News> updateNews(@RequestBody News news, @PathVariable("id") int id) {
         News currentNews = new News();
         try {
-            currentNews = service.getById(id);
+            currentNews = newsService.getById(id);
             if (currentNews == null) {
                 return new JSONResultError<>(currentNews, "entity no find!");
             }
@@ -55,7 +54,7 @@ public class NewsController {
             currentNews.setDate(news.getDate());
             currentNews.setDescription(news.getDescription());
             currentNews.setImageURL(news.getDate());
-            service.save(currentNews);
+            newsService.save(currentNews);
         } catch (Exception ex) {
             ex.printStackTrace();
             return new JSONResultError<>(currentNews, ex.getMessage());
@@ -66,7 +65,7 @@ public class NewsController {
     @PostMapping
     public JSONResult<News> addNews(@RequestBody News news) {
         try {
-            service.save(news);
+            newsService.save(news);
         } catch (Exception ex) {
             ex.printStackTrace();
             return new JSONResultError<News>(news, ex.getMessage());
@@ -78,8 +77,8 @@ public class NewsController {
     public JSONResult<News> deleteNews(@PathVariable int id) {
         News news = new News();
         try {
-            news = service.getById(id);
-            service.delete(id);
+            news = newsService.getById(id);
+            newsService.delete(id);
         } catch (Exception ex) {
             ex.printStackTrace();
             return new JSONResultError<>(news, ex.getMessage());

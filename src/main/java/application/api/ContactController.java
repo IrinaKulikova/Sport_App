@@ -1,13 +1,14 @@
 package application.api;
 
+import application.entity.Card;
 import application.entity.Contact;
-import application.entity.Filial;
-import application.entity.News;
+import application.entity.Filiation;
+import application.entity.User;
 import application.helper.JSONResult;
 import application.helper.JSONResultError;
 import application.helper.JSONResultOk;
 import application.service.implementations.ContactService;
-import application.service.implementations.FilialService;
+import application.service.implementations.FiliationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -20,7 +21,7 @@ public class ContactController {
     private ContactService contactService;
 
     @Autowired
-    private FilialService filialService;
+    private FiliationService filiationService;
 
     @GetMapping("/{id}")
     public JSONResult<Contact> getContactById(@PathVariable("id") int id) {
@@ -36,22 +37,28 @@ public class ContactController {
 
     @PostMapping("/{id}")
     public JSONResult<Contact> addContact(@RequestBody Contact contact, @PathVariable int id) {
+        Filiation filiation = null;
+        Contact newContact = new Contact();
         try {
-            Filial filial = filialService.getById(id);
-            filial.addContact(contact);
-            contact.setFilial(filial);
-            filialService.save(filial);
+            filiation = filiationService.getById(id);
+            newContact.setFiliation(filiation);
+            newContact.setData(contact.getData());
+            newContact.setContactType(contact.getContactType());
+            filiation.addContact(newContact);
+            newContact.setFiliation(filiation);
+            newContact = contactService.save(newContact);
         } catch (Exception ex) {
             ex.printStackTrace();
-            return new JSONResultError<Contact>(contact, ex.getMessage());
+            return new JSONResultError<Contact>(newContact, ex.getMessage());
         }
-        return new JSONResultOk<Contact>(contact);
+        return new JSONResultOk<Contact>(newContact);
     }
 
     @PutMapping("/{id}")
     public JSONResult<Contact> updateContact(@RequestBody Contact contact, @PathVariable int id) {
-        Contact currentContact = contactService.getById(id);
+        Contact currentContact = null;
         try {
+            currentContact = contactService.getById(id);
             currentContact.setData(contact.getData());
             contactService.save(currentContact);
         } catch (Exception ex) {

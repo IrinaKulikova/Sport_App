@@ -17,7 +17,6 @@ public class Day {
     //признак сортировки
     private int attribute;
 
-    //название дня недели
     String nameDay;
     public int getId() {
         return id;

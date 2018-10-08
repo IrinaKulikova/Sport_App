@@ -1,32 +1,33 @@
 package application.service.implementations;
 
-import application.entity.Card;
-import application.repository.CardRepository;
+import application.entity.Contact;
+import application.entity.ContactType;
+import application.repository.ContactRepository;
+import application.repository.ContactTypeRepository;
 import application.service.interfaces.EntityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.io.IOException;
 import java.util.List;
 
 @Service
-public class CardService implements EntityService<Card> {
+public class ContactTypeService implements EntityService<ContactType> {
     @Autowired
-    CardRepository repository;
+    ContactTypeRepository repository;
 
     @Override
-    public List<Card> getAll() throws Exception {
+    public List<ContactType> getAll() throws Exception {
         return repository.findAll();
     }
 
     @Override
-    public Card getById(int id) throws Exception {
+    public ContactType getById(int id) throws Exception {
         return repository.findById(id).get();
     }
 
     @Override
-    public Card save(Card card) throws Exception {
-        return repository.save(card);
+    public ContactType save(ContactType contactType) throws Exception {
+        return repository.save(contactType);
     }
 
     @Override

@@ -1,7 +1,8 @@
-package application.api;
+package application.controller;
 
 import application.entity.Day;
 import application.entity.Schedule;
+import application.service.implementations.ScheduleService;
 import application.entity.ScheduleEvent;
 import application.repository.ScheduleRepository;
 import application.service.implementations.DayServise;
@@ -22,6 +23,7 @@ import java.util.List;
 @Controller
 @RequestMapping("/schedules")
 public class ScheduleAdminController {
+
     @Autowired
     ScheduleServise scheduleServise;
     @Autowired
