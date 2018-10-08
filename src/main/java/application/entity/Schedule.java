@@ -21,7 +21,7 @@ public class Schedule {
     Day day;
 
     @Column(columnDefinition ="time")
-   private Date starttime;
+    private Date starttime;
 
     //вторичный ключ schedule_event
     @ManyToOne(targetEntity = ScheduleEvent.class,fetch = FetchType.EAGER)
