@@ -19,4 +19,12 @@ public class Administrator {
 
 
     public Administrator(){}
+
+    public String getLogin() {
+        return login;
+    }
+
+    public String getAdminHash() {
+        return adminHash;
+    }
 }

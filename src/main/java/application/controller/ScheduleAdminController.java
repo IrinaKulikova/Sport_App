@@ -3,6 +3,7 @@ package application.controller;
 import application.entity.Day;
 import application.entity.Schedule;
 import application.entity.ScheduleEvent;
+import application.helper.ScheduleSender;
 import application.service.implementations.DayServise;
 import application.service.implementations.ScheduleService;
 import application.service.implementations.SchedulesEventService;
@@ -14,13 +15,15 @@ import org.springframework.web.bind.annotation.*;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 @Controller
 @RequestMapping("/schedules")
 public class ScheduleAdminController {
-
+    private static final int startTime=8;
+    private static final int endTime=20;
     @Autowired
     ScheduleService scheduleServise;
     @Autowired
@@ -44,8 +47,9 @@ public class ScheduleAdminController {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        List<List<ScheduleSender>> scheduleListTable=makeTable(dayList,scheduleList);
         model.addAttribute("daylist", dayList);
-        model.addAttribute("schedulelist", scheduleList);
+        model.addAttribute("schedulelist", scheduleListTable);
         //    List<Schedule> scheduleList=scheduleServise.getAll();
         return "schedule/schedule";
     }
@@ -116,5 +120,22 @@ public class ScheduleAdminController {
             e.printStackTrace();
         }
         return "redirect:/";
+    }
+    private List<List<ScheduleSender>> makeTable(List<Day> dayList,  List<Schedule> scheduleList){
+        String dataStr="";
+        ScheduleSender sender=null;
+      List<List<ScheduleSender>> scheduleListSenders=new ArrayList<>();
+        for (int i=startTime;i<endTime;i++){
+          List<ScheduleSender> scheduleSenders=new ArrayList<>();
+         sender= new ScheduleSender(i+":00");
+         scheduleSenders.add(sender);
+            for (Day d:dayList) {
+                Integer idday=d.getId();
+               sender=new ScheduleSender("",i+":00",idday.toString());
+                scheduleSenders.add(sender);
+            }
+            scheduleListSenders.add(scheduleSenders);
+        }
+        return scheduleListSenders;
     }
 }
