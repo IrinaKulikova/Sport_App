@@ -9,13 +9,12 @@
 
 <body>
 <c:import url="../template/header.jsp"></c:import>
-<div class="container main-div m-5">
-    <div class="tools-div form-inline form-control">
-        <c:import url="../template/search.jsp"></c:import>
-        <a class="btn btn-outline-warning m-2" href="/users/create">Create</a>
+<div class="container main-div mt-md-5">
+    <div class="tools-div form-control text-right">
+        <a class="btn btn-outline-warning ml-2" href="/user/create">Create</a>
     </div>
     <div class="users-div">
-        <table class="table table-bordered m-2">
+        <table class="table table-bordered mt-2">
             <thead>
             <tr>
                 <th scope="col">#</th>
