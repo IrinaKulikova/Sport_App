@@ -24,6 +24,7 @@
         }
         .td-tab{
             border: black 1px solid;
+            background-color: lightblue;
             height: 60px;
         }
         td{
@@ -52,7 +53,13 @@
                    <th scope="row"><%=scheduleListTable.get(i).get(j).getName()%></th>
                <%}else{%>
                    <td data-time=<%=scheduleListTable.get(i).get(j).getAttributeTime()%> data-week=<%=scheduleListTable.get(i).get(j).getAttributeDay()%>>
+                 <%  if(scheduleListTable.get(i).get(j).getScheduleList()!=null){%>
+                    <%   List<Schedule> scheduleList=scheduleListTable.get(i).get(j).getScheduleList(); %>
+                       <% for (int k=0;k<scheduleList.size();k++){%>
+                       <div class="td-tab"><%= scheduleList.get(k).getScheduleEvent().getName() %></div>
+                       <%}%>
 
+                   <%}%>
 
 
                    </td>
