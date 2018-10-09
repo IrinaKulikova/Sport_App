@@ -1,5 +1,6 @@
 package application.api;
 
+import application.entity.Contact;
 import application.entity.ScheduleEvent;
 import application.helper.JSONResult;
 import application.helper.JSONResultError;
@@ -19,7 +20,7 @@ public class ScheduleEventController {
     SchedulesEventService eventService;
 
     @GetMapping()
-    public JSONResult<List<ScheduleEvent>> getSchedulesEvent() {
+    public JSONResult<List<ScheduleEvent>> getScheduleEvents() {
         List<ScheduleEvent> events = new ArrayList<>();
         try {
             events = eventService.getAll();
@@ -31,7 +32,7 @@ public class ScheduleEventController {
     }
 
     @PostMapping()
-    public JSONResult<ScheduleEvent> addContact(@RequestBody ScheduleEvent event) {
+    public JSONResult<ScheduleEvent> addScheduleEvent(@RequestBody ScheduleEvent event) {
         ScheduleEvent newEvent = new ScheduleEvent();
         try {
             newEvent.setName(event.getName());
@@ -44,8 +45,23 @@ public class ScheduleEventController {
         return new JSONResultOk<ScheduleEvent>(newEvent);
     }
 
+    @PutMapping("/{id}")
+    public JSONResult<ScheduleEvent> updateEvent(@RequestBody ScheduleEvent event, @PathVariable int id) {
+        ScheduleEvent newEvent = new ScheduleEvent();
+        try {
+            newEvent = eventService.getById(id);
+            newEvent.setName(event.getName());
+            newEvent.setDescription(event.getDescription());
+            newEvent = eventService.save(newEvent);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            return new JSONResultError<ScheduleEvent>(newEvent, ex.getMessage());
+        }
+        return new JSONResultOk<ScheduleEvent>(newEvent);
+    }
+
     @DeleteMapping("/{id}")
-    public JSONResult<ScheduleEvent> deleteContact(@PathVariable int id) {
+    public JSONResult<ScheduleEvent> deleteEvent(@PathVariable int id) {
         ScheduleEvent event = new ScheduleEvent();
         try {
             event = eventService.getById(id);

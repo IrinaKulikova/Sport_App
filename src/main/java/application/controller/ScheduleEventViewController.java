@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @RequestMapping("/events")
-public class ScheduleEventsController {
+public class ScheduleEventViewController {
 
     @Autowired
     SchedulesEventService schedulesEventService;
@@ -25,14 +25,14 @@ public class ScheduleEventsController {
         return "events/events";
     }
 
-    @GetMapping("/edit/{id}")
+    @GetMapping("/{id}")
     public String userEdit(@PathVariable int id, Model model){
         try {
             model.addAttribute("event",schedulesEventService.getById(id));
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return "users/user_edit";
+        return "events/event_edit";
     }
 
     @GetMapping("/create")

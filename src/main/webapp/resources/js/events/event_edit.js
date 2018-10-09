@@ -2,7 +2,6 @@ $(function () {
         let button = $("#save");
         $("#save").click(
             function (e) {
-
                 let name = $('#name').val();
                 let description = $('#description').val();
 
@@ -11,7 +10,7 @@ $(function () {
                     return;
                 }
 
-                var newEvent = new DTOEvent(name, description);
+                let event = new DTOEvent(name, description);
 
                 function success(d) {
                     console.log("done!");
@@ -23,7 +22,7 @@ $(function () {
                 }
 
                 let service = new AJAXService();
-                service.post("/api/1.0/events/", newEvent, success, fail);
+                service.put("/api/1.0/events/" + button.val(), event, success, fail);
                 e.preventDefault();
             }
         );

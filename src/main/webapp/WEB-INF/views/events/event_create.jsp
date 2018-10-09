@@ -30,6 +30,7 @@
         </div>
     </form>
 </div>
+<script src="../../../resources/js/services/AJAXService.js" type="text/javascript"></script>
 <script src="../../../resources/js/DTO/DTOEvent.js" type="text/javascript"></script>
 <script src="../../../resources/js/events/event_create.js" type="text/javascript"></script>
 </body>
