@@ -13,7 +13,9 @@
             <li class="nav-item">
                 <a class="nav-link" href="/users">Users</a>
             </li>
-            <a class="nav-link" href="/news">News</a>
+            <li>
+                <a class="nav-link" href="/news">News</a>
+            </li>
             <li class="nav-item">
                 <a class="nav-link" href="/admins">Admins</a>
             </li>
