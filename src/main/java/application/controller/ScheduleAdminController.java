@@ -52,7 +52,7 @@ public class ScheduleAdminController {
 
     @GetMapping("/save_schedule_event")
     public String getSaveScheduleEvent() {
-        return "schedule/save_schedule_event";
+        return "shedule_event/events";
     }
 
     @PostMapping("/save_schedule_event")

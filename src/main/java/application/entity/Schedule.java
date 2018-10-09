@@ -24,11 +24,9 @@ public class Schedule {
     @Column(columnDefinition ="time")
     private Time starttime;
 
-    //вторичный ключ schedule_event
-    @ManyToOne(targetEntity = ScheduleEvent.class,fetch = FetchType.EAGER)
+    @ManyToOne(targetEntity = ScheduleEvent.class, fetch = FetchType.EAGER)
     @JoinColumn(name="event_schedule")
     ScheduleEvent scheduleEvent;
-  //  private  List<ScheduleEvent> eventsList=new ArrayList<>();
 
     public Schedule(Day day, Time starttime, ScheduleEvent scheduleEvent) {
         this.day = day;

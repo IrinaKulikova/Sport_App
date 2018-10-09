@@ -14,13 +14,14 @@ public class Day {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    //признак сортировки
     private int attribute;
 
     String nameDay;
+
     public int getId() {
         return id;
     }
+
     public Day(){
     }
 }

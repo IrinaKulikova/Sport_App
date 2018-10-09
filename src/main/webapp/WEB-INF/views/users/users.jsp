@@ -35,7 +35,8 @@
                     <td>${user.email}</td>
                     <td colspan="2">
                         <a class="btn-edit btn btn-outline-info" href="/users/edit/${user.id}">Edit</a>
-                        <button class="btn-delete btn btn-outline-danger m-2" name="id" value="${user.id}" >Delete</button>
+                        <button class="btn-delete btn btn-outline-danger m-2" name="id" value="${user.id}">Delete
+                        </button>
                     </td>
                 </tr>
             </c:forEach>
@@ -45,10 +46,6 @@
 </div>
 <c:import url="../template/footer.jsp"></c:import>
 <!--Scripts-->
-<script th:src="@{/webjars/jquery/jquery.min.js}"></script>
-<script th:src="@{/webjars/jquery-ui/jquery-ui.min.js}"></script>
-<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 <script type="text/javascript" src="../../../resources/js/services/AJAXService.js"></script>
 <script type="text/javascript" src="../../../resources/js/user/user.js"></script>
 </body>
