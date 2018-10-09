@@ -143,6 +143,10 @@ public class ScheduleAdminController {
         model.addAttribute("schedule",schedule);
         return "";
     }
+    @PutMapping("/dbclickedit")
+    public String putDoubleClickEdit(@RequestParam String starttime, @RequestParam int sheduleEvent, @RequestParam int day){
+        return "redirect:/";
+    }
 
 
     private List<List<ScheduleSender>> makeTable(List<Day> dayList,  List<Schedule> scheduleList){
