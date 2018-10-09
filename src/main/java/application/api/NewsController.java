@@ -30,18 +30,6 @@ public class NewsController {
         return new JSONResultOk<News>(news);
     }
 
-    @GetMapping
-    public JSONResult<List<News>> getAll() {
-        List<News> news = new ArrayList<>();
-        try {
-            news = newsService.getAll();
-        } catch (Exception ex) {
-            ex.printStackTrace();
-            return new JSONResultError<>(news, ex.getMessage());
-        }
-        return new JSONResultOk<List<News>>(news);
-    }
-
     @PutMapping("/{id}")
     public JSONResult<News> updateNews(@RequestBody News news, @PathVariable("id") int id) {
         News currentNews = new News();

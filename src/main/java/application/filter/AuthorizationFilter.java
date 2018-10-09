@@ -33,8 +33,15 @@ public class AuthorizationFilter implements Filter {
 
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
+        HttpServletRequest req = (HttpServletRequest) request;
+        HttpServletResponse resp = (HttpServletResponse) response;
+        HttpSession session = req.getSession();
+        String requestUri = req.getRequestURI();
 
-        //chain.doFilter(request, response);
+        System.out.println("REQUEST === "+requestUri);
+        if(requestUri.contains("/api/1.0/shared/")) {
+            chain.doFilter(request, response);
+        }
 
         if(administratorService==null){
             ServletContext servletContext = request.getServletContext();
@@ -42,10 +49,7 @@ public class AuthorizationFilter implements Filter {
             administratorService = webApplicationContext.getBean(AdministratorService.class);
         }
 
-        HttpServletRequest req = (HttpServletRequest) request;
-        HttpServletResponse resp = (HttpServletResponse) response;
-        HttpSession session = req.getSession();
-        String requestUri = req.getRequestURI();
+
         boolean isLogged = false;
         List<Administrator> admins = null;
         try {
