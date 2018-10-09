@@ -1,188 +1,188 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
 
-  <groupId>itstep</groupId>
-  <artifactId>sportApp</artifactId>
-  <version>1.0-SNAPSHOT</version>
-  <packaging>war</packaging>
+    <groupId>itstep</groupId>
+    <artifactId>sportApp</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <packaging>war</packaging>
 
-  <name>sportApp Maven Webapp</name>
-  <!-- FIXME change it to the project's website -->
-  <url>http://www.example.com</url>
+    <name>sportApp Maven Webapp</name>
+    <!-- FIXME change it to the project's website -->
+    <url>http://www.example.com</url>
 
-  <properties>
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <maven.compiler.source>1.8</maven.compiler.source>
-    <maven.compiler.target>1.8</maven.compiler.target>
-    <webjars-bootstrap.version>4.1.0</webjars-bootstrap.version>
-    <webjars-jquery-ui.version>1.12.1</webjars-jquery-ui.version>
-    <webjars-jquery.version>3.3.1-1</webjars-jquery.version>
-    <spring-framework-version>5.0.7.RELEASE</spring-framework-version>
-    <javax-servlet-version>3.1.0</javax-servlet-version>
-    <taglibs-standard-impl-version>1.2.5</taglibs-standard-impl-version>
-    <spring-data-jpa-version>2.0.8.RELEASE</spring-data-jpa-version>
-    <taglibs-standard-version>1.2.5</taglibs-standard-version>
-    <mysql-version>8.0.11</mysql-version>
-    <hibernate-entitymanager-version>5.3.3.Final</hibernate-entitymanager-version>
-    <hibernate-core-version>5.3.3.Final</hibernate-core-version>
-    <lombok-version>1.18.2</lombok-version>
-    <jackson-version>2.9.6</jackson-version>
-    <maven-clear-version>3.0.0</maven-clear-version>
-    <maven-resources-version>3.0.2</maven-resources-version>
-    <maven-compiler-version>3.7.0</maven-compiler-version>
-    <maven-surefire-version>2.20.1</maven-surefire-version>
-    <maven-war-version>3.2.0</maven-war-version>
-    <maven-installer-version>2.5.2</maven-installer-version>
-    <maven-deploy-version>2.8.2</maven-deploy-version>
-    <tomcat-maven-version>2.2</tomcat-maven-version>
-  </properties>
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+        <!--<webjars-bootstrap.version>4.1.0</webjars-bootstrap.version>-->
+        <!--<webjars-jquery-ui.version>1.12.1</webjars-jquery-ui.version>-->
+        <!--<webjars-jquery.version>3.3.1-1</webjars-jquery.version>-->
+        <spring-framework-version>5.0.7.RELEASE</spring-framework-version>
+        <javax-servlet-version>3.1.0</javax-servlet-version>
+        <taglibs-standard-impl-version>1.2.5</taglibs-standard-impl-version>
+        <spring-data-jpa-version>2.0.8.RELEASE</spring-data-jpa-version>
+        <taglibs-standard-version>1.2.5</taglibs-standard-version>
+        <mysql-version>8.0.11</mysql-version>
+        <hibernate-entitymanager-version>5.3.3.Final</hibernate-entitymanager-version>
+        <hibernate-core-version>5.3.3.Final</hibernate-core-version>
+        <lombok-version>1.18.2</lombok-version>
+        <jackson-version>2.9.6</jackson-version>
+        <maven-clear-version>3.0.0</maven-clear-version>
+        <maven-resources-version>3.0.2</maven-resources-version>
+        <maven-compiler-version>3.7.0</maven-compiler-version>
+        <maven-surefire-version>2.20.1</maven-surefire-version>
+        <maven-war-version>3.2.0</maven-war-version>
+        <maven-installer-version>2.5.2</maven-installer-version>
+        <maven-deploy-version>2.8.2</maven-deploy-version>
+        <tomcat-maven-version>2.2</tomcat-maven-version>
+    </properties>
 
-  <dependencies>
+    <dependencies>
 
-    <dependency>
-      <groupId>org.springframework</groupId>
-      <artifactId>spring-webmvc</artifactId>
-      <version>${spring-framework-version}</version>
-    </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-webmvc</artifactId>
+            <version>${spring-framework-version}</version>
+        </dependency>
 
-    <!-- https://mvnrepository.com/artifact/javax.servlet/javax.servlet-api -->
-    <dependency>
-      <groupId>javax.servlet</groupId>
-      <artifactId>javax.servlet-api</artifactId>
-      <version>${javax-servlet-version}</version>
-      <scope>provided</scope>
-    </dependency>
+        <!-- https://mvnrepository.com/artifact/javax.servlet/javax.servlet-api -->
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+            <version>${javax-servlet-version}</version>
+            <scope>provided</scope>
+        </dependency>
 
-    <!-- https://mvnrepository.com/artifact/org.apache.taglibs/taglibs-standard-impl -->
-    <dependency>
-      <groupId>org.apache.taglibs</groupId>
-      <artifactId>taglibs-standard-impl</artifactId>
-      <version>${taglibs-standard-impl-version}</version>
-    </dependency>
+        <!-- https://mvnrepository.com/artifact/org.apache.taglibs/taglibs-standard-impl -->
+        <dependency>
+            <groupId>org.apache.taglibs</groupId>
+            <artifactId>taglibs-standard-impl</artifactId>
+            <version>${taglibs-standard-impl-version}</version>
+        </dependency>
 
-    <!-- https://mvnrepository.com/artifact/org.apache.taglibs/taglibs-standard-impl -->
-    <dependency>
-      <groupId>org.apache.taglibs</groupId>
-      <artifactId>taglibs-standard-spec</artifactId>
-      <version>${taglibs-standard-version}</version>
-    </dependency>
+        <!-- https://mvnrepository.com/artifact/org.apache.taglibs/taglibs-standard-impl -->
+        <dependency>
+            <groupId>org.apache.taglibs</groupId>
+            <artifactId>taglibs-standard-spec</artifactId>
+            <version>${taglibs-standard-version}</version>
+        </dependency>
 
-    <!-- https://mvnrepository.com/artifact/org.springframework.data/spring-data-jpa -->
-    <dependency>
-      <groupId>org.springframework.data</groupId>
-      <artifactId>spring-data-jpa</artifactId>
-      <version>${spring-data-jpa-version}</version>
-    </dependency>
+        <!-- https://mvnrepository.com/artifact/org.springframework.data/spring-data-jpa -->
+        <dependency>
+            <groupId>org.springframework.data</groupId>
+            <artifactId>spring-data-jpa</artifactId>
+            <version>${spring-data-jpa-version}</version>
+        </dependency>
 
-    <dependency>
-      <groupId>org.webjars</groupId>
-      <artifactId>jquery</artifactId>
-      <version>${webjars-jquery.version}</version>
-    </dependency>
+        <!--<dependency>-->
+        <!--<groupId>org.webjars</groupId>-->
+        <!--<artifactId>jquery</artifactId>-->
+        <!--<version>${webjars-jquery.version}</version>-->
+        <!--</dependency>-->
 
-    <dependency>
-      <groupId>org.webjars</groupId>
-      <artifactId>jquery-ui</artifactId>
-      <version>${webjars-jquery-ui.version}</version>
-    </dependency>
+        <!--<dependency>-->
+        <!--<groupId>org.webjars</groupId>-->
+        <!--<artifactId>jquery-ui</artifactId>-->
+        <!--<version>${webjars-jquery-ui.version}</version>-->
+        <!--</dependency>-->
 
-    <dependency>
-      <groupId>org.webjars</groupId>
-      <artifactId>bootstrap</artifactId>
-      <version>${webjars-bootstrap.version}</version>
-    </dependency>
+        <!--<dependency>-->
+        <!--<groupId>org.webjars</groupId>-->
+        <!--<artifactId>bootstrap</artifactId>-->
+        <!--<version>${webjars-bootstrap.version}</version>-->
+        <!--</dependency>-->
 
-    <!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
-    <dependency>
-      <groupId>mysql</groupId>
-      <artifactId>mysql-connector-java</artifactId>
-      <version>${mysql-version}</version>
-    </dependency>
+        <!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>${mysql-version}</version>
+        </dependency>
 
-    <!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-entitymanager -->
-    <dependency>
-      <groupId>org.hibernate</groupId>
-      <artifactId>hibernate-entitymanager</artifactId>
-      <version>${hibernate-entitymanager-version}</version>
-    </dependency>
+        <!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-entitymanager -->
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-entitymanager</artifactId>
+            <version>${hibernate-entitymanager-version}</version>
+        </dependency>
 
-    <!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-core -->
-    <dependency>
-      <groupId>org.hibernate</groupId>
-      <artifactId>hibernate-core</artifactId>
-      <version>${hibernate-core-version}</version>
-    </dependency>
+        <!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-core -->
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-core</artifactId>
+            <version>${hibernate-core-version}</version>
+        </dependency>
 
-    <!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
-    <dependency>
-      <groupId>org.projectlombok</groupId>
-      <artifactId>lombok</artifactId>
-      <version>${lombok-version}</version>
-      <scope>provided</scope>
-    </dependency>
+        <!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>${lombok-version}</version>
+            <scope>provided</scope>
+        </dependency>
 
-     <!--https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind-->
-    <dependency>
-      <groupId>com.fasterxml.jackson.core</groupId>
-      <artifactId>jackson-databind</artifactId>
-      <version>${jackson-version}</version>
-    </dependency>
+        <!--https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind-->
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>${jackson-version}</version>
+        </dependency>
 
-    <dependency>
-      <groupId>com.fasterxml.jackson.datatype</groupId>
-      <artifactId>jackson-datatype-hibernate5</artifactId>
-      <version>${jackson-version}</version>
-    </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.datatype</groupId>
+            <artifactId>jackson-datatype-hibernate5</artifactId>
+            <version>${jackson-version}</version>
+        </dependency>
 
-  </dependencies>
+    </dependencies>
 
 
-  <build>
-    <finalName>Sport App</finalName>
-      <plugins>
-        <plugin>
-          <artifactId>maven-clean-plugin</artifactId>
-          <version>${maven-clear-version}</version>
-        </plugin>
-        <!-- see http://maven.apache.org/ref/current/maven-core/default-bindings.html#Plugin_bindings_for_war_packaging -->
-        <plugin>
-          <artifactId>maven-resources-plugin</artifactId>
-          <version>${maven-resources-version}</version>
-        </plugin>
-        <plugin>
-          <artifactId>maven-compiler-plugin</artifactId>
-          <version>${maven-compiler-version}</version>
-        </plugin>
-        <plugin>
-          <artifactId>maven-surefire-plugin</artifactId>
-          <version>${maven-surefire-version}</version>
-        </plugin>
-        <plugin>
-          <artifactId>maven-war-plugin</artifactId>
-          <version>${maven-war-version}</version>
-        </plugin>
-        <plugin>
-          <artifactId>maven-install-plugin</artifactId>
-          <version>${maven-installer-version}</version>
-        </plugin>
-        <plugin>
-          <artifactId>maven-deploy-plugin</artifactId>
-          <version>${maven-deploy-version}</version>
-        </plugin>
-        <plugin>
-        <groupId>org.apache.tomcat.maven</groupId>
-        <artifactId>tomcat7-maven-plugin</artifactId>
-        <version>${tomcat-maven-version}</version>
-        <configuration>
-          <path>/</path>
-          <port>8080</port>
-          <uriEncoding>${project.build.sourceEncoding}</uriEncoding>
-          <contextReloadable>true</contextReloadable>
-        </configuration>
-      </plugin>
-      </plugins>
-  </build>
+    <build>
+        <finalName>Sport App</finalName>
+        <plugins>
+            <plugin>
+                <artifactId>maven-clean-plugin</artifactId>
+                <version>${maven-clear-version}</version>
+            </plugin>
+            <!-- see http://maven.apache.org/ref/current/maven-core/default-bindings.html#Plugin_bindings_for_war_packaging -->
+            <plugin>
+                <artifactId>maven-resources-plugin</artifactId>
+                <version>${maven-resources-version}</version>
+            </plugin>
+            <plugin>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>${maven-compiler-version}</version>
+            </plugin>
+            <plugin>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>${maven-surefire-version}</version>
+            </plugin>
+            <plugin>
+                <artifactId>maven-war-plugin</artifactId>
+                <version>${maven-war-version}</version>
+            </plugin>
+            <plugin>
+                <artifactId>maven-install-plugin</artifactId>
+                <version>${maven-installer-version}</version>
+            </plugin>
+            <plugin>
+                <artifactId>maven-deploy-plugin</artifactId>
+                <version>${maven-deploy-version}</version>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.tomcat.maven</groupId>
+                <artifactId>tomcat7-maven-plugin</artifactId>
+                <version>${tomcat-maven-version}</version>
+                <configuration>
+                    <path>/</path>
+                    <port>8080</port>
+                    <uriEncoding>${project.build.sourceEncoding}</uriEncoding>
+                    <contextReloadable>true</contextReloadable>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 </project>
