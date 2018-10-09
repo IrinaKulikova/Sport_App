@@ -17,6 +17,7 @@ public class Administrator {
     @Column(name="admin_hash")
     String adminHash;
 
+    String email;
 
     public Administrator(){}
 

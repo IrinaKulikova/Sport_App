@@ -62,7 +62,10 @@ public class UserController {
             currentUser.setLastName(user.getLastName());
             currentUser.setPhone(user.getPhone());
             currentUser.setEmail(user.getEmail());
-            currentUser.setUserHash(HashHelper.getHash(user.getPassword()));
+            String pass = user.getPassword();
+            if(pass != null && !pass.equals("")){
+                currentUser.setUserHash(HashHelper.getHash(user.getPassword()));
+            }
             userService.save(currentUser);
             currentUser.setUserHash("hidden");
         } catch (Exception ex) {

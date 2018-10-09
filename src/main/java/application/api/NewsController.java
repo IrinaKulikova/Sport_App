@@ -52,8 +52,10 @@ public class NewsController {
             }
             currentNews.setTitle(news.getTitle());
             currentNews.setDate(news.getDate());
+            System.out.println(news.getImageURL());
+            System.out.println(news.getDescription());
             currentNews.setDescription(news.getDescription());
-            currentNews.setImageURL(news.getDate());
+            currentNews.setImageURL(news.getImageURL());
             newsService.save(currentNews);
         } catch (Exception ex) {
             ex.printStackTrace();

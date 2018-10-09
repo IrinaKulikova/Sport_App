@@ -11,31 +11,28 @@
 <c:import url="../template/header.jsp"></c:import>
 <div class="container main-div mt-md-5">
     <div class="tools-div form-control text-right">
-        <a class="btn btn-outline-warning ml-2" href="/users/create">Create</a>
+        <a class="btn btn-outline-warning ml-2" href="/news/create">Create</a>
     </div>
-    <div class="users-div">
+    <div class="news-div">
         <table class="table table-bordered mt-2">
             <thead>
             <tr>
                 <th scope="col">#</th>
-                <th scope="col">First Name</th>
-                <th scope="col">Last Name</th>
-                <th scope="col">Phone</th>
-                <th scope="col">Email</th>
+                <th scope="col">Title</th>
+                <th scope="col">Date</th>
                 <th colspan="2"></th>
             </tr>
             </thead>
             <tbody>
-            <c:forEach items="${users}" var="user">
+            <c:forEach items="${news}" var="item">
                 <tr>
-                    <th scope="row">${user.id}</th>
-                    <td>${user.firstName}</td>
-                    <td>${user.lastName}</td>
-                    <td>${user.phone}</td>
-                    <td>${user.email}</td>
+                    <th scope="row">${item.id}</th>
+                    <td>${item.title}</td>
+                    <td>${item.date}</td>
+
                     <td colspan="2">
-                        <a class="btn-edit btn btn-outline-info" href="/users/edit/${user.id}">Edit</a>
-                        <button class="btn-delete btn btn-outline-danger m-2" name="id" value="${user.id}" >Delete</button>
+                        <a class="btn-edit btn btn-outline-info" href="/news/edit/${item.id}">Edit</a>
+                        <button class="btn-delete btn btn-outline-danger m-2" name="id" value="${item.id}" >Delete</button>
                     </td>
                 </tr>
             </c:forEach>
@@ -50,7 +47,7 @@
 <script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 <script type="text/javascript" src="../../../resources/js/services/AJAXService.js"></script>
-<script type="text/javascript" src="../../../resources/js/user/user.js"></script>
+<script type="text/javascript" src="../../../resources/js/news/news.js"></script>
 </body>
 
 </html>

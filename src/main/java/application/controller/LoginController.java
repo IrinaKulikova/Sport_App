@@ -26,7 +26,7 @@ public class LoginController {
     }
 
     @GetMapping("/logout")
-    public String logoutGet(HttpServletRequest req){
+    public String logoutGet(HttpServletRequest req) {
         HttpSession session = req.getSession();
         session.removeAttribute("identifier");
         return "login";
@@ -55,6 +55,7 @@ public class LoginController {
                         HttpSession session = req.getSession();
                         try {
                             session.setAttribute("identifier", HashHelper.makeSHA1Hash(adminHash));
+                            session.setAttribute("login", login);
                         } catch (NoSuchAlgorithmException | UnsupportedEncodingException e) {
                             e.printStackTrace();
                         }
