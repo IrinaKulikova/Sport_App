@@ -1,6 +1,7 @@
 <%@ page import="application.entity.Schedule" %>
 <%@ page import="java.util.List" %>
 <%@ page import="application.entity.Day" %>
+<%@ page import="application.helper.ScheduleSender" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
@@ -19,21 +20,32 @@
         .conteiner{
             width: 1000px;
             margin: auto;
-          /*  text-align: center;*/
         }
         .td-tab{
             border: black 1px solid;
-            height: 60px;
+            background-color: lightblue;
+            height: 50px;
+            position: relative;
+            padding:5px;
         }
-        /*    td,th{
-                border: black 1px solid;
-
-            }*/
+        td{
+            padding: 2px !important;
+        }
+        .td-tab:hover::after{
+            border: 1px solid #fc0;
+            padding: 3px 6px;
+            background: #fffea1;
+            content: attr(data-title);
+            position: absolute;
+            left: 50px;
+            top: 26px;
+            z-index: 50;
+        }
     </style>
 </head>
 <body>
-<% List<Schedule> scheduleList=(List<Schedule>) request.getAttribute("schedulelist");%>
-<% List<Day> dayList=(List<Day>) request.getAttribute("daylist");%>
+<%  List<List<ScheduleSender>> scheduleListTable=( List<List<ScheduleSender>>) request.getAttribute("schedulelist");%>
+<%-- <% List<Day> dayList=(List<Day>) request.getAttribute("daylist");%> --%>
 <div class="conteiner">
    <table class="table table-bordered">
      <thead>
@@ -45,13 +57,35 @@
      </tr>
      </thead>
        <tbody>
+       <%for (int i=0;i<scheduleListTable.size();i++){%>
        <tr>
-           <th scope="row">8:00</th>
-          <% for(int i=0;i<dayList.size();i++){%>
-          <td data-time="8:00" data-week="monday"><%=scheduleList.get(i).getScheduleEvent().getName()%> <%--<% scheduleList.get(i).getScheduleEvent().getName(); %> --%></td>
+          <% for( int j=0;j<scheduleListTable.get(i).size();j++){ %>
+            <% if(j==0){%>
+                   <th scope="row"><%=scheduleListTable.get(i).get(j).getName()%></th>
+               <%}else{%>
+                   <td data-time= <%=scheduleListTable.get(i).get(j).getAttributeTime()%> data-week=<%=scheduleListTable.get(i).get(j).getAttributeDay()%>>
+                 <%  if(scheduleListTable.get(i).get(j).getScheduleList()!=null){%>
+                    <%   List<Schedule> scheduleList=scheduleListTable.get(i).get(j).getScheduleList(); %>
+                       <% for (int k=0;k<scheduleList.size();k++){%>
+                       <div class="td-tab" data-id=<%=scheduleList.get(k).getId()%> data-title='<%=scheduleList.get(k).getScheduleEvent().getDescription()%>'  ><%= scheduleList.get(k).getScheduleEvent().getName() %></div>
+                       <%}%>
 
+                   <%}%>
+
+
+                   </td>
+               <%}%>
 
          <%}%>
+       </tr>
+       <%}%>
+    <%--   <tr>
+           <th scope="row">8:00</th>
+          <% for(int i=0;i<dayList.size();i++){%>
+          <td data-time="8:00" data-week="monday"><%=scheduleList.get(i).getScheduleEvent().getName()%> <%--<% scheduleList.get(i).getScheduleEvent().getName(); %> --%><%--</td> --%>
+
+
+     <%--    <%}%> --%>
 
 
        </tr>
@@ -59,5 +93,13 @@
        </tbody>
    </table>
 </div>
+<script>
+    document.addEventListener('dblclick',function (e){
+        if(e.target.matches(".td-tab")) return alert("привет id="+e.target.dataset.id);
+        if(e.target.matches("td")) return  alert(e.target.dataset.time+" & "+e.target.dataset.week);
+        //alert("привет");
+      //  alert(e.target.dataset.time+" & "+e.target.dataset.week);
+    });
+</script>
 </body>
 </html>

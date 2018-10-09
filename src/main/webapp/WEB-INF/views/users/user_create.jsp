@@ -15,20 +15,20 @@
         <form class="create-form">
             <div class="row m-2">
                 <div class="col">
-                    <input type="text" class="form-control" id="fname" name="firstName" placeholder="First name" value="${user.firstName}" required>
+                    <input type="text" class="form-control" id="fname" name="firstName" placeholder="First name" required>
                 </div>
                 <div class="col">
-                    <input type="text" class="form-control" id="lname" name="lastName" placeholder="Last name" value="${user.lastName}" required>
-                </div>
-            </div>
-            <div class="row m-2">
-                <div class="col">
-                    <input type="text" class="form-control" id="email" name="email" placeholder="Email" value="${user.email}" required>
+                    <input type="text" class="form-control" id="lname" name="lastName" placeholder="Last name" required>
                 </div>
             </div>
             <div class="row m-2">
                 <div class="col">
-                    <input type="text" class="form-control" id="phone" name="phone" placeholder="Phone" value="${user.phone}" required>
+                    <input type="text" class="form-control" id="email" name="email" placeholder="Email" required>
+                </div>
+            </div>
+            <div class="row m-2">
+                <div class="col">
+                    <input type="text" class="form-control" id="phone" name="phone" placeholder="Phone" required>
                 </div>
             </div>
             <div class="row m-2">

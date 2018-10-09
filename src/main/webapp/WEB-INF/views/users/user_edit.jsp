@@ -17,7 +17,7 @@
                     <input type="text" class="form-control" id="fname" name="firstName" placeholder="First name" required readonly="true" value="${user.firstName}">
                 </div>
                 <div class="col">
-                    <input type="text" class="form-control" id="lname" d="l" name="lastName" placeholder="Last name" required readonly="true" value="${user.lastName}">
+                    <input type="text" class="form-control" id="lname" name="lastName" placeholder="Last name" required readonly="true" value="${user.lastName}">
                 </div>
             </div>
             <div class="row m-2">
@@ -32,7 +32,7 @@
             </div>
             <div class="row m-2">
                 <div class="col">
-                    <input type="text" class="form-control" id="pass" name="password" placeholder="Password" required readonly="true">
+                    <input type="password" class="form-control" id="pass" name="password" placeholder="Password" required readonly="true">
                 </div>
             </div>
             <div class="row m-2">
