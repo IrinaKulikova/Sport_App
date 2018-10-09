@@ -87,9 +87,9 @@ public class ScheduleAdminController {
 
     @PostMapping("/save_shedule")
     public String postSaveSchedule(@RequestParam String starttime, @RequestParam int sheduleEvent, @RequestParam int day) {
-        System.out.println(starttime);
-        System.out.println(sheduleEvent);
-        System.out.println(day);
+     //   System.out.println(starttime);
+     //   System.out.println(sheduleEvent);
+     //   System.out.println(day);
         Day newDay = null;
         try {
             newDay = dayServise.getById(day);
@@ -97,23 +97,15 @@ public class ScheduleAdminController {
             e.printStackTrace();
         }
         ScheduleEvent scheduleEvent = schedulesEventService.getById(sheduleEvent);
-//        String event=request.getParameter("event_schedule");
-//        String day=request.getParameter("day");
-//        String hour=request.getParameter("hour");
-//        String min=request.getParameter("min");
         SimpleDateFormat localDateFormat = new SimpleDateFormat("HH:mm");
         localDateFormat.setTimeZone(TimeZone.getTimeZone("GMT+2"));
-//        String timestring = hour+":"+min;//"Mar 19 2018 - 14:39";
         Date date = null;
         try {
             date = localDateFormat.parse(starttime);
         } catch (ParseException e) {
             e.printStackTrace();
         }
-        //    if(date==null)  return "redirect:/";
-        //    Day day1=new Day(Integer.parseInt(day));
         java.sql.Time sd = new java.sql.Time(date.getTime());
-        //      ScheduleEvent event1=new ScheduleEvent(Integer.parseInt(event));
         Schedule schedule = new Schedule(newDay, sd, scheduleEvent);
         //    scheduleRepository.midifyingQuryInsertSchadule(Integer.parseInt(day),timestring,Integer.parseInt(event));
         try {
@@ -123,6 +115,24 @@ public class ScheduleAdminController {
         }
         return "redirect:/";
     }
+    @GetMapping("/dbclickcreate")
+    public String getDoubleClickCreate(@RequestParam String time,@RequestParam String id, Model model){
+        List<Day> dayList = null;
+        List<ScheduleEvent> eventList = null;
+        try {
+            eventList = schedulesEventService.getAll();
+            dayList = dayServise.getAll();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        model.addAttribute("time",time);
+        model.addAttribute("idday",id);
+        model.addAttribute("eventshedule", eventList);
+        model.addAttribute("weekday", dayList);
+        return "schedule/dbclickcreate";
+    }
+
+
     private List<List<ScheduleSender>> makeTable(List<Day> dayList,  List<Schedule> scheduleList){
         ScheduleSender sender=null;
       List<List<ScheduleSender>> scheduleListSenders=new ArrayList<>();
@@ -132,11 +142,6 @@ public class ScheduleAdminController {
           scheduleSenders.add(sender);
             for (Day d:dayList) {
                 String attributeTime=i + ":00";
-     /*           if(i<10) {
-                    attributeTime ="0"+ i + ":00";
-                }else {
-                    attributeTime = i + ":00";
-                }*/
                 Integer idday=d.getId();
                 sender=new ScheduleSender("",attributeTime,idday.toString());
                 sender.setScheduleList(isHaveSchedules(d.getId(),attributeTime,scheduleList));

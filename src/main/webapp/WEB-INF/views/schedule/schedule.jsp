@@ -37,8 +37,8 @@
             background: #fffea1;
             content: attr(data-title);
             position: absolute;
-            left: 50px;
-            top: 26px;
+            left: 60px;
+            top: 40px;
             z-index: 50;
         }
     </style>
@@ -71,23 +71,12 @@
                        <%}%>
 
                    <%}%>
-
-
                    </td>
                <%}%>
 
          <%}%>
        </tr>
        <%}%>
-    <%--   <tr>
-           <th scope="row">8:00</th>
-          <% for(int i=0;i<dayList.size();i++){%>
-          <td data-time="8:00" data-week="monday"><%=scheduleList.get(i).getScheduleEvent().getName()%> <%--<% scheduleList.get(i).getScheduleEvent().getName(); %> --%><%--</td> --%>
-
-
-     <%--    <%}%> --%>
-
-
        </tr>
 
        </tbody>
@@ -95,8 +84,8 @@
 </div>
 <script>
     document.addEventListener('dblclick',function (e){
-        if(e.target.matches(".td-tab")) return alert("привет id="+e.target.dataset.id);
-        if(e.target.matches("td")) return  alert(e.target.dataset.time+" & "+e.target.dataset.week);
+        if(e.target.matches(".td-tab")) return //     alert("привет id="+e.target.dataset.id);
+        if(e.target.matches("td")) return window.location.href="/schedules/dbclickcreate?time="+e.target.dataset.time+"&id="+e.target.dataset.week;// alert(e.target.dataset.time+" & "+e.target.dataset.week);
         //alert("привет");
       //  alert(e.target.dataset.time+" & "+e.target.dataset.week);
     });
