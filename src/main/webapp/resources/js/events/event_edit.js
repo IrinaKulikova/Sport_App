@@ -17,7 +17,8 @@ $(function () {
                     window.location.replace("http://localhost:8080/events");
                 }
 
-                function fail() {
+                function fail(e) {
+                    console.log(e);
                     console.log("error!");
                 }
 
