@@ -26,10 +26,9 @@
             border: black 1px solid;
             height: 60px;
         }
-        /*    td,th{
-                border: black 1px solid;
-
-            }*/
+        td{
+            padding: 2px !important;
+        }
     </style>
 </head>
 <body>
@@ -52,7 +51,11 @@
             <% if(j==0){%>
                    <th scope="row"><%=scheduleListTable.get(i).get(j).getName()%></th>
                <%}else{%>
-                   <td data-time=<%=scheduleListTable.get(i).get(j).getAttributeTime()%> data-week=<%=scheduleListTable.get(i).get(j).getAttributeDay()%>><%= j %></td>
+                   <td data-time=<%=scheduleListTable.get(i).get(j).getAttributeTime()%> data-week=<%=scheduleListTable.get(i).get(j).getAttributeDay()%>>
+
+
+
+                   </td>
                <%}%>
 
          <%}%>

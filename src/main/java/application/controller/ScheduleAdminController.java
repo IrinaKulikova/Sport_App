@@ -18,6 +18,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.TimeZone;
 
 @Controller
 @RequestMapping("/schedules")
@@ -101,6 +102,7 @@ public class ScheduleAdminController {
 //        String hour=request.getParameter("hour");
 //        String min=request.getParameter("min");
         SimpleDateFormat localDateFormat = new SimpleDateFormat("HH:mm");
+        localDateFormat.setTimeZone(TimeZone.getTimeZone("GMT+2"));
 //        String timestring = hour+":"+min;//"Mar 19 2018 - 14:39";
         Date date = null;
         try {
@@ -129,12 +131,12 @@ public class ScheduleAdminController {
           sender= new ScheduleSender(i+":00");
           scheduleSenders.add(sender);
             for (Day d:dayList) {
-                String attributeTime="";
-                if(i<10) {
+                String attributeTime=i + ":00";
+     /*           if(i<10) {
                     attributeTime ="0"+ i + ":00";
                 }else {
                     attributeTime = i + ":00";
-                }
+                }*/
                 Integer idday=d.getId();
                 sender=new ScheduleSender("",attributeTime,idday.toString());
                 sender.setScheduleList(isHaveSchedules(d.getId(),attributeTime,scheduleList));
