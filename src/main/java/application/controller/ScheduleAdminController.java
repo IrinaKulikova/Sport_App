@@ -28,8 +28,6 @@ public class ScheduleAdminController {
     @Autowired
     DayServise dayServise;
 
-    //  @Autowired
-    //   ScheduleRepository scheduleRepository;
     @GetMapping()
     public String getSchedules(Model model) {
         List<Day> dayList = null;

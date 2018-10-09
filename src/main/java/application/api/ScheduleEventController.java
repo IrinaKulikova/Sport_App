@@ -30,6 +30,20 @@ public class ScheduleEventController {
         return new JSONResultOk<>(events);
     }
 
+    @PostMapping()
+    public JSONResult<ScheduleEvent> addContact(@RequestBody ScheduleEvent event) {
+        ScheduleEvent newEvent = new ScheduleEvent();
+        try {
+            newEvent.setName(event.getName());
+            newEvent.setDescription(event.getDescription());
+            newEvent = eventService.save(newEvent);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            return new JSONResultError<ScheduleEvent>(newEvent, ex.getMessage());
+        }
+        return new JSONResultOk<ScheduleEvent>(newEvent);
+    }
+
     @DeleteMapping("/{id}")
     public JSONResult<ScheduleEvent> deleteContact(@PathVariable int id) {
         ScheduleEvent event = new ScheduleEvent();

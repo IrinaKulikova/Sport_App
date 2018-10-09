@@ -11,7 +11,7 @@
 <c:import url="../template/header.jsp"></c:import>
 <div class="container main-div mt-md-5">
     <div class="tools-div form-control text-right">
-        <a class="btn btn-outline-warning ml-2" href="/user/create">Create</a>
+        <a class="btn btn-outline-warning ml-2" href="/users/create">Create</a>
     </div>
     <div class="users-div">
         <table class="table table-bordered mt-2">
