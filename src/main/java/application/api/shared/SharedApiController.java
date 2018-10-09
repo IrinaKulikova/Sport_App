@@ -3,12 +3,14 @@ package application.api.shared;
 
 import application.entity.Filiation;
 import application.entity.News;
+import application.entity.Schedule;
 import application.entity.ScheduleEvent;
 import application.helper.JSONResult;
 import application.helper.JSONResultError;
 import application.helper.JSONResultOk;
 import application.service.implementations.FiliationService;
 import application.service.implementations.NewsService;
+import application.service.implementations.ScheduleService;
 import application.service.implementations.SchedulesEventService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -27,6 +29,33 @@ public class SharedApiController {
     NewsService newsService;
     @Autowired
     SchedulesEventService eventService;
+    @Autowired
+    ScheduleService scheduleService;
+
+    @GetMapping("/schedules")
+    public JSONResult<List<Schedule>> getAllSchedule(){
+        List<Schedule> schedules = new ArrayList<>();
+        try {
+            schedules = scheduleService.getAll();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            return new JSONResultError<>(schedules, ex.getMessage());
+        }
+        return new JSONResultOk<>(schedules);
+    }
+
+    @GetMapping("/events")
+    public JSONResult<List<ScheduleEvent>> getAllScheduleEvents() {
+        List<ScheduleEvent> events = new ArrayList<>();
+        try {
+            events = eventService.getAll();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            return new JSONResultError<List<ScheduleEvent>>(events, ex.getMessage());
+        }
+        return new JSONResultOk<>(events);
+    }
+
 
     @GetMapping("/filiations")
     public JSONResult<List<Filiation>> getAllFiliations() {

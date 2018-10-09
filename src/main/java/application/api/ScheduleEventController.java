@@ -19,17 +19,6 @@ public class ScheduleEventController {
     @Autowired
     SchedulesEventService eventService;
 
-    @GetMapping()
-    public JSONResult<List<ScheduleEvent>> getScheduleEvents() {
-        List<ScheduleEvent> events = new ArrayList<>();
-        try {
-            events = eventService.getAll();
-        } catch (Exception ex) {
-            ex.printStackTrace();
-            return new JSONResultError<List<ScheduleEvent>>(events, ex.getMessage());
-        }
-        return new JSONResultOk<>(events);
-    }
 
     @PostMapping()
     public JSONResult<ScheduleEvent> addScheduleEvent(@RequestBody ScheduleEvent event) {

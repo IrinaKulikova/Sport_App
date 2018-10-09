@@ -22,17 +22,7 @@ public class ScheduleController {
     @Autowired
     SchedulesEventService schedulesEventService;
     // получить список расписание
-    @GetMapping()
-    public JSONResult<List<Schedule>> getSchedule(){
-        List<Schedule> schedules = new ArrayList<>();
-        try {
-            schedules = scheduleServise.getAll();
-        } catch (Exception ex) {
-            ex.printStackTrace();
-            return new JSONResultError<>(schedules, ex.getMessage());
-        }
-        return new JSONResultOk<>(schedules);
-    }
+
     //сохранить раписание
  //   @PostMapping()
    // public void saveSchedule(Schedule schedule){
