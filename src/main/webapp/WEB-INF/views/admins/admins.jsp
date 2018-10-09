@@ -33,18 +33,17 @@
                         <c:set var="current" scope="session" value="${login}"/>
                         <c:choose>
                             <c:when test="${admin.login!=current}">
+                                <button class="btn btn-outline-danger m-2 del" type="submit" value="${admin.id}">
+                                    Delete
+                                </button>
+                            </c:when>
+                            <c:otherwise>
                                 <a href="/admins/${admin.id}">
                                     <button class="btn btn-outline-info m-2" name="id" type="submit"
                                             value="${admin.id}">
                                         Edit
                                     </button>
                                 </a>
-                                <button class="btn btn-outline-danger m-2 del" type="submit" value="${admin.id}">
-                                    Delete
-                                </button>
-                            </c:when>
-                            <c:otherwise>
-                                <label>me</label>
                             </c:otherwise>
                         </c:choose>
                     </td>

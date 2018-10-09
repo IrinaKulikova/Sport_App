@@ -40,7 +40,7 @@ public class AdminsViewController {
         HttpSession session = req.getSession();
         String login = (String) session.getAttribute("login");
         model.addAttribute("login", login);
-        return "admins/admins";
+        return "admins/admin_edit";
     }
 
     @GetMapping("/create")
