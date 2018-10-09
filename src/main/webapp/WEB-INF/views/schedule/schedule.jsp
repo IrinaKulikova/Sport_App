@@ -20,15 +20,26 @@
         .conteiner{
             width: 1000px;
             margin: auto;
-          /*  text-align: center;*/
         }
         .td-tab{
             border: black 1px solid;
             background-color: lightblue;
-            height: 60px;
+            height: 50px;
+            position: relative;
+            padding:5px;
         }
         td{
             padding: 2px !important;
+        }
+        .td-tab:hover::after{
+            border: 1px solid #fc0;
+            padding: 3px 6px;
+            background: #fffea1;
+            content: attr(data-title);
+            position: absolute;
+            left: 50px;
+            top: 26px;
+            z-index: 50;
         }
     </style>
 </head>
@@ -52,11 +63,11 @@
             <% if(j==0){%>
                    <th scope="row"><%=scheduleListTable.get(i).get(j).getName()%></th>
                <%}else{%>
-                   <td data-time=<%=scheduleListTable.get(i).get(j).getAttributeTime()%> data-week=<%=scheduleListTable.get(i).get(j).getAttributeDay()%>>
+                   <td data-time= <%=scheduleListTable.get(i).get(j).getAttributeTime()%> data-week=<%=scheduleListTable.get(i).get(j).getAttributeDay()%>>
                  <%  if(scheduleListTable.get(i).get(j).getScheduleList()!=null){%>
                     <%   List<Schedule> scheduleList=scheduleListTable.get(i).get(j).getScheduleList(); %>
                        <% for (int k=0;k<scheduleList.size();k++){%>
-                       <div class="td-tab"><%= scheduleList.get(k).getScheduleEvent().getName() %></div>
+                       <div class="td-tab" data-id=<%=scheduleList.get(k).getId()%> data-title='<%=scheduleList.get(k).getScheduleEvent().getDescription()%>'  ><%= scheduleList.get(k).getScheduleEvent().getName() %></div>
                        <%}%>
 
                    <%}%>
@@ -82,5 +93,13 @@
        </tbody>
    </table>
 </div>
+<script>
+    document.addEventListener('dblclick',function (e){
+        if(e.target.matches(".td-tab")) return alert("привет id="+e.target.dataset.id);
+        if(e.target.matches("td")) return  alert(e.target.dataset.time+" & "+e.target.dataset.week);
+        //alert("привет");
+      //  alert(e.target.dataset.time+" & "+e.target.dataset.week);
+    });
+</script>
 </body>
 </html>
