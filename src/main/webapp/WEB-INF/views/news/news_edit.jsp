@@ -9,38 +9,39 @@
 <body>
 <c:import url="../template/header.jsp"></c:import>
 <div class="container main-div mt-md-5">
-    <div class="user-edit-div">
-        <h2><strong>Edit user</strong></h2>
+    <div class="news-edit-div">
+        <h2><strong>Edit news</strong></h2>
         <form>
             <div class="row m-2">
                 <div class="col">
-                    <input type="text" class="form-control" id="fname" name="firstName" placeholder="First name" required readonly="true" value="${user.firstName}">
+                    <input type="text" class="form-control" id="date" name="date" placeholder="Date name" readonly="true" value="${news.date}">
                 </div>
                 <div class="col">
-                    <input type="text" class="form-control" id="lname" name="lastName" placeholder="Last name" required readonly="true" value="${user.lastName}">
-                </div>
-            </div>
-            <div class="row m-2">
-                <div class="col">
-                    <input type="text" class="form-control" id="email" name="email" placeholder="Email" required readonly="true" value="${user.email}">
+                    <input type="text" class="form-control" id="title" name="title" placeholder="Title" readonly="true" value="${news.title}">
                 </div>
             </div>
             <div class="row m-2">
                 <div class="col">
-                    <input type="text" class="form-control" id="phone" name="phone" placeholder="Phone" required readonly="true" value="${user.phone}">
+                    <textarea type="text" class="form-control" id="description" name="description" placeholder="Description" readonly="true">${news.description}</textarea>
                 </div>
             </div>
             <div class="row m-2">
                 <div class="col">
-                    <input type="password" class="form-control" id="pass" name="password" placeholder="Password" required readonly="true">
+                    <img src="${news.imageURL}" id="news_image" alt="image news" width="250px" height="250px">
+                </div>
+                <div class="col">
+                    <input type="text" class="form-control" id="imageURL" name="imageURL" placeholder="ImageURL" readonly="true" value="${news.imageURL}">
+                </div>
+                <div class="col">
+                    <button type="button" class="btn-update-img btn btn-outline-dark">+</button>
                 </div>
             </div>
             <div class="row m-2">
                 <div class="col">
-                    <button type="submit" class="btn-save-changes btn btn-outline-success" value="${user.id}">Save changes</button>
+                    <button type="submit" class="btn-save-changes btn btn-outline-success" value="${news.id}">Save changes</button>
                 </div>
                 <div class="col">
-                    <a class="btn-back btn btn-outline-danger" href="/users">Back</a>
+                    <a class="btn-back btn btn-outline-danger" href="/news">Back</a>
                 </div>
             </div>
         </form>
@@ -52,9 +53,9 @@
 <script th:src="@{/webjars/jquery-ui/jquery-ui.min.js}"></script>
 <script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-<script type="text/javascript" src="../../../resources/js/DTO/DTOUser.js"></script>
+<script type="text/javascript" src="../../../resources/js/DTO/DTONews.js"></script>
 <script type="text/javascript" src="../../../resources/js/services/AJAXService.js"></script>
-<script type="text/javascript" src="../../../resources/js/user/user_edit.js"></script>
+<script type="text/javascript" src="../../../resources/js/news/news_edit.js"></script>
 </body>
 
 </html>

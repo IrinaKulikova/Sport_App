@@ -13,9 +13,10 @@ public class News {
     Integer id;
     String title;
     String date;
+    @Column(columnDefinition = "TEXT")
     String description;
 
-    @Column(name = "image_url")
+    @Column(name = "image_url", columnDefinition = "TEXT")
     String imageURL;
 
     public News(String title, String description, String date, String imageURL) {
