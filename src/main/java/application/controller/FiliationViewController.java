@@ -51,13 +51,6 @@ public class FiliationViewController {
 
     @GetMapping("/create")
     public String edit(Model model) {
-        List<ContactType> contactTypeList = new ArrayList<>();
-        try {
-            contactTypeList = contactTypeService.getAll();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        model.addAttribute("contact_types", contactTypeList);
         return "filiation/filiation_create";
     }
 }

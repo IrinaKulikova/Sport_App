@@ -27,8 +27,8 @@
             <c:forEach items="${filiation}" var="item">
                 <tr>
                     <th scope="row">${item.id}</th>
-                    <th scope="row">${item.caption}</th>
-                    <th scope="row">${item.country} ${item.city} ${item.street} ${item.building}</th>
+                    <td scope="row">${item.caption}</td>
+                    <td scope="row">${item.country} ${item.city} ${item.street} ${item.building}</td>
                     <td colspan="2">
                         <a href="/schedules">
                             <button class="btn btn-outline-info m-2" name="id" type="submit" value="${item.id}">Schedule
