@@ -132,6 +132,18 @@ public class ScheduleAdminController {
         return "schedule/dbclickcreate";
     }
 
+    @GetMapping("/dbclickedit/{id}")
+    public String getDoubleClickEdit(Model model,@PathVariable int id){
+        Schedule schedule=null;
+        try {
+          schedule=scheduleServise.getById(id);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        model.addAttribute("schedule",schedule);
+        return "";
+    }
+
 
     private List<List<ScheduleSender>> makeTable(List<Day> dayList,  List<Schedule> scheduleList){
         ScheduleSender sender=null;

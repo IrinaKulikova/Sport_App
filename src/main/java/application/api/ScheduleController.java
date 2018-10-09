@@ -33,22 +33,5 @@ public class ScheduleController {
         }
         return new JSONResultOk<>(schedules);
     }
-    //сохранить раписание
- //   @PostMapping()
-   // public void saveSchedule(Schedule schedule){
-     //   scheduleServise.save(schedule);
-    //}
-
-    //получить список событий
-/*    @GetMapping("/schedules_event")
-    public List<ScheduleEvent> getSchedulesEvent(){
-       return eventServise.getAll();
-    }
-    //сохранить событие
-    @PostMapping("/schedules_event")
-    public void saveSchedulesEventServise(ScheduleEvent event){
-        eventServise.save(event);
-    }*/
-
 
 }

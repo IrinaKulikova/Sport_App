@@ -45,7 +45,6 @@
 </head>
 <body>
 <%  List<List<ScheduleSender>> scheduleListTable=( List<List<ScheduleSender>>) request.getAttribute("schedulelist");%>
-<%-- <% List<Day> dayList=(List<Day>) request.getAttribute("daylist");%> --%>
 <div class="conteiner">
    <table class="table table-bordered">
      <thead>
@@ -84,10 +83,8 @@
 </div>
 <script>
     document.addEventListener('dblclick',function (e){
-        if(e.target.matches(".td-tab")) return //     alert("привет id="+e.target.dataset.id);
+        if(e.target.matches(".td-tab")) return  window.location.href="/schedules/dbclickedit/"+e.target.dataset.id;
         if(e.target.matches("td")) return window.location.href="/schedules/dbclickcreate?time="+e.target.dataset.time+"&id="+e.target.dataset.week;// alert(e.target.dataset.time+" & "+e.target.dataset.week);
-        //alert("привет");
-      //  alert(e.target.dataset.time+" & "+e.target.dataset.week);
     });
 </script>
 </body>
