@@ -77,6 +77,7 @@ public class CardController {
             curCard.setPinCode(card.getPinCode());
             curCard.setIssueDate(card.getIssueDate());
             curCard.setExpirationDate(card.getExpirationDate());
+            curCard.setDescription(card.getDescription());
             curCard.setUser(user);
             curCard = cardService.save(curCard);
         } catch (Exception ex) {
