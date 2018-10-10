@@ -39,9 +39,6 @@
                 <div class="col">
                     <button type="submit" class="btn-save-changes btn btn-outline-success" value="${user.id}">Save changes</button>
                 </div>
-                <div class="col">
-                    <a class="btn-back btn btn-outline-danger" href="/users">Back</a>
-                </div>
             </div>
         </form>
         <div class="card-edit-div m-2">
@@ -99,6 +96,7 @@
 </div>
 <c:import url="../template/footer.jsp"></c:import>
 <!--Scripts-->
+<script type="text/javascript" src="../../../resources/js/services/jquery.validate.js"></script>
 <script type="text/javascript" src="../../../resources/js/DTO/DTOCard.js"></script>
 <script type="text/javascript" src="../../../resources/js/DTO/DTOUser.js"></script>
 <script type="text/javascript" src="../../../resources/js/services/AJAXService.js"></script>

@@ -1,6 +1,52 @@
 $(function () {
     $(function () {
         $(".btn-save-card").click(function (e) {
+            var cardForm = $(".card-form");
+            $(function () {
+                cardForm.validate({
+                    rules: {
+                        description: {
+                            required: true,
+                            maxlength: 30
+                        },
+                        issueDate: {
+                            required: true,
+                            date: true
+                        },
+                        expirationDate: {
+                            required: true,
+                            date: true
+                        },
+                        pinCode: {
+                            required: true,
+                            minlength: 4,
+                            maxlength: 4,
+                            number: true
+                        }
+                    },
+                    messages: {
+                        description: {
+                            required: "Description cant be empty!",
+                            maxlength: "Max length: 30 symbols!"
+                        },
+                        issueDate: {
+                            required: "Issue Date cant be empty!",
+                            date: "Is not valid date format. (mm/dd/yyyy)"
+                        },
+                        expirationDate: {
+                            required: "Expiration Date cant be empty!",
+                            date: "Is not valid date format. (mm/dd/yyyy)"
+                        },
+                        pinCode: {
+                            required: "Pin code cant be empty!",
+                            minlength: "Pin code must be 4 numeric symbols!",
+                            maxlength: "Pin code must be 4 numeric symbols!",
+                            number: "Pin code must contain only numbers!"
+                        }
+                    }
+                });
+            });
+            if(cardForm.valid()){
                 let service = new AJAXService();
                 var userId = $("#userId").val();
                 var card = new Card($('#pinCode').val(),
@@ -17,6 +63,7 @@ $(function () {
                 service.post("/api/1.0/cards/" + userId,card,success,fail);
 
                 e.preventDefault();
+            }
             }
         );
     });

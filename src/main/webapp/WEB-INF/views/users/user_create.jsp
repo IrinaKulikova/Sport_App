@@ -12,7 +12,7 @@
 <div class="container main-div m-5">
     <div class="user-edit-div">
         <h2><strong>Create user</strong></h2>
-        <form class="create-form">
+        <form class="create-user-form">
             <div class="row m-2">
                 <div class="col">
                     <input type="text" class="form-control" id="fname" name="firstName" placeholder="First name" required>
@@ -40,15 +40,13 @@
                 <div class="col">
                     <button type="submit" class="btn-create-user btn btn-outline-success">Create</button>
                 </div>
-                <div class="col">
-                    <a class="btn-back btn btn-outline-danger" href="/users">Back</a>
-                </div>
             </div>
         </form>
     </div>
 </div>
 <c:import url="../template/footer.jsp"></c:import>
 <!--Scripts-->
+<script type="text/javascript" src="../../../resources/js/services/jquery.validate.js"></script>
 <script type="text/javascript" src="../../../resources/js/DTO/DTOUser.js"></script>
 <script type="text/javascript" src="../../../resources/js/services/AJAXService.js"></script>
 <script type="text/javascript" src="../../../resources/js/user/user_create.js"></script>
