@@ -24,6 +24,8 @@ public class Card {
     @Column(name = "expiration_date")
     String expirationDate;
 
+    String description;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     @JsonIgnore

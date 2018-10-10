@@ -14,11 +14,11 @@
     <form method="post" accept-charset="UTF-8">
         <div class="form-group">
             <label for="name">Name</label>
-            <input type="text" class="form-control" id="name" placeholder="" value="${event.name}" name="name">
+            <input type="text" class="form-control" id="name" placeholder="" readonly="true" value="${event.name}" name="name">
         </div>
         <div class="form-group">
             <label for="description">Description</label>
-            <textarea class="form-control" id="description" placeholder="" name="description"
+            <textarea class="form-control" id="description" placeholder="" readonly="true" name="description"
                       row="5">${event.description}</textarea>
         </div>
         <div class="mt-4 row">

@@ -79,5 +79,18 @@ $(function () {
         }
 
         $(".del").click(onClickDelete);
+
+        $(function () {
+            $(".form-control").dblclick(function (e) {
+                $(this).attr("readonly",false);
+            });
+        });
+
+        $(function () {
+            $(".form-control").blur(function (e) {
+                $(this).attr("readonly",true);
+            });
+        });
+
     }
 );

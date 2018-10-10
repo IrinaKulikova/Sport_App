@@ -1,5 +1,6 @@
 package application.controller;
 
+import application.service.implementations.CardService;
 import application.service.implementations.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,6 +17,9 @@ public class UsersViewController {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private CardService cardService;
+
     @GetMapping()
     public String users(Model model) {
         try {
@@ -30,6 +34,7 @@ public class UsersViewController {
     public String userEdit(@PathVariable int id, Model model){
         try {
             model.addAttribute("user",userService.getById(id));
+            model.addAttribute("cards",cardService.getAll());
         } catch (Exception e) {
             e.printStackTrace();
         }

@@ -31,6 +31,6 @@ $(function () {
         $(".form-control").blur(function (e) {
             $(this).attr("readonly",true);
         });
-    })
+    });
 
 });
