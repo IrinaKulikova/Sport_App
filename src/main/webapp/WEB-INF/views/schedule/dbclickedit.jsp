@@ -15,7 +15,7 @@
 <form >
     <div class="form-group">
         <label for="sheduleevent">Событие</label>
-        <select class="form-control" id="sheduleEvent" name="sheduleEvent" >
+        <select class="form-control" id="sheduleevent" name="sheduleevent" >
             <c:forEach items="${eventshedule}" var="sl">
                 <c:choose>
                     <c:when test="${sl.id==schedule.scheduleEvent.id}">
@@ -29,8 +29,8 @@
         </select>
     </div>
     <div class="form-group" accept-charset="UTF-8">
-        <label for="week">День недели</label>
-        <select class="form-control" id="week" name="day">
+        <label for="day">День недели</label>
+        <select class="form-control" id="day" name="day">
             <c:forEach items="${weekday}" var="days">
                 <c:choose>
                     <c:when test="${days.id == schedule.day.id}">
@@ -68,7 +68,7 @@
         </div>
 
     </div>
-    <button type="submit" class="btn btn-primary">Зберегти</button>
+    <button type="submit" class="btn btn-primary"  value="${schedule.id}">Зберегти</button>
 </form>
 <!--Scripts-->
 <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
@@ -77,6 +77,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 <script type="text/javascript" src="../../../resources/js/DTO/DTOSchedule.js"></script>
 <script type="text/javascript" src="../../../resources/js/services/AJAXService.js"></script>
+<script type="text/javascript" src="../../../resources/js/schedule/schedule_edit.js"></script>
 </body>
 </html>
 
