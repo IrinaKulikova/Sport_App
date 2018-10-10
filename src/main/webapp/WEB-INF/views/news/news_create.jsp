@@ -12,7 +12,7 @@
 <div class="container main-div m-5">
     <div class="user-edit-div">
         <h2><strong>Create news</strong></h2>
-        <form class="create-form">
+        <form class="create-news-form">
             <div class="row m-2">
                 <div class="col">
                     <input type="text" class="form-control" id="date" name="date" placeholder="Date" required>
@@ -54,6 +54,8 @@
 <script th:src="@{/webjars/jquery-ui/jquery-ui.min.js}"></script>
 <script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+<script type="text/javascript" src="../../../resources/js/services/FormsValidator.js"></script>
+<script type="text/javascript" src="../../../resources/js/services/jquery.validate.js"></script>
 <script type="text/javascript" src="../../../resources/js/DTO/DTONews.js"></script>
 <script type="text/javascript" src="../../../resources/js/services/AJAXService.js"></script>
 <script type="text/javascript" src="../../../resources/js/news/news_create.js"></script>
