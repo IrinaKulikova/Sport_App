@@ -135,16 +135,29 @@ public class ScheduleAdminController {
     @GetMapping("/dbclickedit/{id}")
     public String getDoubleClickEdit(Model model,@PathVariable int id){
         Schedule schedule=null;
+        List<Day> dayList = null;
+        List<ScheduleEvent> eventList = null;
         try {
-          schedule=scheduleServise.getById(id);
+            schedule=scheduleServise.getById(id);
+            eventList = schedulesEventService.getAll();
+            dayList = dayServise.getAll();
         } catch (Exception e) {
             e.printStackTrace();
         }
+        String time=schedule.getStarttime().toString();
+        time=time.substring(0,5);
+       if(time.startsWith("0")) time=time.substring(1,5);
+        model.addAttribute("time",time);
+        model.addAttribute("eventshedule", eventList);
+        model.addAttribute("weekday", dayList);
         model.addAttribute("schedule",schedule);
-        return "";
+        return "schedule/dbclickedit";
     }
     @PutMapping("/dbclickedit")
     public String putDoubleClickEdit(@RequestParam String starttime, @RequestParam int sheduleEvent, @RequestParam int day){
+          System.out.println(starttime);
+          System.out.println(sheduleEvent);
+          System.out.println(day);
         return "redirect:/";
     }
 
