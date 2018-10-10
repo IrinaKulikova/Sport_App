@@ -37,7 +37,7 @@ public class NewsViewController {
     }
 
     @GetMapping("/create")
-    public String userCreate(){
+    public String newsCreate(){
         return "news/news_create";
     }
 }
