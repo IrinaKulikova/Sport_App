@@ -11,6 +11,23 @@ INSERT INTO sport.news (title, date, description, image_url) VALUES ('Участ
 INSERT INTO sport.news (title, date, description, image_url) VALUES ('Мы поддержал забег Intersport Run Ukraine', '2018-03-01 10:00:20', 'В центре столицы, на Крещатике, состоялся спортивный фестиваль INTERSPORT FEST UA. Кульминацией события стали беговые соревнования INTERSPORT RUN UA. Мероприятие посвящено Дню физической культуры и спорта Украины',
 'https://www.sportlife.ua/sites/default/files/styles/colorbox/public/1_36.jpg?itok=txyNGBMZ');
 INSERT INTO sport.administrator (admin_hash, login, email) VALUES ('d029e071a4f849edd107efcb9e5b9701d1bce3789b3ec44ee185834dd0d4fcf3006234d74070b1f6','admin', 'lesha@ukr.net');
-INSERT INTO sport.user (email, first_name, last_name, phone, user_hash) VALUES ('petya@mail.com','Petya','Ribkin','+380(97)222-33-44','d029e071a4f849edd107efcb9e5b9701d1bce3789b3ec44ee185834dd0d4fcf3006234d74070b1f6');
-INSERT INTO sport.card (expiration_date, issue_date, pin_code, card_user_id) VALUES ('2/10/2018','2/11/2018','2345','1');
-INSERT INTO sport.card (expiration_date, issue_date, pin_code, card_user_id) VALUES ('2/10/2018','2/12/2018','2121','1');
+
+INSERT INTO scheduleevent (`name`,description) VALUES ('Йога','Разнообразные упражнения. Ведет тренер Ефровинина Мария. Время Занятия - 35 мин.');
+INSERT INTO scheduleevent (`name`,description) VALUES ('Плаванье','Можно занять дорожку в бассейне, консультации у тренера. Время Занятия - 45 мин.');
+
+INSERT INTO `day` (attribute,nameday) VALUES (1,'Понедельник');
+INSERT INTO `day` (attribute,nameday) VALUES (2,'Вторник');
+INSERT INTO `day` (attribute,nameday) VALUES (3,'Среда');
+INSERT INTO `day` (attribute,nameday) VALUES (4,'Четверг');
+INSERT INTO `day` (attribute,nameday) VALUES (5,'Пятница');
+INSERT INTO `day` (attribute,nameday) VALUES (6,'Суббота');
+INSERT INTO `day` (attribute,nameday) VALUES (7,'Воскресенье');
+
+INSERT INTO `schedule` (dayid,starttime,event_schedule) VALUES (1,'09:00:00',1);
+INSERT INTO `schedule` (dayid,starttime,event_schedule) VALUES (1,'18:00:00',1);
+INSERT INTO `schedule` (dayid,starttime,event_schedule) VALUES (2,'13:00:00',1);
+INSERT INTO `schedule` (dayid,starttime,event_schedule) VALUES (2,'19:30:00',1);
+INSERT INTO `schedule` (dayid,starttime,event_schedule) VALUES (3,'09:00:00',2);
+INSERT INTO `schedule` (dayid,starttime,event_schedule) VALUES (4,'18:00:00',2);
+INSERT INTO `schedule` (dayid,starttime,event_schedule) VALUES (5,'13:00:00',2);
+INSERT INTO `schedule` (dayid,starttime,event_schedule) VALUES (6,'10:00:00',2);

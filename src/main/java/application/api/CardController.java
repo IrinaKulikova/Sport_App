@@ -58,6 +58,7 @@ public class CardController {
             currentCard.setExpirationDate(card.getExpirationDate());
             currentCard.setIssueDate(card.getIssueDate());
             currentCard.setPinCode(card.getPinCode());
+            currentCard.setDescription(card.getDescription());
             currentCard.setUser(userService.getById(user_id));
             cardService.save(currentCard);
         } catch (Exception ex) {
@@ -79,9 +80,9 @@ public class CardController {
             curUser = userService.getById(user_id);
         } catch (Exception ex) {
             ex.printStackTrace();
-            return new JSONResultError<Card>(card, ex.getMessage());
+            return new JSONResultError<>(card, ex.getMessage());
         }
-        return new JSONResultOk<Card>(curUser.getCards().get(curUser.getCards().size() - 1));
+        return new JSONResultOk<>(curUser.getCards().get(curUser.getCards().size() - 1));
     }
 
     @DeleteMapping("/{user_id}/{id}")

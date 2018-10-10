@@ -1,4 +1,5 @@
 $(function () {
+    $(function () {
         let button = $("#save");
         $("#save").click(
             function (e) {
@@ -27,5 +28,20 @@ $(function () {
                 e.preventDefault();
             }
         );
+    });
+
+
+        $(function () {
+            $(".form-control").dblclick(function (e) {
+                $(this).attr("readonly",false);
+            });
+        });
+
+        $(function () {
+            $(".form-control").blur(function (e) {
+                $(this).attr("readonly",true);
+            });
+        });
+
     }
 );
