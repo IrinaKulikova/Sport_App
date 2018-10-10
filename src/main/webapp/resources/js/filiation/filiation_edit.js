@@ -1,44 +1,31 @@
 $(function () {
         var service = new AJAXService();
         let button = $("#save");
-        $("#save").click(
-            function (e) {
+        $("#save").click( function (e) {
+                var formsValidator = new FormsValidator();
+                var formFiliationEdit = $(".form-filiation-edit");
+                if(formsValidator.filiationForm(formFiliationEdit)) {
 
-                let caption = $('#caption').val();
-                let country = $('#country').val();
-                let city = $('#city').val();
-                let street = $('#street').val();
-                let building = $('#building').val();
-                let indexCity = $('#indexcity').val();
+                    var newFiliation = new Filiation($('#id').val(),
+                        $('#caption').val(), $('#country').val(),
+                        $('#city').val(), $('#street').val(),
+                        $('#building').val(), $('#indexcity').val());
+                    console.log(newFiliation);
 
-                if (caption === "" || country === "" || city === "" || street === "" || building === "" ||
-                    indexCity === "" || caption === undefined || country === undefined || city === undefined
-                    || street === undefined || building === undefined || indexCity === undefined) {
+                    function success() {
+                        $("h1").text("Filiation " + $('#caption').val());
+                    };
+
+                    function fail() {
+                        console.log("error");
+                    };
+                    service.put("/api/1.0/filiation/" + button.val(), newFiliation, success, fail);
                     e.preventDefault();
-                    return;
                 }
-
-                var newFiliation = new Filiation($('#id').val(),
-                    $('#caption').val(), $('#country').val(),
-                    $('#city').val(), $('#street').val(),
-                    $('#building').val(), $('#indexcity').val());
-                console.log(newFiliation);
-
-                function success() {
-                    $("h1").text("Filiation " + $('#caption').val());
-                };
-
-                function fail() {
-                    console.log("error");
-                };
-                service.put("/api/1.0/filiation/" + button.val(), newFiliation, success, fail);
-                e.preventDefault();
-            }
-        );
+        });
 
         let add = $("#add");
-        $("#add").click(
-            function (e) {
+        $("#add").click(function (e) {
                 var contact = new Contact(new ContactType($("#contacts option:selected").val(), $("#contacts option:selected").text()),
                     $("#newcontact").val());
                 console.log(contact);

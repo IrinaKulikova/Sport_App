@@ -222,5 +222,61 @@ class FormsValidator{
         });
         return form.valid();
     }
+    filiationForm(form){
+        form.validate({
+            rules: {
+                caption: {
+                    required: true,
+                    maxlength: 50
+                },
+                country: {
+                    required: true,
+                    maxlength: 50
+                },
+                city: {
+                    required: true,
+                    maxlength: 50
+                },
+                street: {
+                    required: true,
+                    maxlength: 150
+                },
+                building: {
+                    maxlength: 20
+                },
+                indexCity: {
+                    maxlength: 20,
+                    number: true
+                }
+            },
+            messages: {
+                caption: {
+                    required: "Caption cant be empty!",
+                    maxlength: "Max length: 50 symbols!"
+                },
+                country: {
+                    required: "Country cant be empty!",
+                    maxlength: "Max length: 50 symbols!"
+                },
+                city: {
+                    required: "City cant be empty!",
+                    maxlength: "Max length: 50 symbols!"
+                },
+                street: {
+                    required: "Street cant be empty!",
+                    maxlength: "Max length: 150 symbols!"
+                },
+                building: {
+                    maxlength: "Max length: 20 symbols!"
+                },
+                indexCity: {
+                    maxlength: "Max length: 20 symbols!",
+                    number: "Index must be a number!"
+                }
+            }
+        });
+        return form.valid();
+    }
+
 }
 

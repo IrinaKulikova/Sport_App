@@ -1,22 +1,8 @@
 $(function () {
-        let button = $("#save");
-        $("#save").click(
-            function (e) {
-
-                let caption = $('#caption').val();
-                let country = $('#country').val();
-                let city = $('#city').val();
-                let street = $('#street').val();
-                let building = $('#building').val();
-                let indexCity = $('#indexcity').val();
-
-                if (caption === "" || country === "" || city === "" || street === "" || building === "" ||
-                    indexCity === "" || caption === undefined || country === undefined || city === undefined
-                    || street === undefined || building === undefined || indexCity === undefined) {
-                    e.preventDefault();
-                    return;
-                }
-
+        $("#save").click(function (e) {
+            var formsValidator = new FormsValidator();
+            var formFiliationCreate = $(".form-filiation-create");
+            if(formsValidator.filiationForm(formFiliationCreate)){
                 var newFiliation = new Filiation($('#id').val(),
                     $('#caption').val(), $('#country').val(),
                     $('#city').val(), $('#street').val(),
@@ -35,6 +21,6 @@ $(function () {
                 service.post("/api/1.0/filiation/", newFiliation, success, fail);
                 e.preventDefault();
             }
-        );
+        });
     }
 );
