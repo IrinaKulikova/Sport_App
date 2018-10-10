@@ -1,6 +1,5 @@
 package application.api;
 
-import application.entity.Contact;
 import application.entity.ScheduleEvent;
 import application.helper.JSONResult;
 import application.helper.JSONResultError;
@@ -10,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
-import java.util.List;
 
 @RestController
 @RequestMapping("/api/1.0/events")
@@ -18,7 +16,6 @@ public class ScheduleEventController {
 
     @Autowired
     SchedulesEventService eventService;
-
 
     @PostMapping()
     public JSONResult<ScheduleEvent> addScheduleEvent(@RequestBody ScheduleEvent event) {

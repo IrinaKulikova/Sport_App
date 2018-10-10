@@ -20,7 +20,7 @@ import java.util.List;
 
 
 @RestController
-@RequestMapping(value = "/api/1.0/shared/", produces = "application/json")
+@RequestMapping(value = "/api/1.0/shared", produces = "application/json")
 public class SharedApiController {
 
     @Autowired
@@ -39,9 +39,9 @@ public class SharedApiController {
             schedules = scheduleService.getAll();
         } catch (Exception ex) {
             ex.printStackTrace();
-            return new JSONResultError<>(schedules, ex.getMessage());
+            return new JSONResultError<List<Schedule>>(schedules, ex.getMessage());
         }
-        return new JSONResultOk<>(schedules);
+        return new JSONResultOk<List<Schedule>>(schedules);
     }
 
     @GetMapping("/events")
@@ -51,7 +51,7 @@ public class SharedApiController {
             events = eventService.getAll();
         } catch (Exception ex) {
             ex.printStackTrace();
-            return new JSONResultError<List<ScheduleEvent>>(events, ex.getMessage());
+            return new JSONResultError<>(events, ex.getMessage());
         }
         return new JSONResultOk<>(events);
     }
@@ -64,9 +64,9 @@ public class SharedApiController {
             filiation = filiationService.getAll();
         } catch (Exception ex) {
             ex.printStackTrace();
-            return new JSONResultError<List<Filiation>>(filiation, ex.getMessage());
+            return new JSONResultError<>(filiation, ex.getMessage());
         }
-        return new JSONResultOk<List<Filiation>>(filiation);
+        return new JSONResultOk<>(filiation);
     }
 
     @GetMapping("/news")
@@ -78,7 +78,7 @@ public class SharedApiController {
             ex.printStackTrace();
             return new JSONResultError<>(news, ex.getMessage());
         }
-        return new JSONResultOk<List<News>>(news);
+        return new JSONResultOk<>(news);
     }
 
 

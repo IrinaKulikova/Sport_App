@@ -18,7 +18,7 @@
                 <label for="caption">Caption: </label>
             </div>
             <div class="col-md-8">
-                <input type="text" id="caption" class="form-control" value="${filiation.caption}" name="caption"
+                <input type="text" id="caption" class="form-control" readonly="true" value="${filiation.caption}" name="caption"
                        placeholder="Enter here...">
             </div>
         </div>
@@ -27,7 +27,7 @@
                 <label for="country">Country: </label>
             </div>
             <div class="col-md-8">
-                <input type="text" id="country" class="form-control" value="${filiation.country}" name="country"
+                <input type="text" id="country" class="form-control" readonly="true" value="${filiation.country}" name="country"
                        placeholder="Enter here...">
             </div>
         </div>
@@ -36,7 +36,7 @@
                 <label for="city">City: </label>
             </div>
             <div class="col-md-8">
-                <input type="text" id="city" class="form-control" value="${filiation.city}" name="city"
+                <input type="text" id="city" class="form-control" readonly="true" value="${filiation.city}" name="city"
                        placeholder="Enter here...">
             </div>
         </div>
@@ -45,7 +45,7 @@
                 <label for="street">Street: </label>
             </div>
             <div class="col-md-8">
-                <input type="text" id="street" class="form-control" value="${filiation.street}" name="street"
+                <input type="text" id="street" class="form-control" readonly="true" value="${filiation.street}" name="street"
                        placeholder="Enter here...">
             </div>
         </div>
@@ -54,7 +54,7 @@
                 <label for="building">Building: </label>
             </div>
             <div class="col-md-8">
-                <input type="text" id="building" class="form-control" value="${filiation.building}" name="building"
+                <input type="text" id="building" class="form-control" readonly="true" value="${filiation.building}" name="building"
                        placeholder="Enter here...">
             </div>
         </div>
@@ -63,7 +63,7 @@
                 <label for="indexcity">Index: </label>
             </div>
             <div class="col-md-8">
-                <input type="text" id="indexcity" class="form-control" value="${filiation.indexCity}" name="indexCity"
+                <input type="text" id="indexcity" class="form-control" readonly="true" value="${filiation.indexCity}" name="indexCity"
                        placeholder="Enter here...">
             </div>
         </div>
@@ -73,7 +73,7 @@
                     <label>${contact.contactType.name}:</label>
                 </div>
                 <div class="col-md-6">
-                    <input type="text" class="form-control" value="${contact.data}"
+                    <input type="text" class="form-control" readonly="true" value="${contact.data}"
                            placeholder="Enter here...">
                 </div>
                 <div class="col-md-2">
@@ -88,7 +88,7 @@
                 <label></label>
             </div>
             <div class="col-md-6">
-                <input type="text" class="form-control">
+                <input type="text" readonly="true" class="form-control">
             </div>
             <div class="col-md-2">
                 <button class="del btn text-center btn-outline-danger">Delete</button>
@@ -110,7 +110,7 @@
                     </div>
                     <div class="col-md-8">
                         <div class="row-md-8">
-                            <input type="text" placeholder="Enter here..." class="form-control" id="newcontact">
+                            <input type="text" placeholder="Enter here..." class="form-control" readonly="true" id="newcontact">
                         </div>
                     </div>
                     <div class="col-md-2">

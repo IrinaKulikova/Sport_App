@@ -14,25 +14,25 @@
         <form>
             <div class="row m-2">
                 <div class="col">
-                    <input type="text" class="form-control" id="fname" name="firstName" placeholder="First name" required readonly="true" value="${user.firstName}">
+                    <input type="text" class="form-control" id="fname" name="firstName" placeholder="First name" readonly="true" value="${user.firstName}">
                 </div>
                 <div class="col">
-                    <input type="text" class="form-control" id="lname" name="lastName" placeholder="Last name" required readonly="true" value="${user.lastName}">
-                </div>
-            </div>
-            <div class="row m-2">
-                <div class="col">
-                    <input type="text" class="form-control" id="email" name="email" placeholder="Email" required readonly="true" value="${user.email}">
+                    <input type="text" class="form-control" id="lname" name="lastName" placeholder="Last name" readonly="true" value="${user.lastName}">
                 </div>
             </div>
             <div class="row m-2">
                 <div class="col">
-                    <input type="text" class="form-control" id="phone" name="phone" placeholder="Phone" required readonly="true" value="${user.phone}">
+                    <input type="text" class="form-control" id="email" name="email" placeholder="Email" readonly="true" value="${user.email}">
                 </div>
             </div>
             <div class="row m-2">
                 <div class="col">
-                    <input type="password" class="form-control" id="pass" name="password" placeholder="Password" required readonly="true">
+                    <input type="text" class="form-control" id="phone" name="phone" placeholder="Phone" readonly="true" value="${user.phone}">
+                </div>
+            </div>
+            <div class="row m-2">
+                <div class="col">
+                    <input type="password" class="form-control" id="pass" name="password" placeholder="Password" readonly="true">
                 </div>
             </div>
             <div class="row m-2">
@@ -44,6 +44,35 @@
                 </div>
             </div>
         </form>
+        <div class="card-edit-div m-2">
+            <h3><strong>User cards</strong></h3>
+            <form>
+                <div class="row ml-2">
+                    <select id="selectId" name="id">
+                        <option value="-1">New card</option>
+                        <c:forEach items="${cards}" var="card">
+                            <option value="${card.id}">${card.description}</option>
+                        </c:forEach>
+                    </select>
+                </div>
+                <div class="row m-2">
+                    <div class="col">
+                        <input type="text" class="form-control" id="description" name="description" placeholder="Description" readonly="true">
+                    </div>
+                    <div class="col">
+                        <input type="text" class="form-control" id="issueDate" name="issueDate" placeholder="Issue date" readonly="true">
+                    </div>
+                    <div class="col">
+                        <input type="text" class="form-control" id="expirationDate" name="expirationDate" placeholder="Expiration date" readonly="true">
+                    </div>
+                </div>
+                <div class="row m-2">
+                    <div class="col">
+                        <button type="submit" class="btn-save-card btn btn-outline-success" value="${user.id}">Save card</button>
+                    </div>
+                </div>
+            </form>
+        </div>
     </div>
 </div>
 <c:import url="../template/footer.jsp"></c:import>

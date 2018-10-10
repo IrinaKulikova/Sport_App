@@ -58,6 +58,7 @@ public class CardController {
             currentCard.setExpirationDate(card.getExpirationDate());
             currentCard.setIssueDate(card.getIssueDate());
             currentCard.setPinCode(card.getPinCode());
+            currentCard.setDescription(card.getDescription());
             currentCard.setUser(userService.getById(user_id));
             cardService.save(currentCard);
         } catch (Exception ex) {
