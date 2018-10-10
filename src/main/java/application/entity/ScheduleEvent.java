@@ -1,5 +1,6 @@
 package application.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -20,6 +21,7 @@ public class ScheduleEvent {
 
     @OneToMany(fetch = FetchType.LAZY, targetEntity = Schedule.class, cascade = CascadeType.ALL)
     @JoinColumn(name = "event_schedule")
+    @JsonIgnore
     List<Schedule> schedules = new ArrayList<>();
 
     public ScheduleEvent() {
