@@ -38,9 +38,10 @@ public class AuthorizationFilter implements Filter {
         HttpSession session = req.getSession();
         String requestUri = req.getRequestURI();
 
-        System.out.println("REQUEST === "+requestUri);
-        if(requestUri.contains("/api/1.0/shared/")) {
+        System.out.println("REQUEST === " + requestUri);
+        if (requestUri.contains("/api/1.0/shared/")) {
             chain.doFilter(request, response);
+            return;
         }
 
         if (administratorService == null) {
