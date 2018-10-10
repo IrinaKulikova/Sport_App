@@ -74,6 +74,8 @@ public class CardController {
         User curUser = null;
         try {
             user = userService.getById(user_id);
+            System.out.println("ID "+user_id);
+            System.out.println("User "+user.getFirstName());
             card.setUser(user);
             user.addCard(card);
             userService.save(user);
