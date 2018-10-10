@@ -11,7 +11,7 @@
 <div class="container main-div mt-md-5">
     <div class="user-edit-div">
         <h2><strong>Edit user</strong></h2>
-        <form>
+        <form class="user-form">
             <div class="row m-2">
                 <div class="col">
                     <input type="text" class="form-control" id="fname" name="firstName" placeholder="First name" readonly="true" value="${user.firstName}">
@@ -47,9 +47,8 @@
         <div class="card-edit-div m-2">
             <input type="text" id="userId" value="${user.id}" hidden>
             <h3><strong>User cards</strong></h3>
-            <form>
+            <form class="card-form">
                 <div class="row m-2">
-
                     <div class="col">
                         <input type="text" class="form-control" id="description" name="description" placeholder="Description" readonly="true">
                     </div>
@@ -65,7 +64,7 @@
                 </div>
                 <div class="row m-2">
                     <div class="col">
-                        <button type="submit" class="btn-save-card btn btn-outline-success" value="${user.id}">Save card</button>
+                        <button type="submit" class="btn-save-card btn btn-outline-success" id="id" value="${user.id}">Save card</button>
                     </div>
                 </div>
             </form>
@@ -100,6 +99,7 @@
 </div>
 <c:import url="../template/footer.jsp"></c:import>
 <!--Scripts-->
+<script type="text/javascript" src="../../../resources/js/DTO/DTOCard.js"></script>
 <script type="text/javascript" src="../../../resources/js/DTO/DTOUser.js"></script>
 <script type="text/javascript" src="../../../resources/js/services/AJAXService.js"></script>
 <script type="text/javascript" src="../../../resources/js/user/user_edit.js"></script>
