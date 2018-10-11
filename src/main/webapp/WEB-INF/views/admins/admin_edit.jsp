@@ -10,7 +10,7 @@
 <body>
 <c:import url="../template/header.jsp"></c:import>
 <div class="container main-div mt-3">
-    <h1>Administrator ${admin.login}</h1>
+    <h1>Administrator: ${admin.login}</h1>
     <form id="form" class="form edit-admin-form mt-3 mb-5">
         <input type="text" id="id" name="id" hidden>
         <div class="row">
@@ -36,22 +36,22 @@
                 <label for="password1">Password: </label>
             </div>
             <div class="col-md-8">
-                <input type="password" id="password1" class="form-control" name="passw1"
+                <input type="password" id="password1" class="form-control" name="password"
                        placeholder="Enter here...">
             </div>
         </div>
         <div class="row mt-2">
             <div class="col mt-2">
-                <label for="password2">Password: </label>
+                <label for="password2">Confirm: </label>
             </div>
             <div class="col-md-8">
-                <input type="password" id="password2" class="form-control" name="passw2"
+                <input type="password" id="password2" class="form-control" name="confirm"
                        placeholder="Enter here...">
             </div>
         </div>
         <div class="mt-4 row">
             <div class="col-md-12 text-center">
-                <button type="submit" id="save" value="${admin.id}" class="btn btn-outline-danger pl-5 pr-5">
+                <button type="submit" id="save" value="${admin.id}" class="btn btn-outline-success pl-5 pr-5">
                     Save
                 </button>
             </div>
@@ -62,7 +62,7 @@
 <!--Scripts-->
 <script src="../../../resources/js/services/FormsValidator.js" type="text/javascript"></script>
 <script src="../../../resources/js/services/jquery.validate.js" type="text/javascript"></script>
-<script src="../../../resources/js/DTO/DTOFiliation.js" type="text/javascript"></script>
+<script src="../../../resources/js/DTO/DTOAdministrator.js" type="text/javascript"></script>
 <script src="../../../resources/js/services/AJAXService.js" type="text/javascript"></script>
 <script src="../../../resources/js/admins/admin_edit.js" type="text/javascript"></script>
 </body>

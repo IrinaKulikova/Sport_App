@@ -341,16 +341,16 @@ class FormsValidator{
                     required: true,
                     email: true
                 },
-                passw1: {
+                password: {
                     required: true,
-                    minlength: 6,
+                    minlength: 5,
                     maxlength: 12
                 },
-                passw2: {
+                confirm: {
                     required: true,
-                    minlength: 6,
+                    minlength: 5,
                     maxlength: 12,
-                    equalTo: "#passw1"
+                    equalTo: "#password1"
                 }
 
             },
@@ -365,8 +365,8 @@ class FormsValidator{
                 },
                 passw1: {
                     required: "Password cant be empty!",
-                    maxlength: "Password length 6-12 symbols!",
-                    minlength: "Password length 6-12 symbols!"
+                    maxlength: "Password length 5-12 symbols!",
+                    minlength: "Password length 5-12 symbols!"
                 }
             }
         });
