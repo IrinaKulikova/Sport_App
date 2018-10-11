@@ -23,8 +23,8 @@ import java.util.TimeZone;
 @Controller
 @RequestMapping("/schedules")
 public class ScheduleAdminController {
-    private static final int startTime=8;
-    private static final int endTime=20;
+    private static final int startTime = 8;
+    private static final int endTime = 20;
     @Autowired
     ScheduleService scheduleServise;
     @Autowired
@@ -48,7 +48,7 @@ public class ScheduleAdminController {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        List<List<ScheduleSender>> scheduleListTable=makeTable(dayList,scheduleList);
+        List<List<ScheduleSender>> scheduleListTable = makeTable(dayList, scheduleList);
         model.addAttribute("daylist", dayList);
         model.addAttribute("schedulelist", scheduleListTable);
         //    List<Schedule> scheduleList=scheduleServise.getAll();
@@ -87,16 +87,17 @@ public class ScheduleAdminController {
 
     @PostMapping("/save_shedule")
     public String postSaveSchedule(@RequestParam String starttime, @RequestParam int sheduleEvent, @RequestParam int day) {
-     //   System.out.println(starttime);
-     //   System.out.println(sheduleEvent);
-     //   System.out.println(day);
+        //   System.out.println(starttime);
+        //   System.out.println(sheduleEvent);
+        //   System.out.println(day);
         Day newDay = null;
+        ScheduleEvent scheduleEvent = new ScheduleEvent();
         try {
             newDay = dayServise.getById(day);
+            scheduleEvent = schedulesEventService.getById(sheduleEvent);
         } catch (Exception e) {
             e.printStackTrace();
         }
-        ScheduleEvent scheduleEvent = schedulesEventService.getById(sheduleEvent);
         SimpleDateFormat localDateFormat = new SimpleDateFormat("HH:mm");
         localDateFormat.setTimeZone(TimeZone.getTimeZone("GMT+2"));
         Date date = null;
@@ -115,8 +116,9 @@ public class ScheduleAdminController {
         }
         return "redirect:/";
     }
+
     @GetMapping("/dbclickcreate")
-    public String getDoubleClickCreate(@RequestParam String time,@RequestParam String id, Model model){
+    public String getDoubleClickCreate(@RequestParam String time, @RequestParam String id, Model model) {
         List<Day> dayList = null;
         List<ScheduleEvent> eventList = null;
         try {
@@ -125,62 +127,64 @@ public class ScheduleAdminController {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        model.addAttribute("time",time);
-        model.addAttribute("idday",id);
+        model.addAttribute("time", time);
+        model.addAttribute("idday", id);
         model.addAttribute("eventshedule", eventList);
         model.addAttribute("weekday", dayList);
         return "schedule/dbclickcreate";
     }
 
     @GetMapping("/dbclickedit/{id}")
-    public String getDoubleClickEdit(Model model,@PathVariable int id){
-        Schedule schedule=null;
+    public String getDoubleClickEdit(Model model, @PathVariable int id) {
+        Schedule schedule = null;
         List<Day> dayList = null;
         List<ScheduleEvent> eventList = null;
         try {
-            schedule=scheduleServise.getById(id);
+            schedule = scheduleServise.getById(id);
             eventList = schedulesEventService.getAll();
             dayList = dayServise.getAll();
         } catch (Exception e) {
             e.printStackTrace();
         }
-        String time=schedule.getStarttime().toString();
-        time=time.substring(0,5);
-       if(time.startsWith("0")) time=time.substring(1,5);
-        model.addAttribute("time",time);
+        String time = schedule.getStarttime().toString();
+        time = time.substring(0, 5);
+        if (time.startsWith("0")) time = time.substring(1, 5);
+        model.addAttribute("time", time);
         model.addAttribute("eventshedule", eventList);
         model.addAttribute("weekday", dayList);
-        model.addAttribute("schedule",schedule);
+        model.addAttribute("schedule", schedule);
         return "schedule/dbclickedit";
     }
+
     @PutMapping("/dbclickedit")
-    public String putDoubleClickEdit(@RequestParam String starttime, @RequestParam int sheduleevent, @RequestParam int day,@PathVariable("id") int id){
-          System.out.println(starttime);
-          System.out.println(sheduleevent);
-          System.out.println(day);
+    public String putDoubleClickEdit(@RequestParam String starttime, @RequestParam int sheduleevent, @RequestParam int day, @PathVariable("id") int id) {
+        System.out.println(starttime);
+        System.out.println(sheduleevent);
+        System.out.println(day);
         return "redirect:/";
     }
 
 
-    private List<List<ScheduleSender>> makeTable(List<Day> dayList,  List<Schedule> scheduleList){
-        ScheduleSender sender=null;
-      List<List<ScheduleSender>> scheduleListSenders=new ArrayList<>();
-        for (int i=startTime;i<=endTime;i++){
-          List<ScheduleSender> scheduleSenders=new ArrayList<>();
-          sender= new ScheduleSender(i+":00");
-          scheduleSenders.add(sender);
-            for (Day d:dayList) {
-                String attributeTime=i + ":00";
-                Integer idday=d.getId();
-                sender=new ScheduleSender("",attributeTime,idday.toString());
-                sender.setScheduleList(isHaveSchedules(d.getId(),attributeTime,scheduleList));
+    private List<List<ScheduleSender>> makeTable(List<Day> dayList, List<Schedule> scheduleList) {
+        ScheduleSender sender = null;
+        List<List<ScheduleSender>> scheduleListSenders = new ArrayList<>();
+        for (int i = startTime; i <= endTime; i++) {
+            List<ScheduleSender> scheduleSenders = new ArrayList<>();
+            sender = new ScheduleSender(i + ":00");
+            scheduleSenders.add(sender);
+            for (Day d : dayList) {
+                String attributeTime = i + ":00";
+                Integer idday = d.getId();
+                sender = new ScheduleSender("", attributeTime, idday.toString());
+                sender.setScheduleList(isHaveSchedules(d.getId(), attributeTime, scheduleList));
                 scheduleSenders.add(sender);
             }
             scheduleListSenders.add(scheduleSenders);
         }
         return scheduleListSenders;
     }
-    private List<Schedule> isHaveSchedules(int dayId,String time,List<Schedule> readScheduleList){
+
+    private List<Schedule> isHaveSchedules(int dayId, String time, List<Schedule> readScheduleList) {
         SimpleDateFormat localDateFormat = new SimpleDateFormat("HH:mm");
         Date date = null;
         try {
@@ -190,16 +194,15 @@ public class ScheduleAdminController {
         }
 
 
-        List<Schedule> scheduleList=new ArrayList<>();
-        for (Schedule schedule:readScheduleList) {
-            long timeStart=schedule.getStarttime().getTime();
-            long timeTable=date.getTime();
-         //   java.util.Date dt=new java.util.Date(schedule.getStarttime().getTime());
-           if((schedule.getDay().getId()==dayId)&&(date.getTime()==schedule.getStarttime().getTime())){
-                 scheduleList.add(schedule);
-           }
+        List<Schedule> scheduleList = new ArrayList<>();
+        for (Schedule schedule : readScheduleList) {
+            long timeStart = schedule.getStarttime().getTime();
+            long timeTable = date.getTime();
+            //   java.util.Date dt=new java.util.Date(schedule.getStarttime().getTime());
+            if ((schedule.getDay().getId() == dayId) && (date.getTime() == schedule.getStarttime().getTime())) {
+                scheduleList.add(schedule);
+            }
         }
-
 
 
         return scheduleList;

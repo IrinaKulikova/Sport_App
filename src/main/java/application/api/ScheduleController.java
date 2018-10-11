@@ -1,5 +1,6 @@
 package application.api;
 
+import application.dto.ScheduleDTO;
 import application.entity.Day;
 import application.entity.Schedule;
 import application.entity.ScheduleEvent;
@@ -29,9 +30,10 @@ public class ScheduleController {
     SchedulesEventService schedulesEventService;
     @Autowired
     DayServise dayServise;
+
     // получить список расписание
     @GetMapping()
-    public JSONResult<List<Schedule>> getSchedule(){
+    public JSONResult<List<Schedule>> getSchedule() {
         List<Schedule> schedules = new ArrayList<>();
         try {
             schedules = scheduleServise.getAll();
@@ -41,47 +43,45 @@ public class ScheduleController {
         }
         return new JSONResultOk<>(schedules);
     }
+
     @PutMapping("/scheduleedit/{id}")
-     public JSONResult<Schedule> putSaveSchdule(@RequestParam String starttime, @RequestParam int sheduleevent, @RequestParam int day,@PathVariable("id") int id){
-        System.out.println(starttime);
-        System.out.println(sheduleevent);
-        System.out.println(day);
-        System.out.println(id);
+    public JSONResult<Schedule> putSaveSchedule(@RequestBody ScheduleDTO schedule, @PathVariable("id") int id) {
+        System.out.println(schedule.getId());
+        System.out.println(schedule.getDayid());
+        System.out.println(schedule.getStarttime());
+        System.out.println(schedule.getEventschedule());
+        Schedule currentSchedule = new Schedule();
         Day newDay = null;
-        Schedule currentShedule=null;
-        try {
-            newDay = dayServise.getById(day);
-        } catch (Exception e) {
-            e.printStackTrace();
-            return new JSONResultError<>(currentShedule,"day not read!");
-        }
         SimpleDateFormat localDateFormat = new SimpleDateFormat("HH:mm");
         localDateFormat.setTimeZone(TimeZone.getTimeZone("GMT+2"));
         Date date = null;
+        ScheduleEvent scheduleEvent = new ScheduleEvent();
         try {
-            date = localDateFormat.parse(starttime);
-        } catch (ParseException e) {
+            newDay = dayServise.getById(schedule.getDayid());
+            date = localDateFormat.parse(currentSchedule.getStarttime().toString());
+            scheduleEvent = schedulesEventService.getById(schedule.getEventschedule());
+        } catch (Exception e) {
             e.printStackTrace();
+            return new JSONResultError<>(currentSchedule, "day not read!");
         }
 
         java.sql.Time sd = new java.sql.Time(date.getTime());
-        ScheduleEvent scheduleEvent = schedulesEventService.getById(sheduleevent);
-        Schedule schedule=new Schedule(newDay,sd,scheduleEvent);
+        Schedule editschedule = new Schedule(newDay, sd, scheduleEvent);
         schedule.setId(id);
 
         try {
-            scheduleServise.getById(id);;
-            if(currentShedule==null){
-                return new JSONResultError<>(currentShedule,"schedule not find!");
+            currentSchedule = scheduleServise.getById(id);
+            if (currentSchedule == null) {
+                return new JSONResultError<>(currentSchedule, "schedule not find!");
             }
-            currentShedule.setDay(schedule.getDay());
-            currentShedule.setScheduleEvent(schedule.getScheduleEvent());
-            currentShedule.setStarttime(schedule.getStarttime());
-            scheduleServise.save(currentShedule);
-        }catch (Exception ex){
-             ex.printStackTrace();
-             return new JSONResultError<>(currentShedule,ex.getMessage());
+            currentSchedule.setDay(editschedule.getDay());
+            currentSchedule.setScheduleEvent(editschedule.getScheduleEvent());
+            currentSchedule.setStarttime(editschedule.getStarttime());
+            scheduleServise.save(currentSchedule);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            return new JSONResultError<>(currentSchedule, ex.getMessage());
         }
-         return new JSONResultOk<>(currentShedule);
-     }
+        return new JSONResultOk<>(currentSchedule);
+    }
 }

@@ -20,7 +20,7 @@ public class SchedulesEventService implements EntityService<ScheduleEvent> {
     }
 
     @Override
-    public ScheduleEvent getById(int id) {
+    public ScheduleEvent getById(int id) throws Exception {
         return repository.findById(id).get();
     }
 
