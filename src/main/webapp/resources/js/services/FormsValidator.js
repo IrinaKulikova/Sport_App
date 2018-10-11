@@ -277,6 +277,31 @@ class FormsValidator{
         });
         return form.valid();
     }
+    eventForm(form){
+        form.validate({
+            rules: {
+                name: {
+                    required: true,
+                    maxlength: 20
+                },
+                description: {
+                    required: true,
+                    maxlength: 30
+                }
+            },
+            messages: {
+                name: {
+                    required: "Name cant be empty!",
+                    maxlength: "Max length: 20 symbols!"
+                },
+                description: {
+                    required: "Description cant be empty!",
+                    maxlength: "Max length: 30 symbols!"
+                }
+            }
+        });
+        return form.valid();
+    }
 
 }
 

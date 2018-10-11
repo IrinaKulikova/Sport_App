@@ -11,7 +11,7 @@
 <c:import url="../template/header.jsp"></c:import>
 <div class="container main-div mt-3">
     <h1>Event ${event.name}</h1>
-    <form method="post" accept-charset="UTF-8">
+    <form class="edit-event-form" accept-charset="UTF-8">
         <div class="form-group">
             <label for="name">Name</label>
             <input type="text" class="form-control" id="name" placeholder="" readonly="true" value="${event.name}" name="name">
@@ -30,6 +30,8 @@
         </div>
     </form>
 </div>
+<script src="../../../resources/js/services/FormsValidator.js" type="text/javascript"></script>
+<script src="../../../resources/js/services/jquery.validate.js" type="text/javascript"></script>
 <script src="../../../resources/js/services/AJAXService.js" type="text/javascript"></script>
 <script src="../../../resources/js/DTO/DTOEvent.js" type="text/javascript"></script>
 <script src="../../../resources/js/events/event_edit.js" type="text/javascript"></script>
