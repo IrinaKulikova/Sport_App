@@ -11,7 +11,7 @@
 <c:import url="../template/header.jsp"></c:import>
 <div class="container main-div mt-3">
     <h1>Administrator create</h1>
-    <form id="form" class="form mt-3 mb-5">
+    <form id="form" class="form create-admin-form mt-3 mb-5">
         <input type="text" id="id" name="id" hidden>
         <div class="row">
             <div class="col mt-2">
@@ -42,6 +42,8 @@
 </div>
 <c:import url="../template/footer.jsp"></c:import>
 <!--Scripts-->
+<script src="../../../resources/js/services/FormsValidator.js" type="text/javascript"></script>
+<script src="../../../resources/js/services/jquery.validate.js" type="text/javascript"></script>
 <script src="../../../resources/js/DTO/DTOAdministrator.js" type="text/javascript"></script>
 <script src="../../../resources/js/services/AJAXService.js" type="text/javascript"></script>
 <script src="../../../resources/js/admins/admin_create.js" type="text/javascript"></script>

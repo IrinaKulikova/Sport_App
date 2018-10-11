@@ -302,6 +302,73 @@ class FormsValidator{
         });
         return form.valid();
     }
+    adminCreateForm(form){
+        form.validate({
+            rules: {
+                login: {
+                    required: true,
+                    minlength: 5,
+                    maxlength: 12
+                },
+                email: {
+                    required: true,
+                    email: true
+                }
+            },
+            messages: {
+                login: {
+                    required: "Login cant be empty!",
+                    maxlength: "Login length 5-12 symbols!"
+                },
+                email: {
+                    required: "Email cant be empty!",
+                    email: "Not valid email address!"
+                }
+            }
+        });
+        return form.valid();
+    }
+
+    adminEditForm(form){
+        form.validate({
+            rules: {
+                login: {
+                    required: true,
+                    minlength: 5,
+                    maxlength: 12
+                },
+                email: {
+                    required: true,
+                    email: true
+                },
+                passw1: {
+                    required: true,
+                    minlength: 6,
+                    maxlength: 12
+                },
+                passw2: {
+                    equalTo: "#passw1"
+                }
+
+            },
+            messages: {
+                login: {
+                    required: "Login cant be empty!",
+                    maxlength: "Login length 5-12 symbols!"
+                },
+                email: {
+                    required: "Email cant be empty!",
+                    email: "Not valid email address!"
+                },
+                passw1: {
+                    required: "Password cant be empty!",
+                    maxlength: "Password length 6-12 symbols!",
+                    minlength: "Password length 6-12 symbols!"
+                }
+            }
+        });
+        return form.valid();
+    }
 
 }
 

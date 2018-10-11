@@ -1,8 +1,10 @@
 $(function () {
-        let button = $("#save");
+
         $("#save").click(
             function (e) {
-
+                var formsValidator = new FormsValidator();
+                var formAdminCreate = $(".create-admin-form");
+                if(formsValidator.adminCreateForm(formAdminCreate)){
                 let email = $("#email").val();
                 let login = $("#login").val();
                 let admin = new Administrator(0, login, email);
@@ -19,6 +21,7 @@ $(function () {
                 let service = new AJAXService();
                 service.post("/api/1.0/admins/", admin, success, fail);
                 e.preventDefault();
+                }
             }
         );
     }
