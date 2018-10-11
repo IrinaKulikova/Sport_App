@@ -286,7 +286,7 @@ class FormsValidator{
                 },
                 description: {
                     required: true,
-                    maxlength: 30
+                    maxlength: 100
                 }
             },
             messages: {
@@ -296,7 +296,7 @@ class FormsValidator{
                 },
                 description: {
                     required: "Description cant be empty!",
-                    maxlength: "Max length: 30 symbols!"
+                    maxlength: "Max length: 100 symbols!"
                 }
             }
         });
