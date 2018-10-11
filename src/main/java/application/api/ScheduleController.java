@@ -46,10 +46,12 @@ public class ScheduleController {
 
     @PutMapping("/scheduleedit/{id}")
     public JSONResult<Schedule> putSaveSchedule(@RequestBody ScheduleDTO schedule, @PathVariable("id") int id) {
-        System.out.println(schedule.getId());
-        System.out.println(schedule.getDayid());
-        System.out.println(schedule.getStarttime());
-        System.out.println(schedule.getEventschedule());
+
+     //   System.out.println(schedule.getId());
+     //   System.out.println("новый день недели"+schedule.getDayid());
+     //   System.out.println("новое время"+schedule.getStarttime());
+     //   System.out.println("id нового события"+ schedule.getEventschedule());
+     //   System.out.println("/id старого расписаия"+id);
         Schedule currentSchedule = new Schedule();
         Day newDay = null;
         SimpleDateFormat localDateFormat = new SimpleDateFormat("HH:mm");
@@ -58,7 +60,8 @@ public class ScheduleController {
         ScheduleEvent scheduleEvent = new ScheduleEvent();
         try {
             newDay = dayServise.getById(schedule.getDayid());
-            date = localDateFormat.parse(currentSchedule.getStarttime().toString());
+        //    date = localDateFormat.parse(currentSchedule.getStarttime().toString());
+            date=localDateFormat.parse(schedule.getStarttime());
             scheduleEvent = schedulesEventService.getById(schedule.getEventschedule());
         } catch (Exception e) {
             e.printStackTrace();
@@ -67,7 +70,7 @@ public class ScheduleController {
 
         java.sql.Time sd = new java.sql.Time(date.getTime());
         Schedule editschedule = new Schedule(newDay, sd, scheduleEvent);
-        schedule.setId(id);
+      //  schedule.setId(id);
 
         try {
             currentSchedule = scheduleServise.getById(id);
