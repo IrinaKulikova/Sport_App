@@ -154,7 +154,7 @@ public class ScheduleAdminController {
         return "schedule/dbclickedit";
     }
     @PutMapping("/dbclickedit")
-    public String putDoubleClickEdit(@RequestParam String starttime, @RequestParam int sheduleevent, @RequestParam int day){
+    public String putDoubleClickEdit(@RequestParam String starttime, @RequestParam int sheduleevent, @RequestParam int day,@PathVariable("id") int id){
           System.out.println(starttime);
           System.out.println(sheduleevent);
           System.out.println(day);

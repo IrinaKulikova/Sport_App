@@ -49,4 +49,21 @@ public class Schedule {
     public Time getStarttime() {
         return starttime;
     }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setDay(Day day) {
+        this.day = day;
+    }
+
+    public void setStarttime(Time starttime) {
+        this.starttime = starttime;
+    }
+
+    public void setScheduleEvent(ScheduleEvent scheduleEvent) {
+        this.scheduleEvent = scheduleEvent;
+    }
+
 }
