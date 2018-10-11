@@ -347,6 +347,9 @@ class FormsValidator{
                     maxlength: 12
                 },
                 passw2: {
+                    required: true,
+                    minlength: 6,
+                    maxlength: 12,
                     equalTo: "#passw1"
                 }
 
