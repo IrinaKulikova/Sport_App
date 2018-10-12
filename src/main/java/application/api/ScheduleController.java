@@ -1,6 +1,7 @@
 package application.api;
 
 import application.dto.ScheduleDTO;
+import application.dto.ScheduleEventDTO;
 import application.entity.Day;
 import application.entity.Schedule;
 import application.entity.ScheduleEvent;
@@ -46,12 +47,6 @@ public class ScheduleController {
 
     @PutMapping("/scheduleedit/{id}")
     public JSONResult<Schedule> putSaveSchedule(@RequestBody ScheduleDTO schedule, @PathVariable("id") int id) {
-
-     //   System.out.println(schedule.getId());
-     //   System.out.println("новый день недели"+schedule.getDayid());
-     //   System.out.println("новое время"+schedule.getStarttime());
-     //   System.out.println("id нового события"+ schedule.getEventschedule());
-     //   System.out.println("/id старого расписаия"+id);
         Schedule currentSchedule = new Schedule();
         Day newDay = null;
         SimpleDateFormat localDateFormat = new SimpleDateFormat("HH:mm");
@@ -86,5 +81,46 @@ public class ScheduleController {
             return new JSONResultError<>(currentSchedule, ex.getMessage());
         }
         return new JSONResultOk<>(currentSchedule);
+    }
+    @PutMapping
+    public JSONResult<ScheduleEvent> putScheduleEvent(@RequestBody ScheduleEventDTO scheduleEven,@PathVariable("id") int id){
+        ScheduleEvent currentscheduleEvent=new ScheduleEvent();
+        try {
+            currentscheduleEvent=schedulesEventService.getById(id);
+            if(currentscheduleEvent==null){
+                return new JSONResultError<>(currentscheduleEvent,"sheduleevent not find!");
+            }
+            currentscheduleEvent.setName(scheduleEven.getName());
+            currentscheduleEvent.setDesctiption(scheduleEven.getDescription);
+            schedulesEventService.save(currentscheduleEvent);
+        }catch (Exception ex){
+            ex.printStackTrace();
+            return new JSONResultError<>(currentscheduleEvent,ex.getMessage());
+        }
+
+
+    }
+    @DeleteMapping("/event/{id}")
+    public JSONResult<ScheduleEvent> deleteScheduleEvent(@PathVariable("id") int id){
+        ScheduleEvent scheduleEvent=new ScheduleEvent();
+        try{
+            scheduleEvent=schedulesEventService.getById(id);
+            schedulesEventService.delete(id);
+        }catch (Exception ex){
+            ex.printStackTrace();
+            return new JSONResultError<>(scheduleEvent,ex.getMessage());
+        }
+        return new JSONResultOk<>(scheduleEvent);
+    }
+    @DeleteMapping("/{id}")
+    public JSONResult<Schedule> deleteSchedule(@PathVariable("id") int id){
+        Schedule schedule=new Schedule();
+        try{
+           schedule=scheduleServise.getById(id);
+        }catch (Exception ex){
+            ex.printStackTrace();
+            return new JSONResultError<>(schedule,ex.getMessage());
+        }
+        return new JSONResultOk<>(schedule);
     }
 }
