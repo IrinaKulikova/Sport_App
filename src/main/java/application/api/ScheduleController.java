@@ -91,13 +91,13 @@ public class ScheduleController {
                 return new JSONResultError<>(currentscheduleEvent,"sheduleevent not find!");
             }
             currentscheduleEvent.setName(scheduleEven.getName());
-            currentscheduleEvent.setDesctiption(scheduleEven.getDescription);
+            currentscheduleEvent.setDescription(scheduleEven.getDescription());
             schedulesEventService.save(currentscheduleEvent);
         }catch (Exception ex){
             ex.printStackTrace();
             return new JSONResultError<>(currentscheduleEvent,ex.getMessage());
         }
-
+      return new JSONResultOk<>(currentscheduleEvent);
 
     }
     @DeleteMapping("/event/{id}")
