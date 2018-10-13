@@ -32,8 +32,6 @@ public class ScheduleAdminController {
     @Autowired
     DayServise dayServise;
 
-    //  @Autowired
-    //   ScheduleRepository scheduleRepository;
     @GetMapping()
     public String getSchedules(Model model) {
         List<Day> dayList = null;
@@ -57,7 +55,7 @@ public class ScheduleAdminController {
 
     @GetMapping("/save_schedule_event")
     public String getSaveScheduleEvent() {
-        return "schedule/save_schedule_event";
+        return "shedule_event/events";
     }
 
     @PostMapping("/save_schedule_event")

@@ -31,18 +31,6 @@ public class FiliationController {
         return new JSONResultOk<Filiation>(filiation);
     }
 
-    @GetMapping
-    public JSONResult<List<Filiation>> getAll() {
-        List<Filiation> filiation = new ArrayList<>();
-        try {
-            filiation = filiationService.getAll();
-        } catch (Exception ex) {
-            ex.printStackTrace();
-            return new JSONResultError<List<Filiation>>(filiation, ex.getMessage());
-        }
-        return new JSONResultOk<List<Filiation>>(filiation);
-    }
-
     @DeleteMapping("/{id}")
     public JSONResult<Filiation> deleteFilial(@PathVariable int id) {
         Filiation filiation = new Filiation();

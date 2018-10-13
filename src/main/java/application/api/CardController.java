@@ -58,6 +58,7 @@ public class CardController {
             currentCard.setExpirationDate(card.getExpirationDate());
             currentCard.setIssueDate(card.getIssueDate());
             currentCard.setPinCode(card.getPinCode());
+            currentCard.setDescription(card.getDescription());
             currentCard.setUser(userService.getById(user_id));
             cardService.save(currentCard);
         } catch (Exception ex) {
@@ -67,32 +68,31 @@ public class CardController {
         return new JSONResultOk<>(currentCard);
     }
 
-    @PostMapping("/{user_id}")
-    public JSONResult<Card> addCard(@RequestBody Card card, @PathVariable("user_id") int user_id) {
+    @PostMapping("/{id}")
+    public JSONResult<Card> addCard(@RequestBody Card card, @PathVariable int id) {
         User user = null;
-        User curUser = null;
+        Card curCard = new Card();
         try {
-            user = userService.getById(user_id);
-            card.setUser(user);
-            user.addCard(card);
-            userService.save(user);
-            curUser = userService.getById(user_id);
+            user = userService.getById(id);
+            curCard.setPinCode(card.getPinCode());
+            curCard.setIssueDate(card.getIssueDate());
+            curCard.setExpirationDate(card.getExpirationDate());
+            curCard.setDescription(card.getDescription());
+            curCard.setUser(user);
+            curCard = cardService.save(curCard);
         } catch (Exception ex) {
             ex.printStackTrace();
-            return new JSONResultError<Card>(card, ex.getMessage());
+            return new JSONResultError<Card>(curCard, ex.getMessage());
         }
-        return new JSONResultOk<Card>(curUser.getCards().get(curUser.getCards().size() - 1));
+        return new JSONResultOk<Card>(curCard);
     }
 
     @DeleteMapping("/{user_id}/{id}")
-    public JSONResult<Card> deleteCard(@PathVariable("user_id") int user_id, @PathVariable int id) {
-        User user = new User();
+    public JSONResult<Card> deleteCard(@PathVariable int user_id, @PathVariable int id) {
         Card card = new Card();
         try {
-            user = userService.getById(user_id);
             card = cardService.getById(id);
-            user.removeCard(card);
-            userService.save(user);
+            cardService.delete(id);
         } catch (Exception ex) {
             ex.printStackTrace();
             return new JSONResultError<>(card, ex.getMessage());

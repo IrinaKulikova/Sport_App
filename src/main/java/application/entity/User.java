@@ -24,8 +24,7 @@ public class User {
     @Column(name = "user_hash")
     String userHash;
 
-    @OneToMany(targetEntity = Card.class, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinColumn(name = "card_user_id")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user", fetch = FetchType.EAGER)
     private List<Card> cards = new ArrayList<>();
 
     public User(String firstName, String lastName, String phone, String email, String hash) {

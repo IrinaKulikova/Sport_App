@@ -11,7 +11,7 @@
 <div class="container main-div mt-md-5">
     <div class="news-edit-div">
         <h2><strong>Edit news</strong></h2>
-        <form>
+        <form class="edit-news-form">
             <div class="row m-2">
                 <div class="col">
                     <input type="text" class="form-control" id="date" name="date" placeholder="Date name" readonly="true" value="${news.date}">
@@ -40,19 +40,19 @@
                 <div class="col">
                     <button type="submit" class="btn-save-changes btn btn-outline-success" value="${news.id}">Save changes</button>
                 </div>
-                <div class="col">
-                    <a class="btn-back btn btn-outline-danger" href="/news">Back</a>
-                </div>
             </div>
         </form>
     </div>
 </div>
 <c:import url="../template/footer.jsp"></c:import>
 <!--Scripts-->
+
 <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
 <script th:src="@{/webjars/jquery-ui/jquery-ui.min.js}"></script>
 <script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+<script type="text/javascript" src="../../../resources/js/services/FormsValidator.js"></script>
+<script type="text/javascript" src="../../../resources/js/services/jquery.validate.js"></script>
 <script type="text/javascript" src="../../../resources/js/DTO/DTONews.js"></script>
 <script type="text/javascript" src="../../../resources/js/services/AJAXService.js"></script>
 <script type="text/javascript" src="../../../resources/js/news/news_edit.js"></script>

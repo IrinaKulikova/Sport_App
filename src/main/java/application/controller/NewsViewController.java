@@ -1,7 +1,6 @@
 package application.controller;
 
-import application.service.implementations.CardService;
-import application.service.implementations.UserService;
+import application.service.implementations.NewsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,38 +10,34 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 
 @Controller
-@RequestMapping("/users")
-public class UsersViewController {
+@RequestMapping("/news")
+public class NewsViewController {
 
     @Autowired
-    private UserService userService;
-
-    @Autowired
-    private CardService cardService;
+    private NewsService newsService;
 
     @GetMapping()
-    public String users(Model model) {
+    public String news(Model model) {
         try {
-            model.addAttribute("users",userService.getAll());
+            model.addAttribute("news",newsService.getAll());
         } catch (Throwable throwable) {
             throwable.printStackTrace();
         }
-        return "users/users";
+        return "news/news";
     }
 
     @GetMapping("/edit/{id}")
-    public String userEdit(@PathVariable int id, Model model){
+    public String newsEdit(@PathVariable int id, Model model){
         try {
-            model.addAttribute("user",userService.getById(id));
-            model.addAttribute("cards",cardService.getAll());
+            model.addAttribute("news",newsService.getById(id));
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return "users/user_edit";
+        return "news/news_edit";
     }
 
     @GetMapping("/create")
-    public String userCreate(){
-        return "users/user_create";
+    public String newsCreate(){
+        return "news/news_create";
     }
 }

@@ -1,22 +1,25 @@
 $(function () {
     $(function () {
         $(".btn-create-news").click(function (e) {
+                var formsValidator = new FormsValidator();
+                var formNews = $(".create-news-form");
+                if(formsValidator.newsCreateForm(formNews)) {
+                    let service = new AJAXService();
+                    var news = new News($('#title').val(),
+                        $('#description').val(), $('#date').val(),
+                        $('#imageURL').val());
 
-                var news = new News($('#title').val(),
-                    $('#description').val(), $('#date').val(),
-                    $('#imageURL').val());
-                let service = new AJAXService();
+                    function success() {
+                        location.replace("/news");
+                    };
 
-                function success() {
-                    location.replace("/news");
-                };
+                    function fail() {
+                        console.log('fail');
+                    };
 
-                function fail() {
-                    console.log('fail');
-                };
-
-                service.post("/api/1.0/news", news, success, fail);
-                e.preventDefault();
+                    service.post("/api/1.0/news", news, success, fail);
+                    e.preventDefault();
+                }
             }
         );
     });

@@ -1,6 +1,9 @@
 $(function () {
     $(function () {
-            $(".btn-save-changes").click(function (e) {
+        $(".btn-save-changes").click(function (e) {
+                var formsValidator = new FormsValidator();
+                var formNewsEdit = $(".edit-news-form");
+                if(formsValidator.newsEditForm(formNewsEdit)){
                     let service = new AJAXService();
                     var btn = $(this);
                     var news = new News($('#title').val(),
@@ -17,7 +20,7 @@ $(function () {
                     service.put("/api/1.0/news/" + btn.val(), news, success, fail);
                     e.preventDefault();
                 }
-            );
+            });
         }
     );
 
