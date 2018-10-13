@@ -52,11 +52,35 @@ public class ScheduleAdminController {
         //    List<Schedule> scheduleList=scheduleServise.getAll();
         return "schedule/schedule";
     }
+    @GetMapping("/schedule_edit")
+    public String getEditSchedules(Model model){
+        List<ScheduleSender> listSender=new ArrayList<>();
+        ScheduleSender sender=null;
+        List<Schedule> scheduleList=null;
+        List<ScheduleEvent> scheduleEventsList=null;
+        List<Day> dayList=null;
+        try {
+            scheduleList = scheduleServise.getAll();
+       //     scheduleEventsList = schedulesEventService.getAll();
+       //     dayList = dayServise.getAll();
+        }catch (Exception ex){
+            ex.printStackTrace();
+        }
+        for(Schedule sch:scheduleList){
+            String time =sch.getStarttime().toString();
+            time.substring(0,5);
+            sender=new ScheduleSender(sch.getId(),sch.getScheduleEvent().getName(),time,sch.getDay().getNameDay());//sch.getStarttime().toString(),sch.getDay().getNameDay()
+            listSender.add(sender);
+        }
+        model.addAttribute("shedule",listSender);
 
-    @GetMapping("/save_schedule_event")
+        return "/schedule/schedule_edit";
+    }
+
+ /*   @GetMapping("/save_schedule_event")
     public String getSaveScheduleEvent() {
         return "shedule_event/events";
-    }
+    } */
 
     @PostMapping("/save_schedule_event")
     public String postSaveScheduleEvent(ScheduleEvent event) {
@@ -85,9 +109,6 @@ public class ScheduleAdminController {
 
     @PostMapping("/save_shedule")
     public String postSaveSchedule(@RequestParam String starttime, @RequestParam int sheduleEvent, @RequestParam int day) {
-        //   System.out.println(starttime);
-        //   System.out.println(sheduleEvent);
-        //   System.out.println(day);
         Day newDay = null;
         ScheduleEvent scheduleEvent = new ScheduleEvent();
         try {
@@ -154,13 +175,13 @@ public class ScheduleAdminController {
         return "schedule/dbclickedit";
     }
 
-    @PutMapping("/dbclickedit")
+ /*   @PutMapping("/dbclickedit")
     public String putDoubleClickEdit(@RequestParam String starttime, @RequestParam int sheduleevent, @RequestParam int day, @PathVariable("id") int id) {
         System.out.println(starttime);
         System.out.println(sheduleevent);
         System.out.println(day);
         return "redirect:/";
-    }
+    }*/
 
 
     private List<List<ScheduleSender>> makeTable(List<Day> dayList, List<Schedule> scheduleList) {

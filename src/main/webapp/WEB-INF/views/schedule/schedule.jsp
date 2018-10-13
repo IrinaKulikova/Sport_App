@@ -3,13 +3,7 @@
 <%@ page import="application.entity.Day" %>
 <%@ page import="application.helper.ScheduleSender" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%--
-  Created by IntelliJ IDEA.
-  User: Aleks
-  Date: 07.10.2018
-  Time: 20:38
-  To change this template use File | Settings | File Templates.
---%>
+
 <%@ page isELIgnored="false" contentType="text/html;charset=UTF-8" %>
 <html>
 <head>
@@ -46,6 +40,14 @@
 <body>
 <%  List<List<ScheduleSender>> scheduleListTable=( List<List<ScheduleSender>>) request.getAttribute("schedulelist");%>
 <div class="conteiner">
+    <div class="container main-div mt-md-5" style="padding: 0px !important;">
+        <div class="tools-div form-control" style="height: 64px">
+            <a class="btn btn btn-outline-primary ml-2" href="/filiation">Main</a>
+            <a class="btn btn-outline-success" href="/schedules">Schedules</a>
+            <a class="btn btn-outline-success" href="/schedules/schedule_edit">Schedule</a>
+            <a class="btn btn-outline-success" href="/filiation/create">EventShedule</a>
+        </div>
+    </div>
    <table class="table table-bordered">
      <thead>
      <tr>

@@ -22,6 +22,8 @@ public class Day {
         return id;
     }
 
+    public String getNameDay() { return nameDay; }
+
     public Day(){
     }
 }

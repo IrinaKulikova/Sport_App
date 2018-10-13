@@ -82,7 +82,7 @@ public class ScheduleController {
         }
         return new JSONResultOk<>(currentSchedule);
     }
-    @PutMapping
+    @PutMapping("scheduleevent/{id}")
     public JSONResult<ScheduleEvent> putScheduleEvent(@RequestBody ScheduleEventDTO scheduleEven,@PathVariable("id") int id){
         ScheduleEvent currentscheduleEvent=new ScheduleEvent();
         try {
@@ -100,7 +100,7 @@ public class ScheduleController {
       return new JSONResultOk<>(currentscheduleEvent);
 
     }
-    @DeleteMapping("/event/{id}")
+ /*   @DeleteMapping("/event/{id}")
     public JSONResult<ScheduleEvent> deleteScheduleEvent(@PathVariable("id") int id){
         ScheduleEvent scheduleEvent=new ScheduleEvent();
         try{
@@ -111,7 +111,7 @@ public class ScheduleController {
             return new JSONResultError<>(scheduleEvent,ex.getMessage());
         }
         return new JSONResultOk<>(scheduleEvent);
-    }
+    }*/
     @DeleteMapping("/{id}")
     public JSONResult<Schedule> deleteSchedule(@PathVariable("id") int id){
         Schedule schedule=new Schedule();

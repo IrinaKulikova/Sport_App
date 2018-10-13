@@ -37,4 +37,5 @@ public class ScheduleEvent {
     public void setDescription(String description) {
         this.description = description;
     }
+
 }

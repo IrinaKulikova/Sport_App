@@ -5,6 +5,8 @@ import application.entity.Schedule;
 import java.util.List;
 
 public class ScheduleSender {
+  //  int number=0;//номер по порядку
+    int id=0;
     String name="";
     String attributeTime="";
     String attributeDay="";
@@ -16,6 +18,17 @@ public class ScheduleSender {
         this.name = name;
         this.attributeTime = attributeTime;
         this.attributeDay = attributeDay;
+    }
+
+    public ScheduleSender(int id, String name, String attributeTime, String attributeDay) {
+        this.id = id;
+        this.name = name;
+        this.attributeTime = attributeTime;
+        this.attributeDay = attributeDay;
+    }
+
+    public int getId() {
+        return id;
     }
 
     public String getName() {
