@@ -5,13 +5,19 @@
 
 <head>
     <c:import url="../template/head.jsp"></c:import>
+    <style>
+        .conteiner, form{width: 500px;margin:  0 auto;margin-top: 0px;}
+    </style>
 </head>
 
 <body>
 <c:import url="../template/header.jsp"></c:import>
+<c:import url="../template/headerschedule.jsp"></c:import>
+
 <div class="container main-div mt-3">
-    <h1>Event create</h1>
+
     <form class="create-event-form" accept-charset="UTF-8">
+        <h1>Event create</h1>
         <div class="form-group">
             <label for="name">Name</label>
             <input type="text" class="form-control" id="name" placeholder="" name="name">

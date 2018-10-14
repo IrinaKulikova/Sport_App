@@ -13,39 +13,11 @@
     <link rel="stylesheet" href="../../../resources/css/style.css"/>
 <body>
 <c:import url="../template/header.jsp"></c:import>
-<%--    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
---%>
-    <%--   <style>
-        .conteiner{
-            width: 1000px;
-            margin: auto;
-        }
-        .td-tab{
-            border: black 1px solid;
-            background-color: lightblue;
-            height: 50px;
-            position: relative;
-            padding:5px;
-        }
-        td{
-            padding: 2px !important;
-        }
-        .td-tab:hover::after{
-            border: 1px solid #fc0;
-            padding: 3px 6px;
-            background: #fffea1;
-            content: attr(data-title);
-            position: absolute;
-            left: 60px;
-            top: 40px;
-            z-index: 50;
-        }
-    </style> --%>
 
 <%  List<List<ScheduleSender>> scheduleListTable=( List<List<ScheduleSender>>) request.getAttribute("schedulelist");%>
 <div class="conteiner">
     <div class="container main-div mt-md-5" style="padding: 0px !important;">
-        <div class="tools-div form-control" style="height: 64px">
+        <div class="tools-div form-control">
             <a class="btn btn btn-outline-primary ml-2" href="/filiation">Main</a>
             <a class="btn btn-outline-success" href="/schedules">Schedules</a>
             <a class="btn btn-outline-success" href="/schedules/schedule_edit">Schedule</a>

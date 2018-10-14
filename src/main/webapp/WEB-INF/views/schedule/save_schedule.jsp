@@ -2,16 +2,15 @@
 <%@ page isELIgnored="false" contentType="text/html;charset=UTF-8" %>
 <html>
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B" crossorigin="anonymous">
-    <meta charset="UTF-8"/>
-    <title>Добавить Расписание</title>
+    <c:import url="../template/head.jsp"></c:import>
     <style>
-        form{width: 500px;margin:  0 auto;margin-top: 0px;}
+        .conteiner, form{width: 500px;margin:  0 auto;margin-top: 0px;}
     </style>
 </head>
 <body>
-<!--<button class="btn btn-primary">Добавить событие</button> -->
+<c:import url="../template/header.jsp"></c:import>
+<c:import url="../template/headerschedule.jsp"></c:import>
+
 <form  method="post" accept-charset="UTF-8">
     <div class="form-group">
         <label for="sheduleevent">Событие</label>
