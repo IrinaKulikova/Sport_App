@@ -1,8 +1,11 @@
 package application.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Data
@@ -15,13 +18,18 @@ public class ScheduleEvent {
     //описание тренировки
     @Column(columnDefinition = "text")
     String description;
-    public ScheduleEvent(int id){
-        this.id=id;
-    }
+
+    @OneToMany(fetch = FetchType.LAZY, targetEntity = Schedule.class, cascade = CascadeType.ALL)
+    @JoinColumn(name = "event_schedule")
+    @JsonIgnore
+    List<Schedule> schedules = new ArrayList<>();
+
     public ScheduleEvent(){
 
     }
-
+    public ScheduleEvent(int id){
+        this.id=id;
+    }
     public String getName() {
         return name;
     }

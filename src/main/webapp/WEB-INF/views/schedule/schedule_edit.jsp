@@ -12,11 +12,12 @@
 <body>
 <%-- <c:import url="../template/header.jsp"></c:import> --%>
 <div class="container main-div mt-md-5">
-    <div class="tools-div form-control" style="height: 64px">
+    <div class="tools-div form-control" style="height: 60px">
         <a class="btn btn btn-outline-primary ml-2" href="/filiation">Main</a>
         <a class="btn btn-outline-success" href="/schedules">Schedules</a>
         <a class="btn btn-outline-success" href="/schedules/schedule_edit">Schedule</a>
-        <a class="btn btn-outline-success" href="/filiation/create">EventShedule</a>
+        <a class="btn btn-outline-success" href="/events">EventShedule</a>
+        <a class="btn btn-outline-warning ml-2" href="/schedules/save_shedule">Create</a>
     </div>
     <div class="us-div">
         <table class="table table-bordered mt-2">
@@ -31,7 +32,7 @@
             </tr>
             </thead>
             <tbody>
-            <c:forEach items="${shedule}" var="schedules">
+            <c:forEach items="${schedule}" var="schedules">
                 <tr>
                     <th scope="row">${schedules.id}</th>
                     <td>${schedules.attributeDay}</td>
@@ -50,10 +51,9 @@
         </table>
     </div>
 </div>
-<c:import url="../template/footer.jsp"></c:import>
-<!--Scripts-->
-<script type="text/javascript" src="../../../resources/js/services/AJAXService.js"></script>
-<script type="text/javascript" src="../../../resources/js/user/user.js"></script>
+ <script type="text/javascript" src="../../../resources/js/services/AJAXService.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+<script type="text/javascript" src="../../../resources/js/schedule/schedule.js"></script>
 </body>
 
 </html>

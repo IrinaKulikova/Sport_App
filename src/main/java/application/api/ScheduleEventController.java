@@ -39,7 +39,7 @@ public class ScheduleEventController {
             newEvent.setName(event.getName());
             newEvent.setDescription(event.getDescription());
             newEvent = eventService.save(newEvent);
-       //     newEvent.setSchedules(new ArrayList<>());
+            newEvent.setSchedules(new ArrayList<>());
         } catch (Exception ex) {
             ex.printStackTrace();
             return new JSONResultError<ScheduleEvent>(newEvent, ex.getMessage());

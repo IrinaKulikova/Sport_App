@@ -117,6 +117,7 @@ public class ScheduleController {
         Schedule schedule=new Schedule();
         try{
            schedule=scheduleServise.getById(id);
+           scheduleServise.delete(id);
         }catch (Exception ex){
             ex.printStackTrace();
             return new JSONResultError<>(schedule,ex.getMessage());

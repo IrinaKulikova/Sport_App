@@ -10,7 +10,11 @@
 <body>
 <c:import url="../template/header.jsp"></c:import>
 <div class="container main-div mt-md-5">
-    <div class="tools-div form-control text-right">
+    <div class="tools-div form-control" style="height: 60px">
+        <a class="btn btn btn-outline-primary ml-2" href="/filiation">Main</a>
+        <a class="btn btn-outline-success" href="/schedules">Schedules</a>
+        <a class="btn btn-outline-success" href="/schedules/schedule_edit">Schedule</a>
+        <a class="btn btn-outline-success" href="/events">EventShedule</a>
         <a class="btn btn-outline-warning ml-2" href="/events/create">Create</a>
     </div>
     <div>

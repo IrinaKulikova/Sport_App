@@ -49,7 +49,6 @@ public class ScheduleAdminController {
         List<List<ScheduleSender>> scheduleListTable = makeTable(dayList, scheduleList);
         model.addAttribute("daylist", dayList);
         model.addAttribute("schedulelist", scheduleListTable);
-        //    List<Schedule> scheduleList=scheduleServise.getAll();
         return "schedule/schedule";
     }
     @GetMapping("/schedule_edit")
@@ -61,26 +60,19 @@ public class ScheduleAdminController {
         List<Day> dayList=null;
         try {
             scheduleList = scheduleServise.getAll();
-       //     scheduleEventsList = schedulesEventService.getAll();
-       //     dayList = dayServise.getAll();
         }catch (Exception ex){
             ex.printStackTrace();
         }
         for(Schedule sch:scheduleList){
             String time =sch.getStarttime().toString();
             time.substring(0,5);
-            sender=new ScheduleSender(sch.getId(),sch.getScheduleEvent().getName(),time,sch.getDay().getNameDay());//sch.getStarttime().toString(),sch.getDay().getNameDay()
+            sender=new ScheduleSender(sch.getId(),sch.getScheduleEvent().getName(),time,sch.getDay().getNameDay());
             listSender.add(sender);
         }
-        model.addAttribute("shedule",listSender);
+        model.addAttribute("schedule",listSender);
 
         return "/schedule/schedule_edit";
     }
-
- /*   @GetMapping("/save_schedule_event")
-    public String getSaveScheduleEvent() {
-        return "shedule_event/events";
-    } */
 
     @PostMapping("/save_schedule_event")
     public String postSaveScheduleEvent(ScheduleEvent event) {
