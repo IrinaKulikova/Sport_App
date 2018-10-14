@@ -100,18 +100,7 @@ public class ScheduleController {
       return new JSONResultOk<>(currentscheduleEvent);
 
     }
- /*   @DeleteMapping("/event/{id}")
-    public JSONResult<ScheduleEvent> deleteScheduleEvent(@PathVariable("id") int id){
-        ScheduleEvent scheduleEvent=new ScheduleEvent();
-        try{
-            scheduleEvent=schedulesEventService.getById(id);
-            schedulesEventService.delete(id);
-        }catch (Exception ex){
-            ex.printStackTrace();
-            return new JSONResultError<>(scheduleEvent,ex.getMessage());
-        }
-        return new JSONResultOk<>(scheduleEvent);
-    }*/
+
     @DeleteMapping("/{id}")
     public JSONResult<Schedule> deleteSchedule(@PathVariable("id") int id){
         Schedule schedule=new Schedule();

@@ -7,10 +7,14 @@
 <%@ page isELIgnored="false" contentType="text/html;charset=UTF-8" %>
 <html>
 <head>
-    <title>Title</title>
-    <meta charset="UTF-8"/>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
- <link rel="stylesheet" href="../../../resources/css/style.css"/>
+    <head>
+        <c:import url="../template/head.jsp"></c:import>
+    </head>
+    <link rel="stylesheet" href="../../../resources/css/style.css"/>
+<body>
+<c:import url="../template/header.jsp"></c:import>
+<%--    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+--%>
     <%--   <style>
         .conteiner{
             width: 1000px;
@@ -37,8 +41,7 @@
             z-index: 50;
         }
     </style> --%>
-</head>
-<body>
+
 <%  List<List<ScheduleSender>> scheduleListTable=( List<List<ScheduleSender>>) request.getAttribute("schedulelist");%>
 <div class="conteiner">
     <div class="container main-div mt-md-5" style="padding: 0px !important;">

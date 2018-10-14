@@ -2,16 +2,24 @@
 <%@ page isELIgnored="false" contentType="text/html;charset=UTF-8" %>
 <html>
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B" crossorigin="anonymous">
-    <meta charset="UTF-8"/>
-    <title>Редактировать расписание</title>
+    <c:import url="../template/head.jsp"></c:import>
     <style>
-        form{width: 500px;margin:  0 auto;margin-top: 0px;}
+        .conteiner, form{width: 500px;margin:  0 auto;margin-top: 0px;}
     </style>
 </head>
 <body>
+<c:import url="../template/header.jsp"></c:import>
 <%  String time=(String) request.getAttribute("time");%>
+<div class="conteiner">
+    <div class="container main-div mt-md-5" style="padding: 0px !important;">
+        <div class="tools-div form-control">
+            <a class="btn btn btn-outline-primary ml-2" href="/filiation">Main</a>
+            <a class="btn btn-outline-success" href="/schedules">Schedules</a>
+            <a class="btn btn-outline-success" href="/schedules/schedule_edit">Schedule</a>
+            <a class="btn btn-outline-success" href="/events">EventShedule</a>
+        </div>
+    </div>
+</div>
 <form >
     <div class="form-group">
         <label for="sheduleevent">Событие</label>

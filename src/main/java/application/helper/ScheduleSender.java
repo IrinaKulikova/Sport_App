@@ -5,7 +5,7 @@ import application.entity.Schedule;
 import java.util.List;
 
 public class ScheduleSender {
-  //  int number=0;//номер по порядку
+    int numbersort=0;//номер по порядку
     int id=0;
     String name="";
     String attributeTime="";
@@ -20,7 +20,8 @@ public class ScheduleSender {
         this.attributeDay = attributeDay;
     }
 
-    public ScheduleSender(int id, String name, String attributeTime, String attributeDay) {
+    public ScheduleSender(int numbersort,int id, String name, String attributeTime, String attributeDay) {
+        this.numbersort=numbersort;
         this.id = id;
         this.name = name;
         this.attributeTime = attributeTime;
@@ -29,6 +30,10 @@ public class ScheduleSender {
 
     public int getId() {
         return id;
+    }
+
+    public int getNumbersort() {
+        return numbersort;
     }
 
     public String getName() {
@@ -49,5 +54,9 @@ public class ScheduleSender {
 
     public void setScheduleList(List<Schedule> scheduleList) {
         this.scheduleList = scheduleList;
+    }
+
+    public void setNumbersort(int numbersort) {
+        this.numbersort = numbersort;
     }
 }

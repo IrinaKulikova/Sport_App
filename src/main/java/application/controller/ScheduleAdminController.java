@@ -15,10 +15,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.TimeZone;
+import java.util.*;
 
 @Controller
 @RequestMapping("/schedules")
@@ -56,8 +53,6 @@ public class ScheduleAdminController {
         List<ScheduleSender> listSender=new ArrayList<>();
         ScheduleSender sender=null;
         List<Schedule> scheduleList=null;
-        List<ScheduleEvent> scheduleEventsList=null;
-        List<Day> dayList=null;
         try {
             scheduleList = scheduleServise.getAll();
         }catch (Exception ex){
@@ -66,9 +61,12 @@ public class ScheduleAdminController {
         for(Schedule sch:scheduleList){
             String time =sch.getStarttime().toString();
             time.substring(0,5);
-            sender=new ScheduleSender(sch.getId(),sch.getScheduleEvent().getName(),time,sch.getDay().getNameDay());
+            //----------------------------------------------
+            //----------------------------------------------
+            sender=new ScheduleSender(sortingFlag(sch,time),sch.getId(),sch.getScheduleEvent().getName(),time,sch.getDay().getNameDay());
             listSender.add(sender);
         }
+        listSender=sortScheduleSender(listSender);
         model.addAttribute("schedule",listSender);
 
         return "/schedule/schedule_edit";
@@ -125,7 +123,7 @@ public class ScheduleAdminController {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return "redirect:/";
+        return "redirect:/schedules";
     }
 
     @GetMapping("/dbclickcreate")
@@ -167,15 +165,6 @@ public class ScheduleAdminController {
         return "schedule/dbclickedit";
     }
 
- /*   @PutMapping("/dbclickedit")
-    public String putDoubleClickEdit(@RequestParam String starttime, @RequestParam int sheduleevent, @RequestParam int day, @PathVariable("id") int id) {
-        System.out.println(starttime);
-        System.out.println(sheduleevent);
-        System.out.println(day);
-        return "redirect:/";
-    }*/
-
-
     private List<List<ScheduleSender>> makeTable(List<Day> dayList, List<Schedule> scheduleList) {
         ScheduleSender sender = null;
         List<List<ScheduleSender>> scheduleListSenders = new ArrayList<>();
@@ -187,7 +176,7 @@ public class ScheduleAdminController {
                 String attributeTime = i + ":00";
                 Integer idday = d.getId();
                 sender = new ScheduleSender("", attributeTime, idday.toString());
-                sender.setScheduleList(isHaveSchedules(d.getId(), attributeTime, scheduleList));
+                sender.setScheduleList(haveSchedules(d.getId(), attributeTime, scheduleList));
                 scheduleSenders.add(sender);
             }
             scheduleListSenders.add(scheduleSenders);
@@ -195,7 +184,7 @@ public class ScheduleAdminController {
         return scheduleListSenders;
     }
 
-    private List<Schedule> isHaveSchedules(int dayId, String time, List<Schedule> readScheduleList) {
+    private List<Schedule> haveSchedules(int dayId, String time, List<Schedule> readScheduleList) {
         SimpleDateFormat localDateFormat = new SimpleDateFormat("HH:mm");
         Date date = null;
         try {
@@ -207,8 +196,8 @@ public class ScheduleAdminController {
 
         List<Schedule> scheduleList = new ArrayList<>();
         for (Schedule schedule : readScheduleList) {
-            long timeStart = schedule.getStarttime().getTime();
-            long timeTable = date.getTime();
+          //  long timeStart = schedule.getStarttime().getTime();
+          //  long timeTable = date.getTime();
             //   java.util.Date dt=new java.util.Date(schedule.getStarttime().getTime());
             if ((schedule.getDay().getId() == dayId) && (date.getTime() == schedule.getStarttime().getTime())) {
                 scheduleList.add(schedule);
@@ -217,5 +206,39 @@ public class ScheduleAdminController {
 
 
         return scheduleList;
+    }
+    private int sortingFlag(Schedule sch,String time){
+        SimpleDateFormat localDateFormat = new SimpleDateFormat("HH:mm");
+        localDateFormat.setTimeZone(TimeZone.getTimeZone("GMT+2"));
+        Date date = null;
+        try {
+            date = localDateFormat.parse(time);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        int time_int=(int)date.getTime();
+        int higttime=sch.getDay().getAttribute()*100000000;
+        return time_int+higttime;
+    }
+    private  List<ScheduleSender> sortScheduleSender( List<ScheduleSender> listSender){
+        Collections.sort(listSender, new Comparator<ScheduleSender>() {
+            @Override
+            public int compare(ScheduleSender o1, ScheduleSender o2) {
+
+                if(o1.getNumbersort()>o2.getNumbersort())
+                {
+                    return 1;
+                }
+                if(o1.getNumbersort()<o2.getNumbersort()){
+                    return -1;
+                }
+                return 0;
+            }
+        });
+        for(int i=0;i<listSender.size();i++){
+            listSender.get(i).setNumbersort(i+1);
+        }
+
+        return listSender;
     }
 }

@@ -3,16 +3,16 @@
 <%@ page isELIgnored="false" contentType="text/html;charset=UTF-8" %>
 <!DOCTYPE html>
 <html lang="en">
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+<%-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous"> --%>
 
-<%-- <head>
-    <c:import url="../template/head.jsp"></c:import>
-</head> --%>
+<head>
+<c:import url="../template/head.jsp"></c:import>
+</head>
 
 <body>
-<%-- <c:import url="../template/header.jsp"></c:import> --%>
+<c:import url="../template/header.jsp"></c:import>
 <div class="container main-div mt-md-5">
-    <div class="tools-div form-control" style="height: 60px">
+    <div class="tools-div form-control">
         <a class="btn btn btn-outline-primary ml-2" href="/filiation">Main</a>
         <a class="btn btn-outline-success" href="/schedules">Schedules</a>
         <a class="btn btn-outline-success" href="/schedules/schedule_edit">Schedule</a>
@@ -34,7 +34,7 @@
             <tbody>
             <c:forEach items="${schedule}" var="schedules">
                 <tr>
-                    <th scope="row">${schedules.id}</th>
+                    <th scope="row">${schedules.numbersort}</th>
                     <td>${schedules.attributeDay}</td>
                     <td>${schedules.attributeTime}</td>
                     <td>${schedules.name}</td>

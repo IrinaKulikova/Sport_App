@@ -24,6 +24,10 @@ public class Day {
 
     public String getNameDay() { return nameDay; }
 
+    public int getAttribute() {
+        return attribute;
+    }
+
     public Day(){
     }
 }
