@@ -36,7 +36,8 @@ public class AuthorizationFilter implements Filter {
         //test
         //chain.doFilter(request, response);
 
-        if(administratorService==null){
+
+        if (administratorService == null) {
             ServletContext servletContext = request.getServletContext();
             WebApplicationContext webApplicationContext = WebApplicationContextUtils.getWebApplicationContext(servletContext);
             administratorService = webApplicationContext.getBean(AdministratorService.class);
@@ -47,6 +48,12 @@ public class AuthorizationFilter implements Filter {
         HttpSession session = req.getSession();
         String requestUri = req.getRequestURI();
         boolean isLogged = false;
+
+        if (requestUri.contains("/api/1.0/shared")) {
+            chain.doFilter(request, response);
+            return;
+        }
+
         List<Administrator> admins = null;
         try {
             admins = administratorService.getAll();
@@ -54,12 +61,12 @@ public class AuthorizationFilter implements Filter {
             throwable.printStackTrace();
         }
 
-        String identifier = (String)session.getAttribute("identifier");
-        if(identifier != null && admins!=null){
-            for(Administrator a: admins){
+        String identifier = (String) session.getAttribute("identifier");
+        if (identifier != null && admins != null) {
+            for (Administrator a : admins) {
                 try {
-                    if(identifier.equals(HashHelper.makeSHA1Hash(a.getAdminHash()))){
-                        isLogged=true;
+                    if (identifier.equals(HashHelper.makeSHA1Hash(a.getAdminHash()))) {
+                        isLogged = true;
                         break;
                     }
                 } catch (NoSuchAlgorithmException e) {
@@ -67,7 +74,7 @@ public class AuthorizationFilter implements Filter {
                 }
             }
         }
-        if(requestUri.equals("/login") || isLogged){
+        if (requestUri.equals("/login") || isLogged) {
             chain.doFilter(request, response);
         } else {
             resp.sendRedirect("/login");
