@@ -1,7 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page isELIgnored="false" contentType="text/html;charset=UTF-8" %>
 <html>
-head>
+<head>
 <c:import url="../template/head.jsp"></c:import>
 <style>
     .conteiner, form{width: 500px;margin:  0 auto;margin-top: 0px;}
@@ -14,7 +14,7 @@ head>
 
 <form  method="post" action="/schedules/save_shedule" accept-charset="UTF-8">
     <div class="form-group">
-        <label for="sheduleevent">Событие</label>
+        <label for="sheduleevent">Event</label>
         <select class="form-control" id="sheduleEvent" name="sheduleEvent" > -->
             <c:forEach items="${eventshedule}" var="schedule">
                 <option value="${schedule.id}">${schedule.name}</option>
@@ -22,7 +22,7 @@ head>
         </select>
     </div>
     <div class="form-group" accept-charset="UTF-8">
-        <label for="week">День недели</label>
+        <label for="week">Day of week</label>
         <select class="form-control" id="week" name="day">
             <c:forEach items="${weekday}" var="day">
                 <c:choose>
@@ -38,7 +38,7 @@ head>
     </div>
     <div class="form-row">
         <div class="form-group">
-            <label for="starttime">Часы</label>
+            <label for="starttime">Time</label>
             <select  class="form-control" id="starttime" name="starttime" style="width: 100px"  >
                <% for(int i=8;i<=20;i++){
                 String str=i+":00";

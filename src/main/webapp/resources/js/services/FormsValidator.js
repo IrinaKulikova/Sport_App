@@ -328,7 +328,6 @@ class FormsValidator{
         });
         return form.valid();
     }
-
     adminEditForm(form){
         form.validate({
             rules: {
