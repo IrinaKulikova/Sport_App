@@ -1,7 +1,7 @@
 package application.controller;
 
 import application.entity.Administrator;
-import application.service.helper.HashHelper;
+import application.helper.HashHelper;
 import application.service.implementations.AdministratorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

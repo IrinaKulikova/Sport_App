@@ -1,26 +1,26 @@
-package application.helper;
+package application.dto;
 
 import application.entity.Schedule;
 
 import java.util.List;
 
-public class ScheduleSender {
+public class ScheduleSenderDTO {
     int numbersort=0;//номер по порядку
     int id=0;
     String name="";
     String attributeTime="";
     String attributeDay="";
     List<Schedule> scheduleList=null;
-    public ScheduleSender(String name) {
+    public ScheduleSenderDTO(String name) {
         this.name = name;
     }
-    public ScheduleSender(String name, String attributeTime, String attributeDay) {
+    public ScheduleSenderDTO(String name, String attributeTime, String attributeDay) {
         this.name = name;
         this.attributeTime = attributeTime;
         this.attributeDay = attributeDay;
     }
 
-    public ScheduleSender(int numbersort,int id, String name, String attributeTime, String attributeDay) {
+    public ScheduleSenderDTO(int numbersort, int id, String name, String attributeTime, String attributeDay) {
         this.numbersort=numbersort;
         this.id = id;
         this.name = name;

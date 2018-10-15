@@ -14,6 +14,7 @@ $(function () {
 
                     function success() {
                         $("h1").text("Filiation " + $('#caption').val());
+                        location.replace("/filiation");
                     };
 
                     function fail() {

@@ -1,7 +1,7 @@
 <%@ page import="application.entity.Schedule" %>
 <%@ page import="java.util.List" %>
 <%@ page import="application.entity.Day" %>
-<%@ page import="application.helper.ScheduleSender" %>
+<%@ page import="application.dto.ScheduleSenderDTO" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <%@ page isELIgnored="false" contentType="text/html;charset=UTF-8" %>
@@ -14,7 +14,7 @@
 <body>
 <c:import url="../template/header.jsp"></c:import>
 
-<%  List<List<ScheduleSender>> scheduleListTable=( List<List<ScheduleSender>>) request.getAttribute("schedulelist");%>
+<%  List<List<ScheduleSenderDTO>> scheduleListTable=( List<List<ScheduleSenderDTO>>) request.getAttribute("schedulelist");%>
 <div class="conteiner">
     <div class="container main-div mt-md-5" style="padding: 0px !important;">
         <div class="tools-div form-control">

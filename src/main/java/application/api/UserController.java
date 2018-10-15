@@ -1,12 +1,11 @@
 package application.api;
 
 import application.dto.UserDTO;
-import application.entity.Card;
 import application.entity.User;
 import application.helper.JSONResult;
 import application.helper.JSONResultError;
 import application.helper.JSONResultOk;
-import application.service.helper.HashHelper;
+import application.helper.HashHelper;
 import application.service.implementations.CardService;
 import application.service.implementations.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
