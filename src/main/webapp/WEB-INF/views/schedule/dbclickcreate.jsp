@@ -3,15 +3,13 @@
 <html>
 <head>
 <c:import url="../template/head.jsp"></c:import>
-<style>
-    .conteiner, form{width: 500px;margin:  0 auto;margin-top: 0px;}
-</style>
 </head>
 <body>
 <c:import url="../template/header.jsp"></c:import>
-<c:import url="../template/headerschedule.jsp"></c:import>
-<%  String time=(String) request.getAttribute("time");%>
 
+<%  String time=(String) request.getAttribute("time");%>
+<div class="conteiner">
+    <c:import url="../template/headerschedule.jsp"></c:import>
 <form  method="post" action="/schedules/save_shedule" accept-charset="UTF-8">
     <div class="form-group">
         <label for="sheduleevent">Event</label>
@@ -61,5 +59,6 @@
     </div>
     <button type="submit" class="btn btn-primary">Save</button>
 </form>
+</div>
 </body>
 </html>

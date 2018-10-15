@@ -12,12 +12,12 @@
 <body>
 <c:import url="../template/header.jsp"></c:import>
 <div class="container main-div mt-md-5">
-    <div class="tools-div form-control">
-        <a class="btn btn btn-outline-primary ml-2" href="/filiation">Main</a>
-        <a class="btn btn-outline-success" href="/schedules">Schedules</a>
-        <a class="btn btn-outline-success" href="/schedules/schedule_edit">Schedule</a>
-        <a class="btn btn-outline-success" href="/events">EventShedule</a>
-        <a class="btn btn-outline-warning ml-2" href="/schedules/save_shedule">Create</a>
+    <div class="tools-div form-control text-center">
+        <a class="btn btn btn-outline-primary m-2" href="/filiation">Main</a>
+        <a class="btn btn-outline-success m-2" href="/schedules">Schedules</a>
+        <a class="btn btn-outline-success m-2" href="/schedules/schedule_edit">Schedule</a>
+        <a class="btn btn-outline-success m-2" href="/events">EventShedule</a>
+        <a class="btn btn-outline-warning m-2" href="/schedules/save_shedule">Create</a>
     </div>
     <div class="us-div">
         <table class="table table-bordered mt-2">
@@ -40,7 +40,7 @@
                     <td>${schedules.name}</td>
                <%--     <td>${user.email}</td> --%>
                     <td colspan="2">
-                        <a class="btn-edit btn btn-outline-info" href="/schedules//dbclickedit/${schedules.id}">Edit</a>
+                        <a class="btn-edit btn btn-outline-info m-2" href="/schedules//dbclickedit/${schedules.id}">Edit</a>
                         <button class="btn-delete btn btn-outline-danger m-2" name="id" value="${schedules.id}">Delete
                         </button>
                     </td>

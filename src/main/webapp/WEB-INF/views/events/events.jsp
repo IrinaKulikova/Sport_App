@@ -10,12 +10,12 @@
 <body>
 <c:import url="../template/header.jsp"></c:import>
 <div class="container main-div mt-md-5">
-    <div class="tools-div form-control">
-        <a class="btn btn btn-outline-primary ml-2" href="/filiation">Main</a>
-        <a class="btn btn-outline-success" href="/schedules">Schedules</a>
-        <a class="btn btn-outline-success" href="/schedules/schedule_edit">Schedule</a>
-        <a class="btn btn-outline-success" href="/events">EventShedule</a>
-        <a class="btn btn-outline-warning ml-2" href="/events/create">Create</a>
+    <div class="tools-div form-control text-center">
+        <a class="btn btn btn-outline-primary m-2" href="/filiation">Main</a>
+        <a class="btn btn-outline-success m-2" href="/schedules">Schedules</a>
+        <a class="btn btn-outline-success m-2" href="/schedules/schedule_edit">Schedule</a>
+        <a class="btn btn-outline-success m-2" href="/events">EventShedule</a>
+        <a class="btn btn-outline-warning m-2" href="/events/create">Create</a>
     </div>
     <div>
         <table class="table table-bordered mt-2">

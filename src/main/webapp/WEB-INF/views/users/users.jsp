@@ -34,7 +34,7 @@
                     <td>${user.phone}</td>
                     <td>${user.email}</td>
                     <td colspan="2">
-                        <a class="btn-edit btn btn-outline-info" href="/users/edit/${user.id}">Edit</a>
+                        <a class="btn-edit btn btn-outline-info m-2" href="/users/edit/${user.id}">Edit</a>
                         <button class="btn-delete btn btn-outline-danger m-2" name="id" value="${user.id}">Delete
                         </button>
                     </td>
