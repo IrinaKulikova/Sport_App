@@ -15,6 +15,11 @@ public class Card {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     int id;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
+    @JsonIgnore
+    private User user;
+
     @Column(name = "pin_code")
     int pinCode;
 
@@ -26,10 +31,6 @@ public class Card {
 
     String description;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id")
-    @JsonIgnore
-    private User user;
 
     public Card() {
     }

@@ -3,7 +3,7 @@ package application.controller;
 import application.entity.Day;
 import application.entity.Schedule;
 import application.entity.ScheduleEvent;
-import application.helper.ScheduleSender;
+import application.dto.ScheduleSenderDTO;
 import application.service.implementations.DayServise;
 import application.service.implementations.ScheduleService;
 import application.service.implementations.SchedulesEventService;
@@ -43,15 +43,15 @@ public class ScheduleAdminController {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        List<List<ScheduleSender>> scheduleListTable = makeTable(dayList, scheduleList);
+        List<List<ScheduleSenderDTO>> scheduleListTable = makeTable(dayList, scheduleList);
         model.addAttribute("daylist", dayList);
         model.addAttribute("schedulelist", scheduleListTable);
         return "schedule/schedule";
     }
     @GetMapping("/schedule_edit")
     public String getEditSchedules(Model model){
-        List<ScheduleSender> listSender=new ArrayList<>();
-        ScheduleSender sender=null;
+        List<ScheduleSenderDTO> listSender=new ArrayList<>();
+        ScheduleSenderDTO sender=null;
         List<Schedule> scheduleList=null;
         try {
             scheduleList = scheduleServise.getAll();
@@ -63,7 +63,7 @@ public class ScheduleAdminController {
             time.substring(0,5);
             //----------------------------------------------
             //----------------------------------------------
-            sender=new ScheduleSender(sortingFlag(sch,time),sch.getId(),sch.getScheduleEvent().getName(),time,sch.getDay().getNameDay());
+            sender=new ScheduleSenderDTO(sortingFlag(sch,time),sch.getId(),sch.getScheduleEvent().getName(),time,sch.getDay().getNameDay());
             listSender.add(sender);
         }
         listSender=sortScheduleSender(listSender);
@@ -165,17 +165,17 @@ public class ScheduleAdminController {
         return "schedule/dbclickedit";
     }
 
-    private List<List<ScheduleSender>> makeTable(List<Day> dayList, List<Schedule> scheduleList) {
-        ScheduleSender sender = null;
-        List<List<ScheduleSender>> scheduleListSenders = new ArrayList<>();
+    private List<List<ScheduleSenderDTO>> makeTable(List<Day> dayList, List<Schedule> scheduleList) {
+        ScheduleSenderDTO sender = null;
+        List<List<ScheduleSenderDTO>> scheduleListSenders = new ArrayList<>();
         for (int i = startTime; i <= endTime; i++) {
-            List<ScheduleSender> scheduleSenders = new ArrayList<>();
-            sender = new ScheduleSender(i + ":00");
+            List<ScheduleSenderDTO> scheduleSenders = new ArrayList<>();
+            sender = new ScheduleSenderDTO(i + ":00");
             scheduleSenders.add(sender);
             for (Day d : dayList) {
                 String attributeTime = i + ":00";
                 Integer idday = d.getId();
-                sender = new ScheduleSender("", attributeTime, idday.toString());
+                sender = new ScheduleSenderDTO("", attributeTime, idday.toString());
                 sender.setScheduleList(haveSchedules(d.getId(), attributeTime, scheduleList));
                 scheduleSenders.add(sender);
             }
@@ -220,10 +220,10 @@ public class ScheduleAdminController {
         int higttime=sch.getDay().getAttribute()*100000000;
         return time_int+higttime;
     }
-    private  List<ScheduleSender> sortScheduleSender( List<ScheduleSender> listSender){
-        Collections.sort(listSender, new Comparator<ScheduleSender>() {
+    private  List<ScheduleSenderDTO> sortScheduleSender(List<ScheduleSenderDTO> listSender){
+        Collections.sort(listSender, new Comparator<ScheduleSenderDTO>() {
             @Override
-            public int compare(ScheduleSender o1, ScheduleSender o2) {
+            public int compare(ScheduleSenderDTO o1, ScheduleSenderDTO o2) {
 
                 if(o1.getNumbersort()>o2.getNumbersort())
                 {

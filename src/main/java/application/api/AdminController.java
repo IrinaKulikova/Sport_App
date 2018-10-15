@@ -5,7 +5,7 @@ import application.entity.Administrator;
 import application.helper.JSONResult;
 import application.helper.JSONResultError;
 import application.helper.JSONResultOk;
-import application.service.helper.HashHelper;
+import application.helper.HashHelper;
 import application.service.implementations.AdministratorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
