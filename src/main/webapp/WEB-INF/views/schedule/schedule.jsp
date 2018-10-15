@@ -14,7 +14,7 @@
 <body>
 <c:import url="../template/header.jsp"></c:import>
 
-<%  List<List<ScheduleSenderDTO>> scheduleListTable=( List<List<ScheduleSenderDTO>>) request.getAttribute("schedulelist");%>
+<% List<List<ScheduleSenderDTO>> scheduleListTable = (List<List<ScheduleSenderDTO>>) request.getAttribute("schedulelist");%>
 <div class="conteiner">
     <div class="container main-div mt-md-5" style="padding: 0px !important;">
         <div class="tools-div form-control text-center">
@@ -24,45 +24,46 @@
             <a class="btn btn-outline-success m-2" href="/events">Event Schedule</a>
         </div>
     </div>
-   <table class="table table-bordered">
-     <thead>
-     <tr>
-         <th scope="col"></th>
-         <c:forEach items="${daylist}" var="dayweek">
-             <th scope="col">${dayweek.nameDay}</th>
-         </c:forEach>
-     </tr>
-     </thead>
-       <tbody>
-       <%for (int i=0;i<scheduleListTable.size();i++){%>
-       <tr>
-          <% for( int j=0;j<scheduleListTable.get(i).size();j++){ %>
-            <% if(j==0){%>
-                   <th scope="row"><%=scheduleListTable.get(i).get(j).getName()%></th>
-               <%}else{%>
-                   <td data-time= <%=scheduleListTable.get(i).get(j).getAttributeTime()%> data-week=<%=scheduleListTable.get(i).get(j).getAttributeDay()%>>
-                 <%  if(scheduleListTable.get(i).get(j).getScheduleList()!=null){%>
-                    <%   List<Schedule> scheduleList=scheduleListTable.get(i).get(j).getScheduleList(); %>
-                       <% for (int k=0;k<scheduleList.size();k++){%>
-                       <div class="td-tab" data-id=<%=scheduleList.get(k).getId()%> data-title='<%=scheduleList.get(k).getScheduleEvent().getDescription()%>'  ><%= scheduleList.get(k).getScheduleEvent().getName() %></div>
-                       <%}%>
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+            <th scope="col"></th>
+            <c:forEach items="${daylist}" var="dayweek">
+                <th scope="col">${dayweek.nameDay}</th>
+            </c:forEach>
+        </tr>
+        </thead>
+        <tbody>
+        <%for (int i = 0; i < scheduleListTable.size(); i++) {%>
+        <tr>
+            <% for (int j = 0; j < scheduleListTable.get(i).size(); j++) { %>
+            <% if (j == 0) {%>
+            <th scope="row"><%=scheduleListTable.get(i).get(j).getName()%>
+            </th>
+            <%} else {%>
+            <td data-time=<%=scheduleListTable.get(i).get(j).getAttributeTime()%> data-week=<%=scheduleListTable.get(i).get(j).getAttributeDay()%>>
+                <% if (scheduleListTable.get(i).get(j).getScheduleList() != null) {%>
+                <% List<Schedule> scheduleList = scheduleListTable.get(i).get(j).getScheduleList(); %>
+                <% for (int k = 0; k < scheduleList.size(); k++) {%>
+                <div class="td-tab"
+                     data-id=<%=scheduleList.get(k).getId()%> data-title='<%=scheduleList.get(k).getScheduleEvent().getDescription()%>'><%= scheduleList.get(k).getScheduleEvent().getName() %>
+                </div>
+                <%}%>
+                <%}%>
+            </td>
+            <%}%>
+            <%}%>
+        </tr>
+        <%}%>
+        </tr>
 
-                   <%}%>
-                   </td>
-               <%}%>
-
-         <%}%>
-       </tr>
-       <%}%>
-       </tr>
-
-       </tbody>
-   </table>
+        </tbody>
+    </table>
 </div>
 <script>
-    document.addEventListener('dblclick',function (e){
-        if(e.target.matches(".td-tab")) return  window.location.href="/schedules/dbclickedit/"+e.target.dataset.id;
-        if(e.target.matches("td")) return window.location.href="/schedules/dbclickcreate?time="+e.target.dataset.time+"&id="+e.target.dataset.week;// alert(e.target.dataset.time+" & "+e.target.dataset.week);
+    document.addEventListener('dblclick', function (e) {
+        if (e.target.matches(".td-tab")) return window.location.href = "/schedules/dbclickedit/" + e.target.dataset.id;
+        if (e.target.matches("td")) return window.location.href = "/schedules/dbclickcreate?time=" + e.target.dataset.time + "&id=" + e.target.dataset.week;// alert(e.target.dataset.time+" & "+e.target.dataset.week);
     });
 </script>
 </body>

@@ -48,26 +48,27 @@ public class ScheduleAdminController {
         model.addAttribute("schedulelist", scheduleListTable);
         return "schedule/schedule";
     }
+
     @GetMapping("/schedule_edit")
-    public String getEditSchedules(Model model){
-        List<ScheduleSenderDTO> listSender=new ArrayList<>();
-        ScheduleSenderDTO sender=null;
-        List<Schedule> scheduleList=null;
+    public String getEditSchedules(Model model) {
+        List<ScheduleSenderDTO> listSender = new ArrayList<>();
+        ScheduleSenderDTO sender = null;
+        List<Schedule> scheduleList = null;
         try {
             scheduleList = scheduleServise.getAll();
-        }catch (Exception ex){
+        } catch (Exception ex) {
             ex.printStackTrace();
         }
-        for(Schedule sch:scheduleList){
-            String time =sch.getStarttime().toString();
-            time.substring(0,5);
+        for (Schedule sch : scheduleList) {
+            String time = sch.getStarttime().toString();
+            time.substring(0, 5);
             //----------------------------------------------
             //----------------------------------------------
-            sender=new ScheduleSenderDTO(sortingFlag(sch,time),sch.getId(),sch.getScheduleEvent().getName(),time,sch.getDay().getNameDay());
+            sender = new ScheduleSenderDTO(sortingFlag(sch, time), sch.getId(), sch.getScheduleEvent().getName(), time, sch.getDay().getNameDay());
             listSender.add(sender);
         }
-        listSender=sortScheduleSender(listSender);
-        model.addAttribute("schedule",listSender);
+        listSender = sortScheduleSender(listSender);
+        model.addAttribute("schedule", listSender);
 
         return "/schedule/schedule_edit";
     }
@@ -117,7 +118,6 @@ public class ScheduleAdminController {
         }
         java.sql.Time sd = new java.sql.Time(date.getTime());
         Schedule schedule = new Schedule(newDay, sd, scheduleEvent);
-        //    scheduleRepository.midifyingQuryInsertSchadule(Integer.parseInt(day),timestring,Integer.parseInt(event));
         try {
             scheduleServise.save(schedule);
         } catch (Exception e) {
@@ -196,18 +196,14 @@ public class ScheduleAdminController {
 
         List<Schedule> scheduleList = new ArrayList<>();
         for (Schedule schedule : readScheduleList) {
-          //  long timeStart = schedule.getStarttime().getTime();
-          //  long timeTable = date.getTime();
-            //   java.util.Date dt=new java.util.Date(schedule.getStarttime().getTime());
             if ((schedule.getDay().getId() == dayId) && (date.getTime() == schedule.getStarttime().getTime())) {
                 scheduleList.add(schedule);
             }
         }
-
-
         return scheduleList;
     }
-    private int sortingFlag(Schedule sch,String time){
+
+    private int sortingFlag(Schedule sch, String time) {
         SimpleDateFormat localDateFormat = new SimpleDateFormat("HH:mm");
         localDateFormat.setTimeZone(TimeZone.getTimeZone("GMT+2"));
         Date date = null;
@@ -216,27 +212,27 @@ public class ScheduleAdminController {
         } catch (ParseException e) {
             e.printStackTrace();
         }
-        int time_int=(int)date.getTime();
-        int higttime=sch.getDay().getAttribute()*100000000;
-        return time_int+higttime;
+        int time_int = (int) date.getTime();
+        int higttime = sch.getDay().getAttribute() * 100000000;
+        return time_int + higttime;
     }
-    private  List<ScheduleSenderDTO> sortScheduleSender(List<ScheduleSenderDTO> listSender){
+
+    private List<ScheduleSenderDTO> sortScheduleSender(List<ScheduleSenderDTO> listSender) {
         Collections.sort(listSender, new Comparator<ScheduleSenderDTO>() {
             @Override
             public int compare(ScheduleSenderDTO o1, ScheduleSenderDTO o2) {
 
-                if(o1.getNumbersort()>o2.getNumbersort())
-                {
+                if (o1.getNumbersort() > o2.getNumbersort()) {
                     return 1;
                 }
-                if(o1.getNumbersort()<o2.getNumbersort()){
+                if (o1.getNumbersort() < o2.getNumbersort()) {
                     return -1;
                 }
                 return 0;
             }
         });
-        for(int i=0;i<listSender.size();i++){
-            listSender.get(i).setNumbersort(i+1);
+        for (int i = 0; i < listSender.size(); i++) {
+            listSender.get(i).setNumbersort(i + 1);
         }
 
         return listSender;

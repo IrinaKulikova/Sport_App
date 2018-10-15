@@ -80,7 +80,4 @@ public class SharedApiController {
         }
         return new JSONResultOk<>(news);
     }
-
-
-
 }

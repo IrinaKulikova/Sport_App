@@ -32,7 +32,6 @@ public class ScheduleController {
     @Autowired
     DayServise dayServise;
 
-    // получить список расписание
     @GetMapping()
     public JSONResult<List<Schedule>> getSchedule() {
         List<Schedule> schedules = new ArrayList<>();
@@ -55,7 +54,6 @@ public class ScheduleController {
         ScheduleEvent scheduleEvent = new ScheduleEvent();
         try {
             newDay = dayServise.getById(schedule.getDayid());
-        //    date = localDateFormat.parse(currentSchedule.getStarttime().toString());
             date=localDateFormat.parse(schedule.getStarttime());
             scheduleEvent = schedulesEventService.getById(schedule.getEventschedule());
         } catch (Exception e) {
@@ -65,7 +63,6 @@ public class ScheduleController {
 
         java.sql.Time sd = new java.sql.Time(date.getTime());
         Schedule editschedule = new Schedule(newDay, sd, scheduleEvent);
-      //  schedule.setId(id);
 
         try {
             currentSchedule = scheduleServise.getById(id);

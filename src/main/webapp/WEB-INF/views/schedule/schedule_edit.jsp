@@ -3,7 +3,6 @@
 <%@ page isELIgnored="false" contentType="text/html;charset=UTF-8" %>
 <!DOCTYPE html>
 <html lang="en">
-<%-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous"> --%>
 
 <head>
 <c:import url="../template/head.jsp"></c:import>
@@ -27,7 +26,6 @@
                 <th scope="col">Week</th>
                 <th scope="col">Time</th>
                 <th scope="col">Schelule</th>
-           <%--     <th scope="col">Email</th> --%>
                 <th colspan="2"></th>
             </tr>
             </thead>
@@ -38,7 +36,6 @@
                     <td>${schedules.attributeDay}</td>
                     <td>${schedules.attributeTime}</td>
                     <td>${schedules.name}</td>
-               <%--     <td>${user.email}</td> --%>
                     <td colspan="2">
                         <a class="btn-edit btn btn-outline-info m-2" href="/schedules//dbclickedit/${schedules.id}">Edit</a>
                         <button class="btn-delete btn btn-outline-danger m-2" name="id" value="${schedules.id}">Delete

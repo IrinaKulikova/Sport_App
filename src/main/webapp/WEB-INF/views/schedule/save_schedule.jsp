@@ -13,7 +13,7 @@
 
 <form  method="post" accept-charset="UTF-8">
     <div class="form-group">
-        <label for="sheduleevent">Событие</label>
+        <label for="sheduleevent">Event</label>
         <select class="form-control" id="sheduleEvent" name="sheduleEvent" >
             <c:forEach items="${eventshedule}" var="schedule">
                 <option value="${schedule.id}">${schedule.name}</option>
@@ -21,7 +21,7 @@
         </select>
     </div>
     <div class="form-group" accept-charset="UTF-8">
-        <label for="week">День недели</label>
+        <label for="week">Day of week</label>
         <select class="form-control" id="week" name="day">
             <c:forEach items="${weekday}" var="day">
                 <option value="${day.id}">${day.nameDay}</option>
@@ -30,7 +30,7 @@
     </div>
     <div class="form-row">
         <div class="form-group">
-            <label for="starttime">Часы</label>
+            <label for="starttime">Time</label>
             <select  class="form-control" id="starttime" name="starttime" style="width: 100px"  >
                 <c:forEach var="i" begin="8" end="20">
                     <option value="${i}:00">${i}:00</option>
@@ -38,14 +38,6 @@
 
             </select>
         </div>
-        <div class="form-group">
-         <!--   <label for="min">Минуты</label>
-            <select class="form-control" id="min" name="min" style="width: 100px">
-                <option value="00" selected>00</option>
-                <option value="30">30</option>
-            </select> -->
-        </div>
-
     </div>
     <button type="submit" class="btn btn-primary">Save</button>
 </form>
