@@ -59,7 +59,7 @@ head>
         </div>
 
     </div>
-    <button type="submit" class="btn btn-primary">Зберегти</button>
+    <button type="submit" class="btn btn-primary">Save</button>
 </form>
 </body>
 </html>

@@ -68,7 +68,7 @@
         </div>
 
     </div>
-    <button type="submit" class="btn btn-primary"  value="${schedule.id}">Зберегти</button>
+    <button type="submit" class="btn btn-primary"  value="${schedule.id}">Save</button>
 </form>
 <!--Scripts-->
 <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
