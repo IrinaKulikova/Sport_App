@@ -24,7 +24,7 @@
         <label for="week">Day of week</label>
         <select class="form-control" id="week" name="day">
             <c:forEach items="${weekday}" var="day">
-                <option value="${day.id}">${day.nameDay}</option>
+                <option value="${day.id}">${day.name}</option>
             </c:forEach>
         </select>
     </div>

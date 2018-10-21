@@ -37,7 +37,7 @@
                     <td>${schedules.attributeTime}</td>
                     <td>${schedules.name}</td>
                     <td colspan="2">
-                        <a class="btn-edit btn btn-outline-info m-2" href="/schedules//dbclickedit/${schedules.id}">Edit</a>
+                        <a class="btn-edit btn btn-outline-info m-2" href="/trainings//dbclickedit/${schedules.id}">Edit</a>
                         <button class="btn-delete btn btn-outline-danger m-2" name="id" value="${schedules.id}">Delete
                         </button>
                     </td>

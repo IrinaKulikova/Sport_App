@@ -11,7 +11,7 @@ $(function () {
             console.log('fail');
         };
 
-        service.del("/api/1.0/schedules/event/" + btn.val(), success, fail);
+        service.del("/api/1.0/trainings/event/" + btn.val(), success, fail);
         e.preventDefault();
     });
 })

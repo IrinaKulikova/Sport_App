@@ -4,6 +4,8 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jdk.nashorn.internal.ir.annotations.Ignore;
 import lombok.Data;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -26,7 +28,12 @@ public class Filiation {
     String building;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "filiation", fetch = FetchType.EAGER)
+    @Fetch(value = FetchMode.SUBSELECT)
     List<Contact> contacts = new ArrayList<>();
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "filiation", fetch = FetchType.EAGER)
+    @Fetch(value = FetchMode.SUBSELECT)
+    List<Training> trainings = new ArrayList<>();
 
     public Filiation(String caption, String country, String city, String indexCity, String street, String building) {
         this.caption = caption;
@@ -37,15 +44,6 @@ public class Filiation {
         this.building = building;
     }
 
-    public void addContact(Contact contact) {
-        contacts.add(contact);
-    }
-
     public Filiation() {
-    }
-
-    public void removeContact(Contact contact) {
-        Contact curContact = contacts.stream().filter(c -> (c.getId() == contact.getId())).findFirst().get();
-        contacts.remove(curContact);
     }
 }

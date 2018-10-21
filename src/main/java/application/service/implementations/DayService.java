@@ -9,9 +9,11 @@ import org.w3c.dom.Entity;
 
 import java.util.List;
 @Service
-public class DayServise implements EntityService<Day> {
+public class DayService implements EntityService<Day> {
+
     @Autowired
     DayRepository dayRepository;
+
     @Override
     public List<Day> getAll() throws Exception {
         return dayRepository.findAll();

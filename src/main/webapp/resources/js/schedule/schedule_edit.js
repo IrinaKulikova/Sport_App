@@ -3,14 +3,14 @@ $(function () {
        let service=new AJAXService();
        var btn=$(this);
        var schedule=new Schedule(btn.val(),$('#day').val(),
-           $('#starttime').val(),$('#sheduleevent').val());
+           $('#time').val(),$('#sheduleevent').val());
         function success() {
-            location.replace("/schedules");
+            location.replace("/trainings");
         };
         function fail() {
             console.log("fail");
         };
-        service.put("/api/1.0/schedules/scheduleedit/"+btn.val(),schedule,success,fail);
+        service.put("/api/1.0/trainings/scheduleedit/"+btn.val(),schedule,success,fail);
         e.preventDefault();
     });
 

@@ -44,7 +44,6 @@ public class ContactController {
             newContact.setFiliation(filiation);
             newContact.setData(contact.getData());
             newContact.setContactType(contact.getContactType());
-            filiation.addContact(newContact);
             newContact.setFiliation(filiation);
             newContact = contactService.save(newContact);
         } catch (Exception ex) {

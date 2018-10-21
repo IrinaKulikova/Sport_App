@@ -9,17 +9,21 @@ import java.util.List;
 
 @Entity
 @Data
-public class Day {
+@Table(name="training_type")
+public class TrainingType {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    int id;
+
     String name;
 
+    @Column(columnDefinition = "text")
+    String description;
+
     @OneToMany(fetch = FetchType.LAZY, targetEntity = Training.class, cascade = CascadeType.ALL)
-    @JoinColumn(name = "day")
+    @JoinColumn(name = "type")
     @JsonIgnore
     List<Training> trainings = new ArrayList<>();
 
-    public Day() {
-    }
+    public TrainingType(){ }
 }

@@ -5,9 +5,6 @@
 
 <head>
     <c:import url="../template/head.jsp"></c:import>
-    <style>
-        .conteiner, form{width: 500px;margin:  0 auto;margin-top: 0px;}
-    </style>
 </head>
 
 <body>
@@ -17,19 +14,19 @@
 <div class="container main-div mt-3">
 
     <form class="edit-event-form" accept-charset="UTF-8">
-        <h1>Event</h1>
+        <h1>Training Type edit</h1>
         <div class="form-group">
             <label for="name">Name</label>
-            <input type="text" class="form-control" id="name" placeholder=""  value="${event.name}" name="name">
+            <input type="text" class="form-control" id="name" placeholder=""  value="${trainingtype.name}" name="name">
         </div>
         <div class="form-group">
             <label for="description">Description</label>
             <textarea class="form-control" id="description" placeholder=""  name="description"
-                      row="5">${event.description}</textarea>
+                      row="5">${trainingtype.description}</textarea>
         </div>
         <div class="mt-4 row">
             <div class="col-md-12 text-center">
-                <button type="submit" id="save" value="${event.id}" class="btn btn-outline-danger pl-5 pr-5">
+                <button type="submit" id="save" value="${trainingtype.id}" class="btn btn-outline-danger pl-5 pr-5">
                     Save
                 </button>
             </div>

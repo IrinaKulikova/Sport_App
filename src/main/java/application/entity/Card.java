@@ -16,7 +16,7 @@ public class Card {
     int id;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "user")
     @JsonIgnore
     private User user;
 
@@ -30,7 +30,6 @@ public class Card {
     String expirationDate;
 
     String description;
-
 
     public Card() {
     }

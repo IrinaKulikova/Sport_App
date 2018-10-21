@@ -3,15 +3,15 @@ package application.api.shared;
 
 import application.entity.Filiation;
 import application.entity.News;
-import application.entity.Schedule;
-import application.entity.ScheduleEvent;
+import application.entity.Training;
+import application.entity.TrainingType;
 import application.helper.JSONResult;
 import application.helper.JSONResultError;
 import application.helper.JSONResultOk;
 import application.service.implementations.FiliationService;
 import application.service.implementations.NewsService;
-import application.service.implementations.ScheduleService;
-import application.service.implementations.SchedulesEventService;
+import application.service.implementations.TrainingService;
+import application.service.implementations.TrainingTypeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -28,27 +28,28 @@ public class SharedApiController {
     @Autowired
     NewsService newsService;
     @Autowired
-    SchedulesEventService eventService;
+    TrainingTypeService typeTrainingService;
     @Autowired
-    ScheduleService scheduleService;
+    TrainingService trainingService;
 
-    @GetMapping("/schedules")
-    public JSONResult<List<Schedule>> getAllSchedule(){
-        List<Schedule> schedules = new ArrayList<>();
+    @GetMapping("/{id}/schedule")
+    public JSONResult<List<Training>> getAllTrainings(@PathVariable int id) {
+        List<Training> schedule = new ArrayList<>();
         try {
-            schedules = scheduleService.getAll();
+            Filiation filiation = filiationService.getById(id);
+            schedule = filiation.getTrainings();
         } catch (Exception ex) {
             ex.printStackTrace();
-            return new JSONResultError<List<Schedule>>(schedules, ex.getMessage());
+            return new JSONResultError<>(schedule, ex.getMessage());
         }
-        return new JSONResultOk<List<Schedule>>(schedules);
+        return new JSONResultOk<>(schedule);
     }
 
-    @GetMapping("/events")
-    public JSONResult<List<ScheduleEvent>> getAllScheduleEvents() {
-        List<ScheduleEvent> events = new ArrayList<>();
+    @GetMapping("/typetrainings")
+    public JSONResult<List<TrainingType>> getAllScheduleEvents() {
+        List<TrainingType> events = new ArrayList<>();
         try {
-            events = eventService.getAll();
+            events = typeTrainingService.getAll();
         } catch (Exception ex) {
             ex.printStackTrace();
             return new JSONResultError<>(events, ex.getMessage());

@@ -25,10 +25,10 @@
                 <c:forEach items="${weekday}" var="day">
                     <c:choose>
                         <c:when test="${day.id == idday}">
-                            <option value="${day.id}" selected>${day.nameDay}</option>
+                            <option value="${day.id}" selected>${day.name}</option>
                         </c:when>
                         <c:otherwise>
-                            <option value="${day.id}">${day.nameDay}</option>
+                            <option value="${day.id}">${day.name}</option>
                         </c:otherwise>
                     </c:choose>
                 </c:forEach>

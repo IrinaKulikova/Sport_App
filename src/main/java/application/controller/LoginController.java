@@ -66,6 +66,6 @@ public class LoginController {
         } catch (Throwable throwable) {
             throwable.printStackTrace();
         }
-        return "filiation/filiation";
+        return "filiations/filiation";
     }
 }

@@ -1,4 +1,4 @@
-<%@ page import="application.entity.Schedule" %>
+<%@ page import="application.entity.Training" %>
 <%@ page import="java.util.List" %>
 <%@ page import="application.entity.Day" %>
 <%@ page import="application.dto.ScheduleSenderDTO" %>
@@ -29,7 +29,7 @@
         <tr>
             <th scope="col"></th>
             <c:forEach items="${daylist}" var="dayweek">
-                <th scope="col">${dayweek.nameDay}</th>
+                <th scope="col">${dayweek.name}</th>
             </c:forEach>
         </tr>
         </thead>
@@ -43,7 +43,7 @@
             <%} else {%>
             <td data-time=<%=scheduleListTable.get(i).get(j).getAttributeTime()%> data-week=<%=scheduleListTable.get(i).get(j).getAttributeDay()%>>
                 <% if (scheduleListTable.get(i).get(j).getScheduleList() != null) {%>
-                <% List<Schedule> scheduleList = scheduleListTable.get(i).get(j).getScheduleList(); %>
+                <% List<Training> scheduleList = scheduleListTable.get(i).get(j).getScheduleList(); %>
                 <% for (int k = 0; k < scheduleList.size(); k++) {%>
                 <div class="td-tab"
                      data-id=<%=scheduleList.get(k).getId()%> data-title='<%=scheduleList.get(k).getScheduleEvent().getDescription()%>'><%= scheduleList.get(k).getScheduleEvent().getName() %>
@@ -62,8 +62,8 @@
 </div>
 <script>
     document.addEventListener('dblclick', function (e) {
-        if (e.target.matches(".td-tab")) return window.location.href = "/schedules/dbclickedit/" + e.target.dataset.id;
-        if (e.target.matches("td")) return window.location.href = "/schedules/dbclickcreate?time=" + e.target.dataset.time + "&id=" + e.target.dataset.week;// alert(e.target.dataset.time+" & "+e.target.dataset.week);
+        if (e.target.matches(".td-tab")) return window.location.href = "/trainings/dbclickedit/" + e.target.dataset.id;
+        if (e.target.matches("td")) return window.location.href = "/trainings/dbclickcreate?time=" + e.target.dataset.time + "&id=" + e.target.dataset.week;// alert(e.target.dataset.time+" & "+e.target.dataset.week);
     });
 </script>
 </body>

@@ -26,9 +26,9 @@ public class FiliationController {
             filiation = filiationService.getById(id);
         } catch (Exception ex) {
             ex.printStackTrace();
-            return new JSONResultError<Filiation>(filiation, ex.getMessage());
+            return new JSONResultError<>(filiation, ex.getMessage());
         }
-        return new JSONResultOk<Filiation>(filiation);
+        return new JSONResultOk<>(filiation);
     }
 
     @DeleteMapping("/{id}")
@@ -39,9 +39,9 @@ public class FiliationController {
             filiationService.delete(filiation);
         } catch (Exception ex) {
             ex.printStackTrace();
-            return new JSONResultError<Filiation>(filiation, ex.getMessage());
+            return new JSONResultError<>(filiation, ex.getMessage());
         }
-        return new JSONResultOk<Filiation>(filiation);
+        return new JSONResultOk<>(filiation);
     }
 
     @PutMapping("/{id}")

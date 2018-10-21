@@ -37,13 +37,4 @@ public class User {
 
     public User() {
     }
-
-    public void addCard(Card card) {
-        cards.add(card);
-    }
-
-    public void removeCard(Card card) {
-        Card curCard = cards.stream().filter(c -> (c.getId() == card.getId())).findFirst().get();
-        cards.remove(curCard);
-    }
 }

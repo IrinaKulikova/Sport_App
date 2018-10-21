@@ -16,9 +16,9 @@
         <li class="nav-item">
             <a class="nav-link" href="/news">News</a>
         </li>
-        <%--<li class="nav-item">--%>
-            <%--<a class="nav-link" href="/events">Events</a>--%>
-        <%--</li>--%>
+        <li class="nav-item">
+            <a class="nav-link" href="/trainingtypes">Training Types</a>
+        </li>
         <li class="nav-item">
             <a class="nav-link" href="/admins">Admins</a>
         </li>

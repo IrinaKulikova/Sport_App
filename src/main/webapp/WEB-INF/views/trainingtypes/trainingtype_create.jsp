@@ -5,9 +5,6 @@
 
 <head>
     <c:import url="../template/head.jsp"></c:import>
-    <style>
-        .conteiner, form{width: 500px;margin:  0 auto;margin-top: 0px;}
-    </style>
 </head>
 
 <body>
@@ -17,7 +14,7 @@
 <div class="container main-div mt-3">
 
     <form class="create-event-form" accept-charset="UTF-8">
-        <h1>Event create</h1>
+        <h1>Training Type create</h1>
         <div class="form-group">
             <label for="name">Name</label>
             <input type="text" class="form-control" id="name" placeholder="" name="name">
