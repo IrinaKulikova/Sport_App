@@ -22,7 +22,7 @@ public class LoginController {
 
     @GetMapping("/")
     public String index() {
-        return "redirect:/filiation";
+        return "redirect:/filiations";
     }
 
     @GetMapping("/logout")

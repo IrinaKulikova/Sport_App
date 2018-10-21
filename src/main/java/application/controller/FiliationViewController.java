@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Controller
-@RequestMapping("/filiation")
+@RequestMapping("/filiations")
 public class FiliationViewController {
 
     @Autowired

@@ -8,8 +8,7 @@ import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 @Entity
 @Data
@@ -27,12 +26,10 @@ public class Filiation {
     String street;
     String building;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "filiation", fetch = FetchType.EAGER)
-    @Fetch(value = FetchMode.SUBSELECT)
+    @OneToMany(cascade = CascadeType.REMOVE, mappedBy = "filiation", fetch = FetchType.EAGER)
     List<Contact> contacts = new ArrayList<>();
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "filiation", fetch = FetchType.EAGER)
-    @Fetch(value = FetchMode.SUBSELECT)
+    @OneToMany(cascade = CascadeType.REMOVE, mappedBy = "filiation", fetch = FetchType.LAZY)
     List<Training> trainings = new ArrayList<>();
 
     public Filiation(String caption, String country, String city, String indexCity, String street, String building) {

@@ -14,13 +14,13 @@ public class Contact {
     Integer id;
 
     @ManyToOne(fetch = FetchType.EAGER, targetEntity = ContactType.class)
-    @JoinColumn(name = "type")
+    @JoinColumn(name = "contact_type_id")
     ContactType contactType;
 
     String data;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "filiation")
+    @JoinColumn(name = "filiation_id")
     @JsonIgnore
     Filiation filiation;
 
