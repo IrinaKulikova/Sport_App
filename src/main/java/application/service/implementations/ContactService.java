@@ -1,7 +1,10 @@
 package application.service.implementations;
 
 import application.entity.Contact;
+import application.entity.ContactType;
 import application.repository.ContactRepository;
+import application.repository.ContactTypeRepository;
+import application.repository.FiliationRepository;
 import application.service.interfaces.EntityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

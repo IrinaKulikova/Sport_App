@@ -20,7 +20,7 @@ public class TrainingType {
     String description;
 
     @OneToMany(targetEntity = Training.class, cascade = CascadeType.ALL)
-    @JoinColumn(name = "training_type_id")
+    @JoinColumn(name = "training_type_fk")
     @JsonIgnore
     List<Training> trainings = new ArrayList<>();
 

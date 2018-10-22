@@ -15,9 +15,7 @@ public class Day {
     private int id;
     String name;
 
-    @OneToMany(fetch = FetchType.LAZY, targetEntity = Training.class, cascade = CascadeType.ALL)
-    @JoinColumn(name = "day")
-    @JsonIgnore
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "day" ,targetEntity = Training.class, cascade = CascadeType.ALL)
     List<Training> trainings = new ArrayList<>();
 
     public Day() {

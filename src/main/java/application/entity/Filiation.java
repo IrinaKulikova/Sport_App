@@ -1,6 +1,8 @@
 package application.entity;
 
 import lombok.Data;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 
 import javax.persistence.*;
 import java.util.*;
@@ -21,10 +23,11 @@ public class Filiation {
     String street;
     String building;
 
-    @OneToMany(cascade = CascadeType.REMOVE, mappedBy = "filiation", fetch = FetchType.EAGER)
+    @OneToMany(cascade = CascadeType.REMOVE, orphanRemoval = true, mappedBy = "filiation", fetch = FetchType.EAGER)
     List<Contact> contacts = new ArrayList<>();
 
     @OneToMany(cascade = CascadeType.REMOVE, mappedBy = "filiation", fetch = FetchType.LAZY)
+    @LazyCollection(LazyCollectionOption.FALSE)
     List<Training> trainings = new ArrayList<>();
 
     public Filiation() {

@@ -15,13 +15,15 @@ import java.util.List;
 public class FiliationService implements EntityService<Filiation> {
 
     private final FiliationRepository filiationRepository;
-
     private final TrainingRepository trainingRepository;
+    private final ContactRepository contactRepository;
 
     @Autowired
-    public FiliationService(FiliationRepository filiationRepository, TrainingRepository trainingRepository) {
+    public FiliationService(FiliationRepository filiationRepository,
+                            TrainingRepository trainingRepository, ContactRepository contactRepository) {
         this.filiationRepository = filiationRepository;
         this.trainingRepository = trainingRepository;
+        this.contactRepository = contactRepository;
     }
 
     @Override
@@ -33,6 +35,7 @@ public class FiliationService implements EntityService<Filiation> {
     public Filiation getById(int id) throws SQLException {
         Filiation filiation = filiationRepository.findById(id).get();
         filiation.setTrainings(trainingRepository.findAllByFiliation(filiation));
+        filiation.setContacts(contactRepository.findAllByFiliation(filiation));
         return filiation;
     }
 

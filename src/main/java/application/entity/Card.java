@@ -14,8 +14,8 @@ public class Card {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     int id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user")
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "user_fk")
     @JsonIgnore
     private User user;
 

@@ -16,16 +16,17 @@ public class Training {
     private Time time;
 
     @ManyToOne(targetEntity = Day.class, fetch = FetchType.EAGER)
-    @JoinColumn(name = "day")
+    @JoinColumn(name = "day_fk")
     @JsonIgnore
     Day day;
 
     @ManyToOne(targetEntity = TrainingType.class, fetch = FetchType.EAGER)
-    @JoinColumn(name = "training_type_id")
+    @JoinColumn(name = "training_type_fk")
+    @JsonIgnore
     TrainingType trainingType;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "filiation_id")
+    @ManyToOne(fetch = FetchType.LAZY, targetEntity = Filiation.class)
+    @JoinColumn(name = "filiation_fk")
     @JsonIgnore
     Filiation filiation;
 

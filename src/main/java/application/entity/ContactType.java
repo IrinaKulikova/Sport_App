@@ -19,7 +19,7 @@ public class ContactType {
     String name;
 
     @OneToMany(cascade = CascadeType.ALL, targetEntity = Contact.class)
-    @JoinColumn(name="contact_type_id")
+    @JoinColumn(name="contact_type_fk")
     @JsonIgnore
     List<Contact> contacts = new ArrayList<>();
 

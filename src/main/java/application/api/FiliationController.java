@@ -30,19 +30,6 @@ public class FiliationController {
         return new JSONResultOk<>(filiation);
     }
 
-    @DeleteMapping("/{id}")
-    public JSONResult<Filiation> delete(@PathVariable int id) {
-        Filiation filiation = new Filiation();
-        try {
-            filiation = filiationService.getById(id);
-            filiationService.delete(filiation);
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-            return new JSONResultError<>(filiation, ex.getMessage());
-        }
-        return new JSONResultOk<>(filiation);
-    }
-
     @PutMapping("/{id}")
     public JSONResult<Filiation> update(@RequestBody Filiation filiation, @PathVariable int id) {
         Filiation currentFiliation = null;
@@ -79,5 +66,18 @@ public class FiliationController {
             return new JSONResultError<>(filiation, ex.getMessage());
         }
         return new JSONResultOk<>(currentFiliation);
+    }
+
+    @DeleteMapping("/{id}")
+    public JSONResult<Filiation> delete(@PathVariable int id) {
+        Filiation filiation = new Filiation();
+        try {
+            filiation = filiationService.getById(id);
+            filiationService.delete(filiation);
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            return new JSONResultError<>(filiation, ex.getMessage());
+        }
+        return new JSONResultOk<>(filiation);
     }
 }

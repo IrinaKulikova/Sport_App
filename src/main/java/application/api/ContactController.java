@@ -76,10 +76,10 @@ public class ContactController {
         try {
             contact = contactService.getById(id);
             contactService.delete(contact);
-        } catch (SQLException ex) {
+        } catch (Throwable ex) {
             ex.printStackTrace();
             return new JSONResultError<>(contact, ex.getMessage());
         }
-        return new JSONResultOk<>(new Contact());
+        return new JSONResultOk<>(contact);
     }
 }
