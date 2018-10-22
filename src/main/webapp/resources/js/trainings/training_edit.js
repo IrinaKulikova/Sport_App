@@ -13,7 +13,7 @@ $(function () {
             console.log("fail");
         }
 
-        service.put("/api/1.0/trainings/scheduleedit/" + btn.val(), schedule, success, fail);
+        service.put("/api/1.0/trainings/" + btn.val(), schedule, success, fail);
         e.preventDefault();
     });
 
