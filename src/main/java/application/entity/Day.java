@@ -2,6 +2,7 @@ package application.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
+import org.hibernate.annotations.Fetch;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -16,6 +17,7 @@ public class Day {
     String name;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "day" ,targetEntity = Training.class, cascade = CascadeType.ALL)
+    @JsonIgnore
     List<Training> trainings = new ArrayList<>();
 
     public Day() {

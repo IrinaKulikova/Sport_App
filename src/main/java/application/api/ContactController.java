@@ -75,7 +75,7 @@ public class ContactController {
         Contact contact = new Contact();
         try {
             contact = contactService.getById(id);
-            contactService.delete(contact);
+            contactService.delete(id);
         } catch (Throwable ex) {
             ex.printStackTrace();
             return new JSONResultError<>(contact, ex.getMessage());

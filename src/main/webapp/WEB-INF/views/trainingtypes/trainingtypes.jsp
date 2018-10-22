@@ -27,7 +27,7 @@
                     <td scope="row">${item.name}</td>
                     <td scope="row">${item.description}</td>
                     <td colspan="2">
-                        <a href="/events/${item.id}">
+                        <a href="/trainingtypes/${item.id}">
                             <button class="btn btn-outline-info m-2" name="id" type="submit" value="${item.id}">Edit
                             </button>
                         </a>

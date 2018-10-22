@@ -9,7 +9,7 @@ import java.util.List;
 
 @Entity
 @Data
-@Table(name="training_type")
+@Table(name = "training_type")
 public class TrainingType {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -19,10 +19,10 @@ public class TrainingType {
     @Column(columnDefinition = "text")
     String description;
 
-    @OneToMany(targetEntity = Training.class, cascade = CascadeType.ALL)
-    @JoinColumn(name = "training_type_fk")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "trainingType", targetEntity = Training.class, cascade = CascadeType.ALL)
     @JsonIgnore
     List<Training> trainings = new ArrayList<>();
 
-    public TrainingType(){ }
+    public TrainingType() {
+    }
 }

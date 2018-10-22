@@ -18,7 +18,7 @@ $(function () {
                         console.log("error!" + e);
                     }
 
-                    service.put("/api/1.0/events/" + button.val(), trainigtype, success, fail);
+                    service.put("/api/1.0/trainingtypes/" + button.val(), trainigtype, success, fail);
                     e.preventDefault();
                 }
             }

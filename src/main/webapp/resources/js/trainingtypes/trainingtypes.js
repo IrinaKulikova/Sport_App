@@ -13,7 +13,7 @@ $(function () {
             console.log('fail!');
         }
 
-        service.del("/api/1.0/triningtypes/" + $del.val(), success, fail);
+        service.del("/api/1.0/trainingtypes/" + $del.val(), success, fail);
         e.preventDefault();
     });
 });
