@@ -19,7 +19,7 @@ public class Contact {
 
     String data;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "filiation_id")
     @JsonIgnore
     Filiation filiation;

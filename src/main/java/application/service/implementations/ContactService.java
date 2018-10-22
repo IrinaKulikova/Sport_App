@@ -12,30 +12,34 @@ import java.util.List;
 @Service
 public class ContactService implements EntityService<Contact> {
 
-    private final ContactRepository repository;
+    private final ContactRepository contactRepository;
 
     @Autowired
     public ContactService(ContactRepository repository) {
-        this.repository = repository;
+        this.contactRepository = repository;
     }
 
     @Override
     public List<Contact> getAll() throws SQLException {
-        return repository.findAll();
+        return contactRepository.findAll();
     }
 
     @Override
     public Contact getById(int id) throws SQLException {
-        return repository.findById(id).get();
+        return contactRepository.findById(id).get();
     }
 
     @Override
     public Contact save(Contact contact) throws SQLException {
-        return repository.save(contact);
+        return contactRepository.save(contact);
     }
 
     @Override
     public void delete(int id) throws SQLException {
-        repository.delete(repository.findById(id).get());
+        contactRepository.delete(contactRepository.findById(id).get());
+    }
+
+    public void delete(Contact contact) throws SQLException {
+        contactRepository.delete(contact);
     }
 }

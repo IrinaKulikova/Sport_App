@@ -3,6 +3,7 @@ package application.service.implementations;
 import application.entity.Filiation;
 import application.repository.ContactRepository;
 import application.repository.FiliationRepository;
+import application.repository.TrainingRepository;
 import application.service.interfaces.EntityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,19 +16,24 @@ public class FiliationService implements EntityService<Filiation> {
 
     private final FiliationRepository filiationRepository;
 
+    private final TrainingRepository trainingRepository;
+
     @Autowired
-    public FiliationService(FiliationRepository filiationRepository) {
+    public FiliationService(FiliationRepository filiationRepository, TrainingRepository trainingRepository) {
         this.filiationRepository = filiationRepository;
+        this.trainingRepository = trainingRepository;
     }
 
     @Override
-    public List<Filiation> getAll()throws SQLException {
+    public List<Filiation> getAll() throws SQLException {
         return filiationRepository.findAll();
     }
 
     @Override
     public Filiation getById(int id) throws SQLException {
-        return filiationRepository.findById(id).get();
+        Filiation filiation = filiationRepository.findById(id).get();
+        filiation.setTrainings(trainingRepository.findAllByFiliation(filiation));
+        return filiation;
     }
 
     @Override

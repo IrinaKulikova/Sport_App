@@ -1,5 +1,4 @@
 $(function () {
-
     $(".del").click(function (e) {
         $del = $(this);
         console.log("del");
@@ -8,13 +7,13 @@ $(function () {
         function success() {
             $del.parent().parent().remove();
             console.log('done!');
-        };
+        }
 
         function fail() {
             console.log('fail!');
-        };
+        }
 
-        service.del("/api/1.0/events/" + $del.val(), success, fail);
+        service.del("/api/1.0/triningtypes/" + $del.val(), success, fail);
         e.preventDefault();
     });
 });

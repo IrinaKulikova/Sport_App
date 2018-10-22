@@ -24,14 +24,14 @@ public class TrainingViewController {
 
     @GetMapping("/{id}")
     public String getSchedule(@PathVariable int id, Model model) {
-        List<Training> schedule = new ArrayList<>();
+        List<Training> trainings = new ArrayList<>();
         try {
             Filiation filiation = filiationService.getById(id);
-            schedule = filiation.getTrainings();
+            trainings = filiation.getTrainings();
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
-        model.addAttribute("schedule", schedule);
+        model.addAttribute("trainings", trainings);
         return "trainings/trainings";
     }
 }

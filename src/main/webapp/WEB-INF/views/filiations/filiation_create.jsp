@@ -82,6 +82,6 @@
 <script src="../../../resources/js/services/jquery.validate.js" type="text/javascript"></script>
 <script src="../../../resources/js/DTO/DTOFiliation.js" type="text/javascript"></script>
 <script src="../../../resources/js/services/AJAXService.js" type="text/javascript"></script>
-<script src="../../../resources/js/filiation/filiation_create.js" type="text/javascript"></script>
+<script src="../../../resources/js/filiations/filiation_create.js" type="text/javascript"></script>
 </body>
 </html>

@@ -1,18 +1,17 @@
 $(function () {
-        $("#save").click(
-            function (e) {
-                var formsValidator = new FormsValidator();
-                var formEventCreate = $(".create-event-form");
-                if(formsValidator.eventForm(formEventCreate)) {
+        $("#save").click(function (e) {
+                let formsValidator = new FormsValidator();
+                let formEventCreate = $(".create-event-form");
+                if (formsValidator.eventForm(formEventCreate)) {
 
                     let name = $('#name').val();
                     let description = $('#description').val();
 
-                    var newEvent = new DTOEvent(name, description);
+                    let newTrainingType = new DTOTrainingType(name, description);
 
                     function success(d) {
                         console.log("done!");
-                        location.replace("/events");
+                        location.replace("/trainingtypes/"+d.data.id);
                     }
 
                     function fail() {
@@ -20,7 +19,7 @@ $(function () {
                     }
 
                     let service = new AJAXService();
-                    service.post("/api/1.0/events/", newEvent, success, fail);
+                    service.post("/api/1.0/trainingtypes/", newTrainingType, success, fail);
                     e.preventDefault();
                 }
             }

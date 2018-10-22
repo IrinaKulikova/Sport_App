@@ -30,11 +30,11 @@
                     <td scope="row">${item.caption}</td>
                     <td scope="row">${item.country} ${item.city} ${item.street} ${item.building}</td>
                     <td colspan="2">
-                        <a href="/schedules">
+                        <a href="/trainings/${item.id}">
                             <button class="btn btn-outline-info m-2" name="id" type="submit" value="${item.id}">Schedule
                             </button>
                         </a>
-                        <a href="/filiation/${item.id}">
+                        <a href="/filiations/${item.id}">
                             <button class="btn btn-outline-info m-2" name="id" type="submit" value="${item.id}">Edit
                             </button>
                         </a>
@@ -51,6 +51,6 @@
 <c:import url="../template/footer.jsp"></c:import>
 <!--Scripts-->
 <script src="../../../resources/js/services/AJAXService.js" type="text/javascript"></script>
-<script src="../../../resources/js/filiation/filiations.js" type="text/javascript"></script>
+<script src="../../../resources/js/filiations/filiations.js" type="text/javascript"></script>
 </body>
 </html>

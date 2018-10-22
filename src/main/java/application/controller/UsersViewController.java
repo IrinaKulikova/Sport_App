@@ -35,7 +35,7 @@ public class UsersViewController {
         return "users/users";
     }
 
-    @GetMapping("/edit/{id}")
+    @GetMapping("/{id}")
     public String userEdit(@PathVariable int id, Model model){
         try {
             model.addAttribute("user",userService.getById(id));

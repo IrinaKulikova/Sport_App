@@ -37,15 +37,15 @@ public class SharedApiController {
 
     @GetMapping("/{id}/trainings")
     public JSONResult<List<Training>> getAllTrainings(@PathVariable int id) {
-        List<Training> schedule = new ArrayList<>();
+        List<Training> trainings = new ArrayList<>();
         try {
             Filiation filiation = filiationService.getById(id);
-            schedule = filiation.getTrainings();
+            trainings = filiation.getTrainings();
         } catch (SQLException ex) {
             ex.printStackTrace();
-            return new JSONResultError<>(schedule, ex.getMessage());
+            return new JSONResultError<>(trainings, ex.getMessage());
         }
-        return new JSONResultOk<>(schedule);
+        return new JSONResultOk<>(trainings);
     }
 
     @GetMapping("/typetrainings")

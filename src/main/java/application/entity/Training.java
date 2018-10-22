@@ -21,11 +21,11 @@ public class Training {
     Day day;
 
     @ManyToOne(targetEntity = TrainingType.class, fetch = FetchType.EAGER)
-    @JoinColumn(name = "type")
+    @JoinColumn(name = "training_type_id")
     TrainingType trainingType;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "filiation")
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "filiation_id")
     @JsonIgnore
     Filiation filiation;
 

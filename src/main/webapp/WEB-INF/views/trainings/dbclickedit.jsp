@@ -66,7 +66,7 @@
 <script th:src="@{/webjars/jquery-ui/jquery-ui.min.js}"></script>
 <script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-<script type="text/javascript" src="../../../resources/js/DTO/DTOSchedule.js"></script>
+<script type="text/javascript" src="../../../resources/js/DTO/DTOTraining.js"></script>
 <script type="text/javascript" src="../../../resources/js/services/AJAXService.js"></script>
 <script type="text/javascript" src="../../../resources/js/schedule/schedule_edit.js"></script>
 </body>

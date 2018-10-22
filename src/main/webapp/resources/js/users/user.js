@@ -5,13 +5,13 @@ $(function () {
 
         function success() {
             location.reload(true);
-        };
+        }
 
         function fail() {
             console.log('fail');
-        };
+        }
 
-        service.del("/api/1.0/trainings/event/" + btn.val(), success, fail);
+        service.del("/api/1.0/users/" + btn.val(), success, fail);
         e.preventDefault();
     });
-})
+});

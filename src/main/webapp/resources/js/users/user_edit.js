@@ -1,22 +1,23 @@
 $(function () {
     $(".btn-save-changes").click(function (e) {
         let formsValidator = new FormsValidator();
-        let formNewsEdit = $(".edit-news-form");
-        if (formsValidator.newsEditForm(formNewsEdit)) {
+        let userForm = $(".user-form");
+        if (formsValidator.userEditForm(userForm)) {
             let service = new AJAXService();
             let btn = $(this);
-            let news = new News($('#title').val(),
-                $('#description').val(), $('#date').val(),
-                $('#imageURL').val());
+            let user = new User($('#fname').val(),
+                $('#lname').val(), $('#email').val(),
+                $('#phone').val(), $('#pass').val());
 
             function success() {
-                location.replace("/news");
+                location.replace("/users");
             }
 
             function fail() {
                 console.log("fail");
             }
-            service.put("/api/1.0/news/" + btn.val(), news, success, fail);
+
+            service.put("/api/1.0/users/" + btn.val(), user, success, fail);
             e.preventDefault();
         }
     });
@@ -27,9 +28,5 @@ $(function () {
 
     $(".form-control").blur(function (e) {
         $(this).attr("readonly", true);
-    });
-
-    $(".btn-update-img").click(function (e) {
-        $("#news_image").attr("src", $("#imageURL").val());
     });
 });

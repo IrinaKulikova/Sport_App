@@ -50,7 +50,7 @@
 <script type="text/javascript" src="../../../resources/js/services/jquery.validate.js"></script>
 <script type="text/javascript" src="../../../resources/js/DTO/DTOUser.js"></script>
 <script type="text/javascript" src="../../../resources/js/services/AJAXService.js"></script>
-<script type="text/javascript" src="../../../resources/js/user/user_create.js"></script>
+<script type="text/javascript" src="../../../resources/js/users/user_create.js"></script>
 </body>
 
 </html>

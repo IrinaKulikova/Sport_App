@@ -9,8 +9,6 @@
 
 <body>
 <c:import url="../template/header.jsp"></c:import>
-<c:import url="../template/headerschedule.jsp"></c:import>
-
 <div class="container main-div mt-3">
 
     <form class="create-event-form" accept-charset="UTF-8">
@@ -32,10 +30,11 @@
         </div>
     </form>
 </div>
+<c:import url="../template/footer.jsp"></c:import>
 <script src="../../../resources/js/services/FormsValidator.js" type="text/javascript"></script>
 <script src="../../../resources/js/services/jquery.validate.js" type="text/javascript"></script>
 <script src="../../../resources/js/services/AJAXService.js" type="text/javascript"></script>
-<script src="../../../resources/js/DTO/DTOEvent.js" type="text/javascript"></script>
-<script src="../../../resources/js/events/event_create.js" type="text/javascript"></script>
+<script src="../../../resources/js/DTO/DTOTrainingType.js" type="text/javascript"></script>
+<script src="../../../resources/js/trainingtypes/trainingtype_create.js" type="text/javascript"></script>
 </body>
 </html>

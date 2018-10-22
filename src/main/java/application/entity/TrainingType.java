@@ -14,14 +14,13 @@ public class TrainingType {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     int id;
-
     String name;
 
     @Column(columnDefinition = "text")
     String description;
 
-    @OneToMany(fetch = FetchType.LAZY, targetEntity = Training.class, cascade = CascadeType.ALL)
-    @JoinColumn(name = "type")
+    @OneToMany(targetEntity = Training.class, cascade = CascadeType.ALL)
+    @JoinColumn(name = "training_type_id")
     @JsonIgnore
     List<Training> trainings = new ArrayList<>();
 

@@ -1,4 +1,4 @@
-class Schedule{
+class DTOTraining{
     constructor(id,dayid,starttime,eventschedule){
         this.id=id;
         this.dayid=dayid;

@@ -101,8 +101,8 @@
 <script type="text/javascript" src="../../../resources/js/DTO/DTOCard.js"></script>
 <script type="text/javascript" src="../../../resources/js/DTO/DTOUser.js"></script>
 <script type="text/javascript" src="../../../resources/js/services/AJAXService.js"></script>
-<script type="text/javascript" src="../../../resources/js/user/user_edit.js"></script>
-<script type="text/javascript" src="../../../resources/js/user/card.js"></script>
+<script type="text/javascript" src="../../../resources/js/users/user_edit.js"></script>
+<script type="text/javascript" src="../../../resources/js/users/card.js"></script>
 </body>
 
 </html>

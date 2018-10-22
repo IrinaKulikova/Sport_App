@@ -75,11 +75,11 @@ public class ContactController {
         Contact contact = new Contact();
         try {
             contact = contactService.getById(id);
-            contactService.delete(id);
+            contactService.delete(contact);
         } catch (SQLException ex) {
             ex.printStackTrace();
             return new JSONResultError<>(contact, ex.getMessage());
         }
-        return new JSONResultOk<>(contact);
+        return new JSONResultOk<>(new Contact());
     }
 }

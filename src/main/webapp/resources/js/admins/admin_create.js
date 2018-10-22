@@ -1,7 +1,7 @@
 $(function () {
     $("#save").click(function (e) {
-        var formsValidator = new FormsValidator();
-        var formAdminCreate = $(".create-admin-form");
+        let formsValidator = new FormsValidator();
+        let formAdminCreate = $(".create-admin-form");
         if(formsValidator.adminCreateForm(formAdminCreate)){
             let email = $("#email").val();
             let login = $("#login").val();

@@ -1,33 +1,33 @@
 $(function () {
-        var service = new AJAXService();
+        let service = new AJAXService();
         let button = $("#save");
-        $("#save").click( function (e) {
-                var formsValidator = new FormsValidator();
-                var formFiliationEdit = $(".form-filiation-edit");
-                if(formsValidator.filiationForm(formFiliationEdit)) {
+        $("#save").click(function (e) {
+            let formsValidator = new FormsValidator();
+            let formFiliationEdit = $(".form-filiation-edit");
+            if (formsValidator.filiationForm(formFiliationEdit)) {
 
-                    var newFiliation = new Filiation($('#id').val(),
-                        $('#caption').val(), $('#country').val(),
-                        $('#city').val(), $('#street').val(),
-                        $('#building').val(), $('#indexcity').val());
-                    console.log(newFiliation);
+                let newFiliation = new Filiation($('#id').val(),
+                    $('#caption').val(), $('#country').val(),
+                    $('#city').val(), $('#street').val(),
+                    $('#building').val(), $('#indexcity').val());
+                console.log(newFiliation);
 
-                    function success() {
-                        $("h1").text("Filiation " + $('#caption').val());
-                        location.replace("/filiation");
-                    };
-
-                    function fail() {
-                        console.log("error");
-                    };
-                    service.put("/api/1.0/filiation/" + button.val(), newFiliation, success, fail);
-                    e.preventDefault();
+                function success() {
+                    $("h1").text("Filiation " + $('#caption').val());
+                    location.replace("/filiations");
                 }
+
+                function fail() {
+                    console.log("error");
+                }
+                service.put("/api/1.0/filiations/" + button.val(), newFiliation, success, fail);
+                e.preventDefault();
+            }
         });
 
         let add = $("#add");
         $("#add").click(function (e) {
-                var contact = new Contact(new ContactType($("#contacts option:selected").val(), $("#contacts option:selected").text()),
+                let contact = new Contact(new ContactType($("#contacts option:selected").val(), $("#contacts option:selected").text()),
                     $("#newcontact").val());
                 console.log(contact);
 
@@ -40,11 +40,11 @@ $(function () {
                     $container.find(".del").click(onClickDelete);
                     $("#newcontact").val("");
                     console.log($container);
-                };
+                }
 
                 function fail() {
                     console.log("error");
-                };
+                }
                 e.preventDefault();
                 service.post("/api/1.0/contacts/" + button.val(), contact, success, fail)
             }
@@ -68,17 +68,13 @@ $(function () {
 
         $(".del").click(onClickDelete);
 
-        $(function () {
-            $(".form-control").dblclick(function (e) {
-                $(this).attr("readonly",false);
-            });
+
+        $(".form-control").dblclick(function (e) {
+            $(this).attr("readonly", false);
         });
 
-        $(function () {
-            $(".form-control").blur(function (e) {
-                $(this).attr("readonly",true);
-            });
+        $(".form-control").blur(function (e) {
+            $(this).attr("readonly", true);
         });
-
     }
 );

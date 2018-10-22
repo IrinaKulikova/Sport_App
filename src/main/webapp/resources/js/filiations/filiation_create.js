@@ -1,15 +1,14 @@
 $(function () {
         $("#save").click(function (e) {
-            var formsValidator = new FormsValidator();
-            var formFiliationCreate = $(".form-filiation-create");
+            let formsValidator = new FormsValidator();
+            let formFiliationCreate = $(".form-filiation-create");
             if(formsValidator.filiationForm(formFiliationCreate)){
-                var newFiliation = new Filiation($('#id').val(),
+                let newFiliation = new Filiation($('#id').val(),
                     $('#caption').val(), $('#country').val(),
                     $('#city').val(), $('#street').val(),
                     $('#building').val(), $('#indexcity').val());
 
                 function success(d) {
-                    console.log("done!");
                     window.location.href = d.data.id;
                 }
 

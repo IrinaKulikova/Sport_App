@@ -27,15 +27,6 @@ public class Filiation {
     @OneToMany(cascade = CascadeType.REMOVE, mappedBy = "filiation", fetch = FetchType.LAZY)
     List<Training> trainings = new ArrayList<>();
 
-    public Filiation(String caption, String country, String city, String indexCity, String street, String building) {
-        this.caption = caption;
-        this.country = country;
-        this.city = city;
-        this.indexCity = indexCity;
-        this.street = street;
-        this.building = building;
-    }
-
     public Filiation() {
     }
 }

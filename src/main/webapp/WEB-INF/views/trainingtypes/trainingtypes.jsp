@@ -10,13 +10,6 @@
 <body>
 <c:import url="../template/header.jsp"></c:import>
 <div class="container main-div mt-md-5">
-    <div class="tools-div form-control text-center">
-        <a class="btn btn btn-outline-primary m-2" href="/filiation">Main</a>
-        <a class="btn btn-outline-success m-2" href="/schedules">Schedules</a>
-        <a class="btn btn-outline-success m-2" href="/schedules/schedule_edit">Schedule</a>
-        <a class="btn btn-outline-success m-2" href="/events">EventShedule</a>
-        <a class="btn btn-outline-warning m-2" href="/events/create">Create</a>
-    </div>
     <div>
         <table class="table table-bordered mt-2">
             <thead>
@@ -28,7 +21,7 @@
             </tr>
             </thead>
             <tbody>
-            <c:forEach items="${events}" var="item">
+            <c:forEach items="${trainingtypes}" var="item">
                 <tr>
                     <th scope="row">${item.id}</th>
                     <td scope="row">${item.name}</td>
@@ -49,8 +42,7 @@
     </div>
 </div>
 <c:import url="../template/footer.jsp"></c:import>
-<!--Scripts-->
 <script src="../../../resources/js/services/AJAXService.js" type="text/javascript"></script>
-<script src="../../../resources/js/events/events.js" type="text/javascript"></script>
+<script src="../../../resources/js/trainingtypes/trainingtypes.js" type="text/javascript"></script>
 </body>
 </html>
