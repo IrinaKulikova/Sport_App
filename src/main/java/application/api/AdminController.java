@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,19 +20,11 @@ import java.util.List;
 @RequestMapping(value = "/api/1.0/admins", produces = "application/json")
 public class AdminController {
 
-    @Autowired
-    AdministratorService administratorService;
+    private final AdministratorService administratorService;
 
-    @GetMapping("/{id}")
-    public JSONResult<Administrator> getAdminById(@PathVariable("id") int id) {
-        Administrator admin = new Administrator();
-        try {
-            admin = administratorService.getById(id);
-        } catch (Exception ex) {
-            ex.printStackTrace();
-            return new JSONResultError<>(admin, ex.getMessage());
-        }
-        return new JSONResultOk<>(admin);
+    @Autowired
+    public AdminController(AdministratorService administratorService) {
+        this.administratorService = administratorService;
     }
 
     @GetMapping
@@ -39,25 +32,37 @@ public class AdminController {
         List<Administrator> admins = new ArrayList<>();
         try {
             admins = administratorService.getAll();
-        } catch (Exception ex) {
+        } catch (SQLException ex) {
             ex.printStackTrace();
             return new JSONResultError<>(admins, ex.getMessage());
         }
         return new JSONResultOk<>(admins);
     }
 
+    @GetMapping("/{id}")
+    public JSONResult<Administrator> getById(@PathVariable("id") int id) {
+        Administrator admin = new Administrator();
+        try {
+            admin = administratorService.getById(id);
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            return new JSONResultError<>(admin, ex.getMessage());
+        }
+        return new JSONResultOk<>(admin);
+    }
+
     @PutMapping("/{id}")
-    public JSONResult<Administrator> updateAdministator(@RequestBody String password, @PathVariable("id") int id) {
+    public JSONResult<Administrator> update(@RequestBody String password, @PathVariable("id") int id) {
         Administrator currentAdmin = new Administrator();
         try {
             currentAdmin = administratorService.getById(id);
             if (currentAdmin == null) {
-                return new JSONResultError<>(currentAdmin, "entity no find!");
+                return new JSONResultError<>(new Administrator(), "entity no find!");
             }
             currentAdmin.setAdminHash(HashHelper.getHash(password));
             administratorService.save(currentAdmin);
             currentAdmin.setAdminHash("hidden");
-        } catch (Exception ex) {
+        } catch (SQLException ex) {
             ex.printStackTrace();
             return new JSONResultError<>(currentAdmin, ex.getMessage());
         }
@@ -65,7 +70,7 @@ public class AdminController {
     }
 
     @PostMapping
-    public JSONResult<Administrator> addAdministrator(@RequestBody AdministratorDTO admin) {
+    public JSONResult<Administrator> add(@RequestBody AdministratorDTO admin) {
         Administrator administrator = new Administrator();
         try {
             administrator.setAdminHash(HashHelper.getHash(admin.getLogin()));
@@ -73,7 +78,7 @@ public class AdminController {
             administrator.setEmail(admin.getEmail());
             administrator = administratorService.save(administrator);
             administrator.setAdminHash("hidden");
-        } catch (Exception ex) {
+        } catch (SQLException ex) {
             ex.printStackTrace();
             return new JSONResultError<>(administrator, ex.getMessage());
         }
@@ -91,7 +96,7 @@ public class AdminController {
                 return new JSONResultError<>(admin, "error!");
             }
             administratorService.delete(id);
-        } catch (Exception ex) {
+        } catch (SQLException ex) {
             ex.printStackTrace();
             return new JSONResultError<>(admin, ex.getMessage());
         }

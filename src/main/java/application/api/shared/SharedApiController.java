@@ -10,11 +10,11 @@ import application.helper.JSONResultError;
 import application.helper.JSONResultOk;
 import application.service.implementations.FiliationService;
 import application.service.implementations.NewsService;
-import application.service.implementations.TrainingService;
 import application.service.implementations.TrainingTypeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,22 +23,25 @@ import java.util.List;
 @RequestMapping(value = "/api/1.0/shared", produces = "application/json")
 public class SharedApiController {
 
-    @Autowired
-    FiliationService filiationService;
-    @Autowired
-    NewsService newsService;
-    @Autowired
-    TrainingTypeService typeTrainingService;
-    @Autowired
-    TrainingService trainingService;
+    private final FiliationService filiationService;
+    private final NewsService newsService;
+    private final TrainingTypeService typeTrainingService;
 
-    @GetMapping("/{id}/schedule")
+    @Autowired
+    public SharedApiController(FiliationService filiationService, NewsService newsService,
+                               TrainingTypeService typeTrainingService) {
+        this.filiationService = filiationService;
+        this.newsService = newsService;
+        this.typeTrainingService = typeTrainingService;
+    }
+
+    @GetMapping("/{id}/trainings")
     public JSONResult<List<Training>> getAllTrainings(@PathVariable int id) {
         List<Training> schedule = new ArrayList<>();
         try {
             Filiation filiation = filiationService.getById(id);
             schedule = filiation.getTrainings();
-        } catch (Exception ex) {
+        } catch (SQLException ex) {
             ex.printStackTrace();
             return new JSONResultError<>(schedule, ex.getMessage());
         }
@@ -46,15 +49,15 @@ public class SharedApiController {
     }
 
     @GetMapping("/typetrainings")
-    public JSONResult<List<TrainingType>> getAllScheduleEvents() {
-        List<TrainingType> events = new ArrayList<>();
+    public JSONResult<List<TrainingType>> getAllTrainingTypes() {
+        List<TrainingType> trainingTypes = new ArrayList<>();
         try {
-            events = typeTrainingService.getAll();
-        } catch (Exception ex) {
+            trainingTypes = typeTrainingService.getAll();
+        } catch (SQLException ex) {
             ex.printStackTrace();
-            return new JSONResultError<>(events, ex.getMessage());
+            return new JSONResultError<>(trainingTypes, ex.getMessage());
         }
-        return new JSONResultOk<>(events);
+        return new JSONResultOk<>(trainingTypes);
     }
 
 
@@ -63,7 +66,7 @@ public class SharedApiController {
         List<Filiation> filiation = new ArrayList<>();
         try {
             filiation = filiationService.getAll();
-        } catch (Exception ex) {
+        } catch (SQLException ex) {
             ex.printStackTrace();
             return new JSONResultError<>(filiation, ex.getMessage());
         }
@@ -75,7 +78,7 @@ public class SharedApiController {
         List<News> news = new ArrayList<>();
         try {
             news = newsService.getAll();
-        } catch (Exception ex) {
+        } catch (SQLException ex) {
             ex.printStackTrace();
             return new JSONResultError<>(news, ex.getMessage());
         }

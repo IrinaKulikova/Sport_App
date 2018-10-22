@@ -6,11 +6,11 @@ import application.helper.JSONResult;
 import application.helper.JSONResultError;
 import application.helper.JSONResultOk;
 import application.helper.HashHelper;
-import application.service.implementations.CardService;
 import application.service.implementations.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,22 +19,11 @@ import java.util.List;
 @RequestMapping(value = "/api/1.0/users", produces = "application/json")
 public class UserController {
 
-    @Autowired
-    private UserService userService;
+    private final UserService userService;
 
     @Autowired
-    private CardService cardService;
-
-    @GetMapping("/{id}")
-    public JSONResult<User> getUserById(@PathVariable("id") int id) {
-        User user = new User();
-        try {
-            user = userService.getById(id);
-        } catch (Exception ex) {
-            ex.printStackTrace();
-            return new JSONResultError<User>(user, ex.getMessage());
-        }
-        return new JSONResultOk<User>(user);
+    public UserController(UserService userService) {
+        this.userService = userService;
     }
 
     @GetMapping
@@ -42,15 +31,27 @@ public class UserController {
         List<User> users = new ArrayList<>();
         try {
             users = userService.getAll();
-        } catch (Exception ex) {
+        } catch (SQLException ex) {
             ex.printStackTrace();
             return new JSONResultError<>(users, ex.getMessage());
         }
-        return new JSONResultOk<List<User>>(users);
+        return new JSONResultOk<>(users);
+    }
+
+    @GetMapping("/{id}")
+    public JSONResult<User> getById(@PathVariable("id") int id) {
+        User user = new User();
+        try {
+            user = userService.getById(id);
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            return new JSONResultError<>(user, ex.getMessage());
+        }
+        return new JSONResultOk<>(user);
     }
 
     @PutMapping("/{id}")
-    public JSONResult<User> updateUser(@RequestBody UserDTO user, @PathVariable("id") int id) {
+    public JSONResult<User> update(@RequestBody UserDTO user, @PathVariable("id") int id) {
         User currentUser = new User();
         try {
             currentUser = userService.getById(id);
@@ -67,7 +68,7 @@ public class UserController {
             }
             userService.save(currentUser);
             currentUser.setUserHash("hidden");
-        } catch (Exception ex) {
+        } catch (SQLException ex) {
             ex.printStackTrace();
             return new JSONResultError<>(currentUser, ex.getMessage());
         }
@@ -75,26 +76,26 @@ public class UserController {
     }
 
     @PostMapping
-    public JSONResult<User> addUser(@RequestBody UserDTO user) {
+    public JSONResult<User> add(@RequestBody UserDTO user) {
         User newUser = new User(user.getFirstName(), user.getLastName(), user.getPhone(),
                                 user.getEmail(), HashHelper.getHash(user.getPassword()));
         try {
             userService.save(newUser);
             newUser.setUserHash("hidden");
-        } catch (Exception ex) {
+        } catch (SQLException ex) {
             ex.printStackTrace();
-            return new JSONResultError<User>(newUser, ex.getMessage());
+            return new JSONResultError<>(newUser, ex.getMessage());
         }
-        return new JSONResultOk<User>(newUser);
+        return new JSONResultOk<>(newUser);
     }
 
     @DeleteMapping("/{id}")
-    public JSONResult<User> deleteUser(@PathVariable int id) {
+    public JSONResult<User> delete(@PathVariable int id) {
         User user = new User();
         try {
             user = userService.getById(id);
             userService.delete(id);
-        } catch (Exception ex) {
+        } catch (SQLException ex) {
             ex.printStackTrace();
             return new JSONResultError<>(user, ex.getMessage());
         }

@@ -8,14 +8,19 @@ import application.service.implementations.TrainingTypeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 @RestController
 @RequestMapping("/api/1.0/trainingtypes")
 public class TrainingTypeController {
 
+    private final TrainingTypeService trainingTypeService;
+
     @Autowired
-    TrainingTypeService trainingTypeService;
+    public TrainingTypeController(TrainingTypeService trainingTypeService) {
+        this.trainingTypeService = trainingTypeService;
+    }
 
     @PostMapping()
     public JSONResult<TrainingType> add(@RequestBody TrainingType trainingType) {
@@ -24,7 +29,7 @@ public class TrainingTypeController {
             newTrainingType.setName(trainingType.getName());
             newTrainingType.setDescription(trainingType.getDescription());
             newTrainingType = trainingTypeService.save(newTrainingType);
-        } catch (Exception ex) {
+        } catch (SQLException ex) {
             ex.printStackTrace();
             return new JSONResultError<>(newTrainingType, ex.getMessage());
         }
@@ -40,7 +45,7 @@ public class TrainingTypeController {
             newTrainingType.setDescription(trainingType.getDescription());
             newTrainingType = trainingTypeService.save(newTrainingType);
             newTrainingType.setTrainings(new ArrayList<>());
-        } catch (Exception ex) {
+        } catch (SQLException ex) {
             ex.printStackTrace();
             return new JSONResultError<>(newTrainingType, ex.getMessage());
         }
@@ -53,7 +58,7 @@ public class TrainingTypeController {
         try {
             trainingType = trainingTypeService.getById(id);
             trainingTypeService.delete(id);
-        } catch (Exception ex) {
+        } catch (SQLException ex) {
             ex.printStackTrace();
             return new JSONResultError<>(trainingType, ex.getMessage());
         }

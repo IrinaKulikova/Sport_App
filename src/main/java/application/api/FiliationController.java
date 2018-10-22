@@ -6,25 +6,24 @@ import application.helper.JSONResultError;
 import application.helper.JSONResultOk;
 import application.service.implementations.FiliationService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.sql.SQLException;
+
 
 @RestController
-@RequestMapping(value = "/api/1.0/filiation", produces = "application/json")
+@RequestMapping(value = "/api/1.0/filiations", produces = "application/json")
 public class FiliationController {
 
     @Autowired
     private FiliationService filiationService;
 
     @GetMapping("/{id}")
-    public JSONResult<Filiation> getFiliationById(@PathVariable int id) {
+    public JSONResult<Filiation> getById(@PathVariable int id) {
         Filiation filiation = new Filiation();
         try {
             filiation = filiationService.getById(id);
-        } catch (Exception ex) {
+        } catch (SQLException ex) {
             ex.printStackTrace();
             return new JSONResultError<>(filiation, ex.getMessage());
         }
@@ -32,12 +31,12 @@ public class FiliationController {
     }
 
     @DeleteMapping("/{id}")
-    public JSONResult<Filiation> deleteFilial(@PathVariable int id) {
+    public JSONResult<Filiation> delete(@PathVariable int id) {
         Filiation filiation = new Filiation();
         try {
             filiation = filiationService.getById(id);
             filiationService.delete(filiation);
-        } catch (Exception ex) {
+        } catch (SQLException ex) {
             ex.printStackTrace();
             return new JSONResultError<>(filiation, ex.getMessage());
         }
@@ -45,7 +44,7 @@ public class FiliationController {
     }
 
     @PutMapping("/{id}")
-    public JSONResult<Filiation> updateInfo(@RequestBody Filiation filiation, @PathVariable int id) {
+    public JSONResult<Filiation> update(@RequestBody Filiation filiation, @PathVariable int id) {
         Filiation currentFiliation = null;
         try {
             currentFiliation = filiationService.getById(id);
@@ -59,7 +58,7 @@ public class FiliationController {
             currentFiliation.setBuilding(filiation.getBuilding());
             currentFiliation.setIndexCity(filiation.getIndexCity());
             filiationService.save(currentFiliation);
-        } catch (Exception ex) {
+        } catch (SQLException ex) {
             return new JSONResultError<>(filiation, ex.getMessage());
         }
         return new JSONResultOk<>(currentFiliation);
@@ -76,7 +75,7 @@ public class FiliationController {
             currentFiliation.setBuilding(filiation.getBuilding());
             currentFiliation.setIndexCity(filiation.getIndexCity());
             filiationService.save(currentFiliation);
-        } catch (Exception ex) {
+        } catch (SQLException ex) {
             return new JSONResultError<>(filiation, ex.getMessage());
         }
         return new JSONResultOk<>(currentFiliation);

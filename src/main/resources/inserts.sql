@@ -4,9 +4,9 @@ INSERT INTO sport.contact_type (name) VALUES ('phone');
 INSERT INTO sport.filiation (building, caption, city, country, index_city, street) VALUES ('101', 'Hercules', 'Dnipro', 'Ukraine', '49000', 'Yavornitskogo');
 INSERT INTO sport.filiation (building, caption, city, country, index_city, street) VALUES ('5', 'Barbie', 'Kyev', 'Ukraine', '44000', 'Metrostroevskaya');
 
-INSERT INTO sport.contact (data, type, filiation) VALUES ('+380666666666', 2, 1);
-INSERT INTO sport.contact (data, type, filiation) VALUES ('+380505555555', 2, 1);
-INSERT INTO sport.contact (data, type, filiation) VALUES ('gym@gmail.com', 1, 1);
+INSERT INTO sport.contact (data, contact_type_id, filiation_id) VALUES ('+380666666666', 2, 1);
+INSERT INTO sport.contact (data, contact_type_id, filiation_id) VALUES ('+380505555555', 2, 1);
+INSERT INTO sport.contact (data, contact_type_id, filiation_id) VALUES ('gym@gmail.com', 1, 2);
 
 INSERT INTO sport.news (title, date, description, image_url) VALUES ('Fifa’s treatment of Women’s World Cup final keeps ‘virus’ contained', '2018-07-21 13:06:15' , 'Back in the summer, 19-year-old Venezuelan international Deyna Castellanos was permitted to interview Gianni Infantino, with the result posted on the Women’s World Cup social media channels. “Next year in France, we will see the greatest, greatest, greatest Women’s World Cup ever,” promised the Fifa president. “We will have a country that celebrates women’s football – and this virus of women’s football will spread from France, over the whole world.”',
 'https://saycheese.com.ua/wp-content/uploads/2018/04/Harkovskij-marafon-2-1200x630.jpg');

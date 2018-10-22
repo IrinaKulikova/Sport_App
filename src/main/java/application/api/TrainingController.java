@@ -5,13 +5,12 @@ import application.entity.Training;
 import application.helper.JSONResult;
 import application.helper.JSONResultError;
 import application.helper.JSONResultOk;
-import application.service.implementations.DayService;
 import application.service.implementations.FiliationService;
 import application.service.implementations.TrainingService;
-import application.service.implementations.TrainingTypeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,25 +18,22 @@ import java.util.List;
 @RequestMapping("/api/1.0/trainings")
 public class TrainingController {
 
-    @Autowired
-    TrainingService trainingService;
+    private final TrainingService trainingService;
+    private final FiliationService filiationService;
 
     @Autowired
-    TrainingTypeService trainingTypeService;
-
-    @Autowired
-    DayService dayService;
-
-    @Autowired
-    FiliationService filiationService;
+    public TrainingController(TrainingService trainingService, FiliationService filiationService) {
+        this.trainingService = trainingService;
+        this.filiationService = filiationService;
+    }
 
     @GetMapping("/{id_filiation}")
-    public JSONResult<List<Training>> getSchedule(@PathVariable int id_filiation) {
+    public JSONResult<List<Training>> getById(@PathVariable int id_filiation) {
         List<Training> trainings = new ArrayList<>();
         try {
             Filiation filiation = filiationService.getById(id_filiation);
             trainings = filiation.getTrainings();
-        } catch (Exception ex) {
+        } catch (SQLException ex) {
             ex.printStackTrace();
             return new JSONResultError<>(trainings, ex.getMessage());
         }
@@ -45,18 +41,18 @@ public class TrainingController {
     }
 
     @PutMapping("/{id}/{id_filiation}")
-    public JSONResult<Training> putSaveSchedule(@RequestBody Training training, @PathVariable("id") int id,
+    public JSONResult<Training> update(@RequestBody Training training, @PathVariable("id") int id,
                                                 @PathVariable int id_filiation) {
         return null;
     }
 
     @DeleteMapping("/{id}")
-    public JSONResult<Training> deleteSchedule(@PathVariable("id") int id) {
+    public JSONResult<Training> delete(@PathVariable("id") int id) {
         Training training = new Training();
         try {
             training = trainingService.getById(id);
             trainingService.delete(id);
-        } catch (Exception ex) {
+        } catch (SQLException ex) {
             ex.printStackTrace();
             return new JSONResultError<>(training, ex.getMessage());
         }

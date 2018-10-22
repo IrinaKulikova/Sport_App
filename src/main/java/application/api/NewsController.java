@@ -8,44 +8,45 @@ import application.service.implementations.NewsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.sql.SQLException;
 
 @RestController
 @RequestMapping(value = "/api/1.0/news", produces = "application/json")
 public class NewsController {
 
+    private final NewsService newsService;
+
     @Autowired
-    private NewsService newsService;
+    public NewsController(NewsService newsService) {
+        this.newsService = newsService;
+    }
 
     @GetMapping("/{id}")
-    public JSONResult<News> getNewsById(@PathVariable("id") int id) {
+    public JSONResult<News> getById(@PathVariable("id") int id) {
         News news = new News();
         try {
             news = newsService.getById(id);
-        } catch (Exception ex) {
+        } catch (SQLException ex) {
             ex.printStackTrace();
-            return new JSONResultError<News>(news, ex.getMessage());
+            return new JSONResultError<>(news, ex.getMessage());
         }
-        return new JSONResultOk<News>(news);
+        return new JSONResultOk<>(news);
     }
 
     @PutMapping("/{id}")
-    public JSONResult<News> updateNews(@RequestBody News news, @PathVariable("id") int id) {
+    public JSONResult<News> update(@RequestBody News news, @PathVariable("id") int id) {
         News currentNews = new News();
         try {
             currentNews = newsService.getById(id);
             if (currentNews == null) {
-                return new JSONResultError<>(currentNews, "entity no find!");
+                return new JSONResultError<>(new News(), "entity no find!");
             }
             currentNews.setTitle(news.getTitle());
             currentNews.setDate(news.getDate());
-            System.out.println(news.getImageURL());
-            System.out.println(news.getDescription());
             currentNews.setDescription(news.getDescription());
             currentNews.setImageURL(news.getImageURL());
             newsService.save(currentNews);
-        } catch (Exception ex) {
+        } catch (SQLException ex) {
             ex.printStackTrace();
             return new JSONResultError<>(currentNews, ex.getMessage());
         }
@@ -53,23 +54,23 @@ public class NewsController {
     }
 
     @PostMapping
-    public JSONResult<News> addNews(@RequestBody News news) {
+    public JSONResult<News> add(@RequestBody News news) {
         try {
             newsService.save(news);
-        } catch (Exception ex) {
+        } catch (SQLException ex) {
             ex.printStackTrace();
-            return new JSONResultError<News>(news, ex.getMessage());
+            return new JSONResultError<>(news, ex.getMessage());
         }
-        return new JSONResultOk<News>(news);
+        return new JSONResultOk<>(news);
     }
 
     @DeleteMapping("/{id}")
-    public JSONResult<News> deleteNews(@PathVariable int id) {
+    public JSONResult<News> delete(@PathVariable int id) {
         News news = new News();
         try {
             news = newsService.getById(id);
             newsService.delete(id);
-        } catch (Exception ex) {
+        } catch (SQLException ex) {
             ex.printStackTrace();
             return new JSONResultError<>(news, ex.getMessage());
         }

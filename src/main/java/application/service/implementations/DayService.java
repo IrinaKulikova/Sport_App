@@ -5,32 +5,36 @@ import application.repository.DayRepository;
 import application.service.interfaces.EntityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.w3c.dom.Entity;
 
+import java.sql.SQLException;
 import java.util.List;
 @Service
 public class DayService implements EntityService<Day> {
 
+    private final DayRepository dayRepository;
+
     @Autowired
-    DayRepository dayRepository;
+    public DayService(DayRepository dayRepository) {
+        this.dayRepository = dayRepository;
+    }
 
     @Override
-    public List<Day> getAll() throws Exception {
+    public List<Day> getAll() throws SQLException {
         return dayRepository.findAll();
     }
 
     @Override
-    public Day getById(int id) throws Exception {
+    public Day getById(int id) throws SQLException {
         return dayRepository.findById(id).get();
     }
 
     @Override
-    public Day save(Day day) throws Exception {
+    public Day save(Day day) throws SQLException {
          return dayRepository.save(day);
     }
 
     @Override
-    public void delete(int id) throws Exception {
+    public void delete(int id) throws SQLException {
          dayRepository.deleteById(id);
     }
 

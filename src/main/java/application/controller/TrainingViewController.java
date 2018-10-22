@@ -1,26 +1,26 @@
 package application.controller;
 
-import application.entity.Day;
 import application.entity.Filiation;
 import application.entity.Training;
-import application.entity.TrainingType;
-import application.service.implementations.DayService;
 import application.service.implementations.FiliationService;
-import application.service.implementations.TrainingService;
-import application.service.implementations.TrainingTypeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.sql.SQLException;
 import java.util.*;
 
 @Controller
 @RequestMapping("/trainings")
 public class TrainingViewController {
 
+    private final FiliationService filiationService;
+
     @Autowired
-    FiliationService filiationService;
+    public TrainingViewController(FiliationService filiationService) {
+        this.filiationService = filiationService;
+    }
 
     @GetMapping("/{id}")
     public String getSchedule(@PathVariable int id, Model model) {
@@ -28,8 +28,8 @@ public class TrainingViewController {
         try {
             Filiation filiation = filiationService.getById(id);
             schedule = filiation.getTrainings();
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
         }
         model.addAttribute("schedule", schedule);
         return "trainings/trainings";

@@ -11,14 +11,19 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.io.UnsupportedEncodingException;
 import java.security.NoSuchAlgorithmException;
+import java.sql.SQLException;
 import java.util.List;
 
 
 @Controller
 public class LoginController {
 
+    private final AdministratorService administratorService;
+
     @Autowired
-    private AdministratorService administratorService;
+    public LoginController(AdministratorService administratorService) {
+        this.administratorService = administratorService;
+    }
 
     @GetMapping("/")
     public String index() {
@@ -63,9 +68,9 @@ public class LoginController {
                     }
                 }
             }
-        } catch (Throwable throwable) {
-            throwable.printStackTrace();
+        } catch (SQLException | UnsupportedEncodingException | NoSuchAlgorithmException ex) {
+            ex.printStackTrace();
         }
-        return "filiations/filiation";
+        return "filiations/filiations";
     }
 }

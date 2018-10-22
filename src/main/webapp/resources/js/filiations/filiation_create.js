@@ -18,7 +18,7 @@ $(function () {
                 }
 
                 let service = new AJAXService();
-                service.post("/api/1.0/filiation/", newFiliation, success, fail);
+                service.post("/api/1.0/filiations/", newFiliation, success, fail);
                 e.preventDefault();
             }
         });

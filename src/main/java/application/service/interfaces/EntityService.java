@@ -1,11 +1,11 @@
 package application.service.interfaces;
 
-import java.io.IOException;
+import java.sql.SQLException;
 import java.util.List;
 
 public interface EntityService<Entity> {
-    List<Entity> getAll() throws Exception;
-    Entity getById(int id) throws Exception;
-    Entity save(Entity entity) throws Exception;
-    void delete(int id) throws Exception;
+    List<Entity> getAll() throws SQLException;
+    Entity getById(int id) throws SQLException;
+    Entity save(Entity entity) throws SQLException;
+    void delete(int id) throws SQLException;
 }

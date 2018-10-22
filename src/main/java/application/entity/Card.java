@@ -1,7 +1,6 @@
 package application.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.mysql.cj.x.protobuf.MysqlxDatatypes;
 import lombok.Data;
 
 import javax.persistence.*;

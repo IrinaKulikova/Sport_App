@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,20 +19,24 @@ import java.util.List;
 @RequestMapping("/filiations")
 public class FiliationViewController {
 
-    @Autowired
-    private FiliationService filiationService;
+    private final FiliationService filiationService;
+
+    private final ContactTypeService contactTypeService;
 
     @Autowired
-    private ContactTypeService contactTypeService;
+    public FiliationViewController(FiliationService filiationService, ContactTypeService contactTypeService) {
+        this.filiationService = filiationService;
+        this.contactTypeService = contactTypeService;
+    }
 
     @GetMapping()
     public String index(Model model) {
         try {
             model.addAttribute("filiation", filiationService.getAll());
-        } catch (Throwable throwable) {
-            throwable.printStackTrace();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
         }
-        return "filiations/filiation";
+        return "filiations/filiations";
     }
 
     @GetMapping("/{id}")
@@ -50,7 +55,7 @@ public class FiliationViewController {
     }
 
     @GetMapping("/create")
-    public String edit(Model model) {
+    public String edit() {
         return "filiations/filiation_create";
     }
 }

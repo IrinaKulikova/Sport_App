@@ -8,19 +8,25 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.sql.SQLException;
+
 @Controller
 @RequestMapping("/trainingtypes")
 public class TrainingTypeViewController {
 
+    private final TrainingTypeService trainingTypeService;
+
     @Autowired
-    TrainingTypeService trainingTypeService;
+    public TrainingTypeViewController(TrainingTypeService trainingTypeService) {
+        this.trainingTypeService = trainingTypeService;
+    }
 
     @GetMapping()
     public String getAll(Model model) {
         try {
             model.addAttribute("trainingtypes", trainingTypeService.getAll());
-        } catch (Throwable throwable) {
-            throwable.printStackTrace();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
         }
         return "trainingtypes/trainingtypes";
     }
@@ -29,15 +35,15 @@ public class TrainingTypeViewController {
     public String edit(@PathVariable int id, Model model) {
         try {
             model.addAttribute("trainingtype", trainingTypeService.getById(id));
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
         }
         return "trainingtypes/trainingtype_edit";
     }
 
 
     @GetMapping("/create")
-    public String edit(Model model) {
+    public String edit() {
         return "trainingtypes/trainingtype_create";
     }
 }

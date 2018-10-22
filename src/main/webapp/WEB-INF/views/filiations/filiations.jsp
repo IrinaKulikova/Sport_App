@@ -11,7 +11,7 @@
 <c:import url="../template/header.jsp"></c:import>
 <div class="container main-div mt-md-5">
     <div class="tools-div form-control text-right">
-        <a class="btn btn-outline-warning ml-2" href="/filiation/create">Create</a>
+        <a class="btn btn-outline-warning ml-2" href="/filiations/create">Create</a>
     </div>
     <div>
         <table class="table table-bordered mt-2">
@@ -51,6 +51,6 @@
 <c:import url="../template/footer.jsp"></c:import>
 <!--Scripts-->
 <script src="../../../resources/js/services/AJAXService.js" type="text/javascript"></script>
-<script src="../../../resources/js/filiation/filiation.js" type="text/javascript"></script>
+<script src="../../../resources/js/filiation/filiations.js" type="text/javascript"></script>
 </body>
 </html>

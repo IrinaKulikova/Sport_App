@@ -8,7 +8,7 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav">
         <li class="nav-item">
-            <a class="nav-link" href="/filiation">Filiation<span class="sr-only">(current)</span></a>
+            <a class="nav-link" href="/filiations">Filiation<span class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item">
             <a class="nav-link" href="/users">Users</a>
