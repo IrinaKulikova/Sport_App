@@ -11,21 +11,12 @@ public class Administrator {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     int id;
-
     String login;
-
-    @Column(name="admin_hash")
-    String adminHash;
-
     String email;
 
-    public Administrator(){}
+    @Column(name = "admin_hash")
+    String adminHash;
 
-    public String getLogin() {
-        return login;
-    }
-
-    public String getAdminHash() {
-        return adminHash;
+    public Administrator() {
     }
 }

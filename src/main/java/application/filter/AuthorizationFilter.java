@@ -36,7 +36,6 @@ public class AuthorizationFilter implements Filter {
         //test
         //chain.doFilter(request, response);
 
-
         if (administratorService == null) {
             ServletContext servletContext = request.getServletContext();
             WebApplicationContext webApplicationContext = WebApplicationContextUtils.getWebApplicationContext(servletContext);

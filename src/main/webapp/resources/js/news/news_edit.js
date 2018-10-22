@@ -1,45 +1,35 @@
 $(function () {
-    $(function () {
-        $(".btn-save-changes").click(function (e) {
-                var formsValidator = new FormsValidator();
-                var formNewsEdit = $(".edit-news-form");
-                if(formsValidator.newsEditForm(formNewsEdit)){
-                    let service = new AJAXService();
-                    var btn = $(this);
-                    var news = new News($('#title').val(),
-                        $('#description').val(), $('#date').val(),
-                        $('#imageURL').val());
+    $(".btn-save-changes").click(function (e) {
+        let formsValidator = new FormsValidator();
+        let formNewsEdit = $(".edit-news-form");
+        if (formsValidator.newsEditForm(formNewsEdit)) {
+            let service = new AJAXService();
+            let btn = $(this);
+            let news = new News($('#title').val(),
+                $('#description').val(), $('#date').val(),
+                $('#imageURL').val());
 
-                    function success() {
-                        location.replace("/news");
-                    };
+            function success() {
+                location.replace("/news");
+            }
 
-                    function fail() {
-                        console.log("fail");
-                    };
-                    service.put("/api/1.0/news/" + btn.val(), news, success, fail);
-                    e.preventDefault();
-                }
-            });
+            function fail() {
+                console.log("fail");
+            }
+            service.put("/api/1.0/news/" + btn.val(), news, success, fail);
+            e.preventDefault();
         }
-    );
-
-    $(function () {
-        $(".form-control").dblclick(function (e) {
-            $(this).attr("readonly",false);
-        });
     });
 
-    $(function () {
-        $(".form-control").blur(function (e) {
-            $(this).attr("readonly",true);
-        });
+    $(".form-control").dblclick(function (e) {
+        $(this).attr("readonly", false);
     });
 
-    $(function () {
-        $(".btn-update-img").click(function (e) {
-            $("#news_image").attr("src",$("#imageURL").val());
-        });
+    $(".form-control").blur(function (e) {
+        $(this).attr("readonly", true);
     });
 
+    $(".btn-update-img").click(function (e) {
+        $("#news_image").attr("src", $("#imageURL").val());
+    });
 });

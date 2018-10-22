@@ -18,8 +18,7 @@ public class ContactType {
 
     String name;
 
-    @OneToMany(cascade = CascadeType.REMOVE, targetEntity = Contact.class)
-    @JoinColumn(name="contact_type_id")
+    @OneToMany(cascade = CascadeType.REMOVE, mappedBy = "contactType",targetEntity = Contact.class, fetch = FetchType.LAZY)
     @JsonIgnore
     List<Contact> contacts = new ArrayList<>();
 

@@ -45,9 +45,7 @@
     </div>
 </div>
 <c:import url="../template/footer.jsp"></c:import>
-<!--Scripts-->
 <script type="text/javascript" src="../../../resources/js/services/AJAXService.js"></script>
-<script type="text/javascript" src="../../../resources/js/user/user.js"></script>
+<script type="text/javascript" src="../../../resources/js/users/user.js"></script>
 </body>
-
 </html>

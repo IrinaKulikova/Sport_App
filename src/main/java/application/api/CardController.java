@@ -10,6 +10,7 @@ import application.service.implementations.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,22 +18,13 @@ import java.util.List;
 @RequestMapping(value = "/api/1.0/cards", produces = "application/json")
 public class CardController {
 
-    @Autowired
-    private CardService cardService;
+    private final CardService cardService;
+    private final UserService userService;
 
     @Autowired
-    private UserService userService;
-
-    @GetMapping("/{id}")
-    public JSONResult<Card> getCardById(@PathVariable("id") int id) {
-        Card card = new Card();
-        try {
-            card = cardService.getById(id);
-        } catch (Exception ex) {
-            ex.printStackTrace();
-            return new JSONResultError<Card>(card, ex.getMessage());
-        }
-        return new JSONResultOk<Card>(card);
+    public CardController(CardService cardService, UserService userService) {
+        this.cardService = cardService;
+        this.userService = userService;
     }
 
     @GetMapping
@@ -40,20 +32,32 @@ public class CardController {
         List<Card> cards = new ArrayList<>();
         try {
             cards = cardService.getAll();
-        } catch (Exception ex) {
+        } catch (SQLException ex) {
             ex.printStackTrace();
             return new JSONResultError<>(cards, ex.getMessage());
         }
-        return new JSONResultOk<List<Card>>(cards);
+        return new JSONResultOk<>(cards);
+    }
+
+    @GetMapping("/{id}")
+    public JSONResult<Card> getById(@PathVariable("id") int id) {
+        Card card = new Card();
+        try {
+            card = cardService.getById(id);
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            return new JSONResultError<>(card, ex.getMessage());
+        }
+        return new JSONResultOk<>(card);
     }
 
     @PutMapping("/{user_id}/{id}")
-    public JSONResult<Card> updateCard(@RequestBody Card card, @PathVariable("user_id") int user_id, @PathVariable("id") int id) {
+    public JSONResult<Card> update(@RequestBody Card card, @PathVariable("user_id") int user_id, @PathVariable("id") int id) {
         Card currentCard = new Card();
         try {
             currentCard = cardService.getById(id);
             if (currentCard == null) {
-                return new JSONResultError<>(currentCard, "entity no find!");
+                return new JSONResultError<>(new Card(), "entity no find!");
             }
             currentCard.setExpirationDate(card.getExpirationDate());
             currentCard.setIssueDate(card.getIssueDate());
@@ -61,7 +65,7 @@ public class CardController {
             currentCard.setDescription(card.getDescription());
             currentCard.setUser(userService.getById(user_id));
             cardService.save(currentCard);
-        } catch (Exception ex) {
+        } catch (SQLException ex) {
             ex.printStackTrace();
             return new JSONResultError<>(currentCard, ex.getMessage());
         }
@@ -69,7 +73,7 @@ public class CardController {
     }
 
     @PostMapping("/{id}")
-    public JSONResult<Card> addCard(@RequestBody Card card, @PathVariable int id) {
+    public JSONResult<Card> add(@RequestBody Card card, @PathVariable int id) {
         User user = null;
         Card curCard = new Card();
         try {
@@ -80,15 +84,15 @@ public class CardController {
             curCard.setDescription(card.getDescription());
             curCard.setUser(user);
             curCard = cardService.save(curCard);
-        } catch (Exception ex) {
+        } catch (SQLException ex) {
             ex.printStackTrace();
-            return new JSONResultError<Card>(curCard, ex.getMessage());
+            return new JSONResultError<>(curCard, ex.getMessage());
         }
-        return new JSONResultOk<Card>(curCard);
+        return new JSONResultOk<>(curCard);
     }
 
     @DeleteMapping("/{user_id}/{id}")
-    public JSONResult<Card> deleteCard(@PathVariable int user_id, @PathVariable int id) {
+    public JSONResult<Card> delete(@PathVariable int user_id, @PathVariable int id) {
         Card card = new Card();
         try {
             card = cardService.getById(id);

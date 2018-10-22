@@ -1,12 +1,12 @@
 package application.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
+import org.hibernate.annotations.Fetch;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import java.sql.Date;
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Data
@@ -14,20 +14,12 @@ public class Day {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    private int attribute;
+    String name;
 
-    String nameDay;
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "day" ,targetEntity = Training.class, cascade = CascadeType.ALL)
+    @JsonIgnore
+    List<Training> trainings = new ArrayList<>();
 
-    public int getId() {
-        return id;
-    }
-
-    public String getNameDay() { return nameDay; }
-
-    public int getAttribute() {
-        return attribute;
-    }
-
-    public Day(){
+    public Day() {
     }
 }

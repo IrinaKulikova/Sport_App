@@ -11,20 +11,25 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.sql.SQLException;
 
 @Controller
 @RequestMapping("/admins")
 public class AdminsViewController {
 
+    private final AdministratorService administratorService;
+
     @Autowired
-    private AdministratorService administratorService;
+    public AdminsViewController(AdministratorService administratorService) {
+        this.administratorService = administratorService;
+    }
 
     @GetMapping()
     public String index(Model model) {
         try {
             model.addAttribute("admins", administratorService.getAll());
-        } catch (Throwable throwable) {
-            throwable.printStackTrace();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
         }
         return "admins/admins";
     }
@@ -34,7 +39,8 @@ public class AdminsViewController {
         Administrator admin = new Administrator();
         try {
             admin = administratorService.getById(id);
-        } catch (Exception ex) {
+        } catch (SQLException ex) {
+            ex.printStackTrace();
         }
         model.addAttribute("admin", admin);
         HttpSession session = req.getSession();
@@ -44,7 +50,7 @@ public class AdminsViewController {
     }
 
     @GetMapping("/create")
-    public String edit(Model model) {
+    public String edit() {
         return "admins/admin_create";
     }
 }

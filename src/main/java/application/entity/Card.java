@@ -1,7 +1,6 @@
 package application.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.mysql.cj.x.protobuf.MysqlxDatatypes;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -15,8 +14,8 @@ public class Card {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     int id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id")
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "user_fk")
     @JsonIgnore
     private User user;
 
@@ -30,7 +29,6 @@ public class Card {
     String expirationDate;
 
     String description;
-
 
     public Card() {
     }

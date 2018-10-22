@@ -3,18 +3,18 @@ package application.api.shared;
 
 import application.entity.Filiation;
 import application.entity.News;
-import application.entity.Schedule;
-import application.entity.ScheduleEvent;
+import application.entity.Training;
+import application.entity.TrainingType;
 import application.helper.JSONResult;
 import application.helper.JSONResultError;
 import application.helper.JSONResultOk;
 import application.service.implementations.FiliationService;
 import application.service.implementations.NewsService;
-import application.service.implementations.ScheduleService;
-import application.service.implementations.SchedulesEventService;
+import application.service.implementations.TrainingTypeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,37 +23,41 @@ import java.util.List;
 @RequestMapping(value = "/api/1.0/shared", produces = "application/json")
 public class SharedApiController {
 
-    @Autowired
-    FiliationService filiationService;
-    @Autowired
-    NewsService newsService;
-    @Autowired
-    SchedulesEventService eventService;
-    @Autowired
-    ScheduleService scheduleService;
+    private final FiliationService filiationService;
+    private final NewsService newsService;
+    private final TrainingTypeService typeTrainingService;
 
-    @GetMapping("/schedules")
-    public JSONResult<List<Schedule>> getAllSchedule(){
-        List<Schedule> schedules = new ArrayList<>();
-        try {
-            schedules = scheduleService.getAll();
-        } catch (Exception ex) {
-            ex.printStackTrace();
-            return new JSONResultError<List<Schedule>>(schedules, ex.getMessage());
-        }
-        return new JSONResultOk<List<Schedule>>(schedules);
+    @Autowired
+    public SharedApiController(FiliationService filiationService, NewsService newsService,
+                               TrainingTypeService typeTrainingService) {
+        this.filiationService = filiationService;
+        this.newsService = newsService;
+        this.typeTrainingService = typeTrainingService;
     }
 
-    @GetMapping("/events")
-    public JSONResult<List<ScheduleEvent>> getAllScheduleEvents() {
-        List<ScheduleEvent> events = new ArrayList<>();
+    @GetMapping("/{id}/trainings")
+    public JSONResult<List<Training>> getAllTrainings(@PathVariable int id) {
+        List<Training> trainings = new ArrayList<>();
         try {
-            events = eventService.getAll();
-        } catch (Exception ex) {
+            Filiation filiation = filiationService.getById(id);
+            trainings = filiation.getTrainings();
+        } catch (SQLException ex) {
             ex.printStackTrace();
-            return new JSONResultError<>(events, ex.getMessage());
+            return new JSONResultError<>(trainings, ex.getMessage());
         }
-        return new JSONResultOk<>(events);
+        return new JSONResultOk<>(trainings);
+    }
+
+    @GetMapping("/typetrainings")
+    public JSONResult<List<TrainingType>> getAllTrainingTypes() {
+        List<TrainingType> trainingTypes = new ArrayList<>();
+        try {
+            trainingTypes = typeTrainingService.getAll();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            return new JSONResultError<>(trainingTypes, ex.getMessage());
+        }
+        return new JSONResultOk<>(trainingTypes);
     }
 
 
@@ -62,7 +66,7 @@ public class SharedApiController {
         List<Filiation> filiation = new ArrayList<>();
         try {
             filiation = filiationService.getAll();
-        } catch (Exception ex) {
+        } catch (SQLException ex) {
             ex.printStackTrace();
             return new JSONResultError<>(filiation, ex.getMessage());
         }
@@ -74,7 +78,7 @@ public class SharedApiController {
         List<News> news = new ArrayList<>();
         try {
             news = newsService.getAll();
-        } catch (Exception ex) {
+        } catch (SQLException ex) {
             ex.printStackTrace();
             return new JSONResultError<>(news, ex.getMessage());
         }
