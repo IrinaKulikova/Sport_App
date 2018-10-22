@@ -48,7 +48,7 @@ public class SharedApiController {
         return new JSONResultOk<>(trainings);
     }
 
-    @GetMapping("/typetrainings")
+    @GetMapping("/trainingtypes")
     public JSONResult<List<TrainingType>> getAllTrainingTypes() {
         List<TrainingType> trainingTypes = new ArrayList<>();
         try {
