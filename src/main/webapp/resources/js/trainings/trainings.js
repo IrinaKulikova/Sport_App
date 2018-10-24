@@ -1,17 +1,7 @@
 $(function () {
-    $(".btn-delete").click(function (e) {
-        let btn = $(this);
-        let service = new AJAXService();
-
-        function success() {
-            location.reload(true);
-        }
-
-        function fail() {
-            console.log('fail');
-        }
-
-        service.del("/api/1.0/trainings/" + btn.val(), success, fail);
-        e.preventDefault();
+    let service = new AJAXService();
+    service.getAll('/api/1.0/shared/1/trainings', function (e) {
+        console.log(e.data);
+        //insert into cells by id
     });
 });

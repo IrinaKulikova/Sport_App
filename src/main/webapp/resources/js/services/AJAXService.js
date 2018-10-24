@@ -34,4 +34,12 @@ class AJAXService {
             error: fail
         });
     }
+
+    getAll(url, success) {
+        $.ajax({
+            type: 'GET',
+            url: url,
+            success: success,
+        });
+    }
 }

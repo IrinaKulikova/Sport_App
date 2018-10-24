@@ -11,7 +11,7 @@ $(function () {
 
                     function success(d) {
                         console.log("done!");
-                        location.replace("/trainingtypes/"+d.data.id);
+                        location.replace("/trainingtypes/");
                     }
 
                     function fail() {

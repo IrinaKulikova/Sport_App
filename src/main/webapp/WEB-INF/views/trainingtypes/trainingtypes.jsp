@@ -10,6 +10,9 @@
 <body>
 <c:import url="../template/header.jsp"></c:import>
 <div class="container main-div mt-md-5">
+    <div class="tools-div form-control text-right">
+        <a class="btn btn-outline-warning ml-2" href="/trainingtypes/create">Create</a>
+    </div>
     <div>
         <table class="table table-bordered mt-2">
             <thead>

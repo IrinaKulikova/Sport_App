@@ -4,11 +4,11 @@ INSERT INTO sport.contact_type (name) VALUES ('phone');
 INSERT INTO sport.filiation (building, caption, city, country, index_city, street) VALUES ('101', 'Hercules', 'Dnipro', 'Ukraine', '49000', 'Yavornitskogo');
 INSERT INTO sport.filiation (building, caption, city, country, index_city, street) VALUES ('5', 'Barbie', 'Kyev', 'Ukraine', '44000', 'Metrostroevskaya');
 
-INSERT INTO sport.contact (data, contact_type_id, filiation_fk) VALUES ('+380666666666', 2, 1);
-INSERT INTO sport.contact (data, contact_type_id, filiation_fk) VALUES ('+380505555555', 2, 1);
-INSERT INTO sport.contact (data, contact_type_id, filiation_fk) VALUES ('hercules@gmail.com', 1, 1);
-INSERT INTO sport.contact (data, contact_type_id, filiation_fk) VALUES ('barbie@gmail.com', 1, 2);
-INSERT INTO sport.contact (data, contact_type_id, filiation_fk) VALUES ('+380505555555', 2, 2);
+INSERT INTO sport.contact (data, contact_type_fk, filiation_fk) VALUES ('+380666666666', 2, 1);
+INSERT INTO sport.contact (data, contact_type_fk, filiation_fk) VALUES ('+380505555555', 2, 1);
+INSERT INTO sport.contact (data, contact_type_fk, filiation_fk) VALUES ('hercules@gmail.com', 1, 1);
+INSERT INTO sport.contact (data, contact_type_fk, filiation_fk) VALUES ('barbie@gmail.com', 1, 2);
+INSERT INTO sport.contact (data, contact_type_fk, filiation_fk) VALUES ('+380505555555', 2, 2);
 
 INSERT INTO sport.news (title, date, description, image_url) VALUES ('Fifa’s treatment of Women’s World Cup final keeps ‘virus’ contained', '2018-07-21 13:06:15' , 'Back in the summer, 19-year-old Venezuelan international Deyna Castellanos was permitted to interview Gianni Infantino, with the result posted on the Women’s World Cup social media channels. “Next year in France, we will see the greatest, greatest, greatest Women’s World Cup ever,” promised the Fifa president. “We will have a country that celebrates women’s football – and this virus of women’s football will spread from France, over the whole world.”',
 'https://saycheese.com.ua/wp-content/uploads/2018/04/Harkovskij-marafon-2-1200x630.jpg');
@@ -28,5 +28,7 @@ INSERT INTO sport.training_type (`name`,description) VALUES ('Swimming','It is p
 
 INSERT INTO sport.`day` (name) VALUES ('Monday'),('Tuesday'),('Wednesday'),('Thursday'),('Friday'),('Saturday'),('Sunday');
 
-INSERT INTO sport.`training` (day, time, training_type_fk, filiation_fk) VALUES (1,'09:00:00',1,1), (1,'18:00:00',1,2),(2,'13:00:00',1,1),(2,'19:00:00',1,1),
-																(3,'09:00:00',2,2), (4,'18:00:00',2,2), (5,'13:00:00',2,1), (6,'10:00:00',2,1);
+INSERT INTO sport.`time` (name) VALUES('8:00'),('9:00'),('10:00'),('11:00'),('12:00'),('13:00'),('14:00'),('15:00'),('16:00'),('17:00'),('18:00'),('19:00'),('20:00');
+
+INSERT INTO sport.`training` (day_fk, time_fk, training_type_fk, filiation_fk) VALUES (1,2,1,1), (1,10,1,2),(2,5,1,1),(2,9,1,1),
+																(3,1,2,2), (4,6,2,2), (5,3,2,1), (6,1,2,1);

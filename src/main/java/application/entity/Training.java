@@ -4,7 +4,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 import javax.persistence.*;
-import java.sql.Time;
 
 @Entity
 @Data
@@ -13,7 +12,9 @@ public class Training {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    private Time time;
+    @ManyToOne(targetEntity = application.entity.Time.class, fetch = FetchType.EAGER)
+    @JoinColumn(name = "time_fk")
+    private application.entity.Time time;
 
     @ManyToOne(targetEntity = Day.class, fetch = FetchType.EAGER)
     @JoinColumn(name = "day_fk")
