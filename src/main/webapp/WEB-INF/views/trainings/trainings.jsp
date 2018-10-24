@@ -11,6 +11,7 @@
         <div class="text-center mt-4 mb-4">
             <h1>${filiation.caption} schedule</h1>
         </div>
+        <input id="id" value="${filiation.id}" hidden></input>
         <div class="table-responsive col-lg-12">
             <table class="table table-bordered mt-2">
                 <tr>
@@ -23,8 +24,8 @@
                     <tr>
                         <td>${time.name}</td>
                         <c:forEach items="${days}" var="day">
-                                <th id="${day.id}:${time.id}"></th>
-                            </c:forEach>
+                            <th id="${day.id}:${time.id}"></th>
+                        </c:forEach>
                     </tr>
                 </c:forEach>
             </table>
