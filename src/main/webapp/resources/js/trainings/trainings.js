@@ -39,7 +39,11 @@ $(function () {
             e.preventDefault();
         });
 
-    $('#addmodal').on('hidden.bs.modal', function (e) {
-        alert("modal!");
+    $('#save').click(function (e) {
+
+        console.log($("#type-id option:selected").val());
+
+        //закрывае модальное окно
+        $('#addmodal').modal('hide');
     });
 });

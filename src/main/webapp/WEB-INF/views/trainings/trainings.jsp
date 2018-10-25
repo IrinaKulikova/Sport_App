@@ -23,7 +23,14 @@
                         <label for="type-id" class="col-form-label"> Choose Training Type: </label>
                         <select class="form-control" id="type-id" name="type-id">
                             <c:forEach items="${trainingtypes}" var="triningtype">
-                                <option value="${triningtype.id}">${triningtype.name}</option>
+                                <c:choose>
+                                    <c:when test="${triningtype.id == 1}">
+                                        <option value="${triningtype.id}" selected>${triningtype.name}</option>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <option value="${triningtype.id}">${triningtype.name}</option>
+                                    </c:otherwise>
+                                </c:choose>
                             </c:forEach>
                         </select>
                     </div>
@@ -31,7 +38,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save</button>
+                <button type="button" id="save" class="btn btn-primary">Save</button>
             </div>
         </div>
     </div>
@@ -46,8 +53,7 @@
     <div class="table-responsive col-lg-12">
         <table class="table table-bordered mt-2" data-toggle="modal" data-target="#addmodal">
             <tr>
-                <th>time</th>git status
-
+                <th>time</th>
                 <c:forEach items="${days}" var="day">
                     <th>${day.name}</th>
                 </c:forEach>
