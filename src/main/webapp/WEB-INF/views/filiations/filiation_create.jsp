@@ -77,7 +77,6 @@
     </form>
 </div>
 <c:import url="../template/footer.jsp"></c:import>
-<!--Scripts-->
 <script src="../../../resources/js/services/FormsValidator.js" type="text/javascript"></script>
 <script src="../../../resources/js/services/jquery.validate.js" type="text/javascript"></script>
 <script src="../../../resources/js/DTO/DTOFiliation.js" type="text/javascript"></script>

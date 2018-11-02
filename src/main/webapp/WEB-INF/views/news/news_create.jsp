@@ -49,11 +49,6 @@
     </div>
 </div>
 <c:import url="../template/footer.jsp"></c:import>
-<!--Scripts-->
-<script th:src="@{/webjars/jquery/jquery.min.js}"></script>
-<script th:src="@{/webjars/jquery-ui/jquery-ui.min.js}"></script>
-<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 <script type="text/javascript" src="../../../resources/js/services/FormsValidator.js"></script>
 <script type="text/javascript" src="../../../resources/js/services/jquery.validate.js"></script>
 <script type="text/javascript" src="../../../resources/js/DTO/DTONews.js"></script>

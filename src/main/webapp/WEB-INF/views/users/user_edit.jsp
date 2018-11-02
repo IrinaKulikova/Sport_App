@@ -95,7 +95,6 @@
     </div>
 </div>
 <c:import url="../template/footer.jsp"></c:import>
-<!--Scripts-->
 <script type="text/javascript" src="../../../resources/js/services/FormsValidator.js"></script>
 <script type="text/javascript" src="../../../resources/js/services/jquery.validate.js"></script>
 <script type="text/javascript" src="../../../resources/js/DTO/DTOCard.js"></script>

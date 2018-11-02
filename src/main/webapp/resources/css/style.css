@@ -1,29 +1,14 @@
-.error{border-color: red;
-        color: red;}
-.nav-link{font-size: 20px;}
-.footer{background-color: azure;
-        font-size: 15px;}
-.conteiner{
-        width: 1000px;
-        margin: auto;
+.error {
+    border-color: red;
+    color: red;
 }
-.td-tab{
-        border: black 1px solid;
-        background-color: lightblue;
-        height: 50px;
-        position: relative;
-        padding:5px;
+
+.nav-link {
+    font-size: 20px;
 }
-td{
-        padding: 2px !important;
-}
-.td-tab:hover::after{
-        border: 1px solid #fc0;
-        padding: 3px 6px;
-        background: #fffea1;
-        content: attr(data-title);
-        position: absolute;
-        left: 60px;
-        top: 40px;
-        z-index: 50;
+
+.footer {
+    padding-top: 8px;
+    background-color: lightgray;
+    font-size: 15px;
 }
