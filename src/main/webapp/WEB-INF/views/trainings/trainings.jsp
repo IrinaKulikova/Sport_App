@@ -3,7 +3,7 @@
 <html>
 <head>
     <c:import url="../template/head.jsp"></c:import>
-    <link rel="stylesheet" href="../../../resources/css/style.css"/>
+    <%--<link rel="stylesheet" href="../../../resources/css/style.css"/>--%>
 <body>
 <c:import url="../template/header.jsp"></c:import>
 
@@ -69,6 +69,7 @@
         </table>
     </div>
 </div>
+<script src="../../../resources/js/DTO/DTOTraining.js" type="text/javascript"></script>
 <script src="../../../resources/js/services/AJAXService.js" type="text/javascript"></script>
 <script src="../../../resources/js/trainings/trainings.js" type="text/javascript"></script>
 </body>

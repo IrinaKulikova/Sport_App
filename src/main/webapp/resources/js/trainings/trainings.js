@@ -39,11 +39,39 @@ $(function () {
             e.preventDefault();
         });
 
+    //ячейка таблицы по которой кликнули
+    let td = null;
+
+    $('td').click(function (e) {
+        if ($(e.target).is("td")) {
+            td = e.target;
+        }
+        if ($(e.target).is("p")) {
+            td = e.target.parentElement;
+        }
+    });
+
+
+    function success(e) {
+        let dayid = e.data.day.id;
+        let timeid = e.data.time.id;
+        let td = document.getElementById(dayid + ":" + timeid);
+        let firstchild = td.firstChild;
+        if (firstchild === undefined || firstchild === null) {
+            firstchild = document.createElement('p');
+            td.appendChild(firstchild);
+        }
+        firstchild.innerText = e.data.trainingType.name;
+    }
+
+
     $('#save').click(function (e) {
-
-        console.log($("#type-id option:selected").val());
-
-        //закрывае модальное окно
+        let ids = td.id.match(/([\d]+):([\d]+)/);
+        let trining = new DTOTraining(ids[1],
+            ids[2],
+            $("#type-id option:selected").val(),
+            $('#id').val());
+        service.put('/api/1.0/trainings/', trining, success, null);
         $('#addmodal').modal('hide');
     });
 });
