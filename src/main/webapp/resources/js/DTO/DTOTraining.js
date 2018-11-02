@@ -1,8 +1,8 @@
-class DTOTraining{
-    constructor(id,dayid,starttime,eventschedule){
-        this.id=id;
-        this.dayid=dayid;
-        this.starttime=starttime;
-        this.eventschedule=eventschedule;
+class DTOTraining {
+    constructor(dayid, timeid, trainingtypeid, filiationid) {
+        this.dayid = dayid;
+        this.timeid = timeid;
+        this.trainingtypeid = trainingtypeid;
+        this.filiationid = filiationid;
     }
 }

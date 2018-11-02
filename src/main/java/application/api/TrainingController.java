@@ -1,12 +1,12 @@
 package application.api;
 
+import application.dto.TrainingDTO;
 import application.entity.Filiation;
 import application.entity.Training;
 import application.helper.JSONResult;
 import application.helper.JSONResultError;
 import application.helper.JSONResultOk;
-import application.service.implementations.FiliationService;
-import application.service.implementations.TrainingService;
+import application.service.implementations.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,12 +19,22 @@ import java.util.List;
 public class TrainingController {
 
     private final TrainingService trainingService;
+    private final TrainingTypeService trainingTypeService;
     private final FiliationService filiationService;
+    private final DayService dayService;
+    private final TimeService timeService;
 
     @Autowired
-    public TrainingController(TrainingService trainingService, FiliationService filiationService) {
+    public TrainingController(TrainingService trainingService,
+                              TrainingTypeService trainingTypeService,
+                              FiliationService filiationService,
+                              DayService dayService,
+                              TimeService timeService) {
         this.trainingService = trainingService;
+        this.trainingTypeService = trainingTypeService;
         this.filiationService = filiationService;
+        this.dayService = dayService;
+        this.timeService = timeService;
     }
 
     @GetMapping("/{id_filiation}")
@@ -40,10 +50,22 @@ public class TrainingController {
         return new JSONResultOk<>(trainings);
     }
 
-    @PutMapping("/{id}/{id_filiation}")
-    public JSONResult<Training> update(@RequestBody Training training, @PathVariable("id") int id,
-                                                @PathVariable int id_filiation) {
-        return null;
+    @PutMapping()
+    public JSONResult<Training> update(@RequestBody TrainingDTO trainingDTO) {
+        Training training = new Training();
+        try {
+            Filiation filiation = filiationService.getById(trainingDTO.getFiliationid());
+            training.setDay(dayService.getById(trainingDTO.getDayid()));
+            training.setTime(timeService.getById(trainingDTO.getTimeid()));
+            training.setFiliation(filiation);
+            training.setTrainingType(trainingTypeService.getById(trainingDTO.getTrainingtypeid()));
+            filiation.getTrainings().add(training);
+            trainingService.save(training);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return new JSONResultError<>(training, e.getMessage());
+        }
+        return new JSONResultOk<>(training);
     }
 
     @DeleteMapping("/{id}")
